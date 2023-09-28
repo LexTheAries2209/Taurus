@@ -6,3 +6,11 @@
 //
 
 import Foundation
+//public func VIIIbit() -> [Double] {
+//    var CameraNumble = {
+//        switch CameraName = {
+//            
+//        }
+//    }
+//    return CameraNumble
+//}

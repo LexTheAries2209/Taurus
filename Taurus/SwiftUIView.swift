@@ -3755,3 +3755,219 @@
 //                            }
 //
 //                        }
+
+
+//        var RateLimit = {
+//            switch CameraName {
+//            //AMIRA
+//            case "AMIRA" :
+//                switch Codec {
+//                case "ARRIRAW" :
+//                    return 48
+//                case "Prores 4444 XQ" :
+//                    switch Resolution {
+//                    case "3.2K S35[3200*1800]","UHD S35[From 3200*1800]" :
+//                        return 30
+//                    case "HD S35[From 2880*1620]","HD S16[From 1600*900]","2K S35[2048*1152][From 2868*1612]" :
+//                        return 120
+//                    case "MPEG-2 HD 422" :
+//                        return 59
+//                    case "Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT" :
+//                        switch Resolution {
+//                        case "3.2K S35[3200*1800]","UHD S35[From 3200*1800]" :
+//                            return 60
+//                        case "HD S35[From 2880*1620]","HD S16[From 1600*900]","2K S35[2048*1152][From 2868*1612]" :
+//                            return 200
+//                        default :
+//                            return 0
+//                        }
+//                    default :
+//                        return 0
+//                    }
+//                default :
+//                    return 0
+//                }
+//            //Classic
+//            case "ALEXA Classic" :
+//                switch Resolution {
+//                case "HD S35[From 2880*1620]" :
+//                    switch Codec {
+//                    case "Prores 4444" :
+//                        return 60
+//                    case "Prores 422 HQ","Prores 422" :
+//                        return 120
+//                    default :
+//                        return 0
+//                    }
+//                case "2K S35[2048*1536][From 2868*2152][4:3]" :
+//                    return 48
+//                case "2K S35[2048*1152][From 2868*1614]" :
+//                    return 60
+//                default :
+//                    return 0
+//                }
+//
+//            //XT
+//            case "ALEXA XT" :
+//
+//
+//
+//
+//
+//
+//
+//            default:
+//               return 0
+//            }
+//        }
+//
+//
+//
+//        
+//func VIIIbit() -> [String] {
+//    var VIIIbit = ["99999999"]
+//    
+//    var CameraNumber = {
+//        switch CameraName {
+//        case "AMIRA" :
+//            return 200
+//        case "ALEXA Classic" :
+//            return 201
+//        case "ALEXA XT" :
+//            return 202
+//        case "ALEXA SXT" :
+//            return 203
+//        case "ALEXA Mini" :
+//            return 204
+//        case "ALEXA LF" :
+//            return 205
+//        case "ALEXA Mini LF" :
+//            return 206
+//        case "ALEXA 65" :
+//            return 207
+//        case "ALEXA 35" :
+//            return 208
+//        default :
+//            return 999
+//        }
+//    }
+//    
+//    var CodecNumber = {
+//        switch Codec {
+//        case "ARRIRAW" :
+//            return 10
+//        case "REDCODE 1:3" :
+//            return 20
+//        case "Prores 4444 XQ" :
+//            return 20
+//        case "Preres 4444" :
+//            return 21
+//        case "Preres 422 HQ" :
+//            return 22
+//        case "Preres 422" :
+//            return 23
+//        case "Preres 422 LT" :
+//            return 24
+//        case "MPEG-2 HD 422" :
+//            return 80
+//        default :
+//            return 99
+//        }
+//        
+//        var ResolutionNumber = {
+//            switch Resolution {
+//            case "HD S35[From 2880*1620]" :
+//                return 101
+//            case "HD S16[From 1600*900]" :
+//                return 102
+//            default :
+//                return 999
+//            }
+//        }
+//        
+//        var MediaNumber = {
+//            switch Media {
+//            case "Cfast2.0 128GB" :
+//                return 11
+//            default :
+//                return 99
+//            }
+//        }
+//    }
+//    return VIIIbit
+//}
+
+
+
+//func VIIIbit() -> [String] {
+//
+//        var CameraNumber = {
+//            switch CameraName {
+//            case "AMIRA" :
+//                return 200
+//            case "ALEXA Classic" :
+//                return 201
+//            case "ALEXA XT" :
+//                return 202
+//            case "ALEXA SXT" :
+//                return 203
+//            case "ALEXA Mini" :
+//                return 204
+//            case "ALEXA LF" :
+//                return 205
+//            case "ALEXA Mini LF" :
+//                return 206
+//            case "ALEXA 65" :
+//                return 207
+//            case "ALEXA 35" :
+//                return 208
+//            default :
+//                return 999
+//            }
+//        }
+//
+//        var CodecNumber = {
+//            switch Codec {
+//            case "ARRIRAW" :
+//                return 10
+//            case "REDCODE 1:3" :
+//                return 20
+//            case "Prores 4444 XQ" :
+//                return 20
+//            case "Preres 4444" :
+//                return 21
+//            case "Preres 422 HQ" :
+//                return 22
+//            case "Preres 422" :
+//                return 23
+//            case "Preres 422 LT" :
+//                return 24
+//            case "MPEG-2 HD 422" :
+//                return 80
+//            default :
+//                return 99
+//            }
+//
+//            var ResolutionNumber = {
+//                switch Resolution {
+//                case "HD S35[From 2880*1620]" :
+//                    return 101
+//                case "HD S16[From 1600*900]" :
+//                    return 102
+//                default :
+//                    return 999
+//                }
+//            }
+//
+//            var MediaNumber = {
+//                switch Media {
+//                case "Cfast2.0 128GB" :
+//                    return 11
+//                default :
+//                    return 99
+//                }
+//            }
+//        }
+//        let VIIIbit = ["\(CameraNumber)"+"\(CodecNumber)"+"\(ResolutionNumber)"+"\(MediaNumber)"]
+//        return VIIIbit
+//    }
