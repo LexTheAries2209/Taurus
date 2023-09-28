@@ -13,9 +13,9 @@ struct ContentView: View {
     let CameraModel : [String:[String]] = [
         "ARRI" : ["AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA 35","ALEXA Mini","ALEXA Mini LF","ALEXA LF","ALEXA 65"],
 //        "RED" : ["RED ONE[Mysterium 4K S35]","RED ONE M-X[Mysterium-X 4K S35]","Scarlet[Mysterium-X 5K S35]","Scarlet[Dragon 6K S35]","Scarlet-W[Dragon 5K S35]","Epic[Mysterium-X 5K S35]","Epic[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic-W[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Weapon[Dragon 6K S35]","Weapon[Helium 8K S35]","Weapon[Monstro 8K VV]","Raven[Dragon 4.5K]","DSMC2[Dragon-X 6K S35]","DCMC2[Gemini 5K S35]","DSMC2[Helium 8K S35]","DSMC2[Monstro 8K VV]","Ranger[Gemini 5K S35]","Ranger[Helium 8K S35]","Ranger[Monstro 8K VV]","KEMODO","KEMODO-X","V-Raptor[8K S35]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor XL[8K VV]"],
-        "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FX 9","FX 6","FX 3","FX 30","FR 7","Alpha 1","Alpha7S Mark3","Alpha7 Mark4"],
-        "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C100","CinemaEOS C70","CinemaEOS R5 C","CinemaEOS 1D-C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 1D-X Mark3"],
-        "Kinefinity" : ["MC8020","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
+//        "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FX 9","FX 6","FX 3","FX 30","FR 7","Alpha 1","Alpha7S Mark3","Alpha7 Mark4"],
+//        "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C100","CinemaEOS C70","CinemaEOS R5 C","CinemaEOS 1D-C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 1D-X Mark3"],
+//        "Kinefinity" : ["MC8020","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z 50","ZFC","Z 30"]
     ]
     
