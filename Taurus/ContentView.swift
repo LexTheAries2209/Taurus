@@ -373,17 +373,57 @@ struct ContentView: View {
                             }
                         }
                         
+                        //帧率乘积
+                        
+                        var RateSpeed: Double {
+                            switch Rate {
+                            case "0.750" :
+                                return 0.75
+                            case "1.000" :
+                                return 1
+                            case "23.976","24.000" :
+                                return 24
+                            case "25.000" :
+                                return 25
+                            case "29.970","30.000" :
+                                return 30
+                            case "40.000" :
+                                return 40
+                            case "48.000":
+                                return 48
+                            case "50.000" :
+                                return 50
+                            case "59.940","60.000" :
+                                return 60
+                            case "75.000" :
+                                return 75
+                            case "100.000" :
+                                return 100
+                            case "120.000" :
+                                return 120
+                            case "150.000" :
+                                return 150
+                            case "200.000" :
+                                return 200
+                            case "ERROR" :
+                                return 24
+                            default :
+                                return 0
+                            }
+                        }
+                        
+                        var RateMultiplier = RateSpeed/24
                         
                         //数据输出区
                         VStack(alignment: .center){
                             
                         
                             
-                            Text("可录制时长[Min]=\(MediaCapacity*0.931*400/3/CodecSpeedCount/ResolutionMultiplier)")
-                            Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier)")
-                            Text("每小时数据占盘量[TB]：\(CodecSpeedCount*ResolutionMultiplier*450/1024/1024)")
+                            Text("可录制时长[Min]=\(MediaCapacity*0.931*400/3/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
+                            Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
+                            Text("每小时数据占盘量[TB]：\(CodecSpeedCount*ResolutionMultiplier*450/1024/1024*RateMultiplier)")
                             if Codec == "ARRIRAW" {
-                                Text("每小时数据占盘量[TB][HDE]：\(CodecSpeed*ResolutionMultiplier*270/1024/1024)")
+                                Text("每小时数据占盘量[TB][HDE]：\(CodecSpeed*ResolutionMultiplier*270/1024/1024*RateMultiplier)")
                             }
                             
                                 
