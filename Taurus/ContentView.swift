@@ -14,7 +14,7 @@ struct ContentView: View {
         "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
         "RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO","Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
         "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FX 9","FX 6","FX 3","FX 30","FR 7","Alpha 1","Alpha7S Mark3","Alpha7 Mark4"],
-        "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C100","CinemaEOS C70","CinemaEOS R5 C","CinemaEOS 1D-C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 1D-X Mark3"],
+        "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C100","CinemaEOS C70","CinemaEOS R5 C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
         "Kinefinity" : ["MC8020","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z 50","ZFC","Z 30"],
         "BlackMagicDesign" : ["4.6K"]
@@ -178,18 +178,21 @@ struct ContentView: View {
                             }
                             
                             //编码选择
-                            if let codec = CodecName[CameraName] {
-                                Picker(selection: $Codec, label: Text("请选择编码").frame(width: 100,alignment: .center)) {
-                                    ForEach(codec, id:\.self) { codecs in
-                                        Text(codecs).tag(codecs)
+                            if BrandName != "RED" {
+                                if let codec = CodecName[CameraName] {
+                                    Picker(selection: $Codec, label: Text("请选择编码").frame(width: 100,alignment: .center)) {
+                                        ForEach(codec, id:\.self) { codecs in
+                                            Text(codecs).tag(codecs)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $Codec, label:Text("请选择编码").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
                                     }
                                 }
                             }
-                            else {
-                                Picker(selection: $Codec, label:Text("请选择编码").frame(width: 100,alignment: .center)) {
-                                    Text("无选项")
-                                }
-                            }
+                            
                             
                             //分辨率选择
                             @State var CodecAndCamera = CameraName + "_" + Codec
@@ -429,16 +432,7 @@ struct ContentView: View {
                                 
                         }
                         .padding([.leading,.trailing],30)
-                        
-                        //数值监控区
-//                        VStack {
-//                            Text("CodecSpeed=\(CodecSpeed)")
-//                            Text("ResolutionMultiplier=\(ResolutionMultiplier)")
-//                            Text("MediaCapacity=\(MediaCapacity)")
-//                            Text("CodecSpeedCount=\(CodecSpeedCount)")
-//                        }
-                        
-                        
+        
                     }
                     Spacer()
                     
@@ -508,13 +502,6 @@ struct ContentView: View {
             
             
             VStack {
-//参数监测区
-//                    Text("\(BrandName)")
-//                    Text("\(CameraName)")
-//                    Text("\(Codec)")
-//                    Text("\(Resolution)")
-//                    Text("\(Media)")
-//                    Text("\(CodecAndCamera)")
             }
         }
         .padding()
