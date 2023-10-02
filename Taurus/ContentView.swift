@@ -495,7 +495,7 @@ struct ContentView: View {
             rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000"]
             
             //max59
-        case "" :
+        case "2008010010","2008010011","2008010012" :
             rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940"]
             
             //max60
@@ -564,13 +564,13 @@ struct ContentView: View {
                 return 10
             case "Prores 4444 XQ" :
                 return 20
-            case "Preres 4444" :
+            case "Prores 4444" :
                 return 21
-            case "Preres 422 HQ" :
+            case "Prores 422 HQ" :
                 return 22
-            case "Preres 422" :
+            case "Prores 422" :
                 return 23
-            case "Preres 422 LT" :
+            case "Prores 422 LT" :
                 return 24
             case "REDCODE 1:3" :
                 return 30
