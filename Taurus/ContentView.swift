@@ -515,7 +515,6 @@ struct ContentView: View {
    
     func availableRates() -> [String] {
         var rates = [""]
-        
         let xbit = Xbit()
         switch xbit {
             
