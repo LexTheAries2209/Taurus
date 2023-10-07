@@ -105,8 +105,8 @@ struct ContentView: View {
     let MediaName : [String:[String]] = [
         "AMIRA" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
         "ALEXA Classic" : ["SxS Pro+ 128GB"],
-        "ALEXA XT" : ["XR Capture Drive 512GB"],
-        "ALEXA SXT" : ["XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
+        "ALEXA XT" : ["SxS Pro+ 128GB","CFast2.0 128GB","XR Capture Drive 512GB"],
+        "ALEXA SXT" : ["SxS Pro+ 128GB","SxS Pro+ 256GB","CFast2,0 256GB","XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
         "ALEXA 35" : ["Compact Drive 1TB","Compact Drive 2TB"],
         "ALEXA Mini" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
         "ALEXA Mini LF" : ["Compact Drive 1TB","Compact Drive 2TB"],
