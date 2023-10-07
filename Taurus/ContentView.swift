@@ -574,7 +574,14 @@ struct ContentView: View {
         default :
             rates = ["24.000"]
         }
-
+        if CameraName.contains("ALEXA XT") || CameraName.contains("ALEXA SXT") {
+            if Codec == "ARRIRAW" {
+                if !Media.contains("XR Capture Drive 512GB") && !Media.contains("SXR Capture Drive 1TB") && !Media.contains("SXR Capture Drive 2TB") {
+                    rates = ["该储存卡不支持ARRIRAW"]
+                }
+            }
+        }
+        
         return rates
     }
     
