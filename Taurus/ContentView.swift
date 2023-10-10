@@ -127,9 +127,12 @@ struct ContentView: View {
     @State var Media = "请选择储存卡"
     
     @State var Rate = "请选择帧率"
+    
     var body: some View {
+        
         VStack {
             
+            //主功能选择
             TabView {
                 
                 //数据计算器模块//
@@ -137,6 +140,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
+                    //重置按键
                     Button("重置") {
                         BrandName = "请选择品牌"
                         CameraName = "请选择机型"
@@ -237,11 +241,6 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                            
-                            
-                            
-                            
-                            
                         }
                         .padding(.top, 20.0)
                         
@@ -273,7 +272,7 @@ struct ContentView: View {
                         var ResolutionMultiplier: Double {
                           switch Resolution {
                           case "HD S35[From 2880*1620]","HD S16[From 1600*900]","HD S35[From 4096*2304]","HD S35[From 1920*2160][8:9 ANA]","HD LF[From 4320*2430]","HD LF[From UHD]" :
-                            return 1
+                              return 1
                           case "2K S35[2048*1152][From 2868*1614]","2K S35[2048*1152][From 2868*1612]","2K S35[2048*1152][From 4096*2304]","2K LF[2048*1152][From UHD]","2K S16[2048*1152]","2K S35[2048*1152][From 2880*1620]":
                               return 1.14
                           case "2K S35[2048*858][From 2560*2146][6:5 ANA]","2K S35[2048*858][From 2560*2145][6:5 ANA]" :
@@ -301,7 +300,7 @@ struct ContentView: View {
                           case "4K S35[4096*2048][2:1]":
                               return 4.05
                           case "3.3K S35[3328*2790][6:5]" :
-                          return 4.48
+                              return 4.48
                           case "4K S35[4096*2304]","3K S35[3072*3072][1:1]","4K S35[4096*2304][From 4608*2592]":
                               return 4.55
                           case "4K S35[4096*2636][From 3414*2198][2.39:1]" :
@@ -364,7 +363,6 @@ struct ContentView: View {
                         }
                         
                         //加入补偿的编码速度
-                        
                         var CodecSpeedCount: Double {
                             switch Codec {
                             case "Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422LT" :
@@ -377,7 +375,6 @@ struct ContentView: View {
                         }
                         
                         //帧率乘积
-                        
                         var RateSpeed: Double {
                             switch Rate {
                             case "0.750" :
@@ -421,12 +418,11 @@ struct ContentView: View {
                             }
                         }
                         
+                        //计算帧率乘积
                         let RateMultiplier = RateSpeed/24
                         
-                        //数据输出区
+                        //计算数据输出区
                         VStack(alignment: .center){
-                            
-                        
                             
                             Text("可录制时长[Min]=\(MediaCapacity*0.931*400/3/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
                             Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
@@ -447,7 +443,7 @@ struct ContentView: View {
                         
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(Color.gray)
-                            .frame(maxHeight: 200)
+                            .frame(maxHeight: 110)
                         VStack (spacing: 1) {
                                         Text("版本说明与备注")
                                             .font(.title3)
@@ -460,21 +456,25 @@ struct ContentView: View {
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("2. 分辨率默认高宽比为16:9；分辨率选项中，HD指分辨率为1920x1080，UHD指分辨率为3840x2160，其中第一个后缀括号描述素材分辨率，第二个后缀括号描述采样分辨率；根据画面内容，实际数据量可能与计算不同。")
+                                        Text("2. 分辨率默认高宽比为16:9；HD指分辨率为1920x1080，UHD指分辨率为3840x2160，其中第一个后缀括号描述素材分辨率，第二个后缀括号描述采样分辨率。")
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("3. HDE为ARRI公司推出的压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW技术。对于ALEXA 35摄影机，Prores编码位深均为12Bit。")
+                                        Text("3. 根据画面内容，实际数据量可能与计算不同。")
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("4. ARRI摄影机相关数据来自arri.com。RED摄影机相关数据来自red.com。Prores编码相关数据来自apple.com。特别鸣谢 徐理航 对于此程序的代码设计支持。")
+                                        Text("4. HDE为ARRI公司推出的压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW技术。对于ALEXA 35摄影机，Prores编码位深均为12Bit。")
+                                            .font(.system(size: 10))
+                                            .padding(.leading,10)
+                                            .frame(maxWidth: .infinity,alignment:.leading)
+                                        Text("5. ARRI摄影机相关数据来自arri.com。RED摄影机相关数据来自red.com。Prores编码相关数据来自apple.com。特别鸣谢 徐理航 对于此程序的代码设计支持。")
                                            .font(.system(size: 10))
                                            .padding(.leading,10)
                                            .frame(maxWidth: .infinity,alignment:.leading)
                                         Spacer()
                                     }
-                                    .frame(maxHeight: 150)
+                                    .frame(maxHeight: 110)
                                     .padding([.top,.trailing],8)
                                     
                             
@@ -484,6 +484,8 @@ struct ContentView: View {
                     .padding([.leading,.trailing,.bottom],10)
                 }
                 
+                
+                //主功能选择区
                     .tabItem {
                         Text("数据计算器")
                     }
@@ -504,15 +506,14 @@ struct ContentView: View {
 //                        Text("像场覆盖图")
 //                    }
             }
-            .frame(minWidth: 700,minHeight: 425)
+            .frame(minWidth:785,minHeight: 425)
+            .frame(maxWidth:785,maxHeight: 425)
             
-            
-            VStack {
-            }
         }
         .padding()
     }
    
+    //机型-编码-分辨率-储存卡 十位码帧率选择区域
     func availableRates() -> [String] {
         
         var rates = [""]
@@ -581,9 +582,12 @@ struct ContentView: View {
         case "2002110010","2002110011","2002110012","2002110110","2002110111","2002110112","2002110710","2002110711","2002110712","2002210010","2002210011","2002210012","2002210110","2002210111","2002210112","2002210710","2002210711","2002210712","2002310010","2002310011","2002310012","2002310110","2002310111","2002310112","2002310710","2002310711","2002310712","2002410010","2002410011","2002410012","2002410110","2002410111","2002410112","2002410710","2002410711","2002410712","2042110010","2042110011","2042110012","2042210010","2042210011","2042210012","2042310010","2042310011","2042310012","2042410010","2042410011","2042410012","2042210110","2042210111","2042210112","2042310110","2042310111","2042310112","2042410110","2042410111","2042410112","2042110710","2042110711","2042110712","2042210710","2042210711","2042210712","2042310710","2042310711","2042310712","2042410710","2042410711","2042410712" :
             rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","75.000","90.000","96.000","100.000","120.000","150.000","200.000"]
             
+          //错误检测
         default :
             rates = ["24.000"]
         }
+        
+          //特殊选项区
         if CameraName.contains("ALEXA XT") || CameraName.contains("ALEXA SXT") || CameraName.contains("ALEXA LF") {
             if Codec == "ARRIRAW" {
                 if !Media.contains("XR Capture Drive 512GB") && !Media.contains("SXR Capture Drive 1TB") && !Media.contains("SXR Capture Drive 2TB") {
@@ -595,7 +599,7 @@ struct ContentView: View {
         return rates
     }
     
-    
+    //将机型编号、编码编号、分辨率编号、储存卡编号合成为十位码
     func Xbit() -> String {
 
       let cameraNumber = CameraNumber()
@@ -611,6 +615,7 @@ struct ContentView: View {
       return cameraString + codecString + resolutionString + mediaString
     }
 
+    //机型三位编号
     func CameraNumber() -> Int {
         switch CameraName {
             case "AMIRA" :
@@ -636,6 +641,7 @@ struct ContentView: View {
                     }
     }
 
+    //编码两位编号
     func CodecNumber() -> Int {
         switch Codec {
             case "ARRIRAW" :
@@ -658,6 +664,8 @@ struct ContentView: View {
                 return 99
         }
     }
+    
+    //分辨率三位编号
     func ResolutionNumber() -> Int {
         switch Resolution {
         case "HD S35[From 2880*1620]" :
@@ -749,6 +757,7 @@ struct ContentView: View {
         }
     }
     
+    //储存卡三位编号
     func MediaNumber() -> Int {
         switch Media {
         case "CFast2.0 128GB" :
@@ -775,9 +784,6 @@ struct ContentView: View {
             return 99
         }
     }
-    
-    
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
