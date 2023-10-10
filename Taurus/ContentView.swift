@@ -17,7 +17,7 @@ struct ContentView: View {
         "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C100","CinemaEOS C70","CinemaEOS R5 C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
         "Kinefinity" : ["MC8020","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z 50","ZFC","Z 30"],
-        "BlackMagicDesign" : ["4.6K"]
+        "BlackMagicDesign" : ["BlackMagic URSA Mini Pro 12K [OLPF]","BlackMagic URSA Mini Pro 12K","BlackMagic URSA Mini Pro 4.6K G2"]
     ]
     
     
