@@ -61,6 +61,7 @@ struct ContentView: View {
     let ResolutionName : [String:[String]] = [
         //default 16:9
         
+        //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
         "AMIRA_Prores 4444 XQ" : ["UHD S35[From 3200*1800]","3.2K S35[3200*1800]","2K S35[2048*1152][From 2868*1612]","HD S35[From 2880*1620]","HD S16[From 1600*900]"],
         "AMIRA_Prores 4444" : ["UHD S35[From 3200*1800]","3.2K S35[3200*1800]","2K S35[2048*1152][From 2868*1612]","HD S35[From 2880*1620]","HD S16[From 1600*900]"],
