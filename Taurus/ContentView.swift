@@ -14,12 +14,12 @@ struct ContentView: View {
         "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
         //"RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO","Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
         "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FS7 II","FS5 II","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
-        "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
+        //"Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
         //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
-        "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
+        //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
         //"Fujifilm" : [],
-        "Panasonic" : ["S1H","S52-X","S52","GH6","G92"],
+        //"Panasonic" : ["S1H","S52-X","S52","GH6","G92"],
         //"DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
@@ -51,15 +51,15 @@ struct ContentView: View {
         //SONY
         "Cinealta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
         "Cinealta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
-        "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","MPEG","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480"],
-        "Cinealta Burano" : ["X-OCN LT","XAVC-HI HQ","XAVC-HI SQ","XAVC-HL","XAVC-I","XAVC-L"],
+        "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
+        "Cinealta Burano" : ["X-OCN LT","XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
         "Cinealta F65" : ["无相关数据"],
         "Cinealta F55" : ["无相关数据"],
         "FS7 II" : ["无相关数据"],
         "FS5 II" : ["无相关数据"],
-        "FX 9" : ["RAW[需要拓展单元/不提供计算]","XAVC Intra","XAVC LongGOP","MPEG-2 LongGOP"],
-        "FX 6" : ["RAW[Output/不提供计算]","XAVC Intra","XAVC LongGOP"],
-        "FX 3" : ["RAW[Output/不提供计算]","XAVC S-I","XAVC S","XAVC HS"],
+        "FX 9" : ["XAVC Intra","XAVC LongGOP","MPEG-2 LongGOP"],
+        "FX 6" : ["XAVC Intra","XAVC LongGOP"],
+        "FX 3" : ["XAVC S-I","XAVC S","XAVC HS"],
         "FX 30" : ["XAVC S-I","XAVC S","XAVC HS"],
         "Alpha 1" : ["XAVC S-I","XAVC S","XAVC HS"],
         "A9M3" : ["XAVC S-I","XAVC S","XAVC HS"],
@@ -79,19 +79,45 @@ struct ContentView: View {
         //default 16:9
         
         //SONY
-        "FX 9_RAW[需要拓展单元/不提供计算]" : ["DCI 4K FF[From 6K-FF]","DCI 4K FF[From 5K-FFcrop]","DCI 4K S35[From 4K-S35]","UHD FF[From 4K-S35]","DCI 2K FF","DCI 2K S35"],
+        "Cinealta F65_无相关数据" : ["无相关数据"],
+        "Cinealta F55_无相关数据" : ["无相关数据"],
+        "FS7 II_无相关数据" : ["无相关数据"],
+        "FS5 II_无相关数据" : ["无相关数据"],
+        
         "FX 9_XAVC Intra" : ["DCI 4K FF[From 6K-FF]","DCI 4K FF[From 5K-FFcrop]","DCI 4K S35[From 4K-S35]","UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
         "FX 9_XAVC LongGOP" : ["UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
         "FX 9_MPEG-2 LongGOP" : ["HD FF"],
-        
-        "FX 6_RAW[Output/不提供计算]" : ["UHD FF"],
+    
         "FX 6_XAVC Intra" : ["DCI 4K FF","UHD FF","HD FF","HD S35"],
         "FX 6_XAVC LongGOP" : ["UHD FF","HD FF","HD S35"],
         
-        "FX 3_RAW[Output/不提供计算]" : [],
         "FX 3_XAVC S-I" : ["DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "FX 3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[10bit 4:2:0]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[10bit 4:2:0]","HD S35[8bit 4:2:0]"],
-        "FX 3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD FF[8bit 4:2:0]"],
+        "FX 3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "FX 3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]"],
+        
+        "FX 30_XAVC S-I" : ["DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "FX 30_XAVC S" : ["UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "FX 30_XAVC HS" : ["UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        
+        "Alpha 1_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "Alpha 1_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "Alpha 1_XAVC HS" : ["8K FF[10bit 4:2:2]","8K FF[10bit 4:2:0]","UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        
+        "A7R5_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "A7R5_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "A7R5_XAVC HS" : ["8K FF[10bit 4:2:0]","UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        
+        "A7S3_XAVC S-I" : ["UHD FF[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "A7S3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "A7S3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]"],
+        
+        "A7M4_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "A7M4_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "A7M4_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        
+        "A7C2_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "A7C2_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "A7C2_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
         
         //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
@@ -157,9 +183,24 @@ struct ContentView: View {
         "ALEXA LF" : ["SxS Pro+ 256GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
         "ALEXA 65" : ["XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
         
-        "FX 9" : ["XQD 32GB","XQD 64GB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"],
+        "Cinealta Venice 2[8K]": ["AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"],
+        "Cinealta Venice 2[6K]": ["AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"],
+        "Cinealta Venice" : ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"],
+        "Cinealta Burano" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB","CFExpress TypeB 4TB"],
+        "Cinealta F65" : ["无相关数据"],
+        "Cinealta F55" : ["无相关数据"],
+        "FS7 II" : ["无相关数据"],
+        "FS5 II" : ["无相关数据"],
+        "FX 9" : ["XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"],
         "FX 6" : ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
-        
+        "FX 3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "Alpha 1" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "A9M3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "A7S3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "A7R5" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "A7M4" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "A7C2" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "A7CR" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
     ]
     
     
