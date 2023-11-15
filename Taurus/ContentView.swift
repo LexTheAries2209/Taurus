@@ -119,6 +119,10 @@ struct ContentView: View {
         "A7C2_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
         "A7C2_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
         
+        "A7CR_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "A7CR_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+        "A7CR_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        
         
         //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
