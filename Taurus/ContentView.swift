@@ -18,8 +18,8 @@ struct ContentView: View {
         //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
-        //"Fujifilm" : [],
-        //"Panasonic" : ["S1H","S52-X","S52","GH6","G92"],
+        //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
+        //"Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
         //"DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
@@ -199,6 +199,7 @@ struct ContentView: View {
         "FX 9" : ["XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"],
         "FX 6" : ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
         "FX 3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
+        "FX 30" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
         "Alpha 1" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
         "A9M3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
         "A7S3" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
