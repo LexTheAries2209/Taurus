@@ -13,9 +13,9 @@ struct ContentView: View {
     let CameraModel : [String:[String]] = [
         "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
         //"RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO","Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
-        "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FS7 Mark2","FS5 Mark2","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
+        "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","Cinealta F65","Cinealta F55","FS7 II","FS5 II","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
         "Canon" : ["CinemaEOS C700 FF","CinemaEOS C700","CinemaEOS C500 Mark2","CinemaEOS C500","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C300","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
-        //"Kinefinity" : ["MC8020","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
+        //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
         //"Fujifilm" : [],
@@ -41,25 +41,25 @@ struct ContentView: View {
         "ALEXA 65" : ["ARRIRAW"],
         
         //RED
-        "RED ONE[Mysterium 4K S35]" : [],
-        "RED ONE M-X[Mysterium-X 4K S35]" : [],
-        "Scarlet[Mysterium-X 5K S35]" : [],
-        "Scarlet[Dragon 6K S35]" : ["REDCODE 1:5","REDCODE 1:8","REDCODE 1:12","REDCODE 1:16"],
-        "Scarlet-W[Dragon 5K S35]" : ["REDCODE 1:6","REDCODE 1:8","REDCODE 1:12","REDCODE 1:16"],
-        "Epic[Mysterium-X 5K S35]" : [],
+        "RED ONE[Mysterium 4K S35]" : ["无相关数据"],
+        "RED ONE M-X[Mysterium-X 4K S35]" : ["无相关数据"],
+        "Scarlet[Mysterium-X 5K S35]" : ["无相关数据"],
+        "Scarlet[Dragon 6K S35]" : ["无相关数据"],
+        "Scarlet-W[Dragon 5K S35]" : ["无相关数据"],
+        "Epic[Mysterium-X 5K S35]" : ["无相关数据"],
         
         //SONY
         "Cinealta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
         "Cinealta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
         "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","MPEG","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480"],
         "Cinealta Burano" : ["X-OCN LT","XAVC-HI HQ","XAVC-HI SQ","XAVC-HL","XAVC-I","XAVC-L"],
-        "Cinealta F65" : [],
-        "Cinealta F55" : [],
-        "FS7 Mark2" : [],
-        "FS5 Mark2" : [],
-        "FX 9" : ["RAW","XAVC-I","XAVC-L","MPEG-2 HD 422"],
-        "FX 6" : ["RAW","XAVC-I","XAVC-L"],
-        "FX 3" : ["XAVC S-I","XAVC S","XAVC HS"],
+        "Cinealta F65" : ["无相关数据"],
+        "Cinealta F55" : ["无相关数据"],
+        "FS7 II" : ["无相关数据"],
+        "FS5 II" : ["无相关数据"],
+        "FX 9" : ["RAW[需要拓展单元/不提供计算]","XAVC Intra","XAVC LongGOP","MPEG-2 LongGOP"],
+        "FX 6" : ["RAW[Output/不提供计算]","XAVC Intra","XAVC LongGOP"],
+        "FX 3" : ["RAW[Output/不提供计算]","XAVC S-I","XAVC S","XAVC HS"],
         "FX 30" : ["XAVC S-I","XAVC S","XAVC HS"],
         "Alpha 1" : ["XAVC S-I","XAVC S","XAVC HS"],
         "A9M3" : ["XAVC S-I","XAVC S","XAVC HS"],
@@ -79,8 +79,19 @@ struct ContentView: View {
         //default 16:9
         
         //SONY
+        "FX 9_RAW[需要拓展单元/不提供计算]" : ["DCI 4K FF[From 6K-FF]","DCI 4K FF[From 5K-FFcrop]","DCI 4K S35[From 4K-S35]","UHD FF[From 4K-S35]","DCI 2K FF","DCI 2K S35"],
+        "FX 9_XAVC Intra" : ["DCI 4K FF[From 6K-FF]","DCI 4K FF[From 5K-FFcrop]","DCI 4K S35[From 4K-S35]","UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
+        "FX 9_XAVC LongGOP" : ["UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
+        "FX 9_MPEG-2 LongGOP" : ["HD FF"],
         
+        "FX 6_RAW[Output/不提供计算]" : ["UHD FF"],
+        "FX 6_XAVC Intra" : ["DCI 4K FF","UHD FF","HD FF","HD S35"],
+        "FX 6_XAVC LongGOP" : ["UHD FF","HD FF","HD S35"],
         
+        "FX 3_RAW[Output/不提供计算]" : [],
+        "FX 3_XAVC S-I" : ["DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+        "FX 3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[10bit 4:2:0]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[10bit 4:2:0]","HD S35[8bit 4:2:0]"],
+        "FX 3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD FF[8bit 4:2:0]"],
         
         //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
@@ -144,15 +155,13 @@ struct ContentView: View {
         "ALEXA Mini" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
         "ALEXA Mini LF" : ["Compact Drive 1TB","Compact Drive 2TB"],
         "ALEXA LF" : ["SxS Pro+ 256GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
-        "ALEXA 65" : ["XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"]
+        "ALEXA 65" : ["XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
+        
+        "FX 9" : ["XQD 32GB","XQD 64GB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"],
+        "FX 6" : ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"],
         
     ]
     
-//记录格式库
-    let RecordName : [String:[String]] = [
-        "" : []
-    
-    ]
     
 //变量定义区
     @State var BrandName = "请选择品牌"
@@ -166,8 +175,6 @@ struct ContentView: View {
     @State var Media = "请选择储存卡"
     
     @State var Rate = "请选择帧率"
-    
-    @State var Record = "请选择格式"
     
     var body: some View {
         
@@ -283,22 +290,6 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        
-                        
-                        //记录格式选择
-//                        if BrandName == "SONY" {
-//                            Picker(selection: $Record, label:Text("请选择格式").frame(width: 100,alignment: .center)) {
-//                                Text("无选项")
-//                            }
-//                        }
-//                        else {
-//                            Picker(selection: $Record, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
-//                                ForEach(availableRates(),id:\.self) { rate in
-//                                    Text(rate).tag(rate)
-//                                }
-//                            }
-//                        }
-//                    }
                         
                         .padding(.top, 20.0)
                         Spacer()
