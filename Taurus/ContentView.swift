@@ -59,15 +59,15 @@ struct ContentView: View {
         "FS5 II" : ["无相关数据"],
         "FX 9" : ["XAVC Intra","XAVC LongGOP","MPEG-2 LongGOP"],
         "FX 6" : ["XAVC Intra","XAVC LongGOP"],
-        "FX 3" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "FX 30" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "Alpha 1" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A9M3" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A7S3" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A7R5" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A7M4" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A7C2" : ["XAVC S-I","XAVC S","XAVC HS"],
-        "A7CR" : ["XAVC S-I","XAVC S","XAVC HS"],
+        "FX 3" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "FX 30" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "Alpha 1" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 8K","XAVC HS 4K"],
+        "A9M3" : ["无相关数据"],
+        "A7S3" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "A7R5" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 8K","XAVC HS 4K"],
+        "A7M4" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "A7C2" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "A7CR" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
        
         
         
@@ -91,37 +91,48 @@ struct ContentView: View {
         "FX 6_XAVC Intra" : ["DCI 4K FF","UHD FF","HD FF","HD S35"],
         "FX 6_XAVC LongGOP" : ["UHD FF","HD FF","HD S35"],
         
-        "FX 3_XAVC S-I" : ["DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "FX 3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "FX 3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]"],
+        "FX 3_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
+        "FX 3_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
+        "FX 3_XAVC S-I HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p]","HD FF[10bit 4:2:2][29.97p]","HD FF[10bit 4:2:2][50p]","HD FF[10bit 4:2:2][59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p]","HD S35[10bit 4:2:2][29.97p]","HD S35[10bit 4:2:2][50p]","HD S35[10bit 4:2:2][59.94p]"],
+        "FX 3_XAVC HS 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[10bit 4:2:0][23.98p]","UHD FF[10bit 4:2:0][50p/59.94p]","UHD FF[10bit 4:2:0][100p/119.88p]"],
+        "FX 3_XAVC S 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p/29.97p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p]","UHD FF[8bit 4:2:0][25p/29.97p]","UHD FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][100p/119.88p]"],
+        "FX 3_XAVC S HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p/29.97p]","HD FF[10bit 4:2:2][50p/59.94p]","HD FF[10bit 4:2:2][100p/119.88p]","HD FF[8bit 4:2:0][23.98p]","HD FF[8bit 4:2:0][25p/29.97p]","HD FF[8bit 4:2:0][50p/59.94p]","HD FF[8bit 4:2:0][100p/119.88p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p/29.97p]","HD S35[10bit 4:2:2][50p/59.94p]","HD S35[10bit 4:2:2][100p/119.88p]","HD S35[8bit 4:2:0][23.98p]","HD S35[8bit 4:2:0][25p/29.97p]","HD S35[8bit 4:2:0][50p/59.94p]","HD S35[8bit 4:2:0][100p/119.88p]"],
+       
+//        "FX 30_XAVC S-I DCI 4K" : ["DCI 4K S35[10bit 4:2:2][23.98p/24p]","DCI 4K S35[10bit 4:2:2][25p]","DCI 4K S35[10bit 4:2:2][29.97p]","DCI 4K S35[10bit 4:2:2][50p]","DCI 4K S35[10bit 4:2:2][59.94p]"],
+//        "FX 30_XAVC S-I 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][25p]","UHD S35[10bit 4:2:2][29.97p]","UHD S35[10bit 4:2:2][50p]","UHD S35[10bit 4:2:2][59.94p]"],
+//        "FX 30_XAVC S-I HD" : ["HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p]","HD S35[10bit 4:2:2][29.97p]","HD S35[10bit 4:2:2][50p]","HD S35[10bit 4:2:2][59.94p]"],
+//        "FX 30_XAVC HS 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][50p/59.94p]","UHD S35[10bit 4:2:2][100p/119.88p]","UHD S35[10bit 4:2:0][23.98p]","UHD S35[10bit 4:2:0][50p/59.94p]","UHD S35[10bit 4:2:0][100p/119.88p]"],
+//        "FX 30_XAVC S 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][25p/29.97p]","UHD S35[10bit 4:2:2][50p/59.94p]","UHD S35[10bit 4:2:2][100p/119.88p]","UHD S35[8bit 4:2:0][23.98p]","UHD S35[8bit 4:2:0][25p/29.97p]","UHD S35[8bit 4:2:0][50p/59.94p]","UHD S35[8bit 4:2:0][100p/119.88p]"],
+//        "FX 30_XAVC S HD" : ["HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p/29.97p]","HD S35[10bit 4:2:2][50p/59.94p]","HD S35[10bit 4:2:2][100p/119.88p]","HD S35[8bit 4:2:0][23.98p]","HD S35[8bit 4:2:0][25p/29.97p]","HD S35[8bit 4:2:0][50p/59.94p]","HD S35[8bit 4:2:0][100p/119.88p]"],
         
-        "FX 30_XAVC S-I" : ["DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "FX 30_XAVC S" : ["UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "FX 30_XAVC HS" : ["UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+//        "Alpha 1_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]"],
+//        "Alpha 1_XAVC S-I HD" : ["HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+//        "Alpha 1_XAVC S 4K" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]"],
+//        "Alpha 1_XAVC S" : ["HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+//        "Alpha 1_XAVC HS 8K" : ["8K FF[10bit 4:2:2]","8K FF[10bit 4:2:0]"],
+//        "Alpha 1_XAVC HS 4K" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
         
-        "Alpha 1_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "Alpha 1_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "Alpha 1_XAVC HS" : ["8K FF[10bit 4:2:2]","8K FF[10bit 4:2:0]","UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+//        "A7R5_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+//        "A7R5_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+//        "A7R5_XAVC HS" : ["8K FF[10bit 4:2:0]","UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
         
-        "A7R5_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "A7R5_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "A7R5_XAVC HS" : ["8K FF[10bit 4:2:0]","UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+        "A7S3_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
+        "A7S3_XAVC S-I HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p]","HD FF[10bit 4:2:2][29.97p]","HD FF[10bit 4:2:2][50p]","HD FF[10bit 4:2:2][59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p]","HD S35[10bit 4:2:2][29.97p]","HD S35[10bit 4:2:2][50p]","HD S35[10bit 4:2:2][59.94p]"],
+        "A7S3_XAVC HS 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[10bit 4:2:0][23.98p]","UHD FF[10bit 4:2:0][50p/59.94p]","UHD FF[10bit 4:2:0][100p/119.88p]"],
+        "A7S3_XAVC S 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p/29.97p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p]","UHD FF[8bit 4:2:0][25p/29.97p]","UHD FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][100p/119.88p]"],
+        "A7S3_XAVC S HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p/29.97p]","HD FF[10bit 4:2:2][50p/59.94p]","HD FF[10bit 4:2:2][100p/119.88p]","HD FF[8bit 4:2:0][23.98p]","HD FF[8bit 4:2:0][25p/29.97p]","HD FF[8bit 4:2:0][50p/59.94p]","HD FF[8bit 4:2:0][100p/119.88p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p/29.97p]","HD S35[10bit 4:2:2][50p/59.94p]","HD S35[10bit 4:2:2][100p/119.88p]","HD S35[8bit 4:2:0][23.98p]","HD S35[8bit 4:2:0][25p/29.97p]","HD S35[8bit 4:2:0][50p/59.94p]","HD S35[8bit 4:2:0][100p/119.88p]"],
         
-        "A7S3_XAVC S-I" : ["UHD FF[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "A7S3_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "A7S3_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]"],
-        
-        "A7M4_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "A7M4_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "A7M4_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
-        
-        "A7C2_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "A7C2_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "A7C2_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
-        
-        "A7CR_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
-        "A7CR_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
-        "A7CR_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+//        "A7M4_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+//        "A7M4_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+//        "A7M4_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+//        
+//        "A7C2_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+//        "A7C2_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+//        "A7C2_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
+//        
+//        "A7CR_XAVC S-I" : ["UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","HD FF[10bit 4:2:2]","HD S35[10bit 4:2:2]"],
+//        "A7CR_XAVC S" : ["UHD FF[10bit 4:2:2]","UHD FF[8bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[8bit 4:2:0]","HD FF[10bit 4:2:2]","HD FF[8bit 4:2:0]","HD S35[10bit 4:2:2]","HD S35[8bit 4:2:0]"],
+//        "A7CR_XAVC HS" : ["UHD FF[10bit 4:2:2]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:2]","UHD S35[10bit 4:2:0]"],
         
         
         //ARRI
@@ -324,20 +335,21 @@ struct ContentView: View {
                             }
                             
                             //帧率选择
-                            if Media == "请选择储存卡" {
-                                Picker(selection: $Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                    Text("无选项")
+                            if BrandName != "SONY" {
+                                if Media == "请选择储存卡" {
+                                    Picker(selection: $Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
                                 }
-                            }
-                            else {
-                                Picker(selection: $Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                    ForEach(availableRates(),id:\.self) { rate in
-                                        Text(rate).tag(rate)
+                                else {
+                                    Picker(selection: $Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                        ForEach(availableRates(),id:\.self) { rate in
+                                            Text(rate).tag(rate)
+                                        }
                                     }
                                 }
                             }
                         }
-                        
                         .padding(.top, 20.0)
                         Spacer()
                         
@@ -439,19 +451,87 @@ struct ContentView: View {
                             }
                         }
                         
+                        //索尼机型码率计算区
+                        @State var SonyCodecName: String = Codec + "_" + Resolution
+                        var SonyCodecSpeed: Double {
+                            switch SonyCodecName {
+                            case "XAVC S HD_HD FF[10bit 4:2:2][23.98p]","XAVC S HD_HD FF[8bit 4:2:0][23.98p]","XAVC S HD_HD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_HD S35[10bit 4:2:2][23.98p]","XAVC S HD_HD S35[8bit 4:2:0][23.98p]","XAVC S HD_HD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD S35[8bit 4:2:0][50p/59.94p]" :
+                                return 50
+                            case "XAVC S HD_HD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_HD S35[8bit 4:2:0][100p/119.88p]" :
+                                return 60
+                            case "XAVC S-I HD_HD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_HD S35[10bit 4:2:2][23.98p]" :
+                                return 89
+                            case "XAVC S-I HD_HD FF[10bit 4:2:2][25p]","XAVC S-I HD_HD S35[10bit 4:2:2][25p]" :
+                                return 93
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD FF[10bit 4:2:2][100p/119.88p]","XAVC S HD_HD S35[10bit 4:2:2][100p/119.88p]" :
+                                return 100
+                            case "XAVC S-I HD_HD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_HD S35[10bit 4:2:2][29.97p]" :
+                                return 111
+                            case "XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p]" :
+                                return 140
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p]" :
+                                return 150
+                            case "XAVC S-I HD_HD FF[10bit 4:2:2][50p]","XAVC S-I HD_HD S35[10bit 4:2:2][50p]" :
+                                return 185
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][100p/119.88p]" :
+                                return 200
+                            case "XAVC S-I HD_HD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_HD S35[10bit 4:2:2][59.94p]" :
+                                return 222
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p]" :
+                                return 240
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p]" :
+                                return 250
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][100p/119.88p]" :
+                                return 280
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p]" :
+                                return 300
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p]" :
+                                return 500
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]" :
+                                return 600
+  
+                            default :
+                                return 0.00000001
+                            }
+                        }
+                        
                         //存储卡容量乘积
                         var MediaCapacity: Double {
                             switch Media {
-                            case "CFast2.0 128GB","SxS Pro+ 128GB" :
+                            case "CFExpress TypeA 80GB" :
+                                return 80
+                            case "SxS Pro-X 120GB" :
+                                return 120
+                            case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SDXC 128GB" :
                                 return 128
-                            case "CFast2.0 256GB","SxS Pro+ 256GB" :
+                            case "CFExpress TypeA 160GB" :
+                                return 160
+                            case "SxS Pro-X 240GB" :
+                                return 240
+                            case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SDXC 256GB" :
                                 return 256
-                            case "CFast2.0 512GB","XR Capture Drive 512GB" :
+                            case "CFExpress TypeA 320GB" :
+                                return 320
+                            case "CFExpress TypeB 330GB" :
+                                return 330
+                            case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SDXC 512GB" :
                                 return 512
-                            case "SXR Capture Drive 1TB","Compact Drive 1TB" :
-                                return 1024
-                            case "SXR Capture Drive 2TB","Compact Drive 2TB" :
-                                return 2048
+                            case "CFExpress TypeA 640GB" :
+                                return 640
+                            case "CFExpress TypeB 660GB" :
+                                return 660
+                            case "CFExpress TypeA 960GB" :
+                                return 960
+                            case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SDXC 1TB" :
+                                return 1000
+                            case "CFExpress TypeB 1.3TB" :
+                                return 1333
+                            case "CFExpress TypeA 1920GB" :
+                                return 1920
+                            case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SDXC 2TB" :
+                                return 2000
+                            case "CFExpress TypeB 4TB" :
+                                return 4000
                             default :
                                 return 0
                             }
@@ -518,14 +598,19 @@ struct ContentView: View {
                         
                         //计算数据输出区
                         VStack(alignment: .center){
-                            
-                            Text("可录制时长[Min]=\(MediaCapacity*0.931*400/3/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
-                            Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
-                            Text("每小时数据占盘量[TB]：\(CodecSpeedCount*ResolutionMultiplier*450/1024/1024*RateMultiplier)")
-                            if Codec == "ARRIRAW" {
-                                Text("每小时数据占盘量[TB][HDE]：\(CodecSpeed*ResolutionMultiplier*270/1024/1024*RateMultiplier)")
+                            if BrandName != "SONY" {
+                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
+                                Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
+                                Text("每小时数据占盘量[GB]：\(CodecSpeedCount*ResolutionMultiplier*RateMultiplier*450/1024)")
+                                if Codec == "ARRIRAW" {
+                                Text("每小时数据占盘量[GB][HDE]：\(CodecSpeed*ResolutionMultiplier*RateMultiplier*RateMultiplier*270/1024)")
                             }
-                            
+                        }
+                            else {
+                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/SonyCodecSpeed)")
+                                Text("数据码率[mbps]: \(SonyCodecSpeed)")
+                                Text("每小时数据占盘量[GB]：\(SonyCodecSpeed*450/1024)")
+                            }
                                 
                         }
                         .padding([.leading,.trailing],30)
