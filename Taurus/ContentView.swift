@@ -53,8 +53,8 @@ struct ContentView: View {
         "Cinealta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
         "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
         "Cinealta Burano" : ["X-OCN LT","XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
-        "FX 9" : ["XAVC Intra","XAVC LongGOP","MPEG-2 LongGOP"],
-        "FX 6" : ["XAVC Intra","XAVC LongGOP"],
+        "FX 9" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","MPEG-2 LongGOP"],
+        "FX 6" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD"],
         "FX 3" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
         "FX 30" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
         "Alpha 1" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 8K","XAVC HS 4K"],
@@ -76,12 +76,18 @@ struct ContentView: View {
         
         //SONY
         
-        "FX 9_XAVC Intra" : ["DCI 4K FF[From 6K-FF]","DCI 4K FF[From 5K-FFcrop]","DCI 4K S35[From 4K-S35]","UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
-        "FX 9_XAVC LongGOP" : ["UHD FF[From 6K-FF]","UHD FF[From 5K-FFcrop]","UHD FF[From 4K-S35]","HD FF[From 6K-FF]","HD FF[From 5K-FFcrop]","HD FF[From 2K-FF]","HD S35[From 4K-S35]","HD S35[From 2K-S35]"],
-        "FX 9_MPEG-2 LongGOP" : ["HD FF"],
+        "FX 9_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
+        "FX 9_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
+        "FX 9_XAVC S-I HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p]","HD FF[10bit 4:2:2][29.97p]","HD FF[10bit 4:2:2][50p]","HD FF[10bit 4:2:2][59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p]","HD S35[10bit 4:2:2][29.97p]","HD S35[10bit 4:2:2][50p]","HD S35[10bit 4:2:2][59.94p]"],
+        "FX 9_XAVC S 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p/29.97p]","UHD FF[10bit 4:2:2][50p/59.94p]"],
+        "FX 9_XAVC S HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p/29.97p]","HD FF[10bit 4:2:2][50p/59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p/29.97p]","HD S35[10bit 4:2:2][50p/59.94p]"],
+        "FX 9_MPEG-2 LongGOP" : ["HD FF[10bit 4:2:2][23.98p/25p/29.97p]","HD S35[10bit 4:2:2][23.98p/25p/29.97p]"],
     
-        "FX 6_XAVC Intra" : ["DCI 4K FF","UHD FF","HD FF","HD S35"],
-        "FX 6_XAVC LongGOP" : ["UHD FF","HD FF","HD S35"],
+        "FX 6_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
+        "FX 6_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
+        "FX 6_XAVC S-I HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p]","HD FF[10bit 4:2:2][29.97p]","HD FF[10bit 4:2:2][50p]","HD FF[10bit 4:2:2][59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p]","HD S35[10bit 4:2:2][29.97p]","HD S35[10bit 4:2:2][50p]","HD S35[10bit 4:2:2][59.94p]"],
+        "FX 6_XAVC S 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p/29.97p]","UHD FF[10bit 4:2:2][50p/59.94p]"],
+        "FX 6_XAVC S HD" : ["HD FF[10bit 4:2:2][23.98p]","HD FF[10bit 4:2:2][25p/29.97p]","HD FF[10bit 4:2:2][50p/59.94p]","HD S35[10bit 4:2:2][23.98p]","HD S35[10bit 4:2:2][25p/29.97p]","HD S35[10bit 4:2:2][50p/59.94p]"],
         
         "FX 3_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
         "FX 3_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
@@ -458,7 +464,7 @@ struct ContentView: View {
                         @State var SonyCodecName: String = Codec + "_" + Resolution
                         var SonyCodecSpeed: Double {
                             switch SonyCodecName {
-                            case "XAVC S HD_HD FF[10bit 4:2:2][23.98p]","XAVC S HD_HD FF[8bit 4:2:0][23.98p]","XAVC S HD_HD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_HD S35[10bit 4:2:2][23.98p]","XAVC S HD_HD S35[8bit 4:2:0][23.98p]","XAVC S HD_HD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD S35[8bit 4:2:0][50p/59.94p]" :
+                            case "XAVC S HD_HD FF[10bit 4:2:2][23.98p]","XAVC S HD_HD FF[8bit 4:2:0][23.98p]","XAVC S HD_HD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_HD S35[10bit 4:2:2][23.98p]","XAVC S HD_HD S35[8bit 4:2:0][23.98p]","XAVC S HD_HD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_HD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_HD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
                                 return 50
                             case "XAVC S HD_HD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_HD S35[8bit 4:2:0][100p/119.88p]" :
                                 return 60
