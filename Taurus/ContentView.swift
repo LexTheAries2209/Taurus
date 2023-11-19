@@ -53,17 +53,17 @@ struct ContentView: View {
         "Cinealta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
         "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
         "Cinealta Burano" : ["X-OCN LT","XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
-        "FX 9" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","MPEG-2 LongGOP"],
-        "FX 6" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD"],
-        "FX 3" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "FX 30" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "Alpha 1" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 8K","XAVC HS 4K"],
-        "A9M3" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "A7S3" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "A7R5" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 8K","XAVC HS 4K"],
-        "A7M4" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "A7C2" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
-        "A7CR" : ["XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD","XAVC HS 4K"],
+        "FX 9" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD","MPEG-2 LongGOP"],
+        "FX 6" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "FX 3" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD",],
+        "FX 30" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "Alpha 1" : ["XAVC HS 8K","XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A9M3" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A7S3" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A7R5" : ["XAVC HS 8K","XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A7M4" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A7C2" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
+        "A7CR" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
        
         //Canon
         "CinemaEOS C500 Mark2" : [""],
@@ -74,7 +74,7 @@ struct ContentView: View {
         "CinemaEOS C70" : [""],
         "CinemaEOS R5C" : [""],
         "EOS R3" : [""],
-        "EOS R5" : [""],
+        "EOS R5" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS R6 Mark2" : [""],
         "EOS R6" : [""],
         "EOS R8" : [""],
@@ -89,8 +89,22 @@ struct ContentView: View {
     let ResolutionName : [String:[String]] = [
         //default 16:9
         
-        //SONY
+        //Canon
+        "EOS R5_RAW" : ["DCI 8K FF[12bit RAW][23.98p/24p/25p/29.97p]"],
+        "EOS R5_RAW Light" : ["DCI 8K FF[12bit RAW Light][23.98p/24p]","DCI 8K FF[12bit RAW Light][25/29.97p]"],
+        "EOS R5_ALL-I HEVC" : ["DCI 8K FF[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 8K FF[8bit 4:2:0][23.98p/24p/25p/29.97p]","8K FF[10bit 4:2:2][23.98p/25p/29.97p]","8K FF[8bit 4:2:0][23.98p/25p/29.97p]","DCI 4K FF[10bit 4:2:2][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[10bit 4:2:2][50p/59.94p]","DCI 4K FF[10bit 4:2:2][100p/119.88p]","UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 7.7K]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","DCI 4K S35[10bit 4:2:2][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[10bit 4:2:2][50p/59.94p][From 5.1K]","UHD S35[10bit 4:2:2][23.98p/25p/29.97p][From 4.8K]","UHD S35[10bit 4:2:2][50p/59.94p][From 4.8K]","FHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 4K]","FHD FF[10bit 4:2:2][50p/59.94p][From 4K]","FHD FF[10bit 4:2:2][100p/119.88p][From 4k]","FHD S35[10bit 4:2:2][23.98p/25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]"],
+        "EOS R5_ALL-I AVC" : ["DCI 4K FF[8bit 4:2:0][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[8bit 4:2:0][50p/59.94p]","DCI 4K FF[8bit 4:2:0][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 7.7K]","UHD FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][100p/119.88p]","DCI 4K S35[8bit 4:2:0][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[8bit 4:2:0][50p/59.94p][From 5.1K]","UHD S35[8bit 4:2:0][23.98p/25p/29.97p][From 4.8K]","UHD S35[8bit 4:2:0][50p/59.94p][From 4.8K]","FHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 4K]","FHD FF[8bit 4:2:0][50p/59.94p][From 4K]","FHD FF[8bit 4:2:0][100p/119.88p][From 4k]","FHD S35[8bit 4:2:0][23.98p/25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]"],
+        "EOS R5_IPB HEVC" : ["DCI 8K FF[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 8K FF[8bit 4:2:0][23.98p/24p/25p/29.97p]","8K FF[10bit 4:2:2][23.98p/25p/29.97p]","8K FF[8bit 4:2:0][23.98p/25p/29.97p]","DCI 4K FF[10bit 4:2:2][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 7.7K]","UHD FF[10bit 4:2:2][50p/59.94p]","DCI 4K S35[10bit 4:2:2][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[10bit 4:2:2][50p/59.94p][From 5.1K]","UHD S35[10bit 4:2:2][23.98p/25p/29.97p][From 4.8K]","UHD S35[10bit 4:2:2][50p/59.94p][From 4.8K]","FHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 4K]","FHD FF[10bit 4:2:2][50p/59.94p][From 4K]","FHD S35[10bit 4:2:2][23.98p/25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]"],
+        "EOS R5_IPB AVC" : ["DCI 4K FF[8bit 4:2:0][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 7.7K]","UHD FF[8bit 4:2:0][50p/59.94p]","DCI 4K S35[8bit 4:2:0][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[8bit 4:2:0][50p/59.94p][From 5.1K]","UHD S35[8bit 4:2:0][23.98p/25p/29.97p][From 4.8K]","UHD S35[8bit 4:2:0][50p/59.94p][From 4.8K]","FHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 4K]","FHD FF[8bit 4:2:0][50p/59.94p][From 4K]","FHD S35[8bit 4:2:0][23.98p/25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]"],
+        "EOS R5_IPB Light HEVC" : ["DCI 8K FF[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 8K FF[8bit 4:2:0][23.98p/24p/25p/29.97p]","8K FF[10bit 4:2:2][23.98p/25p/29.97p]","8K FF[8bit 4:2:0][23.98p/25p/29.97p]","DCI 4K FF[10bit 4:2:2][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 7.7K]","UHD FF[10bit 4:2:2][50p/59.94p]","DCI 4K S35[10bit 4:2:2][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[10bit 4:2:2][50p/59.94p][From 5.1K]","UHD S35[10bit 4:2:2][23.98p/25p/29.97p][From 4.8K]","UHD S35[10bit 4:2:2][50p/59.94p][From 4.8K]","FHD FF[10bit 4:2:2][25p/29.97p][From 4K]","FHD FF[10bit 4:2:2][50p/59.94p][From 4K]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]"],
+        "EOS R5_IPB Light AVC" : ["DCI 4K FF[8bit 4:2:0][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[8bit 4:2:0][50p/59.94p]","DCI 4K FF[8bit 4:2:0][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 7.7K]","UHD FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][100p/119.88p]","DCI 4K S35[8bit 4:2:0][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[8bit 4:2:0][50p/59.94p][From 5.1K]","UHD S35[8bit 4:2:0][23.98p/25p/29.97p][From 4.8K]","UHD S35[8bit 4:2:0][50p/59.94p][From 4.8K]","FHD FF[8bit 4:2:0][25p/29.97p][From 4K]","FHD FF[8bit 4:2:0][50p/59.94p][From 4K]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]"],
         
+       
+        
+        
+        
+        
+        //SONY
         "FX 9_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
         "FX 9_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
         "FX 9_XAVC S-I HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p]","FHD FF[10bit 4:2:2][29.97p]","FHD FF[10bit 4:2:2][50p]","FHD FF[10bit 4:2:2][59.94p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p]","FHD S35[10bit 4:2:2][29.97p]","FHD S35[10bit 4:2:2][50p]","FHD S35[10bit 4:2:2][59.94p]"],
@@ -162,7 +176,6 @@ struct ContentView: View {
         "A7CR_XAVC S HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p/29.97p]","FHD FF[10bit 4:2:2][50p/59.94p]","FHD FF[8bit 4:2:0][23.98p]","FHD FF[8bit 4:2:0][25p/29.97p]","FHD FF[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][100p/119.88p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]","FHD S35[8bit 4:2:0][23.98p]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]","FHD S35[8bit 4:2:0][100p/119.88p]"],
         "A7CR_XAVC HS 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:0][23.98p]","UHD FF[10bit 4:2:0][50p/59.94p]","UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:0][23.98p]",],
         
-        
         //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
         "AMIRA_Prores 4444 XQ" : ["UHD S35[From 3200*1800]","3.2K S35[3200*1800]","2K S35[2048*1152][From 2868*1612]","FHD S35[From 2880*1620]","FHD S16[From 1600*900]"],
@@ -189,9 +202,9 @@ struct ContentView: View {
         "ALEXA SXT_Prores 422" : ["4K S35[4096*2636][From 3414*2198][2.39:1]","4K S35[4096*1716][From 2560*2146][6:5 ANA]","UHD S35[From 3200*1800]","3.4K S35[3424*2202][OG]","3.2K S35[3200*1800]","2.8K S35[2880*2160][4:3]","2K S35[2048*1152][From 2880*1620]","2K S35[2048*858][From 2560*2146][6:5 ANA]","FHD S35[From 2880*1620]"],
         
         "ALEXA 35_ARRIRAW" :["4.6K S35[4608*3164][OG]","4.6K S35[4608*2592]","4K S35[4096*2304]","UHD S35","4K S35[4096*2048][2:1]","3.3K S35[3328*2790][6:5]","3K S35[3072*3072][1:1]"],
-        "ALEXA 35_Prores 4444 XQ" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","UHD S35[From 4096*2304]","2K S35[2048*1152][From 4096*2304]","FHD S35[From 4096*2304]","4K S35[4096*2048][2:1]","3.3K S35[3328*2790][6:5]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","3K S35[3072*3072][1:1]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","UHD S35[From 2743*3086][8:9 ANA]","2K S16[2048*1152]"],
-        "ALEXA 35_Prores 4444" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","UHD S35[From 4096*2304]","2K S35[2048*1152][From 4096*2304]","FHD S35[From 4096*2304]","4K S35[4096*2048][2:1]","3.3K S35[3328*2790][6:5]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","3K S35[3072*3072][1:1]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","UHD S35[From 2743*3086][8:9 ANA]","2K S16[2048*1152]"],
-        "ALEXA 35_Prores 422 HQ" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","UHD S35[From 4096*2304]","2K S35[2048*1152][From 4096*2304]","FHD S35[From 4096*2304]","4K S35[4096*2048][2:1]","3.3K S35[3328*2790][6:5]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","3K S35[3072*3072][1:1]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","UHD S35[From 2743*3086][8:9 ANA]","2K S16[2048*1152]"],
+        "ALEXA 35_Prores 4444 XQ" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","4K S35[4096*2048][2:1]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","3.3K S35[3328*2790][6:5]","3K S35[3072*3072][1:1]","2K S35[2048*1152][From 4096*2304]","2K S16[2048*1152]","FHD S35[From 4096*2304]"],
+        "ALEXA 35_Prores 4444" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","4K S35[4096*2048][2:1]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","3.3K S35[3328*2790][6:5]","3K S35[3072*3072][1:1]","2K S35[2048*1152][From 4096*2304]","2K S16[2048*1152]","FHD S35[From 4096*2304]"],
+        "ALEXA 35_Prores 422 HQ" :["4.6K S35[4608*3164][OG]","4K S35[4096*2304][From 4608*2592]","4K S35[4096*2304]","4K S35[4096*2048][2:1]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","3.8K S35[3840*1920][From 3072*3072][1:1 ANA]","3.3K S35[3328*2790][6:5]","3K S35[3072*3072][1:1]","2K S35[2048*1152][From 4096*2304]","2K S16[2048*1152]","FHD S35[From 4096*2304]"],
         
         "ALEXA Mini_ARRIRAW" : ["3.4K S35[3424*2202][OG]","2.8K S35[2880*1620]"],
         "ALEXA Mini_Prores 4444 XQ" : ["UHD S35[From 3200*1800]","3.2K S35[3200*1800]","2.8K S35[2880*2160][4:3]","2K S35[2048*1152][From 2868*1612]","2K S35[2048*858][From 2560*2145][6:5 ANA]","FHD S35[From 2880*1620]","FHD S35[From 1920*2160][8:9 ANA]","FHD S16[From 1600*900]"],
@@ -349,8 +362,21 @@ struct ContentView: View {
                             
                             //分辨率选择
                             @State var CodecAndCamera = CameraName + "_" + Codec
-                            
-                            if let resolutions = ResolutionName[CodecAndCamera] {
+                            if BrandName == "SONY" || BrandName == "Canon" {
+                                if let resolutions = ResolutionName[CodecAndCamera] {
+                                    Picker(selection: $Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
+                                        ForEach(resolutions,id:\.self) { resolution in
+                                            Text(resolution).tag(resolution)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $Resolution, label:Text("请选择格式").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
+                            else if let resolutions = ResolutionName[CodecAndCamera] {
                                 Picker(selection: $Resolution, label: Text("请选择分辨率").frame(width: 100,alignment: .center)) {
                                     ForEach(resolutions,id:\.self) { resolution in
                                         Text(resolution).tag(resolution)
@@ -498,27 +524,27 @@ struct ContentView: View {
                         @State var SonyCodecName: String = Codec + "_" + Resolution
                         var SonyCodecSpeed: Double {
                             switch SonyCodecName {
-                            case "XAVC S HD_HD FF[10bit 4:2:2][23.98p]","XAVC S HD_HD FF[8bit 4:2:0][23.98p]","XAVC S HD_HD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_HD S35[10bit 4:2:2][23.98p]","XAVC S HD_HD S35[8bit 4:2:0][23.98p]","XAVC S HD_HD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_HD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_HD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_HD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_HD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_HD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
+                            case "XAVC S HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S HD_FHD FF[8bit 4:2:0][23.98p]","XAVC S HD_FHD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_FHD S35[10bit 4:2:2][23.98p]","XAVC S HD_FHD S35[8bit 4:2:0][23.98p]","XAVC S HD_FHD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_FHD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_FHD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
                                 return 50
-                            case "XAVC S HD_HD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_HD S35[8bit 4:2:0][100p/119.88p]" :
+                            case "XAVC S HD_FHD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_FHD S35[8bit 4:2:0][100p/119.88p]" :
                                 return 60
-                            case "XAVC S-I HD_HD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_HD S35[10bit 4:2:2][23.98p]" :
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_FHD S35[10bit 4:2:2][23.98p]" :
                                 return 89
-                            case "XAVC S-I HD_HD FF[10bit 4:2:2][25p]","XAVC S-I HD_HD S35[10bit 4:2:2][25p]" :
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][25p]","XAVC S-I HD_FHD S35[10bit 4:2:2][25p]" :
                                 return 93
                             case "XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD S35[10bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][25p/29.97p]" :
                                 return 100
-                            case "XAVC S-I HD_HD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_HD S35[10bit 4:2:2][29.97p]" :
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_FHD S35[10bit 4:2:2][29.97p]" :
                                 return 111
                             case "XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD S35[10bit 4:2:2][25p/29.97p]" :
                                 return 140
                             case "XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][50p/59.94p]" :
                                 return 150
-                            case "XAVC S-I HD_HD FF[10bit 4:2:2][50p]","XAVC S-I HD_HD S35[10bit 4:2:2][50p]" :
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][50p]","XAVC S-I HD_FHD S35[10bit 4:2:2][50p]" :
                                 return 185
                             case "XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][100p/119.88p]" :
                                 return 200
-                            case "XAVC S-I HD_HD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_HD S35[10bit 4:2:2][59.94p]" :
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_FHD S35[10bit 4:2:2][59.94p]" :
                                 return 222
                             case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][23.98p]" :
                                 return 240
@@ -681,11 +707,11 @@ struct ContentView: View {
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("2. 分辨率默认高宽比为16:9；HD指分辨率为1920x1080，UHD指分辨率为3840x2160，其中第一个后缀括号描述素材分辨率，第二个后缀括号描述采样分辨率。")
+                                        Text("2. 分辨率默认宽高比为16:9；DCI标准宽高比为17:9；FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("3. ARRI摄影机相关数据来自arri.com。RED摄影机相关数据来自red.com。Prores编码相关数据来自apple.com。")
+                                        Text("3. 对于没有标出分辨率的情况：8K指分辨率7680x4320(8K UHD)，DCI 4K分辨率为4096x2160，DCI 8K分辨率为8192x4320。")
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
@@ -693,7 +719,7 @@ struct ContentView: View {
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信 15814854313 。")
+                                        Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信：15814854313 。")
                                            .font(.system(size: 10))
                                            .padding(.leading,10)
                                            .frame(maxWidth: .infinity,alignment:.leading)
