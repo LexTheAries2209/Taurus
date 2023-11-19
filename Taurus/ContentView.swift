@@ -562,7 +562,6 @@ struct ContentView: View {
                                 return 520
                             case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]" :
                                 return 600
-  
                             default :
                                 return 0.00000001
                             }
