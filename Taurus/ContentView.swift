@@ -76,7 +76,7 @@ struct ContentView: View {
         "EOS R3" : [""],
         "EOS R5" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS R6 Mark2" : [""],
-        "EOS R6" : [""],
+        "EOS R6" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS R8" : [""],
         "EOS R7" : [""],
         "EOS 5D Mark4" : [""],
@@ -99,7 +99,10 @@ struct ContentView: View {
         "EOS R5_IPB Light HEVC" : ["DCI 8K FF[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 8K FF[8bit 4:2:0][23.98p/24p/25p/29.97p]","8K FF[10bit 4:2:2][23.98p/25p/29.97p]","8K FF[8bit 4:2:0][23.98p/25p/29.97p]","DCI 4K FF[10bit 4:2:2][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 7.7K]","UHD FF[10bit 4:2:2][50p/59.94p]","DCI 4K S35[10bit 4:2:2][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[10bit 4:2:2][50p/59.94p][From 5.1K]","UHD S35[10bit 4:2:2][23.98p/25p/29.97p][From 4.8K]","UHD S35[10bit 4:2:2][50p/59.94p][From 4.8K]","FHD FF[10bit 4:2:2][25p/29.97p][From 4K]","FHD FF[10bit 4:2:2][50p/59.94p][From 4K]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]"],
         "EOS R5_IPB Light AVC" : ["DCI 4K FF[8bit 4:2:0][23.98p/24p/25p/29.97p][From 8.2K]","DCI 4K FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 7.7K]","UHD FF[8bit 4:2:0][50p/59.94p]","DCI 4K S35[8bit 4:2:0][23.98p/24p/25p/29.97p][From 5.1K]","DCI 4K S35[8bit 4:2:0][50p/59.94p][From 5.1K]","UHD S35[8bit 4:2:0][23.98p/25p/29.97p][From 4.8K]","UHD S35[8bit 4:2:0][50p/59.94p][From 4.8K]","FHD FF[8bit 4:2:0][25p/29.97p][From 4K]","FHD FF[8bit 4:2:0][50p/59.94p][From 4K]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]"],
         
-       
+        "EOS R6_IPB HEVC" : ["UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 5.1K]","UHD FF[10bit 4:2:2][50p/59.94p][From 5.1K]","FHD FF[10bit 4:2:2][23.97p/25p/29.97p]","FHD FF[10bit 4:2:2][50p/59.94p]","FHD FF[10bit 4:2:2][100p/119.88p]"],
+        "EOS R6_IPB AVC" : ["UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 5.1K]","UHD FF[8bit 4:2:0][50p/59.94p][From 5.1K]","FHD FF[8bit 4:2:0][23.97p/25p/29.97p]","FHD FF[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][100p/119.88p]"],
+        "EOS R6_IPB Light HEVC" : ["UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 5.1K]","UHD FF[10bit 4:2:2][50p/59.94p][From 5.1K]","FHD FF[10bit 4:2:2][23.97p/25p/29.97p]","FHD FF[10bit 4:2:2][50p/59.94p]","FHD FF[10bit 4:2:2][100p/119.88p]"],
+        "EOS R6_IPB Light AVC" : ["UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 5.1K]","UHD FF[8bit 4:2:0][50p/59.94p][From 5.1K]","FHD FF[8bit 4:2:0][23.97p/25p/29.97p]","FHD FF[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][100p/119.88p]"],
         
         
         
@@ -268,10 +271,10 @@ struct ContentView: View {
         "CinemaEOS R5C" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB","SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS R3" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB","SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS R5" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB","SDXC 128GB","SDXC 256GB","SDXC 512GB"],
-        "EOS R6 Mark2" : [""],
-        "EOS R6" : [""],
-        "EOS R8" : [""],
-        "EOS R7" : [""],
+        "EOS R6 Mark2" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "EOS R6" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "EOS R8" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "EOS R7" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS 5D Mark4" : [""],
         "EOS 1D-X Mark3" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
     ]
