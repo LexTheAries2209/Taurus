@@ -16,10 +16,10 @@ struct ContentView: View {
         "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
         "Canon" : ["CinemaEOS C500 Mark2","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
         //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
-        //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
-        //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
-        //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
-        //"Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
+        "Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
+        "Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
+        "Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
+        "Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
         //"DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
@@ -568,6 +568,54 @@ struct ContentView: View {
                             }
                         }
                         
+                        //佳能机型码率计算区
+                        @State var CanonCodecName: String = Codec + "_" + Resolution
+                        var CanonCodecSpeed: Double {
+                            switch CanonCodecName {
+                            case "XAVC S HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S HD_FHD FF[8bit 4:2:0][23.98p]","XAVC S HD_FHD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_FHD S35[10bit 4:2:2][23.98p]","XAVC S HD_FHD S35[8bit 4:2:0][23.98p]","XAVC S HD_FHD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_FHD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_FHD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
+                                return 50
+                            case "XAVC S HD_FHD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_FHD S35[8bit 4:2:0][100p/119.88p]" :
+                                return 60
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_FHD S35[10bit 4:2:2][23.98p]" :
+                                return 89
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][25p]","XAVC S-I HD_FHD S35[10bit 4:2:2][25p]" :
+                                return 93
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD S35[10bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][25p/29.97p]" :
+                                return 100
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_FHD S35[10bit 4:2:2][29.97p]" :
+                                return 111
+                            case "XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD S35[10bit 4:2:2][25p/29.97p]" :
+                                return 140
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][50p/59.94p]" :
+                                return 150
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][50p]","XAVC S-I HD_FHD S35[10bit 4:2:2][50p]" :
+                                return 185
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][100p/119.88p]" :
+                                return 200
+                            case "XAVC S-I HD_FHD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_FHD S35[10bit 4:2:2][59.94p]" :
+                                return 222
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][23.98p]" :
+                                return 240
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][25p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][25p]" :
+                                return 250
+                            case "XAVC HS 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][100p/119.88p]" :
+                                return 280
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][29.97p]" :
+                                return 300
+                            case "XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p/29.97p]","XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p]" :
+                                return 400
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][50p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][50p]" :
+                                return 500
+                            case "XAVC HS 8K_8K FF[10bit 4:2:2][23.98p/25p/29.97p]":
+                                return 520
+                            case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]" :
+                                return 600
+  
+                            default :
+                                return 0.00000001
+                            }
+                        }
+                        
                         //存储卡容量乘积
                         var MediaCapacity: Double {
                             switch Media {
@@ -669,7 +717,7 @@ struct ContentView: View {
                         
                         //计算数据输出区
                         VStack(alignment: .center){
-                            if BrandName != "SONY" {
+                            if BrandName == "ARRI" {
                                 Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
                                 Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
                                 Text("每小时数据占盘量[GB]：\(CodecSpeedCount*ResolutionMultiplier*RateMultiplier*450/1024)")
@@ -677,12 +725,16 @@ struct ContentView: View {
                                 Text("每小时数据占盘量[GB][HDE]：\(CodecSpeed*ResolutionMultiplier*RateMultiplier*RateMultiplier*270/1024)")
                             }
                         }
-                            else {
+                            else if BrandName == "SONY"{
                                 Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/SonyCodecSpeed)")
                                 Text("数据码率[mbps]: \(SonyCodecSpeed)")
                                 Text("每小时数据占盘量[GB]：\(SonyCodecSpeed*450/1024)")
                             }
-                                
+                            else if BrandName == "Canon" {
+                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CanonCodecSpeed)")
+                                Text("数据码率[mbps]: \(CanonCodecSpeed)")
+                                Text("每小时数据占盘量[GB]：\(CanonCodecSpeed*450/1024)")
+                            }
                         }
                         .padding([.leading,.trailing],30)
         
