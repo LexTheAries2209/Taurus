@@ -13,8 +13,9 @@ struct ContentView: View {
     let CameraModel : [String:[String]] = [
         "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
         //"RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO","Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
+        "RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO"],
         "SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
-        "Canon" : ["CinemaEOS C500 Mark2","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 5D Mark4","EOS 1D-X Mark3"],
+        "Canon" : ["CinemaEOS C500 Mark2","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 1D-X Mark3"],
         //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
         //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
@@ -79,7 +80,6 @@ struct ContentView: View {
         "EOS R6" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS R8" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS R7" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
-        "EOS 5D Mark4" : [""],
         "EOS 1D-X Mark3" : [""],
         
         
@@ -297,7 +297,6 @@ struct ContentView: View {
         "EOS R6" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS R8" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS R7" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
-        "EOS 5D Mark4" : [""],
         "EOS 1D-X Mark3" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
     ]
     
