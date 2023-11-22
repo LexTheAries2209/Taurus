@@ -13,7 +13,7 @@ struct ContentView: View {
     let CameraModel : [String:[String]] = [
         "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
         //"RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO","Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
-        //"RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO"],
+        "RED" : ["V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO"],
         //"SONY" : ["Cinealta Venice 2[8K]","Cinealta Venice 2[6K]","Cinealta Venice","Cinealta Burano","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
         "SONY" : ["FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR"],
         //"Canon" : ["CinemaEOS C500 Mark2","CinemaEOS C300 Mark3","CinemaEOS C300 Mark2","CinemaEOS C200","CinemaEOS C100 Mark2","CinemaEOS C70","CinemaEOS R5C","EOS R3","EOS R5","EOS R6 Mark2","EOS R6","EOS R8","EOS R7","EOS 1D-X Mark3"],
@@ -22,7 +22,7 @@ struct ContentView: View {
         //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
         //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
-        //"Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
+        "Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
         //"DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
@@ -44,12 +44,12 @@ struct ContentView: View {
         "ALEXA 65" : ["ARRIRAW"],
         
         //RED
-        "RED ONE[Mysterium 4K S35]" : ["无相关数据"],
-        "RED ONE M-X[Mysterium-X 4K S35]" : ["无相关数据"],
-        "Scarlet[Mysterium-X 5K S35]" : ["无相关数据"],
-        "Scarlet[Dragon 6K S35]" : ["无相关数据"],
-        "Scarlet-W[Dragon 5K S35]" : ["无相关数据"],
-        "Epic[Mysterium-X 5K S35]" : ["无相关数据"],
+        "V-Raptor XL[8K VV]" : [],
+        "V-Raptor[8K VV]" : [],
+        "V-Raptor XL[8K S35]" : [],
+        "V-Raptor[8K S35]" : [],
+        "KEMODO-X" : [],
+        "KEMODO" : [],
         
         //SONY
         "Cinealta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
@@ -84,6 +84,12 @@ struct ContentView: View {
         "EOS R7" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
         "EOS 1D-X Mark3" : [""],
         
+        //Panasonic
+        "S1H" : [],
+        "S5M2X" : ["Prores 422 HQ","HEVC ALL-I","HEVC LongGOP","AVC LongGOP"],
+        "S5M2" : ["HEVC","AVC"],
+        "GH6" : [],
+        "G9M2" : [],
         
     ]
  
@@ -300,6 +306,21 @@ struct ContentView: View {
         "EOS R8" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS R7" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "EOS 1D-X Mark3" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        
+        //RED
+        "V-Raptor XL[8K VV]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        "V-Raptor[8K VV]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        "V-Raptor XL[8K S35]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        "V-Raptor[8K S35]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        "KEMODO-X" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
+        "KEMODO" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
+        
+        //Panasonic
+        "S1H" : [],
+        "S5M2X" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "S5M2" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "GH6" : [],
+        "G9M2" : [],
     ]
     
     
@@ -430,7 +451,7 @@ struct ContentView: View {
                             }
                             
                             //帧率选择
-                            if BrandName == "ARRI" {
+                            if BrandName == "ARRI" || BrandName == "RED" {
                                 if Media == "请选择储存卡" {
                                     Picker(selection: $Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
                                         Text("无选项")
@@ -663,11 +684,6 @@ struct ContentView: View {
                                 return 2600
                             default :
                                 return 0.00000001
-                                
-                              
-//                                "EOS R3_IPB Light HEVC" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p/25p/29.97p][From 6K]","DCI 4K FF[10bit 4:2:2][50p/59.94p][From 6K]","DCI 4K FF[10bit 4:2:2][100p/119.88p]","UHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 5.6K]","UHD FF[10bit 4:2:2][50p/59.94p][From 5.6K]","UHD FF[10bit 4:2:2][100p/119.88p]","DCI 4K S35[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K S35[10bit 4:2:2][50p/59.94p]","UHD S35[10bit 4:2:2][23.98p/25p/29.97p]","UHD S35[10bit 4:2:2][50p/59.94p]","FHD FF[10bit 4:2:2][23.98p/25p/29.97p][From 4K]","FHD FF[10bit 4:2:2][50p/59.94p][From 4K]","FHD FF[10bit 4:2:2][100p/119.88p][From 4k]","FHD S35[10bit 4:2:2][23.98p/25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]"],
-//                                "EOS R3_IPB Light AVC" : ["DCI 4K FF[8bit 4:2:0][23.98p/24p/25p/29.97p][From 6K]","DCI 4K FF[8bit 4:2:0][50p/59.94p][From 6K]","DCI 4K FF[8bit 4:2:0][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 5.6K]","UHD FF[8bit 4:2:0][50p/59.94p][From 5.6K]","UHD FF[8bit 4:2:0][100p/119.88p]","DCI 4K S35[8bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 4K S35[8bit 4:2:0][50p/59.94p]","UHD S35[8bit 4:2:0][23.98p/25p/29.97p]","UHD S35[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][23.98p/25p/29.97p][From 4K]","FHD FF[8bit 4:2:0][50p/59.94p][From 4K]","FHD FF[8bit 4:2:0][100p/119.88p][From 4k]","FHD S35[8bit 4:2:0][23.98p/25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]"],
-                               
                             }
                         }
                         
@@ -772,15 +788,7 @@ struct ContentView: View {
                         
                         //计算数据输出区
                         VStack(alignment: .center){
-                            if BrandName == "ARRI" {
-                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
-                                Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
-                                Text("每小时数据占盘量[GB]：\(CodecSpeedCount*ResolutionMultiplier*RateMultiplier*450/1024)")
-                                if Codec == "ARRIRAW" {
-                                Text("每小时数据占盘量[GB][HDE]：\(CodecSpeed*ResolutionMultiplier*RateMultiplier*RateMultiplier*270/1024)")
-                            }
-                        }
-                            else if BrandName == "SONY"{
+                            if BrandName == "SONY"{
                                 Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/SonyCodecSpeed)")
                                 Text("数据码率[mbps]: \(SonyCodecSpeed)")
                                 Text("每小时数据占盘量[GB]：\(SonyCodecSpeed*450/1024)")
@@ -791,9 +799,12 @@ struct ContentView: View {
                                 Text("每小时数据占盘量[GB]：\(CanonCodecSpeed*450/1024)")
                             }
                             else {
-                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CanonCodecSpeed)")
-                                Text("数据码率[mbps]: \(CanonCodecSpeed)")
-                                Text("每小时数据占盘量[GB]：\(CanonCodecSpeed*450/1024)")
+                                Text("可录制时长[Min]：\(MediaCapacity*7629.39453125/60/CodecSpeedCount/ResolutionMultiplier/RateMultiplier)")
+                                Text("数据码率[mbps]: \(CodecSpeedCount*ResolutionMultiplier*RateMultiplier)")
+                                Text("每小时数据占盘量[GB]：\(CodecSpeedCount*ResolutionMultiplier*RateMultiplier*450/1024)")
+                                if Codec == "ARRIRAW" {
+                                Text("每小时数据占盘量[GB][HDE]：\(CodecSpeed*ResolutionMultiplier*RateMultiplier*RateMultiplier*270/1024)")
+                            }
                             }
                         }
                         .padding([.leading,.trailing],30)
