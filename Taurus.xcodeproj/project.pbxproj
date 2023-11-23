@@ -11,7 +11,12 @@
 		5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C06B2A7000D900611BD0 /* ContentView.swift */; };
 		5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C06D2A7000D900611BD0 /* Assets.xcassets */; };
 		5864C0712A7000D900611BD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C0702A7000D900611BD0 /* Preview Assets.xcassets */; };
-		5864C0792A718A9F00611BD0 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C0782A718A9F00611BD0 /* SwiftUIView.swift */; };
+		58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */; };
+		58D3B7F42B0F4EEB001C8FA7 /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F32B0F4EEB001C8FA7 /* Resolution.swift */; };
+		58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */; };
+		58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F72B0F4F82001C8FA7 /* Media.swift */; };
+		58D3B7FC2B0F51B5001C8FA7 /* xbit_func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */; };
+		58D3B7FE2B0F6B30001C8FA7 /* Vars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7FD2B0F6B30001C8FA7 /* Vars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +26,12 @@
 		5864C06D2A7000D900611BD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5864C0702A7000D900611BD0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5864C0722A7000D900611BD0 /* Taurus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Taurus.entitlements; sourceTree = "<group>"; };
-		5864C0782A718A9F00611BD0 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
+		58D3B7F32B0F4EEB001C8FA7 /* Resolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
+		58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_Camera.swift; sourceTree = "<group>"; };
+		58D3B7F72B0F4F82001C8FA7 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xbit_func.swift; sourceTree = "<group>"; };
+		58D3B7FD2B0F6B30001C8FA7 /* Vars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +66,12 @@
 			children = (
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
-				5864C0782A718A9F00611BD0 /* SwiftUIView.swift */,
+				58D3B7FD2B0F6B30001C8FA7 /* Vars.swift */,
+				58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */,
+				58D3B7F72B0F4F82001C8FA7 /* Media.swift */,
+				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
+				58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */,
+				58D3B7F32B0F4EEB001C8FA7 /* Resolution.swift */,
 				5864C06D2A7000D900611BD0 /* Assets.xcassets */,
 				5864C0722A7000D900611BD0 /* Taurus.entitlements */,
 				5864C06F2A7000D900611BD0 /* Preview Content */,
@@ -142,9 +157,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */,
+				58D3B7FE2B0F6B30001C8FA7 /* Vars.swift in Sources */,
+				58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */,
+				58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */,
+				58D3B7FC2B0F51B5001C8FA7 /* xbit_func.swift in Sources */,
 				5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */,
 				5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */,
-				5864C0792A718A9F00611BD0 /* SwiftUIView.swift in Sources */,
+				58D3B7F42B0F4EEB001C8FA7 /* Resolution.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
