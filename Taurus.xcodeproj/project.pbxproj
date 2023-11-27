@@ -16,7 +16,7 @@
 		58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */; };
 		58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F72B0F4F82001C8FA7 /* Media.swift */; };
 		58D3B7FC2B0F51B5001C8FA7 /* xbit_func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */; };
-		58ECDDF52B14934000B049BD /* OutputCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ECDDF42B14934000B049BD /* OutputCount.swift */; };
+		58ECDDF72B14D57C00B049BD /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ECDDF62B14D57C00B049BD /* Count.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_Camera.swift; sourceTree = "<group>"; };
 		58D3B7F72B0F4F82001C8FA7 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xbit_func.swift; sourceTree = "<group>"; };
-		58ECDDF42B14934000B049BD /* OutputCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputCount.swift; sourceTree = "<group>"; };
+		58ECDDF62B14D57C00B049BD /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 			children = (
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
-				58ECDDF42B14934000B049BD /* OutputCount.swift */,
+				58ECDDF62B14D57C00B049BD /* Count.swift */,
 				58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */,
 				58D3B7F72B0F4F82001C8FA7 /* Media.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
@@ -162,8 +162,8 @@
 				58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */,
 				58D3B7FC2B0F51B5001C8FA7 /* xbit_func.swift in Sources */,
 				5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */,
+				58ECDDF72B14D57C00B049BD /* Count.swift in Sources */,
 				5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */,
-				58ECDDF52B14934000B049BD /* OutputCount.swift in Sources */,
 				58D3B7F42B0F4EEB001C8FA7 /* Resolution.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

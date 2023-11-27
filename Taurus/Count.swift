@@ -1,5 +1,5 @@
 //
-//  OutputCount.swift
+//  Count.swift
 //  Taurus
 //
 //  Created by 吴坤城 on 11/27/23.
@@ -11,7 +11,7 @@ import Combine
 
 class Count: ObservableObject {
 
-  @Published var cameradata = CameraData()
+     var cameradata = CameraData()
 
     //编码码率
     var CodecSpeed: Double {
@@ -344,3 +344,4 @@ class Count: ObservableObject {
     }
     
 }
+

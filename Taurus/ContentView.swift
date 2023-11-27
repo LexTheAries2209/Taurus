@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import Combine
 import Foundation
+import Combine
 
 class CameraData: ObservableObject {
     
@@ -21,7 +21,7 @@ class CameraData: ObservableObject {
 
 struct ContentView: View {
     
-    @StateObject var count = Count()
+    @ObservedObject var count = Count()
     @StateObject var cameradata = CameraData()
 
     var body: some View {
@@ -155,6 +155,8 @@ struct ContentView: View {
                         }
                         .padding(.top, 20.0)
                         Spacer()
+                        
+                        Text("\(cameradata.Rate)")
                         
                         //计算帧率乘积
                         let RateMultiplier = count.RateSpeed/24
