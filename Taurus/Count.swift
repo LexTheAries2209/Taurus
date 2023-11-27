@@ -27,7 +27,7 @@ func Codecspeed(cameradata:CameraData) -> Double {
     case "MPEG-2 HD 422" :
         return 66
     default :
-        return 0.0000001
+        return 0.000000001
     }
 }
 
@@ -82,7 +82,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
     case "6.5K 65mm[6560*3100][OG]" :
         return 9.8
     default:
-        return 0.0000001
+        return 0.000000001
     }
 }
     
@@ -153,7 +153,7 @@ func SonyCodecSpeed(cameradata:CameraData) -> Double {
     case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p][From 6K]" :
         return 600
     default :
-        return 0.00000001
+        return 0.0000000001
     }
 }
     
@@ -333,7 +333,7 @@ func RateSpeed(cameradata:CameraData) -> Double {
         case "ERROR" :
             return 24
         default :
-            return 0.00001
+            return 0.000000001
         }
     }
     
