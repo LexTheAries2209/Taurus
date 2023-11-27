@@ -9,6 +9,7 @@ import Foundation
 
 //储存卡库
     public let MediaName : [String:[String]] = [
+        
         //ARRI
         "AMIRA" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
         "ALEXA Classic" : ["SxS Pro+ 128GB"],
