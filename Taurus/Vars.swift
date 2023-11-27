@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 class CameraData: ObservableObject {
-
     @Published var BrandName = "请选择品牌"
     
     @Published var CameraName = "请选择机型"
