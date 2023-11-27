@@ -8,10 +8,10 @@
 import Foundation
 
 //机型-编码-分辨率-储存卡 十位码帧率选择区域
-func availableRates(vars:Vars) -> [String] {
+func availableRates(cameradata:CameraData) -> [String] {
 
     var rates = [""]
-    let xbit = Xbit(vars: vars)
+    let xbit = Xbit(cameradata: cameradata)
     switch xbit {
         
         //无法录制的储存卡
@@ -104,9 +104,9 @@ func availableRates(vars:Vars) -> [String] {
     }
     
       //特殊选项区
-    if vars.CameraName.contains("ALEXA XT") || vars.CameraName.contains("ALEXA SXT") || vars.CameraName.contains("ALEXA LF") {
-        if vars.Codec == "ARRIRAW" {
-            if !vars.Media.contains("XR Capture Drive 512GB") && !vars.Media.contains("SXR Capture Drive 1TB") && !vars.Media.contains("SXR Capture Drive 2TB") {
+    if cameradata.CameraName.contains("ALEXA XT") || cameradata.CameraName.contains("ALEXA SXT") || cameradata.CameraName.contains("ALEXA LF") {
+        if cameradata.Codec == "ARRIRAW" {
+            if !cameradata.Media.contains("XR Capture Drive 512GB") && !cameradata.Media.contains("SXR Capture Drive 1TB") && !cameradata.Media.contains("SXR Capture Drive 2TB") {
                 rates = ["该储存卡无法在此机型录制ARRIRAW"]
             }
         }
@@ -116,12 +116,12 @@ func availableRates(vars:Vars) -> [String] {
 }
 
 //将机型编号、编码编号、分辨率编号、储存卡编号合成为十位码
-func Xbit(vars: Vars) -> String {
+func Xbit(cameradata:CameraData) -> String {
 
-  let cameraNumber = CameraNumber(vars: vars)
-  let codecNumber = CodecNumber(vars: vars)
-  let resolutionNumber = ResolutionNumber(vars: vars)
-  let mediaNumber = MediaNumber(vars: vars)
+  let cameraNumber = CameraNumber(cameradata: cameradata)
+  let codecNumber = CodecNumber(cameradata: cameradata)
+  let resolutionNumber = ResolutionNumber(cameradata: cameradata)
+  let mediaNumber = MediaNumber(cameradata: cameradata)
 
   let cameraString = String(cameraNumber)
   let codecString = String(codecNumber)
@@ -132,8 +132,8 @@ func Xbit(vars: Vars) -> String {
 }
 
 //机型三位编号
-func CameraNumber(vars:Vars) -> Int {
-    switch vars.CameraName {
+func CameraNumber(cameradata:CameraData) -> Int {
+    switch cameradata.CameraName {
         case "AMIRA" :
             return 200
         case "ALEXA Classic" :
@@ -158,8 +158,8 @@ func CameraNumber(vars:Vars) -> Int {
 }
 
 //编码两位编号
-func CodecNumber(vars:Vars) -> Int {
-    switch vars.Codec {
+func CodecNumber(cameradata:CameraData) -> Int {
+    switch cameradata.Codec {
         case "ARRIRAW" :
             return 10
         case "Prores 4444 XQ" :
@@ -182,8 +182,8 @@ func CodecNumber(vars:Vars) -> Int {
 }
 
 //分辨率三位编号
-func ResolutionNumber(vars:Vars) -> Int {
-    switch vars.Resolution {
+func ResolutionNumber(cameradata:CameraData) -> Int {
+    switch cameradata.Resolution {
     case "FHD S35[From 2880*1620]" :
         return 100
     case "FHD S16[From 1600*900]" :
@@ -282,8 +282,8 @@ func ResolutionNumber(vars:Vars) -> Int {
 }
 
 //储存卡三位编号
-func MediaNumber(vars:Vars) -> Int {
-    switch vars.Media {
+func MediaNumber(cameradata:CameraData) -> Int {
+    switch cameradata.Media {
     case "CFast2.0 128GB" :
         return 10
     case "CFast2.0 256GB" :
