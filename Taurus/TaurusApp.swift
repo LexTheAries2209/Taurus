@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let count = Count()
+
 @main
 struct TaurusApp: App {
     var body: some Scene {
