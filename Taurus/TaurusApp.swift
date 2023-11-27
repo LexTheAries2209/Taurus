@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-let count = Count()
 
 @main
 struct TaurusApp: App {

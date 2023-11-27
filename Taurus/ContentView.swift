@@ -21,7 +21,6 @@ class CameraData: ObservableObject {
 
 struct ContentView: View {
     
-    @ObservedObject var count = Count()
     @StateObject var cameradata = CameraData()
 
     var body: some View {
@@ -156,34 +155,30 @@ struct ContentView: View {
                         .padding(.top, 20.0)
                         Spacer()
                         
-                        Text("\(cameradata.Rate)")
                         
-                        //计算帧率乘积
-                        let RateMultiplier = count.RateSpeed/24
-                       
                         //计算数据输出区
                         VStack(alignment: .center){
                             if cameradata.BrandName == "SONY"{
-                                Text("可录制时长[Min]：\(count.MediaCapacity*7629.39453125/60/count.SonyCodecSpeed)")
-                                Text("数据码率[mbps]: \(count.SonyCodecSpeed)")
-                                Text("每小时数据占盘量[GB]：\(count.SonyCodecSpeed*450/1024)")
+                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/SonyCodecSpeed(cameradata:cameradata))")
+                                Text("数据码率[mbps]: \(SonyCodecSpeed(cameradata:cameradata))")
+                                Text("每小时数据占盘量[GB]：\(SonyCodecSpeed(cameradata:cameradata)*450/1024)")
                             }
                             else if cameradata.BrandName == "Canon" {
-                                Text("可录制时长[Min]：\(count.MediaCapacity*7629.39453125/60/count.CanonCodecSpeed)")
-                                Text("数据码率[mbps]: \(count.CanonCodecSpeed)")
-                                Text("每小时数据占盘量[GB]：\(count.CanonCodecSpeed*450/1024)")
+                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/CanonCodecSpeed(cameradata:cameradata))")
+                                Text("数据码率[mbps]: \(CanonCodecSpeed(cameradata:cameradata))")
+                                Text("每小时数据占盘量[GB]：\(CanonCodecSpeed(cameradata:cameradata)*450/1024)")
                             }
                             else if cameradata.BrandName == "Panasonic" {
-                                Text("可录制时长[Min]：\(count.MediaCapacity*7629.39453125/60/count.PanaCodecSpeed)")
-                                Text("数据码率[mbps]: \(count.PanaCodecSpeed)")
-                                Text("每小时数据占盘量[GB]：\(count.PanaCodecSpeed*450/1024)")
+                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/PanaCodecSpeed(cameradata:cameradata))")
+                                Text("数据码率[mbps]: \(PanaCodecSpeed(cameradata:cameradata))")
+                                Text("每小时数据占盘量[GB]：\(PanaCodecSpeed(cameradata:cameradata)*450/1024)")
                             }
                             else {
-                                Text("可录制时长[Min]：\(count.MediaCapacity*7629.39453125/60/count.CodecSpeedCount/count.ResolutionMultiplier/RateMultiplier)")
-                                Text("数据码率[mbps]: \(count.CodecSpeedCount*count.ResolutionMultiplier*RateMultiplier)")
-                                Text("每小时数据占盘量[GB]：\(count.CodecSpeedCount*count.ResolutionMultiplier*RateMultiplier*450/1024)")
+                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/CodecSpeedCount(cameradata:cameradata)/ResolutionMultiplier(cameradata:cameradata)/RateMultiplier(cameradata:cameradata))")
+                                Text("数据码率[mbps]: \(CodecSpeedCount(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata))")
+                                Text("每小时数据占盘量[GB]：\(CodecSpeedCount(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*450/1024)")
                                 if cameradata.Codec == "ARRIRAW" {
-                                    Text("每小时数据占盘量[GB][HDE]：\(count.CodecSpeed*count.ResolutionMultiplier*RateMultiplier*RateMultiplier*270/1024)")
+                                    Text("每小时数据占盘量[GB][HDE]：\(Codecspeed(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*270/1024)")
                             }
                             }
                         }

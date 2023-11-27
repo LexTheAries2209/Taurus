@@ -8,101 +8,100 @@
 import Foundation
 import Combine
 
+var cameradata = CameraData()
 
-class Count: ObservableObject {
-
-     var cameradata = CameraData()
-
-    //编码码率
-    var CodecSpeed: Double {
-        switch cameradata.Codec {
-        case "ARRIRAW" :
-            return 600
-        case "Prores 4444 XQ" :
-            return 400
-        case "Prores 4444" :
-            return 264
-        case "Prores 422 HQ" :
-            return 176
-        case "Prores 422" :
-            return 117.6
-        case "Prores 422 LT" :
-            return 81.2
-        case "MPEG-2 HD 422" :
-            return 66
-        default :
-            return 0.0000001
-        }
+func Codecspeed(cameradata:CameraData) -> Double {
+    switch cameradata.Codec {
+    case "ARRIRAW" :
+        return 600
+    case "Prores 4444 XQ" :
+        return 400
+    case "Prores 4444" :
+        return 264
+    case "Prores 422 HQ" :
+        return 176
+    case "Prores 422" :
+        return 117.6
+    case "Prores 422 LT" :
+        return 81.2
+    case "MPEG-2 HD 422" :
+        return 66
+    default :
+        return 0.0000001
     }
-    
+}
+
+
     //分辨率乘积
-    var ResolutionMultiplier: Double {
-        switch cameradata.Resolution {
-        case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]" :
-            return 1
-        case "2K S35[2048*1152][From 2868*1614]","2K S35[2048*1152][From 2868*1612]","2K S35[2048*1152][From 4096*2304]","2K LF[2048*1152][From UHD]","2K S16[2048*1152]","2K S35[2048*1152][From 2880*1620]":
-            return 1.14
-        case "2K S35[2048*858][From 2560*2146][6:5 ANA]","2K S35[2048*858][From 2560*2145][6:5 ANA]" :
-            return 0.85
-        case "2K S35[2048*1536][From 2868*2152][4:3]" :
-            return 1.5
-        case "2.8K S35[2880*1620]" :
-            return 2.25
-        case "2.6K S35[2578*2160][6:5]" :
-            return 2.69
-        case "3.2K S35[3168*1782]" :
-            return 2.72
-        case "3.2K S35[3200*1800]" :
-            return 2.77
-        case "2.8K S35[2880*2160][4:3]":
-            return 3
-        case "4K S35[4096*1716][From 2560*2146][6:5 ANA]","4K S35[4096*1716][From 3328*2790][6:5 ANA]" :
-            return 3.39
-        case "3.8K S35[3840*1920][From 3072*3072][1:1 ANA]" :
-            return 3.56
-        case "3.4K S35[3424*2202][OG]","3.4K S35[3424*2202][3:2]" :
-            return 3.64
-        case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]":
-            return 4
-        case "4K S35[4096*2048][2:1]":
-            return 4.05
-        case "3.3K S35[3328*2790][6:5]" :
-            return 4.48
-        case "4K S35[4096*2304]","3K S35[3072*3072][1:1]","4K S35[4096*2304][From 4608*2592]":
-            return 4.55
-        case "4K S35[4096*2636][From 3414*2198][2.39:1]" :
-            return 5.2
-        case "4.6K S35[4608*2592]" :
-            return 5.76
-        case "4.3K LF[4320*2880][3:2]" :
-            return 6
-        case "4.5K LF[4448*3096][3:2]","4.5K LF[4448*3096][OG]":
-            return 6.64
-        case "4.6K S35[4608*3164][OG]" :
-            return 7
-        case "5.1K 65mm[5120*2880]" :
-            return 7.11
-        case "6.5K 65mm[6560*3100][OG]" :
-            return 9.8
-        default:
-            return 0.0000001
-        }
+func ResolutionMultiplier(cameradata:CameraData) -> Double {
+    switch cameradata.Resolution {
+    case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]" :
+        return 1
+    case "2K S35[2048*1152][From 2868*1614]","2K S35[2048*1152][From 2868*1612]","2K S35[2048*1152][From 4096*2304]","2K LF[2048*1152][From UHD]","2K S16[2048*1152]","2K S35[2048*1152][From 2880*1620]":
+        return 1.14
+    case "2K S35[2048*858][From 2560*2146][6:5 ANA]","2K S35[2048*858][From 2560*2145][6:5 ANA]" :
+        return 0.85
+    case "2K S35[2048*1536][From 2868*2152][4:3]" :
+        return 1.5
+    case "2.8K S35[2880*1620]" :
+        return 2.25
+    case "2.6K S35[2578*2160][6:5]" :
+        return 2.69
+    case "3.2K S35[3168*1782]" :
+        return 2.72
+    case "3.2K S35[3200*1800]" :
+        return 2.77
+    case "2.8K S35[2880*2160][4:3]":
+        return 3
+    case "4K S35[4096*1716][From 2560*2146][6:5 ANA]","4K S35[4096*1716][From 3328*2790][6:5 ANA]" :
+        return 3.39
+    case "3.8K S35[3840*1920][From 3072*3072][1:1 ANA]" :
+        return 3.56
+    case "3.4K S35[3424*2202][OG]","3.4K S35[3424*2202][3:2]" :
+        return 3.64
+    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]":
+        return 4
+    case "4K S35[4096*2048][2:1]":
+        return 4.05
+    case "3.3K S35[3328*2790][6:5]" :
+        return 4.48
+    case "4K S35[4096*2304]","3K S35[3072*3072][1:1]","4K S35[4096*2304][From 4608*2592]":
+        return 4.55
+    case "4K S35[4096*2636][From 3414*2198][2.39:1]" :
+        return 5.2
+    case "4.6K S35[4608*2592]" :
+        return 5.76
+    case "4.3K LF[4320*2880][3:2]" :
+        return 6
+    case "4.5K LF[4448*3096][3:2]","4.5K LF[4448*3096][OG]":
+        return 6.64
+    case "4.6K S35[4608*3164][OG]" :
+        return 7
+    case "5.1K 65mm[5120*2880]" :
+        return 7.11
+    case "6.5K 65mm[6560*3100][OG]" :
+        return 9.8
+    default:
+        return 0.0000001
     }
+}
     
     //旧机型Prores编码码率乘积
-    var ProresCompensation: Double {
-        switch cameradata.CameraName {
-        case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
-            return 1.125
-        case "ALEXA 35","ALEXA Mini LF":
-            return 1
-        default :
-            return 1
-        }
+func ProresCompensation(cameradata:CameraData) -> Double {
+    switch cameradata.CameraName {
+    case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
+        return 1.125
+    case "ALEXA 35","ALEXA Mini LF":
+        return 1
+    default :
+        return 1
     }
+}
+    
+    
     
     //ALEXA 35 ARRIRAW编码乘积
-    var ARRIRAWCompensation: Double {
+func ARRIRAWCompensation(cameradata:CameraData) -> Double {
         switch cameradata.CameraName {
         case "ALEXA 35" :
             return 1.075
@@ -112,59 +111,55 @@ class Count: ObservableObject {
     }
     
     //索尼机型码率计算区
-    var SonyCodecName: String {
-      return cameradata.Codec + "_" + cameradata.Resolution
+func SonyCodecSpeed(cameradata:CameraData) -> Double {
+    let SonyCodecName = cameradata.Codec + "_" + cameradata.Resolution
+    switch SonyCodecName {
+    case "XAVC S HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S HD_FHD FF[8bit 4:2:0][23.98p]","XAVC S HD_FHD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_FHD S35[10bit 4:2:2][23.98p]","XAVC S HD_FHD S35[8bit 4:2:0][23.98p]","XAVC S HD_FHD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_FHD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_FHD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
+        return 50
+    case "XAVC S HD_FHD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_FHD S35[8bit 4:2:0][100p/119.88p]" :
+        return 60
+    case "XAVC S-I HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_FHD S35[10bit 4:2:2][23.98p]" :
+        return 89
+    case "XAVC S-I HD_FHD FF[10bit 4:2:2][25p]","XAVC S-I HD_FHD S35[10bit 4:2:2][25p]" :
+        return 93
+    case "XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD S35[10bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p][From 6K]","XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p][From 7K]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p][From 7K]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p][From 7K]" :
+        return 100
+    case "XAVC S-I HD_FHD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_FHD S35[10bit 4:2:2][29.97p]" :
+        return 111
+    case "XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD S35[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p][From 7K]" :
+        return 140
+    case "XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p][From 6K]" :
+        return 150
+    case "XAVC S-I HD_FHD FF[10bit 4:2:2][50p]","XAVC S-I HD_FHD S35[10bit 4:2:2][50p]" :
+        return 185
+    case "XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p][From 6K]" :
+        return 200
+    case "XAVC S-I HD_FHD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_FHD S35[10bit 4:2:2][59.94p]" :
+        return 222
+    case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]" :
+        return 240
+    case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][25p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][25p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p][From 7K]" :
+        return 250
+    case "XAVC HS 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][100p/119.88p]" :
+        return 280
+    case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 7K]" :
+        return 300
+    case "XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p/29.97p]","XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p]" :
+        return 400
+    case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][50p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p][From 6K]" :
+        return 500
+    case "XAVC HS 8K_8K FF[10bit 4:2:2][23.98p/25p/29.97p]":
+        return 520
+    case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p][From 6K]" :
+        return 600
+    default :
+        return 0.00000001
     }
-    var SonyCodecSpeed: Double {
-        switch SonyCodecName {
-        case "XAVC S HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S HD_FHD FF[8bit 4:2:0][23.98p]","XAVC S HD_FHD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_FHD S35[10bit 4:2:2][23.98p]","XAVC S HD_FHD S35[8bit 4:2:0][23.98p]","XAVC S HD_FHD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_FHD FF[10bit 4:2:2][23.98p/25p/29.97p]","MPEG-2 LongGOP_FHD S35[10bit 4:2:2][23.98p/25p/29.97p]" :
-            return 50
-        case "XAVC S HD_FHD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_FHD S35[8bit 4:2:0][100p/119.88p]" :
-            return 60
-        case "XAVC S-I HD_FHD FF[10bit 4:2:2][23.98p]","XAVC S-I HD_FHD S35[10bit 4:2:2][23.98p]" :
-            return 89
-        case "XAVC S-I HD_FHD FF[10bit 4:2:2][25p]","XAVC S-I HD_FHD S35[10bit 4:2:2][25p]" :
-            return 93
-        case "XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC HS 4K_UHD S35[10bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][23.98p]","XAVC S 4K_UHD S35[8bit 4:2:0][25p/29.97p]","XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p][From 6K]","XAVC HS 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]","XAVC HS 4K_UHD FF[10bit 4:2:0][23.98p][From 7K]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]","XAVC S 4K_UHD FF[8bit 4:2:0][23.98p][From 7K]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][25p/29.97p][From 7K]" :
-            return 100
-        case "XAVC S-I HD_FHD FF[10bit 4:2:2][29.97p]","XAVC S-I HD_FHD S35[10bit 4:2:2][29.97p]" :
-            return 111
-        case "XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD S35[10bit 4:2:2][25p/29.97p]","XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][25p/29.97p][From 7K]" :
-            return 140
-        case "XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][50p/59.94p][From 6K]","XAVC S 4K_UHD FF[8bit 4:2:0][50p/59.94p][From 6K]" :
-            return 150
-        case "XAVC S-I HD_FHD FF[10bit 4:2:2][50p]","XAVC S-I HD_FHD S35[10bit 4:2:2][50p]" :
-            return 185
-        case "XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD FF[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD FF[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC HS 4K_UHD S35[10bit 4:2:0][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][50p/59.94p]","XAVC S 4K_UHD S35[8bit 4:2:0][100p/119.88p]","XAVC HS 4K_UHD FF[10bit 4:2:2][50p/59.94p][From 6K]","XAVC S 4K_UHD FF[10bit 4:2:2][50p/59.94p][From 6K]" :
-            return 200
-        case "XAVC S-I HD_FHD FF[10bit 4:2:2][59.94p]","XAVC S-I HD_FHD S35[10bit 4:2:2][59.94p]" :
-            return 222
-        case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][23.98p/24p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][23.98p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][23.98p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][23.98p][From 7K]" :
-            return 240
-        case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][25p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][25p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][25p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][25p][From 7K]" :
-            return 250
-        case "XAVC HS 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD FF[10bit 4:2:2][100p/119.88p]","XAVC HS 4K_UHD S35[10bit 4:2:2][100p/119.88p]","XAVC S 4K_UHD S35[10bit 4:2:2][100p/119.88p]" :
-            return 280
-        case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 7K]" :
-            return 300
-        case "XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p/29.97p]","XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p]" :
-            return 400
-        case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][50p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p][From 6K]" :
-            return 500
-        case "XAVC HS 8K_8K FF[10bit 4:2:2][23.98p/25p/29.97p]":
-            return 520
-        case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p][From 6K]" :
-            return 600
-        default :
-            return 0.00000001
-        }
-    }
+}
     
     //佳能机型码率计算区
-    var CanonCodecName: String {
-      return cameradata.Codec + "_" + cameradata.Resolution
-    }
-    var CanonCodecSpeed: Double {
+func CanonCodecSpeed(cameradata:CameraData) -> Double {
+        let CanonCodecName = cameradata.Codec + "_" + cameradata.Resolution
         switch CanonCodecName {
         case "IPB Light AVC_FHD FF[8bit 4:2:0][25p/29.97p][From 4K]","IPB Light AVC_FHD S35[8bit 4:2:0][25p/29.97p]","IPB Light AVC_FHD FF[8bit 4:2:0][25p/29.97p]","IPB Light AVC_FHD FF[8bit 4:2:0][23.98p/25p/29.97p]","IPB Light AVC_FHD S35[8bit 4:2:0][23.98p/25p/29.97p]" :
             return 12
@@ -235,10 +230,9 @@ class Count: ObservableObject {
         }
     }
     
-    var PanaCodecName: String {
-      return cameradata.Codec + "_" + cameradata.Resolution
-    }
-    var PanaCodecSpeed: Double {
+    
+func PanaCodecSpeed(cameradata:CameraData) -> Double {
+        let PanaCodecName = cameradata.Codec + "_" + cameradata.Resolution
         switch PanaCodecName {
         case "" :
             return 1
@@ -248,7 +242,7 @@ class Count: ObservableObject {
     }
     
     //存储卡容量乘积
-    var MediaCapacity: Double {
+func MediaCapacity(cameradata:CameraData) -> Double {
         switch cameradata.Media {
         case "CFExpress TypeA 80GB" :
             return 80
@@ -288,19 +282,19 @@ class Count: ObservableObject {
     }
     
     //加入补偿的编码速度
-    var CodecSpeedCount: Double {
+func CodecSpeedCount(cameradata:CameraData) -> Double {
         switch cameradata.Codec {
         case "Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422LT" :
-            return CodecSpeed*ProresCompensation
+            return Codecspeed(cameradata:cameradata)*ProresCompensation(cameradata:cameradata)
         case "ARRIRAW" :
-            return CodecSpeed*ARRIRAWCompensation
+            return Codecspeed(cameradata:cameradata)*ARRIRAWCompensation(cameradata:cameradata)
         default :
-            return CodecSpeed
+            return Codecspeed(cameradata:cameradata)
         }
     }
     
     //帧率乘积
-    var RateSpeed: Double {
+func RateSpeed(cameradata:CameraData) -> Double {
         switch cameradata.Rate {
         case "0.750" :
             return 0.75
@@ -343,5 +337,8 @@ class Count: ObservableObject {
         }
     }
     
+//计算帧率乘积
+func RateMultiplier(cameradata:CameraData) ->Double {
+    return RateSpeed(cameradata:cameradata)/24
 }
 
