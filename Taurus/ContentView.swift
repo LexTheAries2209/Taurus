@@ -213,7 +213,7 @@ struct ContentView: View {
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("4. HDE为ARRI公司推出的压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW技术。对于ALEXA 35摄影机，Prores编码位深均为12Bit。")
+                                        Text("4. HDE为ARRI公司推出的压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW技术。")
                                             .font(.system(size: 10))
                                             .padding(.leading,10)
                                             .frame(maxWidth: .infinity,alignment:.leading)

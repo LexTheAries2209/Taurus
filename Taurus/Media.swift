@@ -64,7 +64,7 @@ import Foundation
         
         //Panasonic
         "S1H" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
-        "S5M2X" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
+        "S5M2X" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
         "S5M2" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],
         "GH6" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
         "G9M2" : ["SDXC 128GB","SDXC 256GB","SDXC 512GB"],

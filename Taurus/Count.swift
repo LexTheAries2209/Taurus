@@ -17,14 +17,22 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 400
     case "Prores 4444" :
         return 264
+    case "REDCODE HQ" :
+        return 199.2
     case "Prores 422 HQ" :
         return 176
+    case "REDCODE MQ" :
+        return 140
     case "Prores 422" :
         return 117.6
+    case "REDCODE LQ" :
+        return 87.5
     case "Prores 422 LT" :
         return 81.2
     case "MPEG-2 HD 422" :
         return 66
+    case "REDCODE ELQ" :
+        return 54.2
     default :
         return 0.000000001
     }
@@ -36,6 +44,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
     switch cameradata.Resolution {
     case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]" :
         return 1
+    case "2K S16[2048*1080][17:9]" :
+        return 1.07
     case "2K S35[2048*1152][From 2868*1614]","2K S35[2048*1152][From 2868*1612]","2K S35[2048*1152][From 4096*2304]","2K LF[2048*1152][From UHD]","2K S16[2048*1152]","2K S35[2048*1152][From 2880*1620]":
         return 1.14
     case "2K S35[2048*858][From 2560*2146][6:5 ANA]","2K S35[2048*858][From 2560*2145][6:5 ANA]" :
@@ -62,6 +72,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 4
     case "4K S35[4096*2048][2:1]":
         return 4.05
+    case "4K S35[4096*2160][17:9]" :
+        return 4.27
     case "3.3K S35[3328*2790][6:5]" :
         return 4.48
     case "4K S35[4096*2304]","3K S35[3072*3072][1:1]","4K S35[4096*2304][From 4608*2592]":
@@ -74,10 +86,20 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 6
     case "4.5K LF[4448*3096][3:2]","4.5K LF[4448*3096][OG]":
         return 6.64
+    case "5K S35[5120*2700][17:9]" :
+        return 6.67
     case "4.6K S35[4608*3164][OG]" :
         return 7
     case "5.1K 65mm[5120*2880]" :
         return 7.11
+    case "6K S35[6144*2574][2.4:1]" :
+        return 7.63
+    case "6K S35[5760*3240]" :
+        return 9
+    case "6K S35[6144*3072][2:1]" :
+        return 9.1
+    case "6K S35[6144*3240][17:9]" :
+        return 9.6
     case "6.5K 65mm[6560*3100][OG]" :
         return 9.8
     default:
@@ -129,7 +151,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 320
     case "CFExpress TypeB 330GB" :
         return 330
-    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SDXC 512GB" :
+    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SDXC 512GB","[Output]SSD 512GB" :
         return 512
     case "CFExpress TypeA 640GB" :
         return 640
@@ -137,13 +159,13 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 660
     case "CFExpress TypeA 960GB" :
         return 960
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SDXC 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SDXC 1TB","[Output]SSD 1TB" :
         return 1000
     case "CFExpress TypeB 1.3TB" :
         return 1333
     case "CFExpress TypeA 1920GB" :
         return 1920
-    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SDXC 2TB" :
+    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SDXC 2TB","[Output]SSD 2TB" :
         return 2000
     default :
         return 0

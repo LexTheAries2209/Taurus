@@ -21,12 +21,12 @@ import Foundation
         "ALEXA 65" : ["ARRIRAW"],
         
         //RED
-        "V-Raptor XL[8K VV]" : [],
-        "V-Raptor[8K VV]" : [],
-        "V-Raptor XL[8K S35]" : [],
-        "V-Raptor[8K S35]" : [],
-        "KEMODO-X" : [],
-        "KEMODO" : [],
+        "V-Raptor XL[8K VV]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "V-Raptor[8K VV]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "V-Raptor XL[8K S35]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "V-Raptor[8K S35]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "KEMODO-X" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "KEMODO" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
         
         //SONY
         "Cinealta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
@@ -63,7 +63,7 @@ import Foundation
         
         //Panasonic
         "S1H" : [],
-        "S5M2X" : ["Prores 422 HQ","HEVC ALL-I","HEVC LongGOP","AVC LongGOP"],
+        "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC ALL-I","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
         "S5M2" : ["HEVC","AVC"],
         "GH6" : [],
         "G9M2" : [],
