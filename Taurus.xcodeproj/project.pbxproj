@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		583519592B22160D00366A4D /* SonyCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583519582B22160D00366A4D /* SonyCount.swift */; };
+		5835195B2B2216D700366A4D /* CanonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195A2B2216D700366A4D /* CanonCount.swift */; };
+		5835195D2B2217A200366A4D /* PanasonicCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195C2B2217A200366A4D /* PanasonicCount.swift */; };
 		5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C0692A7000D900611BD0 /* TaurusApp.swift */; };
 		5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C06B2A7000D900611BD0 /* ContentView.swift */; };
 		5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C06D2A7000D900611BD0 /* Assets.xcassets */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		583519582B22160D00366A4D /* SonyCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonyCount.swift; sourceTree = "<group>"; };
+		5835195A2B2216D700366A4D /* CanonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCount.swift; sourceTree = "<group>"; };
+		5835195C2B2217A200366A4D /* PanasonicCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanasonicCount.swift; sourceTree = "<group>"; };
 		5864C0662A7000D900611BD0 /* Taurus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taurus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5864C0692A7000D900611BD0 /* TaurusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaurusApp.swift; sourceTree = "<group>"; };
 		5864C06B2A7000D900611BD0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +73,9 @@
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				58ECDDF62B14D57C00B049BD /* Count.swift */,
+				5835195C2B2217A200366A4D /* PanasonicCount.swift */,
+				583519582B22160D00366A4D /* SonyCount.swift */,
+				5835195A2B2216D700366A4D /* CanonCount.swift */,
 				58D3B7FB2B0F51B5001C8FA7 /* xbit_func.swift */,
 				58D3B7F72B0F4F82001C8FA7 /* Media.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
@@ -158,9 +167,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */,
+				5835195B2B2216D700366A4D /* CanonCount.swift in Sources */,
 				58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */,
 				58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */,
+				5835195D2B2217A200366A4D /* PanasonicCount.swift in Sources */,
 				58D3B7FC2B0F51B5001C8FA7 /* xbit_func.swift in Sources */,
+				583519592B22160D00366A4D /* SonyCount.swift in Sources */,
 				5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */,
 				58ECDDF72B14D57C00B049BD /* Count.swift in Sources */,
 				5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */,
