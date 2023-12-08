@@ -9,7 +9,7 @@ import Foundation
 
 //机型-编码-分辨率-储存卡 十位码帧率选择区域
 func availableRates(cameradata:CameraData) -> [String] {
-
+    
     var rates = [""]
     let xbit = Xbit(cameradata: cameradata)
     switch xbit {
@@ -76,7 +76,7 @@ func availableRates(cameradata:CameraData) -> [String] {
         //max200
     case "2002110010","2002110011","2002110012","2002110110","2002110111","2002110112","2002110710","2002110711","2002110712","2002210010","2002210011","2002210012","2002210110","2002210111","2002210112","2002210710","2002210711","2002210712","2002310010","2002310011","2002310012","2002310110","2002310111","2002310112","2002310710","2002310711","2002310712","2002410010","2002410011","2002410012","2002410110","2002410111","2002410112","2002410710","2002410711","2002410712","2042110010","2042110011","2042110012","2042210010","2042210011","2042210012","2042310010","2042310011","2042310012","2042410010","2042410011","2042410012","2042210110","2042210111","2042210112","2042310110","2042310111","2042310112","2042410110","2042410111","2042410112","2042110710","2042110711","2042110712","2042210710","2042210711","2042210712","2042310710","2042310711","2042310712","2042410710","2042410711","2042410712" :
         rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","75.000","90.000","96.000","100.000","120.000","150.000","200.000"]
-     
+        
         //ALEXA 65 20-25
     case "2071014530" :
         rates = ["20.000","23.976","24.000","25.000"]
@@ -97,13 +97,12 @@ func availableRates(cameradata:CameraData) -> [String] {
     case "2071014531","2071014532","2071014431","2071014432","2071013831","2071013832","2071012831","2071012832","2071012830","2071014031","2071014032" :
         rates = ["20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000"]
         
-        
-      //错误检测
+        //错误检测
     default :
         rates = ["24.000"]
     }
     
-      //特殊选项区
+    //特殊选项区
     if cameradata.CameraName.contains("ALEXA XT") || cameradata.CameraName.contains("ALEXA SXT") || cameradata.CameraName.contains("ALEXA LF") {
         if cameradata.Codec == "ARRIRAW" {
             if !cameradata.Media.contains("XR Capture Drive 512GB") && !cameradata.Media.contains("SXR Capture Drive 1TB") && !cameradata.Media.contains("SXR Capture Drive 2TB") {
@@ -112,72 +111,112 @@ func availableRates(cameradata:CameraData) -> [String] {
         }
     }
     
+    //RED DSMC3
+    
+    if cameradata.CameraName == "KEMODO" {
+        switch cameradata.Resolution {
+        case "6K S35[6144*3240][17:9]","6K S35[5760*3240]" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000"]
+        case "6K S35[6144*3072][2:1]" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000"]
+        case "5K S35[5120*2700][17:9]" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000"]
+        case "6K S35[6144*2592][2.4:1]" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000"]
+        case "4K S35[4096*2160][17:9]","UHD S35" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000"]
+        case "2K S16[2048*1080][17:9]" :
+            rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","90.000","96.000","100.000","120.000"]
+        default :
+            rates = ["24.000"]
+        }
+    }
+        
+        if cameradata.CameraName == "KEMODO-X" {
+            switch cameradata.Resolution {
+            case "6K S35[6144*3240][17:9]","6K S35[5760*3240]" :
+                rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","80.000"]
+            case "6K S35[6144*3072][2:1]" :
+                rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","80.000","84.000"]
+            case "5K S35[5120*2700][17:9]","5K S35[4800*2700]" :
+                rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","80.000","84.000","90.000","96.000"]
+            case "6K S35[6144*2592][2.4:1]" :
+                rates =  ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","80.000","84.000","90.000","96.000","100.000"]
+            case "4K S35[4096*2160][17:9]","UHD S35" :
+                rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","90.000","96.000","100.000","120.000"]
+            case "2K S16[2048*1080][17:9]" :
+                rates = ["1.000","2.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","90.000","96.000","100.000","120.000","150.000","200.000","240.000"]
+            default :
+                rates = ["24.000"]
+            }
+        }
+    
     return rates
 }
 
 //将机型编号、编码编号、分辨率编号、储存卡编号合成为十位码
 func Xbit(cameradata:CameraData) -> String {
-
-  let cameraNumber = CameraNumber(cameradata: cameradata)
-  let codecNumber = CodecNumber(cameradata: cameradata)
-  let resolutionNumber = ResolutionNumber(cameradata: cameradata)
-  let mediaNumber = MediaNumber(cameradata: cameradata)
-
-  let cameraString = String(cameraNumber)
-  let codecString = String(codecNumber)
-  let resolutionString = String(resolutionNumber)
-  let mediaString = String(mediaNumber)
-
-  return cameraString + codecString + resolutionString + mediaString
+    
+    let cameraNumber = CameraNumber(cameradata: cameradata)
+    let codecNumber = CodecNumber(cameradata: cameradata)
+    let resolutionNumber = ResolutionNumber(cameradata: cameradata)
+    let mediaNumber = MediaNumber(cameradata: cameradata)
+    
+    let cameraString = String(cameraNumber)
+    let codecString = String(codecNumber)
+    let resolutionString = String(resolutionNumber)
+    let mediaString = String(mediaNumber)
+    
+    return cameraString + codecString + resolutionString + mediaString
 }
 
 //机型三位编号
 func CameraNumber(cameradata:CameraData) -> Int {
     switch cameradata.CameraName {
-        case "AMIRA" :
-            return 200
-        case "ALEXA Classic" :
-            return 201
-        case "ALEXA XT" :
-            return 202
-        case "ALEXA SXT" :
-            return 203
-        case "ALEXA Mini" :
-            return 204
-        case "ALEXA LF" :
-            return 205
-        case "ALEXA Mini LF" :
-            return 206
-        case "ALEXA 65" :
-            return 207
-        case "ALEXA 35" :
-            return 208
-        default :
-            return 999
-                }
+    case "AMIRA" :
+        return 200
+    case "ALEXA Classic" :
+        return 201
+    case "ALEXA XT" :
+        return 202
+    case "ALEXA SXT" :
+        return 203
+    case "ALEXA Mini" :
+        return 204
+    case "ALEXA LF" :
+        return 205
+    case "ALEXA Mini LF" :
+        return 206
+    case "ALEXA 65" :
+        return 207
+    case "ALEXA 35" :
+        return 208
+    default :
+        return 999
+    }
 }
 
 //编码两位编号
 func CodecNumber(cameradata:CameraData) -> Int {
     switch cameradata.Codec {
-        case "ARRIRAW" :
-            return 10
-        case "Prores 4444 XQ" :
-            return 20
-        case "Prores 4444" :
-            return 21
-        case "Prores 422 HQ" :
-            return 22
-        case "Prores 422" :
-            return 23
-        case "Prores 422 LT" :
-            return 24
-        case "REDCODE 1:3" :
-            return 30
-        case "MPEG-2 HD 422" :
-            return 80
-        default :
-            return 99
+    case "ARRIRAW" :
+        return 10
+    case "Prores 4444 XQ" :
+        return 20
+    case "Prores 4444" :
+        return 21
+    case "Prores 422 HQ" :
+        return 22
+    case "Prores 422" :
+        return 23
+    case "Prores 422 LT" :
+        return 24
+    case "REDCODE 1:3" :
+        return 30
+    case "MPEG-2 HD 422" :
+        return 80
+    default :
+        return 99
     }
 }
 

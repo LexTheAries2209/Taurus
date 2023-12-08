@@ -227,6 +227,12 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 0.75
     case "1.000" :
         return 1
+    case "2.000" :
+        return 2
+    case "12.000" :
+        return 12
+    case "15.000" :
+        return 15
     case "23.976","24.000" :
         return 24
     case "25.000" :
@@ -235,6 +241,8 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 30
     case "40.000" :
         return 40
+    case "42.000" :
+        return 42
     case "48.000":
         return 48
     case "50.000" :
@@ -245,6 +253,10 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 72
     case "75.000" :
         return 75
+    case "80.000" :
+        return 80
+    case "84.000" :
+        return 84
     case "90.000" :
         return 90
     case "96.000" :
@@ -257,6 +269,8 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 150
     case "200.000" :
         return 200
+    case "240.000" :
+        return 240
     case "ERROR" :
         return 24
     default :

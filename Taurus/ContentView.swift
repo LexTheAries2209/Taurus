@@ -238,6 +238,7 @@ struct ContentView: View {
                     .tabItem {
                         Text("数据计算器")
                     }
+                
 //                //其他功能模块
 //                Text("还没做出功能的阵列配置台")
 //                    .tabItem {
