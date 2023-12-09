@@ -42,11 +42,11 @@ func SonyCodecSpeed(cameradata:CameraData) -> Double {
         return 280
     case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][29.97p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][29.97p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 6K]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][29.97p][From 7K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][29.97p][From 7K]" :
         return 300
-    case "XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p/29.97p]","XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p]" :
+    case "XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p/29.97p][From 8.6K]","XAVC HS 8K_8K FF[10bit 4:2:0][23.98p/25p]" :
         return 400
     case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][50p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][50p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][50p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][50p][From 6K]" :
         return 500
-    case "XAVC HS 8K_8K FF[10bit 4:2:2][23.98p/25p/29.97p]":
+    case "XAVC HS 8K_8K FF[10bit 4:2:2][23.98p/25p/29.97p][From 8.6K]":
         return 520
     case "XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K S35[10bit 4:2:2][59.94p]","XAVC S-I 4K_UHD S35[10bit 4:2:2][59.94p]","XAVC S-I DCI 4K_DCI 4K FF[10bit 4:2:2][59.94p][From 6K]","XAVC S-I 4K_UHD FF[10bit 4:2:2][59.94p][From 6K]" :
         return 600
