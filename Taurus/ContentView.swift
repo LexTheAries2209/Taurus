@@ -123,7 +123,21 @@ struct ContentView: View {
                             }
                             
                             //储存卡选择
-                            if let medias = MediaName[cameradata.CameraName] {
+                            if cameradata.BrandName == "Canon" {
+                                Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                    ForEach(CanonMedia(cameradata:cameradata),id:\.self) { media in
+                                        Text(media).tag(media)
+                                    }
+                                }
+                            }
+                            if cameradata.BrandName == "SONY" {
+                                Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                    ForEach(SonyMedia(cameradata:cameradata),id:\.self) { media in
+                                        Text(media).tag(media)
+                                    }
+                                }
+                            }
+                            else if let medias = MediaName[cameradata.CameraName] {
                                 Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
                                     ForEach(medias,id:\.self) { media in
                                         Text(media).tag(media)

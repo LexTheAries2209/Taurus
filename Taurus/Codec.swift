@@ -65,7 +65,7 @@ import Foundation
         "S1H" : [],
         "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC ALL-I","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
         "S5M2" : ["HEVC","AVC"],
-        "GH6" : [],
+        "GH6" : ["Prores 422 HQ","Prores 422","HEVC IPB","AVC ALL-I","AVC IPB"],
         "G9M2" : [],
         
     ]

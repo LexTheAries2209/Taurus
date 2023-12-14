@@ -175,19 +175,19 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 80
     case "SxS Pro-X 120GB" :
         return 120
-    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SDXC 128GB" :
+    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB" :
         return 128
     case "CFExpress TypeA 160GB" :
         return 160
     case "SxS Pro-X 240GB" :
         return 240
-    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SDXC 256GB" :
+    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB" :
         return 256
     case "CFExpress TypeA 320GB" :
         return 320
     case "CFExpress TypeB 330GB" :
         return 330
-    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SDXC 512GB","[Output]SSD 512GB" :
+    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB" :
         return 512
     case "CFExpress TypeA 640GB" :
         return 640
@@ -195,13 +195,13 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 660
     case "CFExpress TypeA 960GB" :
         return 960
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SDXC 1TB","[Output]SSD 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB" :
         return 1000
     case "CFExpress TypeB 1.3TB" :
         return 1333
     case "CFExpress TypeA 1920GB" :
         return 1920
-    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SDXC 2TB","[Output]SSD 2TB" :
+    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB" :
         return 2000
     default :
         return 0
