@@ -1,5 +1,5 @@
 //
-//  PanasonicCount.swift
+//  PanaCount.swift
 //  Taurus
 //
 //  Created by 吴坤城 on 12/7/23.

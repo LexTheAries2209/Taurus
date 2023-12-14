@@ -50,5 +50,8 @@ func SonyMedia(cameradata:CameraData) -> [String] {
     else if cameradata.CameraName == "Cinealta Venice"  {
             SonyMedia = ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
     }
+    else {
+        SonyMedia = [""]
+    }
     return SonyMedia
 }
