@@ -182,6 +182,21 @@ struct ContentView: View {
                                 }
                             }
                             
+                            if cameradata.BrandName == "Panasonic" {
+                                if PanaMedia(cameradata: cameradata) != [""] {
+                                    Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        ForEach(PanaMedia(cameradata:cameradata),id:\.self) { media in
+                                            Text(media).tag(media)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $cameradata.Media, label:Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
+                            
                             if cameradata.BrandName != "Canon" && cameradata.BrandName != "SONY" && cameradata.BrandName != "Panasonic" {
                                 if let medias = MediaName[cameradata.CameraName] {
                                     Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {

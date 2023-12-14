@@ -10,6 +10,7 @@ import Foundation
 func SonyMedia(cameradata:CameraData) -> [String] {
     var SonyMedia = [""]
     let CodecSpeed = SonyCodecSpeed(cameradata: cameradata)
+    
     if cameradata.CameraName == "Alpha 1" || cameradata.CameraName == "A9M3" || cameradata.CameraName == "A7M4" || cameradata.CameraName == "A7S3" || cameradata.CameraName == "FX 3" || cameradata.CameraName == "FX 30" || cameradata.CameraName == "A7R5" {
         if CodecSpeed <= 270 {
             SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
