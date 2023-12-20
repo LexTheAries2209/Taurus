@@ -17,6 +17,7 @@
 		5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C06B2A7000D900611BD0 /* ContentView.swift */; };
 		5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C06D2A7000D900611BD0 /* Assets.xcassets */; };
 		5864C0712A7000D900611BD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C0702A7000D900611BD0 /* Preview Assets.xcassets */; };
+		58A6A9D12B33101500C86021 /* func_DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6A9D02B33101500C86021 /* func_DjiMedia.swift */; };
 		58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */; };
 		58D3B7F42B0F4EEB001C8FA7 /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F32B0F4EEB001C8FA7 /* Resolution.swift */; };
 		58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */; };
@@ -41,6 +42,7 @@
 		5864C06D2A7000D900611BD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5864C0702A7000D900611BD0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5864C0722A7000D900611BD0 /* Taurus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Taurus.entitlements; sourceTree = "<group>"; };
+		58A6A9D02B33101500C86021 /* func_DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func_DjiMedia.swift; sourceTree = "<group>"; };
 		58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
 		58D3B7F32B0F4EEB001C8FA7 /* Resolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_Camera.swift; sourceTree = "<group>"; };
@@ -84,10 +86,11 @@
 			children = (
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
-				583EE8342B2AEE2D007C0112 /* func_PanaResolution.swift */,
 				5835195C2B2217A200366A4D /* PanaCount.swift */,
 				5835195A2B2216D700366A4D /* CanonCount.swift */,
 				583519582B22160D00366A4D /* SonyCount.swift */,
+				583EE8342B2AEE2D007C0112 /* func_PanaResolution.swift */,
+				58A6A9D02B33101500C86021 /* func_DjiMedia.swift */,
 				58F4E8EE2B2A0AAA00A36613 /* func_CanonMedia.swift */,
 				583EE8322B2ACD3B007C0112 /* func_SonyMedia.swift */,
 				583EE8362B2B24F2007C0112 /* func_PanaMedia.swift */,
@@ -194,6 +197,7 @@
 				58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */,
 				583EE8372B2B24F2007C0112 /* func_PanaMedia.swift in Sources */,
 				5835195D2B2217A200366A4D /* PanaCount.swift in Sources */,
+				58A6A9D12B33101500C86021 /* func_DjiMedia.swift in Sources */,
 				583519592B22160D00366A4D /* SonyCount.swift in Sources */,
 				5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */,
 				58ECDDF72B14D57C00B049BD /* Count.swift in Sources */,

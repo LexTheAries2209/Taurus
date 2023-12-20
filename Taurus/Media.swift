@@ -28,11 +28,4 @@ import Foundation
         "V-Raptor[8K S35]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
         "KEMODO-X" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
         "KEMODO" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
-        
-        //Panasonic
-        "S1H" : ["SD V90 128GB","SD V90 256GB","SD V90 512GB"],
-        "S5M2X" : ["SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
-        "S5M2" : ["SD V90 128GB","SD V90 256GB","SD V90 512GB"],
-        "GH6" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
-        "G9M2" : ["SD V90 128GB","SD V90 256GB","SD V90 512GB"],
     ]

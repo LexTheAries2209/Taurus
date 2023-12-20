@@ -68,4 +68,9 @@ import Foundation
         "GH6" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
         "G9M2" : [],
         
+        //DJI
+        "Ronin 4D[8K]" : ["Prores RAW","Prores 422 HQ","H.264"],
+        "Ronin 4D[6K]" : ["Prores RAW","Prores 4444 XQ","Prores 422 HQ","Prores 422 LT","H.264"],
+        "Inspire 3" : ["CinemaDNG","Prores RAW","Prores 422 HQ","H.264"],
+        
     ]

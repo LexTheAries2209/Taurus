@@ -21,6 +21,6 @@ import Foundation
         //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
         //"Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
         "Panasonic" : ["S5M2X","S5M2"],
-        //"DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
+        "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
