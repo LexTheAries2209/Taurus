@@ -51,5 +51,6 @@ func DjiResolution(cameradata:CameraData) -> [String] {
             DjiResolution = ["4K FF[4096*2160][17:9]","4K FF[3840*2160][16:9]","4K S35[4096*2160][17:9]","4K S35[3840*2160][16:9]"]
         }
     }
+    
     return DjiResolution
 }
