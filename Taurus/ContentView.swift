@@ -138,6 +138,20 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            else if cameradata.BrandName == "DJI" {
+                                if DjiResolution(cameradata: cameradata) != [""] {
+                                    Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100,alignment: .center)) {
+                                        ForEach(DjiResolution(cameradata: cameradata),id:\.self) { resolution in
+                                            Text(resolution).tag(resolution)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $cameradata.Resolution, label:Text("请选择分辨率").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
                             else if let resolutions = ResolutionName[CodecAndCamera] {
                                 Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100,alignment: .center)) {
                                     ForEach(resolutions,id:\.self) { resolution in
@@ -197,7 +211,22 @@ struct ContentView: View {
                                 }
                             }
                             
-                            if cameradata.BrandName != "Canon" && cameradata.BrandName != "SONY" && cameradata.BrandName != "Panasonic" {
+                            if cameradata.BrandName == "DJI" {
+                                if DjiMedia(cameradata: cameradata) != [""] {
+                                    Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        ForEach(DjiMedia(cameradata:cameradata),id:\.self) { media in
+                                            Text(media).tag(media)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $cameradata.Media, label:Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
+                            
+                            if cameradata.BrandName != "Canon" && cameradata.BrandName != "SONY" && cameradata.BrandName != "Panasonic" && cameradata.BrandName != "DJI" {
                                 if let medias = MediaName[cameradata.CameraName] {
                                     Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
                                         ForEach(medias,id:\.self) { media in

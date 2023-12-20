@@ -195,7 +195,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 660
     case "CFExpress TypeA 960GB" :
         return 960
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB" :
         return 1000
     case "CFExpress TypeB 1.3TB" :
         return 1333
