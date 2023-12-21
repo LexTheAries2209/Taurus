@@ -165,6 +165,16 @@ struct ContentView: View {
                                 }
                             }
                             
+                            // DJI帧率
+                            if cameradata.BrandName == "DJI" {
+                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                        ForEach(availableRates(cameradata:cameradata),id:\.self) { rate in
+                                            Text(rate).tag(rate)
+                                        }
+                                    }
+                                }
+                            
+                            
                             //储存卡选择
                             if cameradata.BrandName == "Canon" {
                                 if CanonMedia(cameradata: cameradata) != [""] {
