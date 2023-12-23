@@ -15,6 +15,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 600
     case "Prores 4444 XQ" :
         return 400
+    case "CinemaDNG" :
+        return 380
     case "Prores 4444" :
         return 264
     case "REDCODE HQ" :
@@ -84,7 +86,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 3.56
     case "3.4K S35[3424*2202][OG]","3.4K S35[3424*2202][3:2]" :
         return 3.64
-    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16" :
+    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16","4K FF[3840*2160][16:9]","4K S35[3840*2160][16:9]" :
         return 4
     case "4K S35[4096*2048][2:1]","4K S16[4096*2048][2:1]" :
         return 4.05
@@ -116,6 +118,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 7.11
     case "6K FF[6008*2512][2.39:1]" :
         return 7.28
+    case "5.5K S35[5248*2952][16:9]" :
+        return 7.47
     case "6K VV[6144*2574][2.4:1]","6K S35[6144*2574][2.4:1]" :
         return 7.63
     case "6K VV[6144*2592][2.4:1]","6K S35[6144*2592][2.4:1]" :
@@ -144,7 +148,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 13.52
     case "8K VV[8192*3456][2.4:1]","8K S35[8192*3456][2.4:1]" :
         return 13.65
-    case "8K VV[7680*4320]","8K S35[7680*4320]" :
+    case "8K VV[7680*4320]","8K S35[7680*4320]","8K FF[7680*4320][16:9]" :
         return 16
     case "8K VV[8192*4096][2:1]","8K S35[8192*4096][2:1]" :
         return 16.18
@@ -277,7 +281,7 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 96
     case "100.000" :
         return 100
-    case "120.000" :
+    case "119.88","120.000" :
         return 120
     case "126.000" :
         return 126
