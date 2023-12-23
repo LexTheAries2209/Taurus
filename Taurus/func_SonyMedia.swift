@@ -9,33 +9,40 @@ import Foundation
 
 func SonyMedia(cameradata:CameraData) -> [String] {
     var SonyMedia = [""]
-    let CodecSpeed = SonyCodecSpeed(cameradata: cameradata)
     
-    if cameradata.CameraName == "Alpha 1" || cameradata.CameraName == "A9M3" || cameradata.CameraName == "A7M4" || cameradata.CameraName == "A7S3" || cameradata.CameraName == "FX 3" || cameradata.CameraName == "FX 30" || cameradata.CameraName == "A7R5" {
-        if CodecSpeed <= 270 {
+    if cameradata.CameraName == "A7S3" || cameradata.CameraName == "FX 3" || cameradata.CameraName == "FX 30" || cameradata.CameraName == "Alpha 1" || cameradata.CameraName == "A9M3" {
+        if cameradata.Codec == "XAVC S HD" {
             SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
         }
-        else if CodecSpeed > 270 && CodecSpeed <= 480 {
+        else if cameradata.Codec == "XAVC HS 4K" || cameradata.Codec == "XAVC S 4K" {
             SonyMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
         }
-        else if CodecSpeed > 480 && CodecSpeed <= 720 {
+        else {
             SonyMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
         }
-        else if CodecSpeed > 720 {
-            SonyMedia = ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
+    }
+    
+    else if cameradata.CameraName == "A7M4" || cameradata.CameraName == "A7R5" {
+        if cameradata.Codec == "XAVC HS 4K" || cameradata.Codec == "XAVC S 4K" || cameradata.Codec == "XAVC S HD" {
+            SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
+        }
+        else if cameradata.Codec == "XAVC HS 8K" {
+            SonyMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
+        }
+        else {
+            SonyMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
         }
     }
+    
     else if cameradata.CameraName == "A7C2" || cameradata.CameraName == "A7CR" {
-        if CodecSpeed <= 270 {
+        if cameradata.Codec == "XAVC HS 4K" || cameradata.Codec == "XAVC S 4K" || cameradata.Codec == "XAVC S HD" {
             SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
-        else if CodecSpeed > 270 && CodecSpeed <= 480 {
-            SonyMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
-        }
-        else if CodecSpeed > 480 && CodecSpeed <= 720 {
+        else {
             SonyMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
     }
+    
     else if cameradata.CameraName == "FX 6" {
             SonyMedia = ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
     }
