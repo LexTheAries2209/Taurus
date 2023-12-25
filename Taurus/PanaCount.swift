@@ -78,6 +78,8 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
         
     case "AVC ALL-I_DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC ALL-I_UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC ALL-I_FHD[10bit 4:2:2][100p/119.88p]" :
         return 400
+    case "AVC ALL-I_DCI 4K[10bit 4:2:2][48p/50p/59.94p][Light]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p][Light]","AVC ALL-I_UHD[10bit 4:2:2][48p/50p/59.94p][Light]" :
+        return 600
     case "AVC ALL-I_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC ALL-I_UHD[10bit 4:2:2][48p/50p/59.94p]" :
         return 800
     case "AVC ALL-I_FHD[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]" :
