@@ -15,10 +15,10 @@ func PanaMedia(cameradata:CameraData) -> [String] {
         if CodecSpeed <= 200 {
             PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
-        if CodecSpeed > 200 && CodecSpeed <= 400 {
+        else if CodecSpeed > 200 && CodecSpeed <= 400 {
             PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
-        if CodecSpeed > 400 && CodecSpeed <= 600 {
+        else if CodecSpeed > 400 && CodecSpeed <= 600 {
             PanaMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
     }
@@ -27,11 +27,33 @@ func PanaMedia(cameradata:CameraData) -> [String] {
             if CodecSpeed <= 200 {
                 PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
             }
-            if CodecSpeed > 200 && CodecSpeed <= 400 {
-                PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+            else if CodecSpeed > 200 && CodecSpeed <= 400 {
+                PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
             }
-            if CodecSpeed > 400 && CodecSpeed <= 600 {
-                PanaMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+            else if CodecSpeed > 400 && CodecSpeed <= 600 {
+                PanaMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+        }
+        else if cameradata.CameraName == "GH6" {
+            if CodecSpeed <= 200 {
+                PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+            else if CodecSpeed > 200 && CodecSpeed <= 400 {
+                PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+            else if CodecSpeed > 400 && CodecSpeed <= 600 {
+                PanaMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+        }
+        else if cameradata.CameraName == "G9M2" {
+            if CodecSpeed <= 200 {
+                PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+            else if CodecSpeed > 200 && CodecSpeed <= 400 {
+                PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
+            }
+            else if CodecSpeed > 400 && CodecSpeed <= 600 {
+                PanaMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
             }
         }
         else {
