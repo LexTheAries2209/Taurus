@@ -19,8 +19,8 @@ import Foundation
         //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
         //"Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K [OLPF]","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2","Blackmagic URSA Mini Pro 4.6K","Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
         //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
-        //"Panasonic" : ["S1H"],
-        "Panasonic" : ["S5M2X","S5M2","GH6","G9M2"],
+        //"Panasonic" : ["S1H","GH6","G9M2"],
+        "Panasonic" : ["S5M2X","S5M2"],
         "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
         //"ZCam" : [""]
     ]
