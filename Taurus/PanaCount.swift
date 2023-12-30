@@ -56,20 +56,22 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
         return 913
     case "Prores 422 HQ_DCI 4K[10bit 4:2:2][29.97p]" :
         return 972
-    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422_3.3K 4:3[3328*2496][10bit 4:2:2][50p]" :
+    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422_3.3K 4:3[3328*2496][10bit 4:2:2][50p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][23.98p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][24p]" :
         return 1000
-    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422_DCI 4K[10bit 4:2:2][50p]" :
+    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422_DCI 4K[10bit 4:2:2][50p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][25p]" :
         return 1100
-    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422_DCI 4K[10bit 4:2:2][59.94p]" :
+    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422_DCI 4K[10bit 4:2:2][59.94p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]" :
         return 1300
-    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422 HQ_3.3K 4:3[3328*2496][10bit 4:2:2][50p]" :
+    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422 HQ_3.3K 4:3[3328*2496][10bit 4:2:2][50p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][23.98p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][24p]" :
         return 1500
-    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][50p]" :
+    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][50p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][25p]" :
         return 1560
-    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][59.94p]" :
+    case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][59.94p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]" :
         return 1900
         
-    case "HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_DCI 6K[5952*3136][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_5.9K[5888*3312][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][48p/50p]","HEVC LongGOP_UHD[10bit 4:2:0][48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC LongGOP_UHD[10bit 4:2:2][48p/50p/59.94p]" :
+    case "HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_UHD[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_4.5K 4:3[4352*3264][10bit 4:2:0][48p/50p/59.94p]" :
+        return 300
+    case "HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_DCI 6K[5952*3136][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_5.9K[5888*3312][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][48p/50p]","HEVC LongGOP_UHD[10bit 4:2:0][48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC LongGOP_UHD[10bit 4:2:2][48p/50p/59.94p]","HEVC LongGOP_5.8K 4:3[5760*4320][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_FHD[10bit 4:2:0][200p/239.76p]","AVC LongGOP_FHD[10bit 4:2:2][200p/239.76p]" :
         return 200
     case "HEVC LongGOP_DCI 4K[10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_UHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","HEVC LongGOP_FHD[10bit 4:2:0][100p/119.88p]","AVC LongGOP_DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC LongGOP_UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","AVC LongGOP_FHD[10bit 4:2:2][100p/119.88p]" :
         return 150
@@ -80,7 +82,7 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
         return 400
     case "AVC ALL-I_DCI 4K[10bit 4:2:2][48p/50p/59.94p][Light]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p][Light]","AVC ALL-I_UHD[10bit 4:2:2][48p/50p/59.94p][Light]" :
         return 600
-    case "AVC ALL-I_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC ALL-I_UHD[10bit 4:2:2][48p/50p/59.94p]" :
+    case "AVC ALL-I_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC ALL-I_UHD[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_FHD[10bit 4:2:2][200p/239.76p]" :
         return 800
     case "AVC ALL-I_FHD[10bit 4:2:2][48p/50p/59.94p]","AVC ALL-I_FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]" :
         return 200

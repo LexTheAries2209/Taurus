@@ -58,10 +58,38 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             }
         }
     }
-    if cameradata.CameraName == "GH6" {
+    
+    else if cameradata.CameraName == "GH6" || cameradata.CameraName == "G9M2" {
         if cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422" {
             if cameradata.Format == "M43" {
                 PanaResolution = ["DCI 5.7K[5728*3024][10bit 4:2:2][23.98p]","DCI 5.7K[5728*3024][10bit 4:2:2][24p]","DCI 5.7K[5728*3024][10bit 4:2:2][25p]","DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][23.98p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]","FHD[10bit 4:2:2][23.98p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
+            }
+            else {
+                PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]","FHD[10bit 4:2:2][23.98p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
+            }
+        }
+        if cameradata.Codec == "HEVC LongGOP" {
+            if cameradata.Format == "M43" {
+                PanaResolution = ["5.8K 4:3[5760*4320][10bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][48p/50p/59.94p]","DCI 4K[10bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:0][48p/50p/59.94p]","DCI 4K[10bit 4:2:0][100p/119.88p]","UHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:0][48p/50p/59.94p]","UHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:0][48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][200p/239.76p]"]
+            }
+            else {
+                PanaResolution = ["4.5K 4:3[4352*3264][10bit 4:2:0][48p/50p/59.94p]","DCI 4K[10bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:0][48p/50p/59.94p]","DCI 4K[10bit 4:2:0][100p/119.88p]","UHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:0][48p/50p/59.94p]","UHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:0][48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p]"]
+            }
+        }
+        if cameradata.Codec == "AVC ALL-I" {
+            if cameradata.Format == "M43" {
+                PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p][Light]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][48p/50p/59.94p][Light]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][200p/239.76p]"]
+            }
+            else {
+                PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p][Light]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][48p/50p/59.94p][Light]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p]"]
+            }
+        }
+        if cameradata.Codec == "AVC LongGOP" {
+            if cameradata.Format == "M43" {
+                PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][200p/239.76p]"]
+            }
+            else {
+                PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][48p/50p/59.94p]","UHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p]"]
             }
         }
     }
