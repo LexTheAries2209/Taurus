@@ -328,7 +328,7 @@ struct ContentView: View {
                                 .font(.system(size: 10))
                                 .padding(.leading,10)
                                 .frame(maxWidth: .infinity,alignment:.leading)
-                            Text("4. HDE为ARRI公司推出的RAW压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW编码。Prores为Apple公司开发的帧内压缩编码")
+                            Text("4. HDE为ARRI公司推出的RAW压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW编码。PRORES系列编码为Apple公司开发的帧内压缩编码")
                                 .font(.system(size: 10))
                                 .padding(.leading,10)
                                 .frame(maxWidth: .infinity,alignment:.leading)
