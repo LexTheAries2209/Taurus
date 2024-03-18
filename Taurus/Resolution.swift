@@ -123,6 +123,18 @@ import Foundation
         "A7CR_XAVC S HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p/29.97p]","FHD FF[10bit 4:2:2][50p/59.94p]","FHD FF[8bit 4:2:0][23.98p]","FHD FF[8bit 4:2:0][25p/29.97p]","FHD FF[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][100p/119.88p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]","FHD S35[8bit 4:2:0][23.98p]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]","FHD S35[8bit 4:2:0][100p/119.88p]"],
         "A7CR_XAVC HS 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:0][23.98p]","UHD FF[10bit 4:2:0][50p/59.94p]","UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:0][23.98p]",],
         
+        "A6700_XAVC S-I 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][25p]","UHD S35[10bit 4:2:2][29.97p]","UHD S35[10bit 4:2:2][50p]","UHD S35[10bit 4:2:2][59.94p]"],
+        "A6700_XAVC S-I HD" : ["FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p]","FHD S35[10bit 4:2:2][29.97p]","FHD S35[10bit 4:2:2][50p]","FHD S35[10bit 4:2:2][59.94p]"],
+        "A6700_XAVC HS 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][50p/59.94p]","UHD S35[10bit 4:2:2][100p/119.88p]","UHD S35[10bit 4:2:0][23.98p]","UHD S35[10bit 4:2:0][50p/59.94p]","UHD S35[10bit 4:2:0][100p/119.88p]"],
+        "A6700_XAVC S 4K" : ["UHD S35[10bit 4:2:2][23.98p]","UHD S35[10bit 4:2:2][25p/29.97p]","UHD S35[10bit 4:2:2][50p/59.94p]","UHD S35[10bit 4:2:2][100p/119.88p]","UHD S35[8bit 4:2:0][23.98p]","UHD S35[8bit 4:2:0][25p/29.97p]","UHD S35[8bit 4:2:0][50p/59.94p]","UHD S35[8bit 4:2:0][100p/119.88p]"],
+        "A6700_XAVC S HD" : ["FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]","FHD S35[8bit 4:2:0][23.98p]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]","FHD S35[8bit 4:2:0][100p/119.88p]"],
+        
+        "ZV-E1_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
+        "ZV-E1_XAVC S-I HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p]","FHD FF[10bit 4:2:2][29.97p]","FHD FF[10bit 4:2:2][50p]","FHD FF[10bit 4:2:2][59.94p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p]","FHD S35[10bit 4:2:2][29.97p]","FHD S35[10bit 4:2:2][50p]","FHD S35[10bit 4:2:2][59.94p]"],
+        "ZV-E1_XAVC HS 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[10bit 4:2:0][23.98p]","UHD FF[10bit 4:2:0][50p/59.94p]","UHD FF[10bit 4:2:0][100p/119.88p]"],
+        "ZV-E1_XAVC S 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p/29.97p]","UHD FF[10bit 4:2:2][50p/59.94p]","UHD FF[10bit 4:2:2][100p/119.88p]","UHD FF[8bit 4:2:0][23.98p]","UHD FF[8bit 4:2:0][25p/29.97p]","UHD FF[8bit 4:2:0][50p/59.94p]","UHD FF[8bit 4:2:0][100p/119.88p]"],
+        "ZV-E1_XAVC S HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p/29.97p]","FHD FF[10bit 4:2:2][50p/59.94p]","FHD FF[8bit 4:2:0][23.98p]","FHD FF[8bit 4:2:0][25p/29.97p]","FHD FF[8bit 4:2:0][50p/59.94p]","FHD FF[8bit 4:2:0][100p/119.88p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p/29.97p]","FHD S35[10bit 4:2:2][50p/59.94p]","FHD S35[8bit 4:2:0][23.98p]","FHD S35[8bit 4:2:0][25p/29.97p]","FHD S35[8bit 4:2:0][50p/59.94p]","FHD S35[8bit 4:2:0][100p/119.88p]"],
+        
         //ARRI
         "AMIRA_ARRIRAW" : ["2.8K S35[2880*1620]"],
         "AMIRA_Prores 4444 XQ" : ["UHD S35[From 3200*1800]","3.2K S35[3200*1800]","2K S35[2048*1152][From 2868*1612]","FHD S35[From 2880*1620]","FHD S16[From 1600*900]"],

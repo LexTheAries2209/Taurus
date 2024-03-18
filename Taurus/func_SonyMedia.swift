@@ -34,9 +34,21 @@ func SonyMedia(cameradata:CameraData) -> [String] {
         }
     }
     
-    else if cameradata.CameraName == "A7C2" || cameradata.CameraName == "A7CR" {
+    else if cameradata.CameraName == "A7C2" || cameradata.CameraName == "A7CR" || cameradata.CameraName == "ZV-E1" {
         if cameradata.Codec == "XAVC HS 4K" || cameradata.Codec == "XAVC S 4K" || cameradata.Codec == "XAVC S HD" {
             SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+        }
+        else {
+            SonyMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+        }
+    }
+    
+    else if cameradata.CameraName == "A6700" {
+        if cameradata.Codec == "XAVC S HD" {
+            SonyMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+        }
+        else if cameradata.Codec == "XAVC HS 4K" || cameradata.Codec == "XAVC S 4K" {
+            SonyMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
         else {
             SonyMedia = ["SD V90 128GB","SD V90 256GB","SD V90 512GB"]
