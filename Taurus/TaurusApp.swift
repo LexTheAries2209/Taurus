@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 @main
 struct TaurusApp: App {
     var body: some Scene {

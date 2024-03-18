@@ -17,7 +17,7 @@ func DjiMedia(cameradata:CameraData) -> [String] {
             DjiMedia = ["DJI PROSSD 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB"]
         }
         else if ((cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422 LT" || cameradata.Codec == "H.264(10bit 4:2:0)") && (cameradata.Resolution == "4K FF[4096*2160][17:9]" || cameradata.Resolution == "4K FFcrop[4096*2160][17:9]" || cameradata.Resolution == "4K S35[4096*2160][17:9]" || cameradata.Resolution == "2K FF[2048*1080][17:9]")) || ((cameradata.Resolution == "6K FF[6008*3168][17:9]") && (cameradata.Rate == "23.976" || cameradata.Rate == "24.000" || cameradata.Rate == "25.000" || cameradata.Rate == "29.97" || cameradata.Rate == "30.000")) {
-                DjiMedia = ["DJI PROSSD 1TB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB"]
+            DjiMedia = ["DJI PROSSD 1TB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB"]
         }
         else {
             DjiMedia = ["DJI PROSSD 1TB"]

@@ -56,19 +56,19 @@ func SonyMedia(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName == "FX 6" {
-            SonyMedia = ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
+        SonyMedia = ["CFExpress TypeA 80GB","CFExpress TypeA 160GB","CFExpress TypeA 320GB","CFExpress TypeA 640GB","CFExpress TypeA 960GB","CFExpress TypeA 1920GB"]
     }
     else if cameradata.CameraName == "FX 9" {
-            SonyMedia = ["XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
+        SonyMedia = ["XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
     }
     else if cameradata.CameraName == "Cinealta Burano" {
-            SonyMedia = ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"]
+        SonyMedia = ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"]
     }
     else if cameradata.CameraName == "Cinealta Venice 2[8K]" || cameradata.CameraName == "Cinealta Venice 2[6K]" {
-            SonyMedia = ["AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"]
+        SonyMedia = ["AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"]
     }
     else if cameradata.CameraName == "Cinealta Venice"  {
-            SonyMedia = ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
+        SonyMedia = ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
     }
     else {
         SonyMedia = [""]
