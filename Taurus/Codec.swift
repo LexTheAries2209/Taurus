@@ -21,6 +21,8 @@ import Foundation
         "ALEXA 65" : ["ARRIRAW"],
         
         //RED
+        "V-Raptor XL [X]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+        "V-Raptor [X]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
         "V-Raptor XL[8K VV]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
         "V-Raptor[8K VV]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
         "V-Raptor XL[8K S35]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],

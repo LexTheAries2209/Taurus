@@ -151,7 +151,7 @@ func availableRates(cameradata:CameraData) -> [String] {
         }
     }
     
-    if cameradata.CameraName == "V-Raptor[8K VV]" || cameradata.CameraName == "V-Raptor XL[8K VV]" || cameradata.CameraName == "V-Raptor[8K S35]" || cameradata.CameraName == "V-Raptor XL[8K S35]" {
+    if cameradata.CameraName == "V-Raptor[8K VV]" || cameradata.CameraName == "V-Raptor XL[8K VV]" || cameradata.CameraName == "V-Raptor[8K S35]" || cameradata.CameraName == "V-Raptor XL[8K S35]" || cameradata.CameraName == "V-Raptor [X]" || cameradata.CameraName == "V-Raptor XL [X]" {
         if cameradata.Codec == "REDCODE LQ" || cameradata.Codec == "REDCODE ELQ" {
             switch cameradata.Resolution {
             case "8K VV[8192*4320][17:9]","8K VV[7680*4320]","8K S35[8192*4320][17:9]","8K S35[7680*4320]" :
