@@ -23,7 +23,7 @@ class CameraData: ObservableObject {
 struct ContentView: View {
     
     @StateObject var cameradata = CameraData()
-
+    
     var body: some View {
         
         VStack {
@@ -81,16 +81,16 @@ struct ContentView: View {
                             //编码选择
                             if let codec = CodecName[cameradata.CameraName] {
                                 Picker(selection: $cameradata.Codec, label: Text("请选择编码").frame(width: 100,alignment: .center)) {
-                                        ForEach(codec, id:\.self) { codecs in
-                                            Text(codecs).tag(codecs)
-                                        }
+                                    ForEach(codec, id:\.self) { codecs in
+                                        Text(codecs).tag(codecs)
                                     }
                                 }
-                                else {
-                                    Picker(selection: $cameradata.Codec, label:Text("请选择编码").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
+                            }
+                            else {
+                                Picker(selection: $cameradata.Codec, label:Text("请选择编码").frame(width: 100,alignment: .center)) {
+                                    Text("无选项")
                                 }
+                            }
                             
                             //幅面选择
                             if cameradata.BrandName == "Panasonic" {
@@ -167,12 +167,12 @@ struct ContentView: View {
                             
                             // DJI帧率
                             if cameradata.BrandName == "DJI" {
-                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        ForEach(availableRates(cameradata:cameradata),id:\.self) { rate in
-                                            Text(rate).tag(rate)
-                                        }
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(availableRates(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
                                     }
                                 }
+                            }
                             
                             
                             //储存卡选择
@@ -294,11 +294,11 @@ struct ContentView: View {
                                 Text("每小时数据占盘量[GB]：\(CodecSpeedCount(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*450/1024)")
                                 if cameradata.Codec == "ARRIRAW" {
                                     Text("每小时数据占盘量[GB][HDE]：\(Codecspeed(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*270/1024)")
-                            }
+                                }
                             }
                         }
                         .padding([.leading,.trailing],30)
-        
+                        
                     }
                     Spacer()
                     
@@ -309,39 +309,39 @@ struct ContentView: View {
                             .foregroundColor(Color.gray)
                             .frame(maxHeight: 110)
                         VStack (spacing: 1) {
-                                        Text("版本说明与备注")
-                                            .font(.title3)
-                                            .fontWeight(.medium)
-                                            .multilineTextAlignment(.center)
-                                            .frame(maxWidth: .infinity,alignment:.center)
-                                        Text(" ")
-                                            .font(.system(size: 1))
-                                        Text("1. 此版本[V1.2.4]仅包含《数据计算器》功能。根据画面内容，实际数据量可能与计算不同。")
-                                            .font(.system(size: 10))
-                                            .padding(.leading,10)
-                                            .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("2. 分辨率默认宽高比为16:9；DCI标准宽高比为17:9；FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
-                                            .font(.system(size: 10))
-                                            .padding(.leading,10)
-                                            .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("3. 对于没有标出分辨率的情况：8K指分辨率7680x4320(8K UHD)，DCI 4K分辨率为4096x2160，DCI 8K分辨率为8192x4320。")
-                                            .font(.system(size: 10))
-                                            .padding(.leading,10)
-                                            .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("4. HDE为ARRI公司推出的RAW压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW编码。")
-                                            .font(.system(size: 10))
-                                            .padding(.leading,10)
-                                            .frame(maxWidth: .infinity,alignment:.leading)
-                                        Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信：15814854313 。")
-                                           .font(.system(size: 10))
-                                           .padding(.leading,10)
-                                           .frame(maxWidth: .infinity,alignment:.leading)
-                                        Spacer()
-                                    }
-                                    .frame(maxHeight: 110)
-                                    .padding([.top,.trailing],8)
-                                    
-                            
+                            Text("版本说明与备注")
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity,alignment:.center)
+                            Text(" ")
+                                .font(.system(size: 1))
+                            Text("1. 此版本[V1.2.4]仅包含《数据计算器》功能。根据画面内容，实际数据量可能与计算不同。")
+                                .font(.system(size: 10))
+                                .padding(.leading,10)
+                                .frame(maxWidth: .infinity,alignment:.leading)
+                            Text("2. 分辨率默认宽高比为16:9；DCI标准宽高比为17:9；FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
+                                .font(.system(size: 10))
+                                .padding(.leading,10)
+                                .frame(maxWidth: .infinity,alignment:.leading)
+                            Text("3. 对于没有标出分辨率的情况：8K指分辨率7680x4320(8K UHD)，DCI 4K分辨率为4096x2160，DCI 8K分辨率为8192x4320。")
+                                .font(.system(size: 10))
+                                .padding(.leading,10)
+                                .frame(maxWidth: .infinity,alignment:.leading)
+                            Text("4. HDE为ARRI公司推出的RAW压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW编码。")
+                                .font(.system(size: 10))
+                                .padding(.leading,10)
+                                .frame(maxWidth: .infinity,alignment:.leading)
+                            Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信：15814854313 。")
+                                .font(.system(size: 10))
+                                .padding(.leading,10)
+                                .frame(maxWidth: .infinity,alignment:.leading)
+                            Spacer()
+                        }
+                        .frame(maxHeight: 110)
+                        .padding([.top,.trailing],8)
+                        
+                        
                         
                     }
                     .padding(.top, 31.0)
@@ -350,25 +350,25 @@ struct ContentView: View {
                 
                 
                 //主功能选择区
-                    .tabItem {
-                        Text("数据计算器")
-                    }
+                .tabItem {
+                    Text("数据计算器")
+                }
                 
-//                //其他功能模块
-//                Text("还没做出功能的阵列配置台")
-//                    .tabItem {
-//                        Text("阵列配置台")
-//                    }
-//
-//                Text("还没做出功能的录制格式速查")
-//                    .tabItem {
-//                        Text("录制格式速查")
-//                    }
-//
-//                Text("还没做出功能的像场覆盖图")
-//                    .tabItem {
-//                        Text("像场覆盖图")
-//                    }
+                //                //其他功能模块
+                //                Text("还没做出功能的阵列配置台")
+                //                    .tabItem {
+                //                        Text("阵列配置台")
+                //                    }
+                //
+                //                Text("还没做出功能的录制格式速查")
+                //                    .tabItem {
+                //                        Text("录制格式速查")
+                //                    }
+                //
+                //                Text("还没做出功能的像场覆盖图")
+                //                    .tabItem {
+                //                        Text("像场覆盖图")
+                //                    }
             }
             .frame(minWidth:800,minHeight: 425)
             .frame(maxWidth:800,maxHeight: 425)
@@ -376,8 +376,8 @@ struct ContentView: View {
         }
         .padding()
     }
-
-    }
+    
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
