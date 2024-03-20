@@ -31,10 +31,11 @@ public let CodecName : [String:[String]] = [
     "KEMODO" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     
     //SONY
-    "Cinealta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
-    "Cinealta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
-    "Cinealta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
-    "Cinealta Burano" : ["X-OCN LT","XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
+    "CineAlta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
+    "CineAlta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
+    "CineAlta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
+    //"CineAlta Burano" : ["X-OCN LT","XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
+    "CineAlta Burano" : ["X-OCN LT"],
     "FX 9" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD","MPEG-2 LongGOP"],
     "FX 6" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
     "FX 3" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S-I HD","XAVC S 4K","XAVC S HD",],

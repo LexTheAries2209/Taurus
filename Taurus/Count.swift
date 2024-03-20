@@ -19,18 +19,24 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 380
     case "Prores 4444" :
         return 264
+    case "X-OCN XT" :
+        return 226.15
     case "REDCODE HQ" :
         return 199.2
     case "Prores RAW" :
         return 190
     case "Prores 422 HQ" :
         return 176
+    case "X-OCN ST" :
+        return 154.675
     case "REDCODE MQ" :
         return 140
     case "Prores 422" :
         return 117.6
     case "REDCODE LQ" :
         return 87.5
+    case "X-OCN LT" :
+        return 91.165
     case "Prores 422 LT" :
         return 81.2
     case "MPEG-2 HD 422" :
@@ -90,7 +96,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 4
     case "4K S35[4096*2048][2:1]","4K S16[4096*2048][2:1]" :
         return 4.05
-    case "4K S35[4096*2160][17:9]","4K S16[4096*2160][17:9]","4K FF[4096*2160][17:9]","4K FFcrop[4096*2160][17:9]" :
+    case "4K S35[4096*2160][17:9]","4K S16[4096*2160][17:9]","4K FF[4096*2160][17:9]","4K FFcrop[4096*2160][17:9]","4K S35crop[4096*2160][17:9]" :
         return 4.27
     case "3.3K S35[3328*2790][6:5]" :
         return 4.48
@@ -126,16 +132,22 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 7.68
     case "5.5K S35[5568*2952][17:9]" :
         return 7.92
-    case "6K VV[5760*3240]","6K S35[5760*3240]","6K FFcrop[5952*3136][17:9]" :
+    case "5.8K S35[5760*3036][16:9]" :
+        return 8.433
+    case "6K VV[5760*3240]","6K S35[5760*3240]","6K FFcrop[5952*3136][17:9]","5.8K S35[5760*3240][17:9]" :
         return 9
     case "6K VV[6144*3072][2:1]","6K S35[6144*3072][2:1]" :
         return 9.1
     case "6K FF[6008*3168][17:9]" :
         return 9.18
+    case "6K FFcrop[6052*3192][16:9]" :
+        return 9.316
     case "6K VV[6144*3240][17:9]","6K S35[6144*3240][17:9]" :
         return 9.6
     case "6.5K 65mm[6560*3100][OG]" :
         return 9.8
+    case "6K FFcrop[6052*3404][17:9]" :
+        return 9.935
     case "7K VV[7168*3002][2.4:1]","7K S35[7168*3002][2.4:1]" :
         return 10.37
     case "7K VV[6720*3780]","7K S35[6720*3780]" :
@@ -154,6 +166,10 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 16.18
     case "8K VV[8192*4320][17:9]","8K S35[8192*4320][17:9]","8K FF[8192*4320][17:9]" :
         return 17.06
+    case "8.6K FF[8632*4552][16:9]" :
+        return 18.95
+    case "8.6K FF[8632*4856][17:9]" :
+        return 20.21
     default:
         return 0.000000001
     }
@@ -171,8 +187,6 @@ func ProresCompensation(cameradata:CameraData) -> Double {
     }
 }
 
-
-
 //ALEXA 35 ARRIRAW编码乘积
 func ARRIRAWCompensation(cameradata:CameraData) -> Double {
     switch cameradata.CameraName {
@@ -182,7 +196,6 @@ func ARRIRAWCompensation(cameradata:CameraData) -> Double {
         return 1
     }
 }
-
 
 //存储卡容量乘积
 func MediaCapacity(cameradata:CameraData) -> Double {
@@ -253,7 +266,7 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 15
     case "20.000" :
         return 20
-    case "23.976","24.000" :
+    case "23.976","23.980","24.000" :
         return 24
     case "25.000" :
         return 25

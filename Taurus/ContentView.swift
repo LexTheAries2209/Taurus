@@ -110,7 +110,7 @@ struct ContentView: View {
                             
                             //分辨率选择
                             @State var CodecAndCamera = cameradata.CameraName + "_" + cameradata.Codec
-                            if cameradata.BrandName == "SONY" || cameradata.BrandName == "Canon" {
+                            if (cameradata.BrandName == "SONY" || cameradata.BrandName == "Canon") && !cameradata.CameraName.contains("CineAlta") {
                                 if let resolutions = ResolutionName[CodecAndCamera] {
                                     Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
                                         ForEach(resolutions,id:\.self) { resolution in
@@ -167,6 +167,15 @@ struct ContentView: View {
                             
                             // DJI帧率
                             if cameradata.BrandName == "DJI" {
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(availableRates(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
+                                    }
+                                }
+                            }
+                            
+                            //CineAlta帧率
+                            if cameradata.CameraName.contains("CineAlta") {
                                 Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
                                     ForEach(availableRates(cameradata:cameradata),id:\.self) { rate in
                                         Text(rate).tag(rate)
@@ -273,7 +282,7 @@ struct ContentView: View {
                         
                         //计算数据输出区
                         VStack(alignment: .center){
-                            if cameradata.BrandName == "SONY"{
+                            if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta"){
                                 Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/SonyCodecSpeed(cameradata:cameradata))")
                                 Text("数据码率[mbps]: \(SonyCodecSpeed(cameradata:cameradata))")
                                 Text("每小时数据占盘量[GB]：\(SonyCodecSpeed(cameradata:cameradata)*450/1024)")

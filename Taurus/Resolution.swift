@@ -52,6 +52,8 @@ public let ResolutionName : [String:[String]] = [
     
     
     //SONY
+    "CineAlta Burano_X-OCN LT" : ["8.6K FF[8632*4856][17:9]","8.6K FF[8632*4552][16:9]","6K FFcrop[6052*3404][17:9]","6K FFcrop[6052*3192][16:9]","5.8K S35[5760*3240][17:9]","5.8K S35[5760*3036][16:9]","4K S35crop[4096*2160][17:9]"],
+    
     "FX 9_XAVC S-I DCI 4K" : ["DCI 4K FF[10bit 4:2:2][23.98p/24p]","DCI 4K FF[10bit 4:2:2][25p]","DCI 4K FF[10bit 4:2:2][50p]","DCI 4K FF[10bit 4:2:2][59.94p]"],
     "FX 9_XAVC S-I 4K" : ["UHD FF[10bit 4:2:2][23.98p]","UHD FF[10bit 4:2:2][25p]","UHD FF[10bit 4:2:2][29.97p]","UHD FF[10bit 4:2:2][50p]","UHD FF[10bit 4:2:2][59.94p]"],
     "FX 9_XAVC S-I HD" : ["FHD FF[10bit 4:2:2][23.98p]","FHD FF[10bit 4:2:2][25p]","FHD FF[10bit 4:2:2][29.97p]","FHD FF[10bit 4:2:2][50p]","FHD FF[10bit 4:2:2][59.94p]","FHD S35[10bit 4:2:2][23.98p]","FHD S35[10bit 4:2:2][25p]","FHD S35[10bit 4:2:2][29.97p]","FHD S35[10bit 4:2:2][50p]","FHD S35[10bit 4:2:2][59.94p]"],
