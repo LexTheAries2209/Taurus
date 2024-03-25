@@ -10,7 +10,6 @@ import Foundation
 import Combine
 
 class CameraData: ObservableObject {
-    
     @Published var BrandName = "请选择品牌"
     @Published var CameraName = "请选择机型"
     @Published var Codec = "请选择编码"
@@ -47,7 +46,6 @@ struct ContentView: View {
                         cameradata.Format = "请选择幅面"
                     }
                     
-                    
                     Spacer()
                     
                     //选择器与计算功能
@@ -55,7 +53,6 @@ struct ContentView: View {
                         
                         //选择器模块
                         VStack (spacing:10){
-                            
                             
                             //品牌选择
                             Picker(selection: $cameradata.BrandName, label: Text("请选择品牌").frame(width: 100,alignment: .center)) {
@@ -183,7 +180,6 @@ struct ContentView: View {
                                 }
                             }
                             
-                            
                             //储存卡选择
                             if cameradata.BrandName == "Canon" {
                                 if CanonMedia(cameradata: cameradata) != [""] {
@@ -279,7 +275,6 @@ struct ContentView: View {
                         .padding(.top, 20.0)
                         Spacer()
                         
-                        
                         //计算数据输出
                         DataOutput(cameradata: cameradata)
                     }
@@ -312,7 +307,6 @@ struct ContentView: View {
             }
             .frame(minWidth:800,minHeight: 425)
             .frame(maxWidth:800,maxHeight: 425)
-            
         }
         .padding()
     }
