@@ -36,7 +36,7 @@ public let CodecName : [String:[String]] = [
     //"CineAlta Venice 2[6K]": ["Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
     "CineAlta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT"],
     //"CineAlta Venice" : ["Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
-    "CineAlta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT","RAW SQ"],
+    "CineAlta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT"],
     //"CineAlta Burano" : ["XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
     "CineAlta Burano" : ["X-OCN LT"],
     "FX 9" : ["XAVC S-I DCI 4K","XAVC S-I 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD","MPEG-2 LongGOP"],

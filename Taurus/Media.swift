@@ -169,11 +169,11 @@ func SonyMedia(cameradata:CameraData) -> [String] {
         SonyMedia = ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"]
     }
     
-    else if cameradata.CameraName == "CineAlta Venice 2[8K]" || cameradata.CameraName == "CineAlta Venice 2[6K]" {
-        if CodecSpeed <= 3000 {
+    else if cameradata.CameraName == "CineAlta Venice 2[8K]" || cameradata.CameraName == "CineAlta Venice 2[6K]" || cameradata.CameraName == "CineAlta Venice" {
+        if CodecSpeed <= 2550 {
             SonyMedia = ["AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"]
         }
-        else if CodecSpeed > 3000 && CodecSpeed <= 5000 {
+        else if CodecSpeed > 2550 && CodecSpeed <= 5000 {
             SonyMedia = ["AXS S48 512GB","AXS S48 1TB","AXS S66 1TB"]
         }
         else if CodecSpeed > 5000 {
@@ -181,9 +181,9 @@ func SonyMedia(cameradata:CameraData) -> [String] {
         }
     }
     
-    else if cameradata.CameraName == "CineAlta Venice"  {
-        SonyMedia = ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
-    }
+//    else if cameradata.CameraName == "CineAlta Venice"  {
+//        SonyMedia = ["SxS Pro+ 128GB","SxS Pro+ 256GB","SxS Pro-X 120GB","SxS Pro-X 240GB","AXS S24 256GB","AXS S24 512GB","AXS S24 1TB","AXS S48 512GB","AXS S48 1TB","AXS S66 1TB","XQD 120GB","XQD 128GB","XQD 240GB","XQD 256GB"]
+//    }
     
     else {
         SonyMedia = [""]

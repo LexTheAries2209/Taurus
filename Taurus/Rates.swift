@@ -442,7 +442,7 @@ func availableRates(cameradata:CameraData) -> [String] {
                 }
             }
         }
-        else if cameradata.CameraName == "CineAlta Venice 2[6K]" {
+        else if cameradata.CameraName == "CineAlta Venice 2[6K]" || cameradata.CameraName == "CineAlta Venice"{
             if cameradata.Resolution == "6K FF[6048*4032][3:2]" {
                 rates = ["23.980","24.000","25.000","29.970","30.000","47.950","48.000","50.000","59.940","60.000"]
             }
