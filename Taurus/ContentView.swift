@@ -280,85 +280,16 @@ struct ContentView: View {
                         Spacer()
                         
                         
-                        //计算数据输出区
-                        VStack(alignment: .center){
-                            if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta"){
-                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/SonyCodecSpeed(cameradata:cameradata))")
-                                Text("数据码率[mbps]: \(SonyCodecSpeed(cameradata:cameradata))")
-                                Text("每小时数据占盘量[GB]：\(SonyCodecSpeed(cameradata:cameradata)*450/1024)")
-                            }
-                            else if cameradata.BrandName == "Canon" {
-                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/CanonCodecSpeed(cameradata:cameradata))")
-                                Text("数据码率[mbps]: \(CanonCodecSpeed(cameradata:cameradata))")
-                                Text("每小时数据占盘量[GB]：\(CanonCodecSpeed(cameradata:cameradata)*450/1024)")
-                            }
-                            else if cameradata.BrandName == "Panasonic" {
-                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/PanaCodecSpeed(cameradata:cameradata))")
-                                Text("数据码率[mbps]: \(PanaCodecSpeed(cameradata:cameradata))")
-                                Text("每小时数据占盘量[GB]：\(PanaCodecSpeed(cameradata:cameradata)*450/1024)")
-                            }
-                            else {
-                                Text("可录制时长[Min]：\(MediaCapacity(cameradata:cameradata)*7629.39453125/60/CodecSpeedCount(cameradata:cameradata)/ResolutionMultiplier(cameradata:cameradata)/RateMultiplier(cameradata:cameradata))")
-                                Text("数据码率[mbps]: \(CodecSpeedCount(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata))")
-                                Text("每小时数据占盘量[GB]：\(CodecSpeedCount(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*450/1024)")
-                                if cameradata.Codec == "ARRIRAW" {
-                                    Text("每小时数据占盘量[GB][HDE]：\(Codecspeed(cameradata:cameradata)*ResolutionMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*RateMultiplier(cameradata:cameradata)*270/1024)")
-                                }
-                            }
-                        }
-                        .padding([.leading,.trailing],30)
-                        
+                        //计算数据输出
+                        DataOutput(cameradata: cameradata)
                     }
                     Spacer()
                     
-                    //备注与说明区
-                    ZStack {
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(Color.gray)
-                            .frame(maxHeight: 110)
-                        VStack (spacing: 1) {
-                            Text("版本说明与备注")
-                                .font(.title3)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity,alignment:.center)
-                            Text(" ")
-                                .font(.system(size: 1))
-                            Text("1. 此版本[V1.2.4]仅包含《数据计算器》功能。根据画面内容，实际数据量可能与计算不同。")
-                                .font(.system(size: 10))
-                                .padding(.leading,10)
-                                .frame(maxWidth: .infinity,alignment:.leading)
-                            Text("2. 分辨率默认宽高比为16:9；DCI标准的宽高比为17:9；FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
-                                .font(.system(size: 10))
-                                .padding(.leading,10)
-                                .frame(maxWidth: .infinity,alignment:.leading)
-                            Text("3. 对于没有标出分辨率的情况：8K指分辨率7680x4320(8K UHD)，DCI 4K分辨率为4096x2160，DCI 8K分辨率为8192x4320。")
-                                .font(.system(size: 10))
-                                .padding(.leading,10)
-                                .frame(maxWidth: .infinity,alignment:.leading)
-                            Text("4. HDE为ARRI公司推出的RAW压缩技术，用于ARRIRAW的无损压缩。REDCODE为RED公司推出的压缩RAW编码。PRORES系列编码为Apple公司开发的帧内压缩编码")
-                                .font(.system(size: 10))
-                                .padding(.leading,10)
-                                .frame(maxWidth: .infinity,alignment:.leading)
-                            Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信：15814854313 。")
-                                .font(.system(size: 10))
-                                .padding(.leading,10)
-                                .frame(maxWidth: .infinity,alignment:.leading)
-                            Spacer()
-                        }
-                        .frame(maxHeight: 110)
-                        .padding([.top,.trailing],8)
-                        
-                        
-                        
-                    }
-                    .padding(.top, 31.0)
-                    .padding([.leading,.trailing,.bottom],10)
+                    //备注与说明
+                    Comments(cameradata: cameradata)
                 }
                 
-                
-                //主功能选择区
+                //主功能选择
                 .tabItem {
                     Text("数据计算器")
                 }
