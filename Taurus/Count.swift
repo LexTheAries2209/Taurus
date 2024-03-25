@@ -84,7 +84,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 2.77
     case "2.8K S35[2880*2160][4:3]":
         return 3
-    case "4K S35[4096*1716][From 2560*2146][6:5 ANA]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","4K FF[4096*1712][2.39:1]","4K S35[4096*1712][2.39:1]" :
+    case "4K S35[4096*1716][From 2560*2146][6:5 ANA]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","4K FF[4096*1712][2.39:1]","4K S35[4096*1712][2.39:1]","4K S35[4096*1716][2.39:1]" :
         return 3.39
     case "4K S35[4096*1728][2.4:1]","4K S16[4096*1728][2.4:1]" :
         return 3.41
@@ -92,7 +92,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 3.56
     case "3.4K S35[3424*2202][OG]","3.4K S35[3424*2202][3:2]" :
         return 3.64
-    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16","4K FF[3840*2160][16:9]","4K S35[3840*2160][16:9]" :
+    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16","4K FF[3840*2160][16:9]","4K S35[3840*2160][16:9]","3.8K S35[3840*2160][16:9]" :
         return 4
     case "4K S35[4096*2048][2:1]","4K S16[4096*2048][2:1]" :
         return 4.05
@@ -108,6 +108,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 5.33
     case "4.6K S35[4608*2592]" :
         return 5.76
+    case "4K S35[4096*3024][4:3 ANA]" :
+        return 5.97
     case "4.3K LF[4320*2880][3:2]" :
         return 6
     case "5.5K S35[5480*2296][2.39:1]" :
@@ -120,12 +122,16 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 6.64
     case "5K VV[5120*2700][17:9]","5K S35[5120*2700][17:9]" :
         return 6.67
+    case "4K S35[4096*3432][6:5 ANA]" :
+        return 6.78
     case "4.6K S35[4608*3164][OG]" :
         return 7
     case "5.1K 65mm[5120*2880]" :
         return 7.11
     case "6K FF[6008*2512][2.39:1]" :
         return 7.28
+    case "6K FF[6054*2534][2.39:1]" :
+        return 7.398
     case "5.5K S35[5248*2952][16:9]" :
         return 7.47
     case "6K VV[6144*2574][2.4:1]","6K S35[6144*2574][2.4:1]" :
@@ -140,6 +146,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 8.433
     case "5.8K S35[5792*3056][17:9]" :
         return 8.536
+    case "5.7K FF[5674*3192][17:9]" :
+        return 8.734
     case "6K VV[5760*3240]","6K S35[5760*3240]","6K FFcrop[5952*3136][17:9]","5.8K S35[5760*3240][17:9]" :
         return 9
     case "6K VV[6144*3072][2:1]","6K S35[6144*3072][2:1]" :
@@ -148,6 +156,10 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 9.18
     case "6K FFcrop[6052*3192][16:9]" :
         return 9.316
+    case "6K FF[6054*3192][17:9]" :
+        return 9.319
+    case "6K FF[6054*3272][1.85:1]" :
+        return 9.553
     case "6K VV[6144*3240][17:9]","6K S35[6144*3240][17:9]" :
         return 9.6
     case "6.5K 65mm[6560*3100][OG]" :
@@ -156,6 +168,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 9.935
     case "7K VV[7168*3002][2.4:1]","7K S35[7168*3002][2.4:1]" :
         return 10.37
+    case "6K FF[6048*4032][3:2]" :
+        return 11.76
     case "5.8K S35[5792*4276][4:3 ANA]" :
         return 11.94
     case "7K VV[6720*3780]","7K S35[6720*3780]" :
