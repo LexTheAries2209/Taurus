@@ -74,7 +74,7 @@ public let CodecName : [String:[String]] = [
     "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2" : ["HEVC LongGOP","AVC LongGOP"],
     "GH6" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
-    "G9M2" : [],
+    "G9M2" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     
     //DJI
     "Ronin 4D[8K]" : ["Prores RAW","Prores 422 HQ","H.264(10bit 4:2:0)"],
