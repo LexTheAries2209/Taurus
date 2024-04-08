@@ -70,7 +70,7 @@ public let CodecName : [String:[String]] = [
     "EOS 1D-X Mark3" : [""],
     
     //Panasonic
-    "S1H" : [],
+    "S1H" : ["HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2" : ["HEVC LongGOP","AVC LongGOP"],
     "GH6" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
