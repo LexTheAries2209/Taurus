@@ -21,5 +21,5 @@ public let CameraModel : [String:[String]] = [
     "Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
     "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
     //"ZCam" : [""]
-    "Apple" : ["iPhone 15 Pro Max","iPhone 15 Pro","iPhone 15 Plus","iPhone 15"]
+    //"Apple" : ["iPhone 15 Pro Max","iPhone 15 Pro","iPhone 15 Plus","iPhone 15"]
 ]
