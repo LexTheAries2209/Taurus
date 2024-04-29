@@ -241,10 +241,22 @@ public let ResolutionName : [String:[String]] = [
     
     //Apple
 
-    "iPhone 15 Pro MAX" : ["UHD","FHD","HD"],
-    "iPhone 15 Pro" : ["UHD","FHD","HD"],
-    "iPhone 14 Pro MAX" : ["UHD","FHD","HD"],
-    "iPhone 14 Pro" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro MAX_Prores 422 HQ" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro MAX_Prores 422" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro MAX_Prores 422 LT" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro MAX_Prores 422 Proxy" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro_Prores 422 HQ" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro_Prores 422" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro_Prores 422 LT" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro_Prores 422 Proxy" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro MAX_Prores 422 HQ" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro MAX_Prores 422" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro MAX_Prores 422 LT" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro MAX_Prores 422 Proxy" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro_Prores 422 HQ" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro_Prores 422" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro_Prores 422 LT" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro_Prores 422 Proxy" : ["UHD","FHD","HD"],
 ]
 
 //DjiResolution

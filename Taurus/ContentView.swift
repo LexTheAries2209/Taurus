@@ -257,7 +257,7 @@ struct ContentView: View {
                             }
                             
                             //帧率选择
-                            if cameradata.BrandName == "ARRI" || cameradata.BrandName == "RED" {
+                            if cameradata.BrandName == "ARRI" || cameradata.BrandName == "RED" || cameradata.BrandName == "Apple" {
                                 if cameradata.Media == "请选择储存卡" {
                                     Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
                                         Text("无选项")
