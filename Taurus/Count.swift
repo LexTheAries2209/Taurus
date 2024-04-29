@@ -231,37 +231,37 @@ func ARRIRAWCompensation(cameradata:CameraData) -> Double {
 func MediaCapacity(cameradata:CameraData) -> Double {
     switch cameradata.Media {
     case "CFExpress TypeA 80GB" :
-        return 80
+        return 74.48
     case "SxS Pro-X 120GB" :
-        return 120
-    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB" :
-        return 128
+        return 111.6
+    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB" :
+        return 119.168
     case "CFExpress TypeA 160GB" :
-        return 160
+        return 148.96
     case "SxS Pro-X 240GB" :
-        return 240
-    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB" :
-        return 256
+        return 223.44
+    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB" :
+        return 238.336
     case "CFExpress TypeA 320GB" :
-        return 320
+        return 297.92
     case "CFExpress TypeB 330GB" :
-        return 330
-    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB" :
-        return 512
+        return 307.23
+    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB","Built-in 512GB" :
+        return 476.672
     case "CFExpress TypeA 640GB" :
-        return 640
+        return 585.840
     case "CFExpress TypeB 660GB" :
-        return 660
+        return 614.46
     case "CFExpress TypeA 960GB" :
-        return 960
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB" :
-        return 1000
+        return 893.76
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB" :
+        return 931
     case "CFExpress TypeB 1.3TB" :
-        return 1333
+        return 1241.023
     case "CFExpress TypeA 1920GB" :
-        return 1920
+        return 1787.52
     case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB" :
-        return 2000
+        return 1862
     default :
         return 0
     }

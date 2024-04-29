@@ -239,6 +239,12 @@ public let ResolutionName : [String:[String]] = [
     "KEMODO_REDCODE LQ" : ["6K S35[6144*3240][17:9]","6K S35[6144*3072][2:1]","6K S35[6144*2592][2.4:1]","6K S35[5760*3240]","5K S35[5120*2700][17:9]","4K S35[4096*2160][17:9]","UHD S35","2K S16[2048*1080][17:9]"],
     "KEMODO_REDCODE ELQ" : ["6K S35[6144*3240][17:9]","6K S35[6144*3072][2:1]","6K S35[6144*2592][2.4:1]","6K S35[5760*3240]","5K S35[5120*2700][17:9]","4K S35[4096*2160][17:9]","UHD S35","2K S16[2048*1080][17:9]"],
     
+    //Apple
+
+    "iPhone 15 Pro MAX" : ["UHD","FHD","HD"],
+    "iPhone 15 Pro" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro MAX" : ["UHD","FHD","HD"],
+    "iPhone 14 Pro" : ["UHD","FHD","HD"],
 ]
 
 //DjiResolution

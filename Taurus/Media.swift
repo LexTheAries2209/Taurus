@@ -30,6 +30,13 @@ public let MediaName : [String:[String]] = [
     "V-Raptor[8K S35]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
     "KEMODO-X" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
     "KEMODO" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
+    
+    //Apple
+
+    "iPhone 15 Pro MAX" : ["Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
+    "iPhone 15 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
+    "iPhone 14 Pro MAX" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB"],
+    "iPhone 14 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB"],
 ]
 
 //PanaMedia
