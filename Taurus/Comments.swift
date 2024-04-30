@@ -27,7 +27,7 @@ func Comments(cameradata:CameraData) -> some View {
                 .font(.system(size: 10))
                 .padding(.leading,10)
                 .frame(maxWidth: .infinity,alignment:.leading)
-            Text("2. 默认宽高比为16:9；DCI标准的宽高比为17:9；FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
+            Text("2. 默认宽高比为16:9；DCI标准的宽高比为17:9；HD指分辨率1280*720，FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
                 .font(.system(size: 10))
                 .padding(.leading,10)
                 .frame(maxWidth: .infinity,alignment:.leading)
