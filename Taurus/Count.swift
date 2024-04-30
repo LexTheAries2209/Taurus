@@ -43,6 +43,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 66
     case "REDCODE ELQ" :
         return 54.2
+    case "Prores 422 Proxy" :
+        return 36
     case "H.264(10bit 4:2:0)" :
         return 33
     default :
