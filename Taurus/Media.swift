@@ -37,6 +37,9 @@ public let MediaName : [String:[String]] = [
     "iPhone 15 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
     "iPhone 14 Pro MAX" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB"],
     "iPhone 14 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB"],
+    
+    //BMD
+    "Blackmagic URSA Mini Pro 12K" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
 ]
 
 //PanaMedia

@@ -87,4 +87,6 @@ public let CodecName : [String:[String]] = [
     "iPhone 14 Pro MAX" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
     "iPhone 14 Pro" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
     
+    //BMD
+    "Blackmagic URSA Mini Pro 12K" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
 ]

@@ -17,10 +17,14 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 400
     case "CinemaDNG" :
         return 380
+    case "Blackmagic RAW 5:1" :
+        return 300
     case "Prores 4444" :
         return 264
     case "X-OCN XT" :
         return 226.15
+    case "Blackmagic RAW 8:1" :
+        return 200
     case "REDCODE HQ" :
         return 199.2
     case "Prores RAW" :
@@ -29,10 +33,14 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 176
     case "X-OCN ST" :
         return 154.675
+    case "Blackmagic RAW 12:1" :
+        return 150
     case "REDCODE MQ" :
         return 140
     case "Prores 422" :
         return 117.6
+    case "Blackmagic RAW 18:1" :
+        return 100
     case "REDCODE LQ" :
         return 87.5
     case "X-OCN LT" :
@@ -88,6 +96,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 2.77
     case "2.8K S35[2880*2160][4:3]":
         return 3
+    case "4K S35[4096*1704][2.4:1]" :
+        return 3.366
     case "4K S35[4096*1716][From 2560*2146][6:5 ANA]","4K S35[4096*1716][From 3328*2790][6:5 ANA]","4K FF[4096*1712][2.39:1]","4K S35[4096*1712][2.39:1]","4K S35[4096*1716][2.39:1]" :
         return 3.39
     case "4K S35[4096*1728][2.4:1]","4K S16[4096*1728][2.4:1]" :
@@ -164,7 +174,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 9.319
     case "6K FF[6054*3272][1.85:1]" :
         return 9.553
-    case "6K VV[6144*3240][17:9]","6K S35[6144*3240][17:9]" :
+    case "6K VV[6144*3240][17:9]","6K S35[6144*3240][17:9]","6K S16[6144*3240][17:9]" :
         return 9.6
     case "6.5K 65mm[6560*3100][OG]" :
         return 9.8
@@ -182,11 +192,13 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 12.39
     case "7K VV[7168*3780][17:9]","7K S35[7168*3780][17:9]" :
         return 13.06
+    case "8K S35[8192*3408][2.4:1]" :
+        return 13.46
     case "8K FF[8192*3424][2.39:1]","8.2K FF[8192*3432][2.39:1]" :
         return 13.52
     case "8K VV[8192*3456][2.4:1]","8K S35[8192*3456][2.4:1]" :
         return 13.65
-    case "8K VV[7680*4320]","8K S35[7680*4320]","8K FF[7680*4320][16:9]","7.6K FF[7680*4320][16:9]" :
+    case "8K VV[7680*4320]","8K S35[7680*4320]","8K FF[7680*4320][16:9]","7.6K FF[7680*4320][16:9]","8K S35[7680*4320][16:9]" :
         return 16
     case "8K VV[8192*4096][2:1]","8K S35[8192*4096][2:1]" :
         return 16.18
@@ -204,6 +216,12 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 20.21
     case "8.6K FF[8640*5760][3:2]" :
         return 24
+    case "12K S35[12288*5112][2.4:1]" :
+        return 30.29
+    case "12K S35[11520*6480][16:9]" :
+        return 36
+    case "12K S35[12288*6480][17:9]" :
+        return 38.46
     default:
         return 0.000000001
     }
@@ -258,7 +276,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 614.46
     case "CFExpress TypeA 960GB" :
         return 893.76
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB" :
         return 931
     case "CFExpress TypeB 1.3TB" :
         return 1241.023
@@ -266,6 +284,8 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 1787.52
     case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB" :
         return 1862
+    case "[Output]SSD 4TB" :
+        return 3724
     default :
         return 0
     }
