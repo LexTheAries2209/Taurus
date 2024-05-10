@@ -21,6 +21,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 300
     case "Prores 4444" :
         return 264
+    case "Blackmagic RAW 3:1" :
+        return 264
     case "X-OCN XT" :
         return 226.15
     case "Blackmagic RAW 8:1" :
@@ -59,7 +61,6 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 0.000000001
     }
 }
-
 
 //分辨率乘积
 func ResolutionMultiplier(cameradata:CameraData) -> Double {
@@ -227,28 +228,6 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
     }
 }
 
-//旧机型Prores编码码率乘积
-func ProresCompensation(cameradata:CameraData) -> Double {
-    switch cameradata.CameraName {
-    case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
-        return 1.125
-    case "ALEXA 35","ALEXA Mini LF":
-        return 1
-    default :
-        return 1
-    }
-}
-
-//ALEXA 35 ARRIRAW编码乘积
-func ARRIRAWCompensation(cameradata:CameraData) -> Double {
-    switch cameradata.CameraName {
-    case "ALEXA 35" :
-        return 1.075
-    default :
-        return 1
-    }
-}
-
 //存储卡容量乘积
 func MediaCapacity(cameradata:CameraData) -> Double {
     switch cameradata.Media {
@@ -288,19 +267,6 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 3724
     default :
         return 0
-    }
-}
-
-
-//加入补偿的编码速度
-func CodecSpeedCount(cameradata:CameraData) -> Double {
-    switch cameradata.Codec {
-    case "Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422LT" :
-        return Codecspeed(cameradata:cameradata)*ProresCompensation(cameradata:cameradata)
-    case "ARRIRAW" :
-        return Codecspeed(cameradata:cameradata)*ARRIRAWCompensation(cameradata:cameradata)
-    default :
-        return Codecspeed(cameradata:cameradata)
     }
 }
 
@@ -413,3 +379,36 @@ func RateMultiplier(cameradata:CameraData) ->Double {
     return RateSpeed(cameradata:cameradata)/24
 }
 
+//加入补偿的编码速度
+func CodecSpeedCount(cameradata:CameraData) -> Double {
+    switch cameradata.Codec {
+    case "Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422LT" :
+        return Codecspeed(cameradata:cameradata)*ProresCompensation(cameradata:cameradata)
+    case "ARRIRAW" :
+        return Codecspeed(cameradata:cameradata)*ARRIRAWCompensation(cameradata:cameradata)
+    default :
+        return Codecspeed(cameradata:cameradata)
+    }
+}
+
+//旧机型Prores编码码率乘积
+func ProresCompensation(cameradata:CameraData) -> Double {
+    switch cameradata.CameraName {
+    case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
+        return 1.125
+    case "ALEXA 35","ALEXA Mini LF":
+        return 1
+    default :
+        return 1
+    }
+}
+
+//ALEXA 35 ARRIRAW编码乘积
+func ARRIRAWCompensation(cameradata:CameraData) -> Double {
+    switch cameradata.CameraName {
+    case "ALEXA 35" :
+        return 1.075
+    default :
+        return 1
+    }
+}

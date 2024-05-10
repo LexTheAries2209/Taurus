@@ -112,7 +112,6 @@ func availableRates(cameradata:CameraData) -> [String] {
     }
     
     //RED DSMC3
-    
     if cameradata.CameraName == "KEMODO" {
         switch cameradata.Resolution {
         case "6K S35[6144*3240][17:9]","6K S35[5760*3240]" :
