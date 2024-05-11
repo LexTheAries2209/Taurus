@@ -19,7 +19,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","3.3K 4:3[3328*2496][10bit 4:2:0][47.95p/48p/50p]","FHD[10bit 4:2:0][47.95p/48p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
         if cameradata.Codec == "AVC ALL-I" {
@@ -31,7 +31,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][50p/59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
         if cameradata.Codec == "AVC LongGOP" {
@@ -43,7 +43,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][50p/59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
     }
@@ -58,7 +58,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]","3.3K 4:3[3328*2496][10bit 4:2:2][23.98p]","3.3K 4:3[3328*2496][10bit 4:2:2][24p]","3.3K 4:3[3328*2496][10bit 4:2:2][25p]","3.3K 4:3[3328*2496][10bit 4:2:2][29.97p]","3.3K 4:3[3328*2496][10bit 4:2:2][50p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
         if cameradata.Codec == "HEVC LongGOP" {
@@ -70,7 +70,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:0][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","3.3K 4:3[3328*2496][10bit 4:2:0][23.98p/24p/25p/29.97p]","3.3K 4:3[3328*2496][10bit 4:2:0][47.95p/48p/50p]","FHD[10bit 4:2:0][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
         if cameradata.Codec == "AVC ALL-I" {
@@ -82,7 +82,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]","3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","3.3K 4:3[3328*2496][10bit 4:2:2][47.95p/48p/50p]","3.3K 4:3[3328*2496][10bit 4:2:2][47.95p/48p/50p][Light]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
         if cameradata.Codec == "AVC LongGOP" {
@@ -94,7 +94,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
             case "Pixel to Pixel" :
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","3.3K 4:3[3328*2496][10bit 4:2:2][23.98p/24p/25p/29.97p]","3.3K 4:3[3328*2496][10bit 4:2:2][47.95p/48p/50p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]"]
             default :
-                PanaResolution = [""]
+                PanaResolution = ["无选项"]
             }
         }
     }
@@ -132,6 +132,9 @@ func PanaResolution(cameradata:CameraData) -> [String] {
                 PanaResolution = ["DCI 4K[10bit 4:2:2][23.98p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][23.98p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p]"]
             }
         }
+    }
+    else {
+        PanaResolution = ["无选项"]
     }
     return PanaResolution
 }

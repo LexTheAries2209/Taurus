@@ -107,34 +107,70 @@ struct ContentView: View {
                             
                             //分辨率选择
                             @State var CodecAndCamera = cameradata.CameraName + "_" + cameradata.Codec
-                            if (cameradata.BrandName == "SONY" || cameradata.BrandName == "Canon") && !cameradata.CameraName.contains("CineAlta") {
-                                if let resolutions = ResolutionName[CodecAndCamera] {
-                                    Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
-                                        ForEach(resolutions,id:\.self) { resolution in
-                                            Text(resolution).tag(resolution)
-                                        }
+                            if cameradata.BrandName == "ARRI" {
+                                let resolutions = ARRIResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
                                     }
                                 }
-                                else {
-                                    Picker(selection: $cameradata.Resolution, label:Text("请选择格式").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
+                            }
+                            else if cameradata.BrandName == "RED" {
+                                let resolutions = REDResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
+                            else if cameradata.BrandName == "Canon" {
+                                let resolutions = CanonResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
+                            else if cameradata.BrandName == "Apple" {
+                                let resolutions = AppleResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
+                            else if cameradata.BrandName == "Blackmagicdesign" {
+                                let resolutions = BMDResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
+                            else if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta") {
+                                let resolutions = SonyResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
+                            else if cameradata.CameraName.contains("CineAlta") {
+                                let resolutions = SonyResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
                                     }
                                 }
                             }
                             else if cameradata.BrandName == "Panasonic" {
-                                if PanaResolution(cameradata: cameradata) != [""] {
                                     Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
                                         ForEach(PanaResolution(cameradata: cameradata),id:\.self) { resolution in
                                             Text(resolution).tag(resolution)
                                         }
                                     }
                                 }
-                                else {
-                                    Picker(selection: $cameradata.Resolution, label:Text("请选择格式").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
-                                }
-                            }
+                            
                             else if cameradata.BrandName == "DJI" {
                                 if DjiResolution(cameradata: cameradata) != [""] {
                                     Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100,alignment: .center)) {
@@ -146,13 +182,6 @@ struct ContentView: View {
                                 else {
                                     Picker(selection: $cameradata.Resolution, label:Text("请选择分辨率").frame(width: 100,alignment: .center)) {
                                         Text("无选项")
-                                    }
-                                }
-                            }
-                            else if let resolutions = ResolutionName[CodecAndCamera] {
-                                Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100,alignment: .center)) {
-                                    ForEach(resolutions,id:\.self) { resolution in
-                                        Text(resolution).tag(resolution)
                                     }
                                 }
                             }
@@ -270,7 +299,7 @@ struct ContentView: View {
                                 }
                             }
                             
-                            //Arri帧率选择
+                            //ARRI帧率选择
                             if cameradata.BrandName == "ARRI" {
                                 if cameradata.Media == "请选择储存卡" {
                                     Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
