@@ -77,6 +77,6 @@ func CanonCodecSpeed(cameradata:CameraData) -> Double {
     case "RAW_DCI 8K FF[12bit RAW][23.98p/24p/25p/29.97p]","RAW_DCI 6K FF[12bit RAW][50p/59.94p]" :
         return 2600
     default :
-        return 0.00000001
+        return 0
     }
 }

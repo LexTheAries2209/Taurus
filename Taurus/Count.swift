@@ -17,16 +17,10 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 400
     case "CinemaDNG" :
         return 380
-    case "Blackmagic RAW 5:1" :
-        return 300
     case "Prores 4444" :
-        return 264
-    case "Blackmagic RAW 3:1" :
         return 264
     case "X-OCN XT" :
         return 226.15
-    case "Blackmagic RAW 8:1" :
-        return 200
     case "REDCODE HQ" :
         return 199.2
     case "Prores RAW" :
@@ -35,14 +29,10 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 176
     case "X-OCN ST" :
         return 154.675
-    case "Blackmagic RAW 12:1" :
-        return 150
     case "REDCODE MQ" :
         return 140
     case "Prores 422" :
         return 117.6
-    case "Blackmagic RAW 18:1" :
-        return 100
     case "REDCODE LQ" :
         return 87.5
     case "X-OCN LT" :
@@ -58,7 +48,7 @@ func Codecspeed(cameradata:CameraData) -> Double {
     case "H.264(10bit 4:2:0)" :
         return 33
     default :
-        return 0.000000001
+        return 0
     }
 }
 
@@ -217,14 +207,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 20.21
     case "8.6K FF[8640*5760][3:2]" :
         return 24
-    case "12K S35[12288*5112][2.4:1]" :
-        return 30.29
-    case "12K S35[11520*6480][16:9]" :
-        return 36
-    case "12K S35[12288*6480][17:9]" :
-        return 38.46
     default:
-        return 0.000000001
+        return 0
     }
 }
 

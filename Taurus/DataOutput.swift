@@ -43,6 +43,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(panaSpeed))")
             Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(panaSpeed * 450 / 1024))")
         }
+        else if cameradata.BrandName == "Blackmagicdesign" {
+            let BMDSpeed = BMDCodecSpeedmbps(cameradata:cameradata)
+            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
+            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(BMDSpeed))")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(BMDSpeed * 450 / 1024))")
+        }
         else {
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
