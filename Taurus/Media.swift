@@ -40,4 +40,5 @@ public let MediaName : [String:[String]] = [
     
     //BMD
     "Blackmagic URSA Mini Pro 12K" : ["Dual CFast2.0 128GB","Dual CFast2.0 256GB","Dual CFast2.0 512GB","Dual CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
+    "Blackmagic URSA Mini Pro 4.6K G2" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
 ]
