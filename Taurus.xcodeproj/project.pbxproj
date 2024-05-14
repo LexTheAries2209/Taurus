@@ -139,11 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				58F4E8EA2B2A089C00A36613 /* ArriRate.swift */,
-				5839AA3D2BEDBECC0025C74C /* BMDRate.swift */,
 				5839AA3F2BEDC09D0025C74C /* AppleRate.swift */,
 				5839AA412BEDC4A90025C74C /* CinealtaRate.swift */,
 				5839AA432BEDC9B80025C74C /* DjiRate.swift */,
 				5839AA452BEDCC100025C74C /* DSMC3Rate.swift */,
+				5839AA3D2BEDBECC0025C74C /* BMDRate.swift */,
 			);
 			path = Rate;
 			sourceTree = "<group>";
