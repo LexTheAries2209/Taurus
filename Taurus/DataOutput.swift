@@ -27,34 +27,60 @@ func DataOutput(cameradata: CameraData) -> some View {
         
         if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta") {
             let sonySpeed = SonyCodecSpeed(cameradata: cameradata)
+            Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / sonySpeed))")
+            Text("")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(sonySpeed))")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(sonySpeed * 450 / 1024))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(sonySpeed / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(sonySpeed * 450 / 1024))")
         }
         else if cameradata.BrandName == "Canon" {
             let canonSpeed = CanonCodecSpeed(cameradata: cameradata)
+            Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / canonSpeed))")
+            Text("")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(canonSpeed))")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(canonSpeed * 450 / 1024))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(canonSpeed / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(canonSpeed * 450 / 1024))")
         }
         else if cameradata.BrandName == "Panasonic" {
             let panaSpeed = PanaCodecSpeed(cameradata: cameradata)
+            Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / panaSpeed))")
+            Text("")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(panaSpeed))")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(panaSpeed * 450 / 1024))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(panaSpeed / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(panaSpeed * 450 / 1024))")
         }
         else if cameradata.BrandName == "Blackmagicdesign" {
             let BMDSpeed = BMDCodecSpeedmbps(cameradata:cameradata)
+            Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
+            Text("")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(BMDSpeed))")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(BMDSpeed * 450 / 1024))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(BMDSpeed / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(BMDSpeed * 450 / 1024))")
         }
         else {
+            Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
+            Text("")
             Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 11))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
             if cameradata.Codec == "ARRIRAW" {
-                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 1))\(formatNumber(CodecSpeedCount(cameradata: cameradata) * resolutionMultiplier * rateMultiplier * rateMultiplier * 270 / 1024))")
+                Text("")
+                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(CodecSpeedCount(cameradata: cameradata) * resolutionMultiplier * rateMultiplier * rateMultiplier * 270 / 1024))")
             }
         }
     }

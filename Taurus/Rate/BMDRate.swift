@@ -11,7 +11,7 @@ func BMDRate(cameradata:CameraData) -> [String] {
     var rates: [String] = []
     
     if cameradata.BrandName == "Blackmagicdesign" {
-        if cameradata.CameraName == "Blackmagic URSA Mini Pro 12K"{
+        if cameradata.CameraName == "Blackmagic URSA Mini Pro 12K" {
             if cameradata.Codec == "Blackmagic RAW 5:1" {
                 if cameradata.Resolution == "12K S35[12288*6480][17:9]" || cameradata.Resolution ==  "12K S35[11520*6480][16:9]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","40.000"]
@@ -47,7 +47,54 @@ func BMDRate(cameradata:CameraData) -> [String] {
                 }
             }
         }
+        
+        else if cameradata.CameraName == "Blackmagic URSA Mini Pro 4.6K G2" {
+            if cameradata.Codec.contains("Blackmagic RAW") {
+                if cameradata.Resolution == "4.6K S35[4608*2592][16:9]" || cameradata.Resolution == "4K S35[4096*2304][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
+                }
+                else if cameradata.Resolution == "4.6K S35[4608*1920][2.4:1]" || cameradata.Resolution == "4K S35[4096*2160][17:9]" || cameradata.Resolution == "UHD S35[3840*2160][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000"]
+                }
+                else if cameradata.Resolution == "2K S16[2048*1152][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000","200.000","240.000"]
+                }
+                else if cameradata.Resolution == "2K S16[2048*1080][17:9]" || cameradata.Resolution == "HD S16[1920*1080][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000","200.000","240.000","250.000","300.000"]
+                }
+            }
+            else if cameradata.Codec.contains("4444") {
+                if cameradata.Resolution == "4.6K S35[4608*2592][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000"]
+                }
+                else if cameradata.Resolution == "4.6K S35[4608*1920][2.4:1]" || cameradata.Resolution == "4K S35[4096*2304][16:9]" || cameradata.Resolution == "4K S35[4096*2160][17:9]" || cameradata.Resolution == "UHD S35[3840*2160][From 4096*2304][16:9]" ||  cameradata.Resolution == "UHD S35[3840*2160][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000"]
+                }
+                else if cameradata.Resolution == "2K S35[2048*1152][From 4096*2304][16:9]" || cameradata.Resolution == "2K S35[2048*1080][From 4096*2160][17:9]" || cameradata.Resolution == "HD S35[1920*1080][From 4096*2304][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
+                }
+                else if cameradata.Resolution == "2K S16[2048*1152][16:9]" || cameradata.Resolution == "2K S16[2048*1080][17:9]" || cameradata.Resolution == "HD S16[1920*1080][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000","200.000","240.000"]
+                }
+            }
+            else if cameradata.Codec.contains("422") {
+                if cameradata.Resolution == "4.6K S35[4608*2592][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","50.000","59.940","60.000","72.000","75.000","80.000"]
+                }
+                else if cameradata.Resolution == "4K S35[4096*2304][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000"]
+                }
+                else if cameradata.Resolution == "4.6K S35[4608*1920][2.4:1]" || cameradata.Resolution == "4K S35[4096*2160][17:9]" || cameradata.Resolution == "UHD S35[3840*2160][From 4096*2304][16:9]" ||  cameradata.Resolution == "UHD S35[3840*2160][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
+                }
+                else if cameradata.Resolution == "2K S35[2048*1152][From 4096*2304][16:9]" || cameradata.Resolution == "2K S35[2048*1080][From 4096*2160][17:9]" || cameradata.Resolution == "HD S35[1920*1080][From 4096*2304][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
+                }
+                else if cameradata.Resolution == "2K S16[2048*1152][16:9]" || cameradata.Resolution == "2K S16[2048*1080][17:9]" || cameradata.Resolution == "HD S16[1920*1080][16:9]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000","200.000","240.000"]
+                }
+            }
+        }
     }
-    
     return rates
 }

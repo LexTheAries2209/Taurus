@@ -80,22 +80,166 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
             }
         }
     }
+    
+    else if cameradata.CameraName == "Blackmagic URSA Mini Pro 4.6K G2" {
+        if cameradata.Resolution.contains("4.6K S35") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 146.4
+            case "Blackmagic RAW 5:1" :
+                return 88
+            case "Blackmagic RAW 8:1" :
+                return 54.4
+            case "Blackmagic RAW 12:1" :
+                return 36.8
+            case "Prores 4444 XQ" :
+                return 288
+            case "Prores 4444" :
+                return 190.4
+            case "Prores 422 HQ" :
+                return 126.5
+            case "Prores 422" :
+                return 84.8
+            case "Prores 422 LT" :
+                return 58.8
+            case "Prores 422 Proxy" :
+                return 25.84
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("4K S35") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 140.08
+            case "Blackmagic RAW 5:1" :
+                return 83.815
+            case "Blackmagic RAW 8:1" :
+                return 52.9
+            case "Blackmagic RAW 12:1" :
+                return 35.28
+            case "Prores 4444 XQ" :
+                return 275.6
+            case "Prores 4444" :
+                return 181.9
+            case "Prores 422 HQ" :
+                return 121.22
+            case "Prores 422" :
+                return 81.15
+            case "Prores 422 LT" :
+                return 56.2
+            case "Prores 422 Proxy" :
+                return 24.7
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("UHD S35") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 101.6
+            case "Blackmagic RAW 5:1" :
+                return 60.8
+            case "Blackmagic RAW 8:1" :
+                return 38.4
+            case "Blackmagic RAW 12:1" :
+                return 25.6
+            case "Prores 4444 XQ" :
+                return 200
+            case "Prores 4444" :
+                return 132
+            case "Prores 422 HQ" :
+                return 88
+            case "Prores 422" :
+                return 58.88
+            case "Prores 422 LT" :
+                return 40.8
+            case "Prores 422 Proxy" :
+                return 17.92
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("2K S16") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 36.37
+            case "Blackmagic RAW 5:1" :
+                return 22.05
+            case "Blackmagic RAW 8:1" :
+                return 13.23
+            case "Blackmagic RAW 12:1" :
+                return 8.82
+            case "Prores 4444 XQ" :
+                return 68.9
+            case "Prores 4444" :
+                return 45.474
+            case "Prores 422 HQ" :
+                return 30.32
+            case "Prores 422" :
+                return 20.28
+            case "Prores 422 LT" :
+                return 14.06
+            case "Prores 422 Proxy" :
+                return 6.173
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("HD S16") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 26.4
+            case "Blackmagic RAW 5:1" :
+                return 16
+            case "Blackmagic RAW 8:1" :
+                return 9.6
+            case "Blackmagic RAW 12:1" :
+                return 6.4
+            case "Prores 4444 XQ" :
+                return 50
+            case "Prores 4444" :
+                return 33
+            case "Prores 422 HQ" :
+                return 22
+            case "Prores 422" :
+                return 14.72
+            case "Prores 422 LT" :
+                return 10.2
+            case "Prores 422 Proxy" :
+                return 4.48
+            default :
+                return 0
+            }
+        }
+    }
     return 0
 }
 
 func BMDResolutionMutiplier(cameradata:CameraData) -> Double {
-    if cameradata.Resolution.contains("[17:9]") {
-        return 1
+    if cameradata.CameraName.contains("12K") {
+        if cameradata.Resolution.contains("[17:9]") {
+            return 1
+        }
+        else if cameradata.Resolution.contains("[16:9]"){
+            return 1.0667
+        }
+        else if cameradata.Resolution.contains("[2.4:1]"){
+            return 1.2676
+        }
     }
-    else if cameradata.Resolution.contains("[16:9]"){
-        return 1.0667
+    else if cameradata.CameraName.contains("4.6K") {
+        if cameradata.Resolution.contains("[16:9]") {
+            return 1
+        }
+        else if cameradata.Resolution.contains("[17:9]"){
+            return 1.0667
+        }
+        else if cameradata.Resolution.contains("[2.4:1]"){
+            return 1.35
+        }
     }
-    else if cameradata.Resolution.contains("[2.4:1]"){
-        return 1.2676
-    }
-    else {
-        return 0
-    }
+    return 0
 }
 
 
