@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-//佳能机型码率计算区
 func CanonCodecSpeed(cameradata:CameraData) -> Double {
     let CanonCodecName = cameradata.Codec + "_" + cameradata.Resolution
     switch CanonCodecName {

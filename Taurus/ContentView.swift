@@ -131,6 +131,14 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            else if cameradata.BrandName == "Canon Cinema" {
+                                let resolutions = CanonCinemaResolution(cameradata: cameradata)
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择分辨率").frame(width: 100, alignment: .center)) {
+                                    ForEach(resolutions, id: \.self) { resolution in
+                                        Text(resolution).tag(resolution)
+                                    }
+                                }
+                            }
                             else if cameradata.BrandName == "Apple" {
                                 let resolutions = AppleResolution(cameradata: cameradata)
                                 Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100, alignment: .center)) {
@@ -164,12 +172,12 @@ struct ContentView: View {
                                 }
                             }
                             else if cameradata.BrandName == "Panasonic" {
-                                    Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
-                                        ForEach(PanaResolution(cameradata: cameradata),id:\.self) { resolution in
-                                            Text(resolution).tag(resolution)
-                                        }
+                                Picker(selection: $cameradata.Resolution, label: Text("请选择格式").frame(width: 100,alignment: .center)) {
+                                    ForEach(PanaResolution(cameradata: cameradata),id:\.self) { resolution in
+                                        Text(resolution).tag(resolution)
                                     }
                                 }
+                            }
                             
                             else if cameradata.BrandName == "DJI" {
                                 if DjiResolution(cameradata: cameradata) != [""] {
@@ -212,6 +220,22 @@ struct ContentView: View {
                                 if CinealtaRate(cameradata: cameradata) != [""] {
                                     Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
                                         ForEach(CinealtaRate(cameradata:cameradata),id:\.self) { rate in
+                                            Text(rate).tag(rate)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
+                            
+                            //Canon Cinema帧率
+                            if cameradata.BrandName == "Canon Cinema" {
+                                if CanonCinemaRate(cameradata: cameradata) != [""] {
+                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                        ForEach(CanonCinemaRate(cameradata:cameradata),id:\.self) { rate in
                                             Text(rate).tag(rate)
                                         }
                                     }
@@ -284,7 +308,22 @@ struct ContentView: View {
                                 }
                             }
                             
-                            if cameradata.BrandName != "Canon" && cameradata.BrandName != "SONY" && cameradata.BrandName != "Panasonic" && cameradata.BrandName != "DJI" {
+                            if cameradata.BrandName == "Canon Cinema" {
+                                if CanonCinemaMedia(cameradata: cameradata) != [""] {
+                                    Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        ForEach(CanonCinemaMedia(cameradata:cameradata),id:\.self) { media in
+                                            Text(media).tag(media)
+                                        }
+                                    }
+                                }
+                                else {
+                                    Picker(selection: $cameradata.Media, label:Text("请选择储存卡").frame(width: 100,alignment: .center)) {
+                                        Text("无选项")
+                                    }
+                                }
+                            }
+                            
+                            if cameradata.BrandName != "Canon" && cameradata.BrandName != "SONY" && cameradata.BrandName != "Panasonic" && cameradata.BrandName != "DJI" && cameradata.BrandName != "Canon Cinema" {
                                 if let medias = MediaName[cameradata.CameraName] {
                                     Picker(selection: $cameradata.Media, label: Text("请选择储存卡").frame(width: 100,alignment: .center)) {
                                         ForEach(medias,id:\.self) { media in
@@ -301,68 +340,39 @@ struct ContentView: View {
                             
                             //ARRI帧率选择
                             if cameradata.BrandName == "ARRI" {
-                                if cameradata.Media == "请选择储存卡" {
-                                    Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
-                                }
-                                else {
-                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        ForEach(ArriRates(cameradata:cameradata),id:\.self) { rate in
-                                            Text(rate).tag(rate)
-                                        }
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(ArriRates(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
                                     }
                                 }
                             }
                             
                             //BMD帧率选择
                             if cameradata.BrandName == "Blackmagicdesign" {
-                                if cameradata.Media == "请选择储存卡" {
-                                    Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
-                                }
-                                else {
-                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        ForEach(BMDRate(cameradata:cameradata),id:\.self) { rate in
-                                            Text(rate).tag(rate)
-                                        }
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(BMDRate(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
                                     }
                                 }
                             }
                             
                             //Apple帧率选择
                             if cameradata.BrandName == "Apple" {
-                                if cameradata.Media == "请选择储存卡" {
-                                    Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
-                                }
-                                else {
-                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        ForEach(AppleRate(cameradata:cameradata),id:\.self) { rate in
-                                            Text(rate).tag(rate)
-                                        }
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(AppleRate(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
                                     }
                                 }
                             }
                             
                             //RED帧率选择
                             if cameradata.BrandName == "RED" {
-                                if cameradata.Media == "请选择储存卡" {
-                                    Picker(selection: $cameradata.Rate, label:Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        Text("无选项")
-                                    }
-                                }
-                                else {
-                                    Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
-                                        ForEach(DSMC3Rate(cameradata:cameradata),id:\.self) { rate in
-                                            Text(rate).tag(rate)
-                                        }
+                                Picker(selection: $cameradata.Rate, label: Text("请选择帧率").frame(width: 100,alignment: .center)) {
+                                    ForEach(DSMC3Rate(cameradata:cameradata),id:\.self) { rate in
+                                        Text(rate).tag(rate)
                                     }
                                 }
                             }
-                            
                         }
                         .padding(.top, 20.0)
                         Spacer()
@@ -381,7 +391,7 @@ struct ContentView: View {
                     Text("数据计算器")
                 }
                 
-                //                //其他功能模块
+                //                其他功能模块
                 //                Text("还没做出功能的阵列配置台")
                 //                    .tabItem {
                 //                        Text("阵列配置台")
