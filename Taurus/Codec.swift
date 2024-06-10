@@ -7,7 +7,6 @@
 
 import Foundation
 
-//编码库
 public let CodecName : [String:[String]] = [
     //ARRI
     "AMIRA" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","MPEG-2 HD 422"],
@@ -53,20 +52,20 @@ public let CodecName : [String:[String]] = [
     "A6700" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
     "ZV-E1" : ["XAVC S-I 4K","XAVC HS 4K","XAVC S 4K","XAVC S-I HD","XAVC S HD"],
     
-    //Canon
-    "CinemaEOS C500 Mark2" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
-    "CinemaEOS C300 Mark3" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
-    "CinemaEOS C400" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
+    //CanonCinema
+    "CinemaEOS C500 Mark2" : ["Cinema RAW Light","Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
+    "CinemaEOS C300 Mark3" : ["Cinema RAW Light","XF-AVC Intra","XF-AVC LongGOP"],
+    //"CinemaEOS C400" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C70" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS R5C" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     
+    //Canon
     "EOS R3" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R5" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R6 Mark2" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R6" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R8" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R7" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
-    "EOS 1D-X Mark3" : [""],
     
     //Panasonic
     "S1H" : ["HEVC LongGOP","AVC ALL-I","AVC LongGOP"],

@@ -7,7 +7,6 @@
 
 import Foundation
 
-//储存卡库
 public let MediaName : [String:[String]] = [
     
     //ARRI
