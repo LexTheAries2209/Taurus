@@ -107,12 +107,12 @@
 				5839AA2D2BEDB9AB0025C74C /* DjiResolution.swift */,
 				5839AA2F2BEDB9DF0025C74C /* PanaResolution.swift */,
 				5839AA472BEE49790025C74C /* CanonResolution.swift */,
-				587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */,
 				5839AA492BEE7C8F0025C74C /* SonyResolution.swift */,
 				5839AA4B2BEF00440025C74C /* ARRIResolution.swift */,
 				5839AA4D2BEF038E0025C74C /* REDResolution.swift */,
 				5839AA4F2BEF041F0025C74C /* AppleResolution.swift */,
 				5839AA512BEF04B50025C74C /* BMDResolution.swift */,
+				587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */,
 			);
 			path = Resolution;
 			sourceTree = "<group>";
@@ -123,8 +123,8 @@
 				5839AA322BEDBA210025C74C /* PanaMedia.swift */,
 				5839AA342BEDBA370025C74C /* SonyMedia.swift */,
 				5839AA362BEDBA500025C74C /* CanonMedia.swift */,
-				582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */,
 				582EA0392C155C8E001BD46A /* DjiMedia.swift */,
+				582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -133,10 +133,10 @@
 			isa = PBXGroup;
 			children = (
 				5835195A2B2216D700366A4D /* CanonCount.swift */,
-				582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */,
 				5835195C2B2217A200366A4D /* PanaCount.swift */,
 				583519582B22160D00366A4D /* SonyCount.swift */,
 				5839AA3A2BEDBB230025C74C /* BMDCount.swift */,
+				582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */,
 			);
 			path = Count;
 			sourceTree = "<group>";
