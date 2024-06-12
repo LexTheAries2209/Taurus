@@ -20,8 +20,8 @@ public let CameraModel : [String:[String]] = [
     "Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2"],
     //"Blackmagicdesign" : ["Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
     //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
-    "Panasonic" : ["S1H","S5M2X","S5M2","GH6","G9M2"],
-    //"Pana" : ["S9","GH7","EVA-1"]
+    "Panasonic" : ["S1H","S5M2X","S5M2","GH7","GH6","G9M2"],
+    //"Pana" : ["S9","EVA-1"]
     "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
     //"ZCam" : [""]
     "Apple" : ["iPhone 15 Pro MAX","iPhone 15 Pro","iPhone 14 Pro MAX","iPhone 14 Pro"]

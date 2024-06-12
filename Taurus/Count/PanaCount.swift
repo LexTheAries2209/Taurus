@@ -58,16 +58,42 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
         return 972
     case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422_3.3K 4:3[3328*2496][10bit 4:2:2][50p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][23.98p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][24p]" :
         return 1000
-    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422_DCI 4K[10bit 4:2:2][50p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][25p]" :
+    case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422_DCI 4K[10bit 4:2:2][50p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][25p]","Prores RAW_DCI 4K[12bit RAW][23.98p]","Prores RAW_DCI 4K[12bit RAW][24p]" :
         return 1100
+    case "Prores RAW_DCI 4K[12bit RAW][25p]" :
+        return 1145
     case "Prores 422_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422_DCI 4K[10bit 4:2:2][59.94p]","Prores 422_DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]" :
         return 1300
+    case "Prores RAW_DCI 4K[12bit RAW][29.97p]" :
+        return 1400
     case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][23.98p]","Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][24p]","Prores 422 HQ_3.3K 4:3[3328*2496][10bit 4:2:2][50p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][23.98p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][24p]" :
         return 1500
     case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][25p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][50p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][25p]" :
         return 1560
+    case "Prores RAW HQ_DCI 4K[12bit RAW][23.98p]","Prores RAW HQ_DCI 4K[12bit RAW][24p]" :
+        return 1700
+    case "Prores RAW HQ_DCI 4K[12bit RAW][25p]" :
+        return 1770
     case "Prores 422 HQ_DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","Prores 422 HQ_DCI 4K[10bit 4:2:2][59.94p]","Prores 422 HQ_DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]" :
         return 1900
+    case "Prores RAW HQ_DCI 4K[12bit RAW][29.97p]" :
+        return 2100
+    case "Prores RAW_DCI 5.7K[5728*3024][12bit RAW][23.98p]","Prores RAW_DCI 5.7K[5728*3024][12bit RAW][24p]" :
+        return 2200
+    case "Prores RAW_DCI 5.7K[5728*3024][12bit RAW][25p]" :
+        return 2292
+    case "Prores RAW_DCI 4K[12bit RAW][50p]" :
+        return 2333
+    case "Prores RAW_DCI 4K[12bit RAW][59.94p]","Prores RAW_DCI 5.7K[5728*3024][12bit RAW][29.97p]" :
+        return 2800
+    case "Prores RAW HQ_DCI 5.7K[5728*3024][12bit RAW][23.98p]","Prores RAW HQ_DCI 5.7K[5728*3024][12bit RAW][24p]" :
+        return 3300
+    case "Prores RAW HQ_DCI 5.7K[5728*3024][12bit RAW][25p]" :
+        return 3437
+    case "Prores RAW HQ_DCI 4K[12bit RAW][50p]" :
+        return 3500
+    case "Prores RAW HQ_DCI 4K[12bit RAW][59.94p]","Prores RAW HQ_DCI 5.7K[5728*3024][12bit RAW][29.97p]" :
+        return 4200
         
     case "HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_UHD[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_4.4K 4:3[4352*3264][10bit 4:2:0][47.95p/48p/50p/59.94p]" :
         return 300

@@ -71,6 +71,7 @@ public let CodecName : [String:[String]] = [
     "S1H" : ["HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2" : ["HEVC LongGOP","AVC LongGOP"],
+    "GH7" : ["Prores RAW HQ","Prores RAW","Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "GH6" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "G9M2" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     
