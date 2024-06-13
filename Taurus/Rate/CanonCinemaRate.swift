@@ -72,7 +72,7 @@ func CanonCinemaRate(cameradata:CameraData) -> [String] {
     }
     
     else  {
-        rates = [""]
+        rates = ["无选项"]
     }
     return rates
 }

@@ -20,6 +20,9 @@ func AppleRate(cameradata:CameraData) -> [String] {
         else if (cameradata.Media == "[Output]SSD 512GB" || cameradata.Media == "[Output]SSD 1TB" || cameradata.Media == "[Output]SSD 2TB") && (cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422" || cameradata.Codec == "Prores 422 LT" || cameradata.Codec == "Prores 422 Proxy") {
             rates = ["23.980","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000"]
         }
+        else {
+            rates = ["无选项"]
+        }
     }
     
     return rates

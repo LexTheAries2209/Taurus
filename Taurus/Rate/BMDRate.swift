@@ -96,5 +96,8 @@ func BMDRate(cameradata:CameraData) -> [String] {
             }
         }
     }
+    else {
+        rates = ["无选项"]
+    }
     return rates
 }

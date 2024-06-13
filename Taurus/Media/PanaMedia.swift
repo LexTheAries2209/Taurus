@@ -78,5 +78,9 @@ func PanaMedia(cameradata:CameraData) -> [String] {
         }
     }
     
+    else {
+        PanaMedia = ["无选项"]
+    }
+    
     return PanaMedia
 }

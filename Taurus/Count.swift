@@ -217,15 +217,15 @@ func MediaCapacity(cameradata:CameraData) -> Double {
     switch cameradata.Media {
     case "CFExpress TypeA 80GB" :
         return 74.48
-    case "SxS Pro-X 120GB" :
+    case "SxS Pro-X 120GB","XQD 120GB":
         return 111.6
-    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB" :
+    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB","XQD 128GB" :
         return 119.168
     case "CFExpress TypeA 160GB" :
         return 148.96
-    case "SxS Pro-X 240GB" :
+    case "SxS Pro-X 240GB","XQD 240GB" :
         return 223.44
-    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB" :
+    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB" :
         return 238.336
     case "CFExpress TypeA 320GB" :
         return 297.92

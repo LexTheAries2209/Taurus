@@ -26,5 +26,8 @@ func DjiMedia(cameradata:CameraData) -> [String] {
             DjiMedia = ["DJI PROSSD 1TB"]
         }
     }
+    else {
+        DjiMedia = ["无选项"]
+    }
     return DjiMedia
 }

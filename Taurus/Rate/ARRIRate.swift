@@ -99,7 +99,7 @@ func ArriRates(cameradata:CameraData) -> [String] {
         
         //错误检测
     default :
-        rates = ["24.000"]
+        rates = ["无选项"]
     }
     
     //特殊选项区

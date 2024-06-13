@@ -24,7 +24,7 @@ func DjiRate(cameradata:CameraData) -> [String] {
             rates = ["72.000","75.000"]
         }
         else {
-            rates = [""]
+            rates = ["无选项"]
         }
     }
     else if cameradata.CameraName == "Ronin 4D[6K]" {
@@ -50,7 +50,7 @@ func DjiRate(cameradata:CameraData) -> [String] {
             rates = ["59.940","60.000"]
         }
         else {
-            rates = [""]
+            rates = ["无选项"]
         }
     }
     else if cameradata.CameraName == "Inspire 3" {
@@ -70,7 +70,7 @@ func DjiRate(cameradata:CameraData) -> [String] {
                 }
             }
             else {
-                rates = [""]
+                rates = ["无选项"]
             }
         }
         else if (cameradata.Resolution == "4K FF[4096*2160][17:9]" || cameradata.Resolution == "4K FF[3840*2160][16:9]") {
@@ -93,11 +93,11 @@ func DjiRate(cameradata:CameraData) -> [String] {
             }
         }
         else {
-            rates = [""]
+            rates = ["无选项"]
         }
     }
     else {
-        rates = [""]
+        rates = ["无选项"]
     }
     
     return rates

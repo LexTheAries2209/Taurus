@@ -30,9 +30,8 @@ struct ContentView: View {
             //主功能选择
             TabView {
                 
-                //数据计算器模块//
+                //数据计算器模块
                 VStack{
-                    
                     Spacer()
                     
                     //重置按键
@@ -45,55 +44,52 @@ struct ContentView: View {
                         cameradata.Rate = "请选择帧率"
                         cameradata.Format = "请选择幅面"
                     }
-                    
                     Spacer()
                     
                     //选择器与计算功能
                     HStack{
-                        
-                        //选择器模块
                         VStack (spacing:10){
+                            //选择器模块
                             PickerView(cameradata: cameradata)
                         }
                         .padding(.top, 20.0)
                         Spacer()
                         
-                        //计算数据输出
+                        //计算数据输出模块
                         DataOutput(cameradata: cameradata)
                     }
                     Spacer()
                     
-                    //备注与说明
+                    //备注与说明模块
                     Comments(cameradata: cameradata)
                 }
                 
-                //主功能选择
+                //主菜单选择模块
                 .tabItem {
                     Text("数据计算器")
                 }
                 
-//                                其他功能模块
-//                                Text("还没做出功能的阵列配置台")
-//                                    .tabItem {
-//                                        Text("阵列配置台")
-//                                    }
-//                
-//                                Text("还没做出功能的录制格式速查")
-//                                    .tabItem {
-//                                        Text("录制格式速查")
-//                                    }
-//                
-//                                Text("还没做出功能的像场覆盖图")
-//                                    .tabItem {
-//                                        Text("像场覆盖图")
-//                                    }
+                //                                其他功能模块
+                //                                Text("还没做出功能的阵列配置台")
+                //                                    .tabItem {
+                //                                        Text("阵列配置台")
+                //                                    }
+                //
+                //                                Text("还没做出功能的录制格式速查")
+                //                                    .tabItem {
+                //                                        Text("录制格式速查")
+                //                                    }
+                //
+                //                                Text("还没做出功能的像场覆盖图")
+                //                                    .tabItem {
+                //                                        Text("像场覆盖图")
+                //                                    }
             }
             .frame(minWidth:800,minHeight: 425)
             .frame(maxWidth:800,maxHeight: 425)
         }
         .padding()
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

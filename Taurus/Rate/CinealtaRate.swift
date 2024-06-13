@@ -28,7 +28,7 @@ func CinealtaRate(cameradata:CameraData) -> [String] {
                 rates = ["23.980","25.000","29.970","50.000","59.940"]
             }
             else {
-                rates = [""]
+                rates = ["无选项"]
             }
         }
         else if cameradata.CameraName == "CineAlta Venice 2[8K]" {
@@ -55,7 +55,7 @@ func CinealtaRate(cameradata:CameraData) -> [String] {
                     rates = ["23.980","24.000","25.000","29.970","30.000","47.950","48.000","50.000","59.940","60.000"]
                 }
                 else {
-                    rates = [""]
+                    rates = ["无选项"]
                 }
             }
             else if cameradata.Codec == "X-OCN ST" || cameradata.Codec == "X-OCN LT" {
@@ -84,11 +84,11 @@ func CinealtaRate(cameradata:CameraData) -> [String] {
                     rates = ["23.980","24.000","25.000","29.970","30.000","47.950","48.000","50.000","59.940","60.000"]
                 }
                 else {
-                    rates = [""]
+                    rates = ["无选项"]
                 }
             }
             else {
-                rates = [""]
+                rates = ["无选项"]
             }
         }
         else if cameradata.CameraName == "CineAlta Venice 2[6K]" || cameradata.CameraName == "CineAlta Venice" {
@@ -111,11 +111,11 @@ func CinealtaRate(cameradata:CameraData) -> [String] {
                 rates = ["23.980","24.000","25.000","29.970","30.000","47.950","48.000","50.000","59.940","60.000","66.000","72.000","75.000","88.000","90.000","96.000","100.000","110.000","120.000"]
             }
             else {
-                rates = [""]
+                rates = ["无选项"]
             }
         }
     else {
-        rates = [""]
+        rates = ["无选项"]
     }
     
     return rates

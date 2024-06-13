@@ -42,5 +42,9 @@ func CanonCinemaMedia(cameradata:CameraData) -> [String] {
         CanonCinemaMedia = ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"]
     }
     
+    else {
+        CanonCinemaMedia = ["无选项"]
+    }
+    
     return CanonCinemaMedia
 }

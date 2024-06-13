@@ -43,7 +43,7 @@ func CanonMedia(cameradata:CameraData) -> [String] {
     }
     
     else {
-        CanonMedia = [""]
+        CanonMedia = ["无选项"]
     }
     return CanonMedia
 }
