@@ -36,6 +36,7 @@
 		5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C06D2A7000D900611BD0 /* Assets.xcassets */; };
 		5864C0712A7000D900611BD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C0702A7000D900611BD0 /* Preview Assets.xcassets */; };
 		587618DA2C11A055009FF3B4 /* CanonCinemaResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */; };
+		58C9B8132C1A980000788819 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C9B8122C1A980000788819 /* PickerView.swift */; };
 		58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */; };
 		58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */; };
 		58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F72B0F4F82001C8FA7 /* Media.swift */; };
@@ -79,6 +80,7 @@
 		5864C0702A7000D900611BD0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5864C0722A7000D900611BD0 /* Taurus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Taurus.entitlements; sourceTree = "<group>"; };
 		587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaResolution.swift; sourceTree = "<group>"; };
+		58C9B8122C1A980000788819 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
 		58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand_Camera.swift; sourceTree = "<group>"; };
 		58D3B7F72B0F4F82001C8FA7 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
+				58C9B8122C1A980000788819 /* PickerView.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
 				58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */,
 				58D3B7F72B0F4F82001C8FA7 /* Media.swift */,
@@ -317,6 +320,7 @@
 				58F4E8ED2B2A093B00A36613 /* func_xbit.swift in Sources */,
 				5839AA422BEDC4A90025C74C /* CinealtaRate.swift in Sources */,
 				5839AA4E2BEF038E0025C74C /* REDResolution.swift in Sources */,
+				58C9B8132C1A980000788819 /* PickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
