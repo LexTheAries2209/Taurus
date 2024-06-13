@@ -14,6 +14,8 @@ func PanaFormat(cameradata:CameraData) -> [String] {
         PanaFormat = ["Full Frame","APS-C","Pixel to Pixel"]
     case "S5M2" :
         PanaFormat = ["Full Frame","APS-C","Pixel to Pixel"]
+    case "S9" :
+        PanaFormat = ["Full Frame","APS-C","Pixel to Pixel"]
     case "S1H" :
         PanaFormat = ["Full Frame","APS-C","Pixel to Pixel"]
     case "GH7" :

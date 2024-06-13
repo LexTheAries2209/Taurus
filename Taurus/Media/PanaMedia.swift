@@ -11,7 +11,7 @@ func PanaMedia(cameradata:CameraData) -> [String] {
     var PanaMedia = [""]
     let CodecSpeed = PanaCodecSpeed(cameradata: cameradata)
     
-    if cameradata.CameraName == "S5M2" || cameradata.CameraName == "S1H" {
+    if cameradata.CameraName == "S5M2" || cameradata.CameraName == "S1H" || cameradata.CameraName == "S9" {
         if CodecSpeed <= 200 {
             PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }

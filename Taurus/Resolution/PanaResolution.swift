@@ -48,7 +48,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
         }
     }
     
-    else if cameradata.CameraName == "S5M2" || cameradata.CameraName == "S5M2X" {
+    else if cameradata.CameraName == "S5M2" || cameradata.CameraName == "S5M2X" || cameradata.CameraName == "S9" {
         if cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422"{
             switch cameradata.Format {
             case "Full Frame" :
