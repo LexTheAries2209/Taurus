@@ -23,7 +23,7 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 226.15
     case "REDCODE HQ" :
         return 199.2
-    case "Prores RAW" :
+    case "Prores RAW HQ" :
         return 190
     case "Prores 422 HQ" :
         return 176

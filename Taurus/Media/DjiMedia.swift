@@ -13,7 +13,7 @@ func DjiMedia(cameradata:CameraData) -> [String] {
         DjiMedia = ["DJI PROSSD 1TB"]
     }
     else if cameradata.CameraName == "Ronin 4D[8K]" || cameradata.CameraName == "Ronin 4D[6K]" {
-        if cameradata.Codec == "Prores 4444 XQ" || cameradata.Codec == "Prores RAW" {
+        if cameradata.Codec == "Prores 4444 XQ" || cameradata.Codec == "Prores RAW HQ" {
             DjiMedia = ["DJI PROSSD 1TB"]
         }
         else if (cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422 LT") && (cameradata.Resolution == "4K FF[4096*2160][17:9]" || cameradata.Resolution == "4K FFcrop[4096*2160][17:9]" || cameradata.Resolution == "4K S35[4096*2160][17:9]" || cameradata.Resolution == "2K FF[2048*1080][17:9]" || cameradata.Resolution == "2K S35[2048*1080][17:9]") && (cameradata.Rate != "72.000" && cameradata.Rate != "75.000" && cameradata.Rate != "96.000" || cameradata.Rate != "100.000" && cameradata.Rate != "120.000") {
