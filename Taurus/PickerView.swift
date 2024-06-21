@@ -11,30 +11,30 @@ struct PickerView: View {
     @ObservedObject var cameradata: CameraData
     var body: some View {
         VStack(spacing: 10) {
-            // 品牌选择
+            //品牌选择
             createPicker(selection: $cameradata.BrandName, label: "请选择品牌", options: CameraModel.keys.sorted())
             
-            // 机型选择
+            //机型选择
             if let models = CameraModel[cameradata.BrandName] {
                 createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: models)
             } else {
                 createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: ["无选项"], showNoOptionText: true)
             }
             
-            // 编码选择
+            //编码选择
             if let codec = CodecName[cameradata.CameraName] {
                 createPicker(selection: $cameradata.Codec, label: "请选择编码", options: codec)
             } else {
                 createPicker(selection: $cameradata.Codec, label: "请选择编码", options: ["无选项"], showNoOptionText: true)
             }
             
-            // Panasonic 幅面选择
+            //Panasonic幅面选择
             if cameradata.BrandName == "Panasonic" {
                 let formats = PanaFormat(cameradata: cameradata)
                 createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
             }
             
-            // 分辨率选择
+            //分辨率选择
             createResolutionPicker()
             
             //DJI、CineAlta、CanonCinema帧率选择
@@ -45,7 +45,8 @@ struct PickerView: View {
             //储存卡选择
             createMediaPicker()
             
-            if cameradata.BrandName == "ARRI" || cameradata.CameraName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED"{
+            //ARRI、BMD、Apple、RED帧率选择
+            if cameradata.BrandName == "ARRI" || cameradata.BrandName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED" {
                 createRatePicker()
             }
         }

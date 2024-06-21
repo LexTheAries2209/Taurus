@@ -271,7 +271,7 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 15
     case "20.000" :
         return 20
-    case "23.976","23.980","24.000" :
+    case "23.976","24.000" :
         return 24
     case "25.000" :
         return 25
