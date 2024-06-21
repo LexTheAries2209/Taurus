@@ -16,7 +16,7 @@ public let CameraModel : [String:[String]] = [
     "Canon Cinema" : ["CinemaEOS C500 Mark2","CinemaEOS C300 Mark3","CinemaEOS C70","CinemaEOS R5C"],
     //"Canon" : ["CinemaEOS C400","CinemaEOS C300 Mark2","CinemaEOS C200","CinemaEOS C100 Mark2","EOS 1D-X Mark3"],
     //"Kinefinity" : ["MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2","MAVO Mark2 LF"],
-    //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
+    //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z6 III","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
     "Blackmagicdesign" : ["Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2"],
     //"Blackmagicdesign" : ["Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
     //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
