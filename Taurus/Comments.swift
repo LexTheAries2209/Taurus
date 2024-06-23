@@ -112,7 +112,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "Panasonic" {
-                Text("2. 默认宽高比为16:9，DCI标准的宽高比为17:9；DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("2. 默认宽高比为16:9，DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
