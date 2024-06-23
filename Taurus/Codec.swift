@@ -79,7 +79,7 @@ public let CodecName : [String:[String]] = [
     //DJI
     "Ronin 4D[8K]" : ["Prores RAW HQ","Prores 422 HQ","H.264(10bit 4:2:0)"],
     "Ronin 4D[6K]" : ["Prores RAW HQ","Prores 4444 XQ","Prores 422 HQ","Prores 422 LT","H.264(10bit 4:2:0)"],
-    "Inspire 3" : ["CinemaDNG","Prores RAW","Prores 422 HQ","H.264(10bit 4:2:0)"],
+    "Inspire 3" : ["CinemaDNG","Prores RAW HQ","Prores 422 HQ","H.264(10bit 4:2:0)"],
     
     //Apple
     "iPhone 15 Pro MAX" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],

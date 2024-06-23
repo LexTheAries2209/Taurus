@@ -41,7 +41,7 @@ func DjiResolution(cameradata:CameraData) -> [String] {
         if cameradata.Codec == "CinemaDNG" {
             DjiResolution = ["8K FF[8192*4320][17:9]","8K FF[8192*3424][2.39:1]","5.5K S35[5568*2952][17:9]","5.5K S35[5248*2952][16:9]","4K FF[4096*2160][17:9]","4K FF[3840*2160][16:9]"]
         }
-        else if cameradata.Codec == "Prores RAW" {
+        else if cameradata.Codec == "Prores RAW HQ" {
             DjiResolution = ["8K FF[8192*4320][17:9]","8K FF[7680*4320][16:9]","8K FF[8192*3424][2.39:1]","5.5K S35[5568*2952][17:9]","5.5K S35[5248*2952][16:9]","4K FF[4096*2160][17:9]","4K FF[3840*2160][16:9]"]
         }
         else if cameradata.Codec == "Prores 422 HQ" {
