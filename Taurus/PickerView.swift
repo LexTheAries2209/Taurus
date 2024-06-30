@@ -16,7 +16,12 @@ struct PickerView: View {
             
             //机型选择
             if let models = CameraModel[cameradata.BrandName] {
-                createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: models)
+                if cameradata.BrandName == "#General" {
+                    createPicker(selection: $cameradata.CameraName, label: "请选择模式", options: models)
+                }
+                else {
+                    createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: models)
+                }
             } else {
                 createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: ["无选项"], showNoOptionText: true)
             }
@@ -35,10 +40,27 @@ struct PickerView: View {
             }
             
             //分辨率选择
-            createResolutionPicker()
+            if cameradata.CameraName == "Manual Resolution" {
+                HStack {
+                    TextField("请输入宽度", text: $cameradata.ResolutionWidth)
+                        
+                        .frame(width: 100)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Text("*")
+                    
+                    TextField("请输入高度", text: $cameradata.ResolutionHeight)
+                        .frame(width: 100)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+            }
+            else {
+                createResolutionPicker()
+            }
+            
             
             //DJI、CineAlta、CanonCinema帧率选择
-            if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema"{
+            if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "#General" {
                 createRatePicker()
             }
             
@@ -74,6 +96,8 @@ struct PickerView: View {
                 resolutions = PanaResolution(cameradata: cameradata)
             case "DJI":
                 resolutions = DjiResolution(cameradata: cameradata)
+            case "#General":
+                resolutions = GeneralResolution(cameradata: cameradata)
             default:
                 resolutions = ["无选项"]
             }
@@ -100,6 +124,8 @@ struct PickerView: View {
                     rates = AppleRate(cameradata: cameradata)
                 case "RED":
                     rates = DSMC3Rate(cameradata: cameradata)
+                case "#General":
+                    rates = GeneralRate(cameradata: cameradata)
                 default:
                     rates = ["无选项"]
                 }
@@ -122,6 +148,8 @@ struct PickerView: View {
                 medias = DjiMedia(cameradata: cameradata)
             case "Canon Cinema":
                 medias = CanonCinemaMedia(cameradata: cameradata)
+            case "#General":
+                medias = GeneralMedia(cameradata: cameradata)
             default:
                 medias = MediaName[cameradata.CameraName] ?? ["无选项"]
             }

@@ -215,40 +215,46 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
 //存储卡容量乘积
 func MediaCapacity(cameradata:CameraData) -> Double {
     switch cameradata.Media {
-    case "CFExpress TypeA 80GB" :
+    case "64GB" :
+        return 59.584
+    case "CFExpress TypeA 80GB","80GB" :
         return 74.48
-    case "SxS Pro-X 120GB","XQD 120GB":
+    case "SxS Pro-X 120GB","XQD 120GB","120GB":
         return 111.6
-    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB","XQD 128GB" :
+    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB","XQD 128GB","128GB" :
         return 119.168
-    case "CFExpress TypeA 160GB" :
+    case "CFExpress TypeA 160GB","160GB" :
         return 148.96
-    case "SxS Pro-X 240GB","XQD 240GB" :
+    case "SxS Pro-X 240GB","XQD 240GB","240GB" :
         return 223.44
-    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB" :
+    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB","256GB" :
         return 238.336
-    case "CFExpress TypeA 320GB" :
+    case "CFExpress TypeA 320GB","320GB" :
         return 297.92
-    case "CFExpress TypeB 330GB" :
+    case "CFExpress TypeB 330GB","330GB" :
         return 307.23
-    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB","Built-in 512GB","Dual CFast2.0 256GB" :
+    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB","Built-in 512GB","Dual CFast2.0 256GB","512GB" :
         return 476.672
-    case "CFExpress TypeA 640GB" :
+    case "CFExpress TypeA 640GB","640GB" :
         return 585.840
-    case "CFExpress TypeB 660GB" :
+    case "CFExpress TypeB 660GB","660GB" :
         return 614.46
-    case "CFExpress TypeA 960GB" :
+    case "CFExpress TypeA 960GB","960GB" :
         return 893.76
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB","1TB" :
         return 931
-    case "CFExpress TypeB 1.3TB" :
+    case "CFExpress TypeB 1.3TB","1.3TB" :
         return 1241.023
-    case "CFExpress TypeA 1920GB" :
+    case "CFExpress TypeA 1920GB","1.92TB" :
         return 1787.52
-    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB" :
+    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB" :
         return 1862
-    case "[Output]SSD 4TB" :
+    case "[Output]SSD 4TB","4TB" :
         return 3724
+    case "8TB" :
+        return 7448
+    case "16TB" :
+        return 14896
     default :
         return 0
     }
@@ -269,6 +275,8 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 12
     case "15.000" :
         return 15
+    case "16.000" :
+        return 16
     case "20.000" :
         return 20
     case "23.976","24.000" :
@@ -345,12 +353,18 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 400
     case "480.000" :
         return 480
+    case "500.000" :
+        return 500
     case "505.000" :
         return 505
     case "600.000" :
         return 600
+    case "800.000" :
+        return 800
     case "1000.000" :
         return 1000
+    case "1200.000" :
+        return 1200
     case "ERROR" :
         return 24
     default :

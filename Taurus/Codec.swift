@@ -91,4 +91,8 @@ public let CodecName : [String:[String]] = [
     "Blackmagic URSA Mini Pro 12K" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
     "Blackmagic URSA Mini Pro 4.6K G2" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
     "Blackmagic URSA Mini Pro 4.6K" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
+    
+    //General
+    "Select Resolution" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","Prores RAW HQ","Prores RAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
+    "Manual Resolution" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","Prores RAW HQ","Prores RAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
 ]

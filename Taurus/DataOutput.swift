@@ -80,6 +80,17 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
         }
+        else if cameradata.BrandName == "#General" {
+            let GeneralSpeed = GeneralSpeed(cameradata:cameradata)
+            Text("")
+            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
+            Text("")
+            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
+            Text("")
+            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
+            Text("")
+            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
+        }
         else {
             Text("")
             Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
