@@ -22,17 +22,17 @@ func Comments(cameradata:CameraData) -> some View {
                 .frame(maxWidth: .infinity,alignment:.center)
             Text(" ")
                 .font(.system(size: 1))
-            Text("1. 此版本[V1.2.8]仅包含《数据计算器》功能。摄影集规格参数数据截止至2024.6.30。计算结果仅供参考，实际数据量可能与计算不同。")
+            Text("1. 此版本[V1.2.8]仅包含《数据计算器》功能。摄影集规格参数数据截止至2024.8.16。计算结果仅供参考，实际数据量可能与计算不同。")
                 .font(.system(size: 10))
                 .padding(.leading,10)
                 .frame(maxWidth: .infinity,alignment:.leading)
             
             if cameradata.BrandName == "ARRI" {
-                Text("2. 默认宽高比为16:9；FHD指分辨率1920x1080；UHD指分辨率3840x2160。部分录制规格根据机型不同可能需要额外激活授权。")
+                Text("2. 默认宽高比为16:9；FHD指分辨率1920x1080；UHD指分辨率3840x2160；部分录制规格根据机型不同可能需要额外激活授权。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. ARRIRAW为ARRI开发的12bit非线性RAW编码（对于ALEXA 35摄影机，为13bit）。HDE为ARRI公司开发的RAW压缩技术，用于ARRIRAW的无损压缩。")
+                Text("3. ARRIRAW为ARRI开发的12bit非线性RAW编码（对于ALEXA 35摄影机，为13bit）；HDE为ARRI公司开发的RAW压缩技术，用于ARRIRAW的无损压缩。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -46,7 +46,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. Prores为Apple开发的帧内压缩编码。iPhone系列机型视频录制采用可变帧速率（VFR），实际帧速率可能与拍摄选择帧速率不同。")
+                Text("3. Prores为Apple开发的帧内压缩编码；iPhone系列机型视频录制采用可变帧速率（VFR），实际帧速率可能与拍摄选择帧速率不同。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -56,7 +56,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "Blackmagicdesign" {
-                Text("2. FHD指分辨率1920x1080，UHD指分辨率3840x2160。")
+                Text("2. FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -70,11 +70,11 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "Canon" {
-                Text("2. 默认宽高比为16:9，DCI标准的宽高比为17:9。")
+                Text("2. 默认宽高比为16:9；DCI标准的宽高比为17:9。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. DCI 4K指分辨率为4096x2160，DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("3. DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -84,7 +84,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "Canon Cinema" {
-                Text("2. DCI 4K指分辨率为4096x2160，DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("2. DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -98,7 +98,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "DJI" {
-                Text("2. DCI 4K指分辨率为4096x2160，DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("2. DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -112,11 +112,11 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "Panasonic" {
-                Text("2. 默认宽高比为16:9，DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("2. 默认宽高比为16:9；DCI 4K指分辨率为4096x2160；DCI 2K指分辨率为2048x1080；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. Prores RAW为Apple开发的12bit非线性压缩RAW编码；Prores为Apple开发的帧内压缩编码；ALL-I指帧内压缩；IPB指帧间压缩。部分格式可能需要激活授权。")
+                Text("3. Prores RAW为Apple开发的12bit非线性压缩RAW编码；Prores为Apple开发的帧内压缩编码；ALL-I指帧内压缩；IPB指帧间压缩；部分格式可能需要激活授权。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -126,7 +126,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "RED" {
-                Text("2. 默认宽高比为16:9，FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
+                Text("2. 默认宽高比为16:9；FHD指分辨率1920x1080；UHD指分辨率3840x2160。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
@@ -154,11 +154,11 @@ func Comments(cameradata:CameraData) -> some View {
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
             else if cameradata.BrandName == "#General" {
-                Text("2. ARRIRAW为ARRI开发的非线性RAW编码；HDE为ARRI公司开发的RAW压缩技术，用于ARRIRAW的无损压缩；CinemaDNG为ADOBE开发的无损压缩RAW编码。")
+                Text("2. 选择Manual Codec和Manual Resolution模式来自定义编码速度和分辨率。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. Prores RAW为Apple开发的12bit非线性压缩RAW编码；Prores为Apple开发的帧内压缩编码。")
+                Text("3. ARRIRAW为ARRI开发的RAW编码；Prores RAW为Apple开发的压缩RAW编码；Prores为Apple开发的帧内压缩编码；HDE用于ARRIRAW的无损压缩。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)

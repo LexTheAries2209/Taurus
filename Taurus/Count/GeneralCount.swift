@@ -217,5 +217,5 @@ func GeneralResolutionMultiplier(cameradata:CameraData) -> Double {
 }
 
 func GeneralSpeed(cameradata:CameraData) -> Double {
-    return GeneralCodecSpeed(cameradata:cameradata) * GeneralResolutionMultiplier(cameradata:cameradata)
+    return GeneralCodecSpeed(cameradata:cameradata) * GeneralResolutionMultiplier(cameradata:cameradata) * (RateSpeed(cameradata:cameradata)/24)
 }
