@@ -45,14 +45,15 @@ struct ContentView: View {
                         cameradata.Media = "请选择储存卡"
                         cameradata.Rate = "请选择帧率"
                         cameradata.Format = "请选择幅面"
-                        cameradata.ResolutionWidth = "请输入宽度"
-                        cameradata.ResolutionHeight = "请输入高度"
+                        cameradata.ResolutionWidth = ""
+                        cameradata.ResolutionHeight = ""
                         
                     }
                     Spacer()
                     
                     //选择器与计算功能
                     HStack{
+                        
                         VStack (spacing:10){
                             //选择器模块
                             PickerView(cameradata: cameradata)

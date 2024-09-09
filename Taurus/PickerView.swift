@@ -55,7 +55,7 @@ struct PickerView: View {
             //分辨率选择
             if cameradata.CameraName == "Manual Resolution" {
                 HStack(alignment: .top) {
-                    Text("请输入分辨率")
+                    Text("输入分辨率")
                         .padding(.trailing, 75)
                         .padding(.top, 2.5)
                     
@@ -65,6 +65,10 @@ struct PickerView: View {
                         }
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onChange(of: cameradata.ResolutionWidth) { newValue in
+                            // 过滤掉非数字字符
+                            cameradata.ResolutionWidth = filterDigits(from: newValue)
+                        }
                     
                     Text("*")
                         .padding(.top, 5)
@@ -75,6 +79,10 @@ struct PickerView: View {
                         }
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onChange(of: cameradata.ResolutionHeight) { newValue in
+                            // 过滤掉非数字字符
+                            cameradata.ResolutionHeight = filterDigits(from: newValue)
+                        }
                         .padding(.trailing, 110)
                 }
             } else {
@@ -190,4 +198,11 @@ struct PickerView: View {
             }
         }
     }
+    private func filterDigits(from input: String) -> String {
+        let digits = "0123456789"
+        return input.filter { char in
+            digits.contains(char)
+        }
+    }
 }
+
