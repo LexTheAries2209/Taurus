@@ -131,8 +131,12 @@ struct PickerView: View {
         default:
             resolutions = ["无选项"]
         }
-        
-        return createPicker(selection: $cameradata.Resolution, label: "请选择分辨率", options: resolutions, showNoOptionText: resolutions == ["无选项"])
+        if cameradata.BrandName == "Canon" || cameradata.BrandName == "SONY" {
+            return createPicker(selection: $cameradata.Resolution, label: "请选择格式", options: resolutions, showNoOptionText: resolutions == ["无选项"])
+        }
+        else {
+            return createPicker(selection: $cameradata.Resolution, label: "请选择分辨率", options: resolutions, showNoOptionText: resolutions == ["无选项"])
+        }
     }
     
     private func createRatePicker() -> some View {
