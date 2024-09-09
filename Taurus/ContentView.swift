@@ -17,8 +17,8 @@ class CameraData: ObservableObject {
     @Published var Media = "请选择储存卡"
     @Published var Rate = "请选择帧率"
     @Published var Format = "请选择幅面"
-    @Published var ResolutionWidth: String = "请输入宽度"
-    @Published var ResolutionHeight: String = "请输入高度"
+    @Published var ResolutionWidth: String = ""
+    @Published var ResolutionHeight: String = ""
 }
 
 struct ContentView: View {

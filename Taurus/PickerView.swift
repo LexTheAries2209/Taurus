@@ -7,8 +7,22 @@
 
 import SwiftUI
 
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+            
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
+}
+
 struct PickerView: View {
     @ObservedObject var cameradata: CameraData
+    
     var body: some View {
         VStack(spacing: 10) {
             //品牌选择
@@ -18,8 +32,7 @@ struct PickerView: View {
             if let models = CameraModel[cameradata.BrandName] {
                 if cameradata.BrandName == "#General" {
                     createPicker(selection: $cameradata.CameraName, label: "请选择模式", options: models)
-                }
-                else {
+                } else {
                     createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: models)
                 }
             } else {
@@ -41,23 +54,32 @@ struct PickerView: View {
             
             //分辨率选择
             if cameradata.CameraName == "Manual Resolution" {
-                HStack {
+                HStack(alignment: .top) {
+                    Text("请输入分辨率")
+                        .padding(.trailing, 75)
+                        .padding(.top, 2.5)
+                    
                     TextField("请输入宽度", text: $cameradata.ResolutionWidth)
-                        
+                        .placeholder(when: cameradata.ResolutionWidth.isEmpty) {
+                            Text("").foregroundColor(.gray)
+                        }
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Text("*")
+                        .padding(.top, 5)
                     
                     TextField("请输入高度", text: $cameradata.ResolutionHeight)
+                        .placeholder(when: cameradata.ResolutionHeight.isEmpty) {
+                            Text("").foregroundColor(.gray)
+                        }
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.trailing, 110)
                 }
-            }
-            else {
+            } else {
                 createResolutionPicker()
             }
-            
             
             //DJI、CineAlta、CanonCinema帧率选择
             if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "#General" {
@@ -75,87 +97,87 @@ struct PickerView: View {
     }
     
     private func createResolutionPicker() -> some View {
-            let resolutions: [String]
-            
-            switch cameradata.BrandName {
-            case "ARRI":
-                resolutions = ARRIResolution(cameradata: cameradata)
-            case "RED":
-                resolutions = REDResolution(cameradata: cameradata)
-            case "Canon":
-                resolutions = CanonResolution(cameradata: cameradata)
-            case "Canon Cinema":
-                resolutions = CanonCinemaResolution(cameradata: cameradata)
-            case "Apple":
-                resolutions = AppleResolution(cameradata: cameradata)
-            case "Blackmagicdesign":
-                resolutions = BMDResolution(cameradata: cameradata)
-            case "SONY":
-                resolutions = SonyResolution(cameradata: cameradata)
-            case "Panasonic":
-                resolutions = PanaResolution(cameradata: cameradata)
-            case "DJI":
-                resolutions = DjiResolution(cameradata: cameradata)
-            case "#General":
-                resolutions = GeneralResolution(cameradata: cameradata)
-            default:
-                resolutions = ["无选项"]
-            }
-            
-            return createPicker(selection: $cameradata.Resolution, label: "请选择分辨率", options: resolutions, showNoOptionText: resolutions == ["无选项"])
+        let resolutions: [String]
+        
+        switch cameradata.BrandName {
+        case "ARRI":
+            resolutions = ARRIResolution(cameradata: cameradata)
+        case "RED":
+            resolutions = REDResolution(cameradata: cameradata)
+        case "Canon":
+            resolutions = CanonResolution(cameradata: cameradata)
+        case "Canon Cinema":
+            resolutions = CanonCinemaResolution(cameradata: cameradata)
+        case "Apple":
+            resolutions = AppleResolution(cameradata: cameradata)
+        case "Blackmagicdesign":
+            resolutions = BMDResolution(cameradata: cameradata)
+        case "SONY":
+            resolutions = SonyResolution(cameradata: cameradata)
+        case "Panasonic":
+            resolutions = PanaResolution(cameradata: cameradata)
+        case "DJI":
+            resolutions = DjiResolution(cameradata: cameradata)
+        case "#General":
+            resolutions = GeneralResolution(cameradata: cameradata)
+        default:
+            resolutions = ["无选项"]
         }
         
+        return createPicker(selection: $cameradata.Resolution, label: "请选择分辨率", options: resolutions, showNoOptionText: resolutions == ["无选项"])
+    }
+    
     private func createRatePicker() -> some View {
-            let rates: [String]
-            
-            if cameradata.CameraName.contains("CineAlta") {
-                rates = CinealtaRate(cameradata: cameradata)
-            } else {
-                switch cameradata.BrandName {
-                case "DJI":
-                    rates = DjiRate(cameradata: cameradata)
-                case "Canon Cinema":
-                    rates = CanonCinemaRate(cameradata: cameradata)
-                case "ARRI":
-                    rates = ArriRates(cameradata: cameradata)
-                case "Blackmagicdesign":
-                    rates = BMDRate(cameradata: cameradata)
-                case "Apple":
-                    rates = AppleRate(cameradata: cameradata)
-                case "RED":
-                    rates = DSMC3Rate(cameradata: cameradata)
-                case "#General":
-                    rates = GeneralRate(cameradata: cameradata)
-                default:
-                    rates = ["无选项"]
-                }
+        let rates: [String]
+        
+        if cameradata.CameraName.contains("CineAlta") {
+            rates = CinealtaRate(cameradata: cameradata)
+        } else {
+            switch cameradata.BrandName {
+            case "DJI":
+                rates = DjiRate(cameradata: cameradata)
+            case "Canon Cinema":
+                rates = CanonCinemaRate(cameradata: cameradata)
+            case "ARRI":
+                rates = ArriRates(cameradata: cameradata)
+            case "Blackmagicdesign":
+                rates = BMDRate(cameradata: cameradata)
+            case "Apple":
+                rates = AppleRate(cameradata: cameradata)
+            case "RED":
+                rates = DSMC3Rate(cameradata: cameradata)
+            case "#General":
+                rates = GeneralRate(cameradata: cameradata)
+            default:
+                rates = ["无选项"]
             }
-            
-            return createPicker(selection: $cameradata.Rate, label: "请选择帧率", options: rates, showNoOptionText: rates == ["无选项"])
         }
         
-        private func createMediaPicker() -> some View {
-            let medias: [String]
-            
-            switch cameradata.BrandName {
-            case "Canon":
-                medias = CanonMedia(cameradata: cameradata)
-            case "SONY":
-                medias = SonyMedia(cameradata: cameradata)
-            case "Panasonic":
-                medias = PanaMedia(cameradata: cameradata)
-            case "DJI":
-                medias = DjiMedia(cameradata: cameradata)
-            case "Canon Cinema":
-                medias = CanonCinemaMedia(cameradata: cameradata)
-            case "#General":
-                medias = GeneralMedia(cameradata: cameradata)
-            default:
-                medias = MediaName[cameradata.CameraName] ?? ["无选项"]
-            }
-            
-            return createPicker(selection: $cameradata.Media, label: "请选择储存卡", options: medias, showNoOptionText: medias == ["无选项"])
+        return createPicker(selection: $cameradata.Rate, label: "请选择帧率", options: rates, showNoOptionText: rates == ["无选项"])
+    }
+    
+    private func createMediaPicker() -> some View {
+        let medias: [String]
+        
+        switch cameradata.BrandName {
+        case "Canon":
+            medias = CanonMedia(cameradata: cameradata)
+        case "SONY":
+            medias = SonyMedia(cameradata: cameradata)
+        case "Panasonic":
+            medias = PanaMedia(cameradata: cameradata)
+        case "DJI":
+            medias = DjiMedia(cameradata: cameradata)
+        case "Canon Cinema":
+            medias = CanonCinemaMedia(cameradata: cameradata)
+        case "#General":
+            medias = GeneralMedia(cameradata: cameradata)
+        default:
+            medias = MediaName[cameradata.CameraName] ?? ["无选项"]
         }
+        
+        return createPicker(selection: $cameradata.Media, label: "请选择储存卡", options: medias, showNoOptionText: medias == ["无选项"])
+    }
     
     private func createPicker(selection: Binding<String>, label: String, options: [String], showNoOptionText: Bool = false) -> some View {
         Picker(selection: selection, label: Text(label).frame(width: 100, alignment: .center)) {
@@ -169,6 +191,3 @@ struct PickerView: View {
         }
     }
 }
-
-
-
