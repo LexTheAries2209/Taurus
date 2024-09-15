@@ -106,7 +106,7 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
             if cameradata.Codec == "ARRIRAW" {
                 Text("")
-                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(CodecSpeedCount(cameradata: cameradata) * resolutionMultiplier * rateMultiplier * rateMultiplier * 270 / 1024))")
+                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 270 / 1024))")
             }
         }
     }
