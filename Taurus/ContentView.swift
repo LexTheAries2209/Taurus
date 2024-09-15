@@ -75,21 +75,21 @@ struct ContentView: View {
                     Text("数据计算器")
                 }
                 
-                //                                其他功能模块
-                //                                Text("还没做出功能的阵列配置台")
-                //                                    .tabItem {
-                //                                        Text("阵列配置台")
-                //                                    }
-                //
-                //                                Text("还没做出功能的录制格式速查")
-                //                                    .tabItem {
-                //                                        Text("录制格式速查")
-                //                                    }
-                //
-                //                                Text("还没做出功能的像场覆盖图")
-                //                                    .tabItem {
-                //                                        Text("像场覆盖图")
-                //                                    }
+                                                //其他功能模块
+                                                Text("还没做出功能的阵列配置台")
+                                                    .tabItem {
+                                                        Text("阵列配置台")
+                                                    }
+                
+                                                Text("还没做出功能的录制格式速查")
+                                                    .tabItem {
+                                                        Text("录制格式速查")
+                                                    }
+                
+                                                Text("还没做出功能的像场覆盖图")
+                                                    .tabItem {
+                                                        Text("像场覆盖图")
+                                                    }
             }
             .frame(minWidth:800,minHeight: 425)
             .frame(maxWidth:800,maxHeight: 425)

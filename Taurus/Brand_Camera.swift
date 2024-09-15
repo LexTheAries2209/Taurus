@@ -27,3 +27,4 @@ public let CameraModel : [String:[String]] = [
     "Apple" : ["iPhone 15 Pro MAX","iPhone 15 Pro","iPhone 14 Pro MAX","iPhone 14 Pro"],
     "#General" : ["Select Resolution","Manual Resolution"],
 ]
+//"Select Mode","Manual Mode","Select Codec","Manual Codec",

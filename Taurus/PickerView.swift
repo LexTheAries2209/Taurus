@@ -12,7 +12,6 @@ extension View {
         when shouldShow: Bool,
         alignment: Alignment = .leading,
         @ViewBuilder placeholder: () -> Content) -> some View {
-            
             ZStack(alignment: alignment) {
                 placeholder().opacity(shouldShow ? 1 : 0)
                 self
@@ -53,7 +52,7 @@ struct PickerView: View {
             }
             
             //分辨率选择
-            if cameradata.CameraName == "Manual Resolution" {
+            if cameradata.CameraName == "Manual Resolution" || cameradata.CameraName == "Manual Mode" {
                 HStack(alignment: .top) {
                     Text("输入分辨率")
                         .padding(.trailing, 75)
