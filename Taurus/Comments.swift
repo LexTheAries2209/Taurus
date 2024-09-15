@@ -22,7 +22,7 @@ func Comments(cameradata:CameraData) -> some View {
                 .frame(maxWidth: .infinity,alignment:.center)
             Text(" ")
                 .font(.system(size: 1))
-            Text("1. 此版本[V1.2.8]仅包含《数据计算器》功能。摄影集规格参数数据截止至2024.8.16。计算结果仅供参考，实际数据量可能与计算不同。")
+            Text("1. 此版本[V1.2.9]仅包含《数据计算器》功能。摄影集规格参数数据截止至2024.9.15。计算结果仅供参考，实际数据量可能与计算不同。")
                 .font(.system(size: 10))
                 .padding(.leading,10)
                 .frame(maxWidth: .infinity,alignment:.leading)
