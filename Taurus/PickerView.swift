@@ -38,67 +38,98 @@ struct PickerView: View {
                 createPicker(selection: $cameradata.CameraName, label: "请选择机型", options: ["无选项"], showNoOptionText: true)
             }
             
-            //编码选择
-            if let codec = CodecName[cameradata.CameraName] {
-                createPicker(selection: $cameradata.Codec, label: "请选择编码", options: codec)
-            } else {
-                createPicker(selection: $cameradata.Codec, label: "请选择编码", options: ["无选项"], showNoOptionText: true)
-            }
-            
-            //Panasonic幅面选择
-            if cameradata.BrandName == "Panasonic" {
-                let formats = PanaFormat(cameradata: cameradata)
-                createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
-            }
-            
-            //分辨率选择
-            if cameradata.CameraName == "Manual Resolution" || cameradata.CameraName == "Manual Mode" {
+            //手动编码模式
+            if cameradata.CameraName == "Manual Codec" { //手动输入码率
                 HStack(alignment: .top) {
-                    Text("输入分辨率")
-                        .padding(.trailing, 75)
+                    Text("输入码率")
+                        .padding(.leading, 22)
                         .padding(.top, 2.5)
                     
-                    TextField("请输入宽度", text: $cameradata.ResolutionWidth)
-                        .placeholder(when: cameradata.ResolutionWidth.isEmpty) {
+                    Spacer()
+                    
+                    TextField("请输入码率", text: $cameradata.ManualCodecSpeed)
+                        .placeholder(when: cameradata.ManualCodecSpeed.isEmpty) { //输入框提示
                             Text("").foregroundColor(.gray)
                         }
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: cameradata.ResolutionWidth) { newValue in
-                            // 过滤掉非数字字符
-                            cameradata.ResolutionWidth = filterDigits(from: newValue)
+                        .onChange(of: cameradata.ManualCodecSpeed) { newValue in
+                            cameradata.ManualCodecSpeed = filterDigits(from: newValue) // 过滤掉非数字字符
                         }
                     
-                    Text("*")
-                        .padding(.top, 5)
-                    
-                    TextField("请输入高度", text: $cameradata.ResolutionHeight)
-                        .placeholder(when: cameradata.ResolutionHeight.isEmpty) {
-                            Text("").foregroundColor(.gray)
-                        }
-                        .frame(width: 100)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: cameradata.ResolutionHeight) { newValue in
-                            // 过滤掉非数字字符
-                            cameradata.ResolutionHeight = filterDigits(from: newValue)
-                        }
-                        .padding(.trailing, 110)
+                    Spacer()
                 }
-            } else {
-                createResolutionPicker()
+                
+                //储存卡选择
+                createMediaPicker()
             }
             
-            //DJI、CineAlta、CanonCinema帧率选择
-            if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "#General" {
-                createRatePicker()
-            }
-            
-            //储存卡选择
-            createMediaPicker()
-            
-            //ARRI、BMD、Apple、RED帧率选择
-            if cameradata.BrandName == "ARRI" || cameradata.BrandName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED" {
-                createRatePicker()
+            else {
+                
+                //编码选择
+                if let codec = CodecName[cameradata.CameraName] { //选择码率
+                    createPicker(selection: $cameradata.Codec, label: "请选择编码", options: codec)
+                } else {
+                    createPicker(selection: $cameradata.Codec, label: "请选择编码", options: ["无选项"], showNoOptionText: true)
+                }
+                
+                
+                //Panasonic幅面选择
+                if cameradata.BrandName == "Panasonic" {
+                    let formats = PanaFormat(cameradata: cameradata)
+                    createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
+                }
+                
+                //分辨率选择
+                if cameradata.CameraName == "Manual Resolution" { //手动输入分辨率
+                    HStack(alignment: .top) {
+                        Text("输入分辨率")
+                            .padding(.leading, 15)
+                            .padding(.top, 2.5)
+                        
+                        Spacer()
+                        
+                        TextField("请输入宽度", text: $cameradata.ResolutionWidth)
+                            .placeholder(when: cameradata.ResolutionWidth.isEmpty) { //输入框提示
+                                Text("").foregroundColor(.gray)
+                            }
+                            .frame(width: 100)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .onChange(of: cameradata.ResolutionWidth) { newValue in
+                                cameradata.ResolutionWidth = filterDigits(from: newValue) // 过滤掉非数字字符
+                            }
+                        
+                        Text("*")
+                            .padding(.top, 5)
+                        
+                        TextField("请输入高度", text: $cameradata.ResolutionHeight)
+                            .placeholder(when: cameradata.ResolutionHeight.isEmpty) { //输入框提示
+                                Text("").foregroundColor(.gray)
+                            }
+                            .frame(width: 100)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .onChange(of: cameradata.ResolutionHeight) { newValue in
+                                cameradata.ResolutionHeight = filterDigits(from: newValue) // 过滤掉非数字字符
+                            }
+                        
+                        Spacer()
+                    }
+                } else {
+                    createResolutionPicker()
+                }
+                
+                //DJI、CineAlta、CanonCinema帧率选择
+                if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "#General" {
+                    createRatePicker()
+                }
+                
+                //储存卡选择
+                createMediaPicker()
+                
+                //ARRI、BMD、Apple、RED帧率选择
+                if cameradata.BrandName == "ARRI" || cameradata.BrandName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED" {
+                    createRatePicker()
+                }
             }
         }
     }

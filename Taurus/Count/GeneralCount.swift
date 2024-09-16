@@ -52,7 +52,7 @@ func GeneralCodecSpeed(cameradata:CameraData) -> Double {
 
 //分辨率乘积
 func GeneralResolutionMultiplier(cameradata:CameraData) -> Double {
-    if cameradata.CameraName == "Select Resolution" {
+    if cameradata.CameraName == "Select Mode" {
         switch cameradata.Resolution {
         case "HD" :
             return 0.445
@@ -222,5 +222,10 @@ func GeneralResolutionMultiplier(cameradata:CameraData) -> Double {
 }
 
 func GeneralSpeed(cameradata:CameraData) -> Double {
-    return GeneralCodecSpeed(cameradata:cameradata) * GeneralResolutionMultiplier(cameradata:cameradata) * (RateSpeed(cameradata:cameradata)/24)
+    if cameradata.CameraName == "Manual Codec" {
+        return (Double(cameradata.ManualCodecSpeed) ?? 1)
+    }
+    else {
+        return GeneralCodecSpeed(cameradata:cameradata) * GeneralResolutionMultiplier(cameradata:cameradata) * (RateSpeed(cameradata:cameradata)/24)
+    }
 }

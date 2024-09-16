@@ -24,6 +24,7 @@ func DataOutput(cameradata: CameraData) -> some View {
         let codecSpeed = CodecSpeedCount(cameradata: cameradata)
         let resolutionMultiplier = ResolutionMultiplier(cameradata: cameradata)
         let rateMultiplier = RateMultiplier(cameradata: cameradata)
+        let GeneralSpeed = GeneralSpeed(cameradata:cameradata)
         
         if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta") {
             let sonySpeed = SonyCodecSpeed(cameradata: cameradata)
@@ -81,18 +82,29 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
         }
         else if cameradata.BrandName == "#General" {
-            let GeneralSpeed = GeneralSpeed(cameradata:cameradata)
-            Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
-            if cameradata.Codec.contains("ARRIRAW") {
+            if cameradata.CameraName == "Manual Codec" {
                 Text("")
-                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(GeneralSpeed * 270 / 1024))")
+                Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
+                Text("")
+                Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
+                Text("")
+                Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
+                Text("")
+                Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
+            }
+            else {
+                Text("")
+                Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
+                Text("")
+                Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
+                Text("")
+                Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
+                Text("")
+                Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
+                if cameradata.Codec.contains("ARRIRAW") {
+                    Text("")
+                    Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(GeneralSpeed * 270 / 1024))")
+                }
             }
         }
         else {
