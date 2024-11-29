@@ -10,7 +10,10 @@ import Foundation
 func AppleRate(cameradata:CameraData) -> [String] {
     var rates: [String] = []
     
-    if cameradata.BrandName == "Apple" {
+    if cameradata.BrandName == "Apple" || cameradata.CameraName.contains("16") {
+        rates = ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000","100.000","120.000"]
+    }
+    else {
         rates = ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000"]
     }
     return rates

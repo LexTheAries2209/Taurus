@@ -46,7 +46,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
-                Text("3. Prores为Apple开发的帧内压缩编码；iPhone系列机型视频录制采用可变帧速率（VFR），实际帧速率可能与拍摄选择帧速率不同。")
+                Text("3. Prores为Apple开发的帧内压缩编码；iPhone系列机型视频录制采用可变帧速率（VFR），实际帧速率可能与拍摄选择帧速率不同；仅有主摄支持120fps录制。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)

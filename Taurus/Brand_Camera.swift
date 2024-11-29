@@ -24,7 +24,7 @@ public let CameraModel : [String:[String]] = [
     //"Pana" : ["EVA-1"]
     "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
     //"ZCam" : [""]
-    "Apple" : ["iPhone 15 Pro MAX","iPhone 15 Pro","iPhone 14 Pro MAX","iPhone 14 Pro"],
+    "Apple" : ["iPhone 16 Pro MAX","iPhone 16 Pro","iPhone 15 Pro MAX","iPhone 15 Pro","iPhone 14 Pro MAX","iPhone 14 Pro"],
     "#General" : ["Select Mode","Manual Codec","Manual Resolution"],
 ]
 
