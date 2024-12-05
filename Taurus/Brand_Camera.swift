@@ -8,7 +8,7 @@
 import Foundation
 
 public let CameraModel : [String:[String]] = [
-    "ARRI" : ["ALEXA 35","ALEXA 65","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
+    "ARRI" : ["ALEXA 265","ALEXA 65","ALEXA 35","ALEXA Mini LF","ALEXA LF","ALEXA Mini","ALEXA SXT","ALEXA XT","ALEXA Classic","AMIRA"],
     "RED" : ["V-Raptor XL [X]","V-Raptor [X]","V-Raptor XL[8K VV]","V-Raptor[8K VV]","V-Raptor XL[8K S35]","V-Raptor[8K S35]","KEMODO-X","KEMODO"],
     //"RED" : ["Ranger[Monstro 8K VV]","Ranger[Helium 8K S35]","Ranger[Gemini 5K S35]","DSMC2[Monstro 8K VV]","DSMC2[Helium 8K S35]","DCMC2[Gemini 5K S35]","DSMC2[Dragon-X 6K S35]","Raven[Dragon 4.5K]","Weapon[Monstro 8K VV]","Weapon[Helium 8K S35]","Weapon[Dragon 6K S35]","Epic-W[Gemini 5K S35]","Epic-W[Dragon 6K S35]","Epic-W[Helium 8K S35]","Epic[Dragon 6K S35]","Epic[Mysterium-X 5K S35]","Scarlet-W[Dragon 5K S35]","Scarlet[Dragon 6K S35]","Scarlet[Mysterium-X 5K S35]","RED ONE M-X[Mysterium-X 4K S35]","RED ONE[Mysterium 4K S35]"],
     "SONY" : ["CineAlta Venice 2[8K]","CineAlta Venice 2[6K]","CineAlta Venice","CineAlta Burano","FX 9","FX 6","FX 3","FX 30","Alpha 1","A9M3","A7S3","A7R5","A7M4","A7C2","A7CR","ZV-E1","A6700"],

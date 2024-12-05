@@ -110,6 +110,20 @@ func ArriRates(cameradata:CameraData) -> [String] {
             }
         }
     }
+    
+    if cameradata.CameraName == "ALEXA 265" {
+        if cameradata.Media == "Compact Drive 1TB" {
+            if cameradata.Resolution.contains("6.5K") {
+                rates = ["0.750","1.000","20.000","23.976","24.000","25.000"]
+            }
+            else {
+                rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000"]
+            }
+        }
+        else {
+            rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000"]
+        }
+    }
     return rates
 }
 

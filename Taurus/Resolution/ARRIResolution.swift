@@ -64,6 +64,8 @@ func ARRIResolution(cameradata:CameraData) -> [String] {
                 "ALEXA LF_Prores 422" : ["4.5K LF[4448*3096][OG]","4.5K LF[4448*1856][2.39:1]","UHD LF","2K LF[2048*1152][From UHD]","FHD LF[From UHD]"],
                 
                 "ALEXA 65_ARRIRAW" : ["6.5K 65mm[6560*3100][OG]","5.1K 65mm[5120*2880]","4.3K LF[4320*2880][3:2]","4.5K LF[4448*3096][1.43:1]","UHD LF"],
+                
+                "ALEXA 265_ARRIRAW" : ["6.5K 65mm[6560*3100][OG]","5.1K 65mm[5120*2880]","4.5K LF[4448*3096][1.43:1]"],
             ]
             resolutions = ARRIResolutions[key, default: ["无选项"]]
         }

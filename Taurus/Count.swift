@@ -396,7 +396,7 @@ func ProresCompensation(cameradata:CameraData) -> Double {
     switch cameradata.CameraName {
     case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
         return 1.125
-    case "ALEXA 35","ALEXA Mini LF":
+    case "ALEXA 35","ALEXA Mini LF","ALEXA 265":
         return 1
     default :
         return 1

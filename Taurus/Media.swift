@@ -19,6 +19,7 @@ public let MediaName : [String:[String]] = [
     "ALEXA Mini LF" : ["Compact Drive 1TB","Compact Drive 2TB"],
     "ALEXA LF" : ["SxS Pro+ 256GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
     "ALEXA 65" : ["XR Capture Drive 512GB","SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
+    "ALEXA 265" : ["Compact Drive 1TB","Compact Drive 2TB"],
     
     //RED
     "V-Raptor XL [X]" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 330GB","CFExpress TypeB 512GB","CFExpress TypeB 660GB","CFExpress TypeB 1TB","CFExpress TypeB 1.3TB","CFExpress TypeB 2TB"],
