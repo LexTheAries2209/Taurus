@@ -153,7 +153,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
-            else if cameradata.BrandName == "#General" {
+            else if cameradata.BrandName == "[General]" {
                 Text("2. 选择Manual Codec和Manual Resolution模式来自定义编码速度和分辨率。")
                     .font(.system(size: 10))
                     .padding(.leading,10)

@@ -81,7 +81,7 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
         }
-        else if cameradata.BrandName == "#General" {
+        else if cameradata.BrandName == "[General]" {
             if cameradata.CameraName == "Manual Codec" {
                 Text("")
                 Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
