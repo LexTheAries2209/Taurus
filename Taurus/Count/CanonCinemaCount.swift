@@ -239,6 +239,133 @@ func CanonCinemaResolutionSpeed(cameradata:CameraData) -> Double {
         }
     }
     
+    else if cameradata.CameraName.contains("C400") || cameradata.CameraName.contains("C80"){
+        if cameradata.Codec.contains("RAW") {
+            if cameradata.Codec.contains("HQ") {
+                if cameradata.Resolution.contains("6K") {
+                    return 1730
+                }
+                else if cameradata.Resolution.contains("4.3K") {
+                    return 916
+                }
+                else if cameradata.Resolution.contains("2K") {
+                    return 230
+                }
+            }
+            else if cameradata.Codec.contains("ST") {
+                if cameradata.Resolution.contains("6K") {
+                    return 850
+                }
+                else if cameradata.Resolution.contains("4.3K") {
+                    return 451
+                }
+                else if cameradata.Resolution.contains("2K") {
+                    return 114
+                }
+            }
+            else if cameradata.Codec.contains("LT") {
+                if cameradata.Resolution.contains("6K") {
+                    return 553
+                }
+                else if cameradata.Resolution.contains("4.3K") {
+                    return 293
+                }
+                else if cameradata.Resolution.contains("2K") {
+                    return 74
+                }
+            }
+        }
+        else if cameradata.Codec == "XF-HEVC S LongGOP" {
+            if cameradata.Resolution.contains("4:2:2") {
+                if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                    if cameradata.Rate == "59.940" || cameradata.Rate == "50.000" {
+                        return 225
+                    }
+                    else {
+                        return 135
+                    }
+                }
+                else {
+                    return 50
+                }
+            }
+            if cameradata.Resolution.contains("4:2:0") {
+                if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                    if cameradata.Rate == "59.940" || cameradata.Rate == "50.000" {
+                        return 150
+                    }
+                    else {
+                        return 100
+                    }
+                }
+                else {
+                    return 35
+                }
+            }
+        }
+        else if cameradata.Codec == "XF-AVC S Intra" {
+            if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                return 480
+            }
+            else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
+                return 120
+            }
+        }
+        else if cameradata.Codec == "XF-AVC S LongGOP" {
+            if cameradata.Resolution.contains("4:2:2") {
+                if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                    if cameradata.Rate == "50.000" || cameradata.Rate == "59.940" {
+                        return 250
+                    }
+                    else {
+                        return 150
+                    }
+                }
+                else {
+                    return 50
+                }
+            }
+            else if cameradata.Resolution.contains("4:2:0") {
+                if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                    if cameradata.Rate == "50.000" || cameradata.Rate == "59.940" {
+                        return 150
+                    }
+                    else {
+                        return 100
+                    }
+                }
+                else {
+                    return 35
+                }
+            }
+        }
+        else if cameradata.Codec == "XF-AVC Intra" {
+            if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                return 480
+            }
+            else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
+                return 120
+            }
+        }
+        else if cameradata.Codec == "XF-AVC LongGOP" {
+            if cameradata.Resolution.contains("4:2:2") {
+                if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
+                    if cameradata.Rate == "50.000" || cameradata.Rate == "59.940" {
+                        return 250
+                    }
+                    else {
+                        return 150
+                    }
+                }
+                else {
+                    return 50
+                }
+            }
+        }
+    }
+    
+    
+    
     else if cameradata.CameraName == "CinemaEOS C300 Mark3" {
         if cameradata.Codec == "Cinema RAW Light" {
             if cameradata.Resolution.contains("4K") {
@@ -306,6 +433,14 @@ func CanonCinemaCodecSpeed(cameradata:CameraData) -> Double {
             return CanonCinemaResolutionSpeed(cameradata: cameradata)
         }
         else if cameradata.Codec.contains("RAW") {
+            return CanonCinemaResolutionSpeed(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
+        }
+        else {
+            return CanonCinemaResolutionSpeed(cameradata: cameradata)
+        }
+    }
+    else if cameradata.CameraName.contains("C400") || cameradata.CameraName.contains("C80") {
+        if cameradata.Codec.contains("RAW") || cameradata.Codec.contains("Intra") {
             return CanonCinemaResolutionSpeed(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
         }
         else {
