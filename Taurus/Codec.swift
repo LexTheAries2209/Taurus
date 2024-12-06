@@ -57,6 +57,7 @@ public let CodecName : [String:[String]] = [
     "CinemaEOS C500 Mark2" : ["Cinema RAW Light","Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C300 Mark3" : ["Cinema RAW Light","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C400" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
+    "CinemaEOS C80" : ["Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C70" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS R5C" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     

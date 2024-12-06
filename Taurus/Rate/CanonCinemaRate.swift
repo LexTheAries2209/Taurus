@@ -80,6 +80,15 @@ func CanonCinemaRate(cameradata:CameraData) -> [String] {
         }
     }
     
+    else if cameradata.CameraName.contains("C80") {
+        if cameradata.Codec.contains("RAW") && (cameradata.Resolution.contains("6K") || cameradata.Codec.contains("ST")) {
+            rates = ["23.976","24.000","25.000","29.970"]
+        }
+        else {
+            rates = ["23.976","24.000","25.000","29.970","50.000","59.940"]
+        }
+    }
+    
     else  {
         rates = ["无选项"]
     }

@@ -11,7 +11,7 @@ func CanonCinemaMedia(cameradata:CameraData) -> [String] {
     var CanonCinemaMedia = [""]
     let CodecSpeed = CanonCinemaCodecSpeed(cameradata: cameradata)
     
-    if cameradata.CameraName == "CinemaEOS C70" {
+    if cameradata.CameraName == "CinemaEOS C70" || cameradata.CameraName == "CinemaEOS C80" {
         if CodecSpeed < 270 {
             CanonCinemaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
         }
