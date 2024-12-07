@@ -63,6 +63,7 @@ public let CodecName : [String:[String]] = [
     
     //Canon
     "EOS R3" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
+    "EOS R5 Mark2" : ["RAW","RAW Light","XF-HEVC S Intra HQ FF","XF-HEVC S Intra ST FF","XF-HEVC S Intra LT FF","XF-HEVC S LongGOP FF","XF-AVC S Intra HQ FF","XF-AVC S Intra ST FF","XF-AVC S Intra LT FF","XF-AVC S LongGOP FF","XF-HEVC S LongGOP S35","XF-AVC S Intra HQ S35","XF-AVC S Intra ST S35","XF-AVC S Intra LT S35","XF-AVC S LongGOP S35"],
     "EOS R5" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R6 Mark2" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R6" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
