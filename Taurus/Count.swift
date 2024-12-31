@@ -59,7 +59,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 0.445
     case "2K S16[2048*864][2.4:1]","2K S8[2048*864][2.4:1]" :
         return 0.85
-    case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]","FHD S16","FHD S8","FHD" :
+    case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]","FHD S16","FHD S8","FHD","2K FF[1920*1080][16:9]","2K S35[1920*1080][16:9]" :
         return 1
     case "2K S16[2048*1024][2:1]","2K S8[2048*1024][2:1]","4K S35[4096*512][8:1]" :
         return 1.01
@@ -97,7 +97,7 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 3.56
     case "3.4K S35[3424*2202][OG]","3.4K S35[3424*2202][1.55:1]","2.8K S35[2880*2160][Cilp 3424*2202][4:3]" :
         return 3.64
-    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16","4K FF[3840*2160][16:9]","4K S35[3840*2160][16:9]","3.8K S35[3840*2160][16:9]","UHD" :
+    case "2.8K LF[2880*2880][1:1]","UHD LF","UHD S35","UHD S35[From 3200*1800]","UHD S35[From 4096*2304]","UHD S35[From 2743*3086][8:9 ANA]","UHD LF[From 4320*2430]","4.5K LF[4448*1856][2.39:1]","UHD S16","4K FF[3840*2160][16:9]","4K S35[3840*2160][16:9]","3.8K S35[3840*2160][16:9]","UHD","4K FFcrop[3840*2160][16:9]" :
         return 4
     case "4K S35[4096*2048][2:1]","4K S16[4096*2048][2:1]" :
         return 4.05
@@ -147,10 +147,14 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 7.92
     case "5.4K S35[5434*3056][16:9]" :
         return 8
+    case "6K FFcrop[5568*3136][16:9]" :
+        return 8.41
     case "5.8K S35[5760*3036][16:9]" :
         return 8.433
     case "5.8K S35[5792*3056][17:9]" :
         return 8.536
+    case "6K FF[5632*3168][16:9]" :
+        return 8.6
     case "5.7K FF[5674*3192][17:9]" :
         return 8.734
     case "6K VV[5760*3240]","6K S35[5760*3240]","6K FFcrop[5952*3136][17:9]","5.8K S35[5760*3240][17:9]" :
