@@ -13,37 +13,37 @@ func Codecspeed(cameradata:CameraData) -> Double {
     switch cameradata.Codec {
     case "ARRIRAW" :
         return 600
-    case "Prores 4444 XQ" :
+    case "ProRes 4444 XQ" :
         return 400
     case "CinemaDNG" :
         return 380
-    case "Prores 4444" :
+    case "ProRes 4444" :
         return 264
     case "X-OCN XT" :
         return 226.15
     case "REDCODE HQ" :
         return 199.2
-    case "Prores RAW HQ" :
+    case "ProRes RAW HQ" :
         return 190
-    case "Prores 422 HQ" :
+    case "ProRes 422 HQ" :
         return 176
     case "X-OCN ST" :
         return 154.675
     case "REDCODE MQ" :
         return 140
-    case "Prores 422" :
+    case "ProRes 422" :
         return 117.6
     case "REDCODE LQ" :
         return 87.5
     case "X-OCN LT" :
         return 91.165
-    case "Prores 422 LT" :
+    case "ProRes 422 LT" :
         return 81.2
     case "MPEG-2 HD 422" :
         return 66
     case "REDCODE ELQ" :
         return 54.2
-    case "Prores 422 Proxy" :
+    case "ProRes 422 Proxy" :
         return 36
     case "H.264(10bit 4:2:0)" :
         return 33
@@ -386,8 +386,8 @@ func RateMultiplier(cameradata:CameraData) ->Double {
 //加入补偿的编码速度
 func CodecSpeedCount(cameradata:CameraData) -> Double {
     switch cameradata.Codec {
-    case "Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422LT" :
-        return Codecspeed(cameradata:cameradata)*ProresCompensation(cameradata:cameradata)
+    case "ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422LT" :
+        return Codecspeed(cameradata:cameradata)*ProResCompensation(cameradata:cameradata)
     case "ARRIRAW" :
         return Codecspeed(cameradata:cameradata)*ARRIRAWCompensation(cameradata:cameradata)
     default :
@@ -395,8 +395,8 @@ func CodecSpeedCount(cameradata:CameraData) -> Double {
     }
 }
 
-//旧机型Prores编码码率乘积
-func ProresCompensation(cameradata:CameraData) -> Double {
+//旧机型ProRes编码码率乘积
+func ProResCompensation(cameradata:CameraData) -> Double {
     switch cameradata.CameraName {
     case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
         return 1.125

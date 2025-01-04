@@ -24,7 +24,7 @@ func PanaMedia(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName == "S5M2X" {
-        if (cameradata.Codec != "Prores 422 HQ" && cameradata.Codec != "Prores 422") || ((cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422") && (cameradata.Resolution == "FHD[10bit 4:2:2][23.976p]" || cameradata.Resolution == "FHD[10bit 4:2:2][24p]" || cameradata.Resolution == "FHD[10bit 4:2:2][25p]" || cameradata.Resolution == "FHD[10bit 4:2:2][29.97p]" || cameradata.Resolution == "FHD[10bit 4:2:2][50p]" || cameradata.Resolution == "FHD[10bit 4:2:2][59.94p]")) {
+        if (cameradata.Codec != "ProRes 422 HQ" && cameradata.Codec != "ProRes 422") || ((cameradata.Codec == "ProRes 422 HQ" || cameradata.Codec == "ProRes 422") && (cameradata.Resolution == "FHD[10bit 4:2:2][23.976p]" || cameradata.Resolution == "FHD[10bit 4:2:2][24p]" || cameradata.Resolution == "FHD[10bit 4:2:2][25p]" || cameradata.Resolution == "FHD[10bit 4:2:2][29.97p]" || cameradata.Resolution == "FHD[10bit 4:2:2][50p]" || cameradata.Resolution == "FHD[10bit 4:2:2][59.94p]")) {
             if CodecSpeed <= 200 {
                 PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
             }
@@ -44,7 +44,7 @@ func PanaMedia(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName.contains("GH") {
-        if cameradata.Codec != "Prores 422 HQ" || cameradata.Codec != "Prores 422" {
+        if cameradata.Codec != "ProRes 422 HQ" || cameradata.Codec != "ProRes 422" {
             if CodecSpeed <= 200 {
                 PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
             }

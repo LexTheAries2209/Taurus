@@ -49,7 +49,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName == "S5M2" || cameradata.CameraName == "S5M2X" || cameradata.CameraName == "S9" {
-        if cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422"{
+        if cameradata.Codec == "ProRes 422 HQ" || cameradata.Codec == "ProRes 422"{
             switch cameradata.Format {
             case "Full Frame" :
                 PanaResolution = ["DCI 5.8K[5776*3056][10bit 4:2:2][23.976p]","DCI 5.8K[5776*3056][10bit 4:2:2][24p]","DCI 5.8K[5776*3056][10bit 4:2:2][25p]","DCI 5.8K[5776*3056][10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][23.976p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][23.976p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
@@ -100,7 +100,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName == "GH6" || cameradata.CameraName == "G9M2" || cameradata.CameraName == "GH7" {
-        if cameradata.Codec == "Prores RAW HQ" || cameradata.Codec == "Prores RAW" {
+        if cameradata.Codec == "ProRes RAW HQ" || cameradata.Codec == "ProRes RAW" {
             if cameradata.Format == "M43" {
                 PanaResolution = ["DCI 5.7K[5728*3024][12bit RAW][23.976p]","DCI 5.7K[5728*3024][12bit RAW][24p]","DCI 5.7K[5728*3024][12bit RAW][25p]","DCI 5.7K[5728*3024][12bit RAW][29.97p]","DCI 4K[12bit RAW][23.976p]","DCI 4K[12bit RAW][24p]","DCI 4K[12bit RAW][25p]","DCI 4K[12bit RAW][29.97p]","DCI 4K[12bit RAW][50p]","DCI 4K[12bit RAW][59.94p]"]
             }
@@ -108,7 +108,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
                 PanaResolution = ["DCI 4K[12bit RAW][23.976p]","DCI 4K[12bit RAW][24p]","DCI 4K[12bit RAW][25p]","DCI 4K[12bit RAW][29.97p]","DCI 4K[12bit RAW][50p]","DCI 4K[12bit RAW][59.94p]"]
             }
         }
-        else if cameradata.Codec == "Prores 422 HQ" || cameradata.Codec == "Prores 422" {
+        else if cameradata.Codec == "ProRes 422 HQ" || cameradata.Codec == "ProRes 422" {
             if cameradata.Format == "M43" {
                 PanaResolution = ["DCI 5.7K[5728*3024][10bit 4:2:2][23.976p]","DCI 5.7K[5728*3024][10bit 4:2:2][24p]","DCI 5.7K[5728*3024][10bit 4:2:2][25p]","DCI 5.7K[5728*3024][10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][23.976p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]","FHD[10bit 4:2:2][23.976p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
             }

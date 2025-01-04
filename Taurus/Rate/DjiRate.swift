@@ -14,13 +14,13 @@ func DjiRate(cameradata:CameraData) -> [String] {
         if cameradata.Resolution == "4K FF[4096*2160][17:9]" || cameradata.Resolution == "4K FF[3840*2160][16:9]" {
             rates = ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
         }
-        else if (cameradata.Resolution == "8K FF[8192*4320][17:9]" || cameradata.Resolution == "8K FF[7680*4320][16:9]") && cameradata.Codec == "Prores 422 HQ" {
+        else if (cameradata.Resolution == "8K FF[8192*4320][17:9]" || cameradata.Resolution == "8K FF[7680*4320][16:9]") && cameradata.Codec == "ProRes 422 HQ" {
             rates = ["23.976","24.000","25.000","29.970","30.000"]
         }
         else if cameradata.Resolution.contains("[17:9]") || cameradata.Resolution.contains("[16:9]"){
             rates = ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000"]
         }
-        else if cameradata.Resolution == "8K FF[8192*3424][2.39:1]" && cameradata.Codec == "Prores RAW HQ" {
+        else if cameradata.Resolution == "8K FF[8192*3424][2.39:1]" && cameradata.Codec == "ProRes RAW HQ" {
             rates = ["72.000","75.000"]
         }
         else {
@@ -58,10 +58,10 @@ func DjiRate(cameradata:CameraData) -> [String] {
             if cameradata.Codec == "CinemaDNG" {
                 rates = ["23.976","24.000","25.000"]
             }
-            else if cameradata.Codec == "Prores 422 HQ" {
+            else if cameradata.Codec == "ProRes 422 HQ" {
                 rates = ["23.976","24.000","25.000","29.970","30.000"]
             }
-            else if cameradata.Codec == "Prores RAW HQ" {
+            else if cameradata.Codec == "ProRes RAW HQ" {
                 if cameradata.Resolution != "8K FF[8192*3424][2.39:1]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000"]
                 }

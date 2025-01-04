@@ -92,17 +92,17 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
                 return 54.4
             case "Blackmagic RAW 12:1" :
                 return 36.8
-            case "Prores 4444 XQ" :
+            case "ProRes 4444 XQ" :
                 return 288
-            case "Prores 4444" :
+            case "ProRes 4444" :
                 return 190.4
-            case "Prores 422 HQ" :
+            case "ProRes 422 HQ" :
                 return 126.5
-            case "Prores 422" :
+            case "ProRes 422" :
                 return 84.8
-            case "Prores 422 LT" :
+            case "ProRes 422 LT" :
                 return 58.8
-            case "Prores 422 Proxy" :
+            case "ProRes 422 Proxy" :
                 return 25.84
             default :
                 return 0
@@ -118,17 +118,17 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
                 return 52.9
             case "Blackmagic RAW 12:1" :
                 return 35.28
-            case "Prores 4444 XQ" :
+            case "ProRes 4444 XQ" :
                 return 275.6
-            case "Prores 4444" :
+            case "ProRes 4444" :
                 return 181.9
-            case "Prores 422 HQ" :
+            case "ProRes 422 HQ" :
                 return 121.22
-            case "Prores 422" :
+            case "ProRes 422" :
                 return 81.15
-            case "Prores 422 LT" :
+            case "ProRes 422 LT" :
                 return 56.2
-            case "Prores 422 Proxy" :
+            case "ProRes 422 Proxy" :
                 return 24.7
             default :
                 return 0
@@ -144,17 +144,17 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
                 return 38.4
             case "Blackmagic RAW 12:1" :
                 return 25.6
-            case "Prores 4444 XQ" :
+            case "ProRes 4444 XQ" :
                 return 200
-            case "Prores 4444" :
+            case "ProRes 4444" :
                 return 132
-            case "Prores 422 HQ" :
+            case "ProRes 422 HQ" :
                 return 88
-            case "Prores 422" :
+            case "ProRes 422" :
                 return 58.88
-            case "Prores 422 LT" :
+            case "ProRes 422 LT" :
                 return 40.8
-            case "Prores 422 Proxy" :
+            case "ProRes 422 Proxy" :
                 return 17.92
             default :
                 return 0
@@ -170,17 +170,17 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
                 return 13.23
             case "Blackmagic RAW 12:1" :
                 return 8.82
-            case "Prores 4444 XQ" :
+            case "ProRes 4444 XQ" :
                 return 68.9
-            case "Prores 4444" :
+            case "ProRes 4444" :
                 return 45.474
-            case "Prores 422 HQ" :
+            case "ProRes 422 HQ" :
                 return 30.32
-            case "Prores 422" :
+            case "ProRes 422" :
                 return 20.28
-            case "Prores 422 LT" :
+            case "ProRes 422 LT" :
                 return 14.06
-            case "Prores 422 Proxy" :
+            case "ProRes 422 Proxy" :
                 return 6.173
             default :
                 return 0
@@ -196,17 +196,17 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
                 return 9.6
             case "Blackmagic RAW 12:1" :
                 return 6.4
-            case "Prores 4444 XQ" :
+            case "ProRes 4444 XQ" :
                 return 50
-            case "Prores 4444" :
+            case "ProRes 4444" :
                 return 33
-            case "Prores 422 HQ" :
+            case "ProRes 422 HQ" :
                 return 22
-            case "Prores 422" :
+            case "ProRes 422" :
                 return 14.72
-            case "Prores 422 LT" :
+            case "ProRes 422 LT" :
                 return 10.2
-            case "Prores 422 Proxy" :
+            case "ProRes 422 Proxy" :
                 return 4.48
             default :
                 return 0

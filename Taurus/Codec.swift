@@ -9,14 +9,14 @@ import Foundation
 
 public let CodecName : [String:[String]] = [
     //ARRI
-    "AMIRA" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","MPEG-2 HD 422"],
-    "ALEXA Classic" : ["Prores 4444","Prores 422 HQ","Prores 422"],
-    "ALEXA XT" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422"],
-    "ALEXA SXT" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422"],
-    "ALEXA 35" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
-    "ALEXA Mini" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT"],
-    "ALEXA Mini LF" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
-    "ALEXA LF" : ["ARRIRAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422"],
+    "AMIRA" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","MPEG-2 HD 422"],
+    "ALEXA Classic" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA XT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA SXT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA 35" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
+    "ALEXA Mini" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "ALEXA Mini LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
+    "ALEXA LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA 65" : ["ARRIRAW"],
     "ALEXA 265" : ["ARRIRAW"],
     
@@ -31,11 +31,11 @@ public let CodecName : [String:[String]] = [
     "KEMODO" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     
     //SONY
-    //"CineAlta Venice 2[8K]": ["Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
+    //"CineAlta Venice 2[8K]": ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "CineAlta Venice 2[8K]": ["X-OCN XT","X-OCN ST","X-OCN LT"],
-    //"CineAlta Venice 2[6K]": ["Prores 4444 XQ","Prores 4444","Prores 422 HQ"],
+    //"CineAlta Venice 2[6K]": ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "CineAlta Venice 2[6K]": ["X-OCN XT","X-OCN ST","X-OCN LT"],
-    //"CineAlta Venice" : ["Prores 4444","Prores 422 HQ","Prores 422","Prores 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
+    //"CineAlta Venice" : ["ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 Proxy","XAVC-I Class300","XAVC-I Class480","MPEG-2 LongGOP"],
     "CineAlta Venice" : ["X-OCN XT","X-OCN ST","X-OCN LT"],
     //"CineAlta Burano" : ["XAVC-H Intra HQ","XAVC-H Intra SQ","XAVC-H LongGOP","XAVC Intra","XAVC LongGOP"],
     "CineAlta Burano" : ["X-OCN LT"],
@@ -73,32 +73,32 @@ public let CodecName : [String:[String]] = [
     
     //Panasonic
     "S1H" : ["HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
-    "S5M2X" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "S5M2X" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2" : ["HEVC LongGOP","AVC LongGOP"],
     "S9" : ["HEVC LongGOP","AVC LongGOP"],
-    "GH7" : ["Prores RAW HQ","Prores RAW","Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
-    "GH6" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
-    "G9M2" : ["Prores 422 HQ","Prores 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "GH7" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "GH6" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "G9M2" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     
     //DJI
-    "Ronin 4D[8K]" : ["Prores RAW HQ","Prores 422 HQ","H.264(10bit 4:2:0)"],
-    "Ronin 4D[6K]" : ["Prores RAW HQ","Prores 4444 XQ","Prores 422 HQ","Prores 422 LT","H.264(10bit 4:2:0)"],
-    "Inspire 3" : ["CinemaDNG","Prores RAW HQ","Prores 422 HQ","H.264(10bit 4:2:0)"],
+    "Ronin 4D[8K]" : ["ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
+    "Ronin 4D[6K]" : ["ProRes RAW HQ","ProRes 4444 XQ","ProRes 422 HQ","ProRes 422 LT","H.264(10bit 4:2:0)"],
+    "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     
     //Apple
-    "iPhone 16 Pro MAX" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "iPhone 16 Pro" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "iPhone 15 Pro MAX" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "iPhone 15 Pro" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "iPhone 14 Pro MAX" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "iPhone 14 Pro" : ["Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
+    "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 15 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 14 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     
     //BMD
     "Blackmagic URSA Mini Pro 12K" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
-    "Blackmagic URSA Mini Pro 4.6K G2" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "Blackmagic URSA Mini Pro 4.6K" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
+    "Blackmagic URSA Mini Pro 4.6K G2" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "Blackmagic URSA Mini Pro 4.6K" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     
     //General
-    "Select Mode" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","Prores RAW HQ","Prores RAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
-    "Manual Resolution" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","Prores RAW HQ","Prores RAW","Prores 4444 XQ","Prores 4444","Prores 422 HQ","Prores 422","Prores 422 LT","Prores 422 Proxy"],
+    "Select Mode" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","ProRes RAW HQ","ProRes RAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "Manual Resolution" : ["ARRIRAW[13bit]","ARRIRAW[12bit]","REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ","X-OCN XT","X-OCN ST","X-OCN LT","CinemaDNG","ProRes RAW HQ","ProRes RAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
 ]

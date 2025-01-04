@@ -54,15 +54,15 @@ func CodecNumber(cameradata:CameraData) -> Int {
     switch cameradata.Codec {
     case "ARRIRAW" :
         return 10
-    case "Prores 4444 XQ" :
+    case "ProRes 4444 XQ" :
         return 20
-    case "Prores 4444" :
+    case "ProRes 4444" :
         return 21
-    case "Prores 422 HQ" :
+    case "ProRes 422 HQ" :
         return 22
-    case "Prores 422" :
+    case "ProRes 422" :
         return 23
-    case "Prores 422 LT" :
+    case "ProRes 422 LT" :
         return 24
     case "REDCODE 1:3" :
         return 30
