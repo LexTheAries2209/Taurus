@@ -1,3 +1,6 @@
+Taurus_V1.3.1:
+
+
 Taurus_V1.3.0:
 更新了注释。
 加入了Canon CinemaEOS C400机型的选择和计算。

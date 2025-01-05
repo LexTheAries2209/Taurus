@@ -31,7 +31,7 @@
 		5839AA4E2BEF038E0025C74C /* REDResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839AA4D2BEF038E0025C74C /* REDResolution.swift */; };
 		5839AA502BEF041F0025C74C /* AppleResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839AA4F2BEF041F0025C74C /* AppleResolution.swift */; };
 		5839AA522BEF04B50025C74C /* BMDResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839AA512BEF04B50025C74C /* BMDResolution.swift */; };
-		58571C242D2A75ED0015EE29 /* Taurus_V130_Log.txt in Resources */ = {isa = PBXBuildFile; fileRef = 58571C232D2A75ED0015EE29 /* Taurus_V130_Log.txt */; };
+		58571C242D2A75ED0015EE29 /* Taurus_Log.txt in Resources */ = {isa = PBXBuildFile; fileRef = 58571C232D2A75ED0015EE29 /* Taurus_Log.txt */; };
 		5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C0692A7000D900611BD0 /* TaurusApp.swift */; };
 		5864C06C2A7000D900611BD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5864C06B2A7000D900611BD0 /* ContentView.swift */; };
 		5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5864C06D2A7000D900611BD0 /* Assets.xcassets */; };
@@ -78,7 +78,7 @@
 		5839AA4D2BEF038E0025C74C /* REDResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REDResolution.swift; sourceTree = "<group>"; };
 		5839AA4F2BEF041F0025C74C /* AppleResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleResolution.swift; sourceTree = "<group>"; };
 		5839AA512BEF04B50025C74C /* BMDResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMDResolution.swift; sourceTree = "<group>"; };
-		58571C232D2A75ED0015EE29 /* Taurus_V130_Log.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Taurus_V130_Log.txt; sourceTree = "<group>"; };
+		58571C232D2A75ED0015EE29 /* Taurus_Log.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Taurus_Log.txt; sourceTree = "<group>"; };
 		5864C0662A7000D900611BD0 /* Taurus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taurus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5864C0692A7000D900611BD0 /* TaurusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaurusApp.swift; sourceTree = "<group>"; };
 		5864C06B2A7000D900611BD0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		5864C0682A7000D900611BD0 /* Taurus */ = {
 			isa = PBXGroup;
 			children = (
-				58571C232D2A75ED0015EE29 /* Taurus_V130_Log.txt */,
+				58571C232D2A75ED0015EE29 /* Taurus_Log.txt */,
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				58C9B8122C1A980000788819 /* PickerView.swift */,
@@ -257,7 +257,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5864C0652A7000D900611BD0 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -289,7 +289,7 @@
 			files = (
 				5864C0712A7000D900611BD0 /* Preview Assets.xcassets in Resources */,
 				5864C06E2A7000D900611BD0 /* Assets.xcassets in Resources */,
-				58571C242D2A75ED0015EE29 /* Taurus_V130_Log.txt in Resources */,
+				58571C242D2A75ED0015EE29 /* Taurus_Log.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -413,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -472,12 +474,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tauras V1.3.0";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tauras V1.3.1";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -500,12 +502,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tauras V1.3.0";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tauras V1.3.1";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
