@@ -1,0 +1,176 @@
+Taurus_V1.3.0:
+更新了注释。
+加入了Canon CinemaEOS C400机型的选择和计算。
+加入了Canon CinemaEOS C80机型的选择和计算。
+加入了Canon EOS R5 Mark2机型的选择和计算。
+加入了DJI Ronin 4D 6K和DJI Ronin 4D 8K机型16:9比例的选择和计算。
+加入了SONY A1M2的选择和计算。
+修复了DJI Ronin 4D 6K机型的一个选择错误。
+修复了ProRes的错误表述。
+
+Taurus_V1.2.11:
+更新了注释。
+加入了Apple iPhone 16 Pro/Pro MAX机型的选择和计算。
+加入了ARRI ALEXA 265机型的选择和计算。
+将自定义计算功能在菜单栏中调整了.
+
+Taurus_V1.2.10:
+为通用计算模块加入了手动码率计算功能。
+修复了会出现没做好的主菜单功能显示问题。
+
+Taurus_V1.2.9:
+修复了ARRI摄影机HDE占盘量计算错误的问题。
+修改了Log文件名称。
+
+Taurus_V1.2.8:
+修复了Apple iPhone机型错误的帧率选项。
+修复了Blackmagic URSA Mini Pro 4.6K G2机型的一个分辨率错误。
+修改了版本说明与注释区的现实逻辑，现在对于不同的品牌有独特的、贴切的注释与说明。
+修复了DJI Inspire3的一个编码无法正确选择的问题。
+加入了通用计算模块。
+完善了通用计算的分辨率选择和输入。
+修改了注释。
+
+Taurus_V1.2.7:
+增加了BMD机型的超采样提示。
+优化了输出区的显示。
+加入了BMD 4.6K G2的选择和计算。
+加入了Canon CinemaEOS C70的选择和计算。
+加入了Canon CinemaEOS R5C的选择和计算。
+加入了Canon CinemaEOS C500 Mark2的选择和计算。
+加入了Canon CinemaEOS C300 Mark3的选择和计算。
+加入了Panasonic GH7的选择和计算。
+加入了Panasonic S9的选择和计算。
+修复了索尼FX 9机型的储存卡计算错误。
+修复了Ronin 4D机型的一个编码显示问题。
+修复了23.976p错误显示为23.98p的问题。
+
+Taurus_V1.2.6:
+修改了计算细节，使其更加准确。
+修复了数据输出错误字符的问题。
+重新设计了数据输出区，使得界面更美观。
+增加了Apple iPhone 15 Pro、iPhone 15 Pro Max、iPhone 14 Pro、iPhone 14 Pro Max机型的选择和计算。
+修复了Ronin 4D机型储存卡选择错误的问题。
+增加了Blackmagic URSA Mini Pro 12K机型的选择和计算。
+修复了选择区一些显示问题。
+
+Taurus_V1.2.5:
+修改了注释。
+修改了ARRI摄影机的若干分辨率选项。
+修复了SONY FX3机型无法选择一个编码的问题。
+
+Taurus_V1.2.4:
+修改了注释。
+增加了RED V-Raptor [X]和RED V-Raptor XL [X]的选择和计算。
+增加了SONY A6700机型的选择和计算。
+增加了SONY ZV-E1机型的选择和计算。
+增加了SONY CineAltaB机型的X-OCN LT编码的选择和计算。
+增加了SONY CineAltaV2-8K机型的X-OCN编码的选择和计算。
+增加了SONY CineAltaV2-6K机型的X-OCN编码的选择和计算。
+增加了SONY CineAltaV机型的X-OCN编码的选择和计算。
+增加了Panasonic S1H机型的选择和计算。
+根据SONY的固件更新，增加了A7S3的可选择格式。
+修复了Panasonic G9M2无法选择编码的问题。
+修复了DJI Ronin 4D一个分辨率无法选择SSD和CF Express TypeB储存卡的问题。
+修复了Panasonic S52X、S52、GH6、G9M2机型无法选择47.95p的问题。
+修复了Panasonic GH6、G9M2机型一个分辨率出错的问题。
+
+Taurus_V1.2.3:
+修改了注释。
+修复了ARRI机型无法选择20.000fps的问题。
+
+Taurus_V1.2.2:
+修改了注释。
+增加了松下GH6、G9M2机型的选择和计算。
+
+Taurus_V1.2.1:
+修正了松下S5M2X机型的储存卡选择。
+增加了松下S5M2X机型的分辨率选择。
+修改了注释。
+
+Taurus_V1.1.7:
+新增了RED DSMC3机型的选择和计算。
+更正了索尼A1的8K分辨率超采样。
+进一步修改了数据结构。
+此后未完成完整选择和计算的机型将不会出现在可选机型中。
+增加了各个机型根据码率的储存卡限制。
+修正了EOS R6 Mark2与EOS R8某些机型码率选择错误的问题。
+增加了V30、V60、V90速度的SD卡选择和正确限制。
+减少了一部分佳能机型可选择的CFE储存卡选项以减少选项冗杂度。
+新增了松下S52、S52X机型的选择和计算。
+新增了Ronin 4D 8K、Ronin 4D 6K、Inspire 3机型的选择和计算。
+更新了注释。
+
+Taurus_V1.1.6:
+分离了数据和逻辑，使程序更流畅。
+更新了注释。
+
+Taurus_V1.1.5:
+更新了备注感谢图标设计者。
+重新排布了所有分辨率，使其更容易选择。
+新增了作者联系方式。
+修正了所有数据计算的准确性。
+增加了索尼微单机型的选择和计算。
+增加了佳能微单机型的选择和计算。
+
+Taurus_V1.1.4:
+完善了ALEXA XT、ALEXA SXT、ALEXA Mini、ALEXA LF、ALEXA Mini LF、ALEXA 35、ALEXA 65的帧率选择和计算功能。
+修复了ALEXA LF一个分辨率错误问题。
+增加了ARRI不支持的储存卡会显示警告的功能。
+设置了图标。
+更新了注释。
+更新了BMD一些机型的选项。
+
+Taurus_V1.1.3:
+
+根据arri.com修改了大量错误的数据。
+使所有分辨率有了更清晰的幅面指示。
+调整了备注的内容。
+完善了AMIRA和ALEXA Classic的帧率计算。
+
+Taurus_V1.1.2:
+
+精简了代码，增加了可拓展性，优化了界面。
+修改了部分分辨率选项，使其正确且直观。
+增加了Reset按钮。
+
+Taurus_V1.1.1:
+
+修复了未选择储存卡时会弹出ERROR字样。
+增加了RED、SONY、Canon、Nikon、Kinefinity、Nikon品牌预览。
+修改了备注。
+
+Taurus_V1.0.5:
+
+修复了ALEXA Mini LF摄影机其中一个分辨率不正确的问题。
+修复了无法调节窗口大小导致版本说明与备注显示不全的问题。
+
+Taurus_Homework_Edition_V1.0_Build4:
+
+修复了ALEXA 35摄影机其中一个分辨率无法计算的问题。
+修复了ALEXA XT摄影机其中一个分辨率无法计算的问题。
+修复了ALEXA LF摄影机其中一种储存卡无法计算的问题。
+修复了ALEXA 65摄影机其中一个分辨率无法计算的问题。
+
+Taurus_Homework_Edition_V1.0_Build3:
+
+修复了存储卡库中ALEXA XT与ALEXA SXT数据错误导致无法正常计算问题。
+
+Taurus_Homework_Edition_V1.0_Build2:
+
+删除ALEXA XT与ALEXA SXT摄影机部分数据不明的分辨率。
+修正了ALEXA Mini部分错误的分辨率。
+修正了计算ARRIRAW素材时HDE计算错误问题。
+节约了部分计算功能的代码。
+现在所有能选择的摄影机编码与分辨率均可计算。
+固定了功能窗口大小。
+鸣谢了软件测试者。
+
+Taurus_Homework_Edition_V1.0_Build1:
+
+    此版本为Taurus Homework Edition V1.0 Build2，专为22影技吴坤城提交计算机与网络期末作业（指导老师：屈澈）开发。
+    此版本仅包含《数据计算器》功能及仅包含ARRI摄影机素材选择、AMIRA摄影机4444XQ编码的HD分辨率数据计算。
+    此版本主要用以测试五个选择器的正常使用。
+    分辨率默认高宽比为16:9；分辨率默认幅面为S35，其中ALEXA MIni LF、ALEXA LF、ALEXA 65默认幅面为LF；分辨率选项中，HD指分辨率为1920x1080，UHD指分辨率为3840x2160，其中第一个后缀括号描述素材分辨率，第二个后缀括号描述采样分辨率；计算帧率均为24.000p；根据画面内容，实际数据量可能与计算不同。
+    对于部分摄影机，部分编码需要额外购买授权；HDE为ARRI公司推出的压缩技术，用于ARRIRAW的无损压缩。对于ALEXA 35摄影机，Prores422系列编码位深为12bit。
+    ARRI摄影机相关数据来自www.arri.com。Prores编码相关数据来自www.apple.com。特别鸣谢 徐理航 对于此程序的代码设计支持。
