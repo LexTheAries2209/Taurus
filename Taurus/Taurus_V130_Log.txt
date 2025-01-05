@@ -3,6 +3,7 @@ Taurus_V1.3.0:
 加入了Canon CinemaEOS C400机型的选择和计算。
 加入了Canon CinemaEOS C80机型的选择和计算。
 加入了Canon EOS R5 Mark2机型的选择和计算。
+加入了Canon EOS R1机型的选择和计算。
 加入了DJI Ronin 4D 6K和DJI Ronin 4D 8K机型16:9比例的选择和计算。
 加入了SONY A1M2的选择和计算。
 修复了DJI Ronin 4D 6K机型的一个选择错误。
