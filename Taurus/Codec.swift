@@ -14,6 +14,7 @@ public let CodecName : [String:[String]] = [
     "ALEXA XT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA SXT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA 35" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
+    "ALEXA 35 Live" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA Mini" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "ALEXA Mini LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],

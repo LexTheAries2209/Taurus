@@ -1,5 +1,5 @@
 Taurus_V1.3.1:
-
+加入了ARRI ALEXA 35 Live机型的选择和计算。
 
 Taurus_V1.3.0:
 更新了注释。
