@@ -1,5 +1,7 @@
 Taurus_V1.3.1:
 加入了ARRI ALEXA 35 Live机型的选择和计算。
+加入了日期时间显示功能。
+增加了使用Command+R重置功能
 
 Taurus_V1.3.0:
 更新了注释。

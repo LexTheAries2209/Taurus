@@ -41,22 +41,14 @@ struct ContentView: View {
                         
                         // 重置按键
                         Button("重置") {
-                            cameradata.BrandName = "请选择品牌"
-                            cameradata.CameraName = "请选择机型"
-                            cameradata.Codec = "请选择编码"
-                            cameradata.Resolution = "请选择分辨率"
-                            cameradata.Media = "请选择储存卡"
-                            cameradata.Rate = "请选择帧率"
-                            cameradata.Format = "请选择幅面"
-                            cameradata.ResolutionWidth = ""
-                            cameradata.ResolutionHeight = ""
-                            cameradata.ManualCodecSpeed = ""
+                            resetAllData()
                         }
+                        .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
+                        
                         Spacer()
                         
                         // 选择器与计算功能
                         HStack {
-                            
                             VStack(spacing: 10) {
                                 // 选择器模块
                                 PickerView(cameradata: cameradata)
@@ -72,48 +64,61 @@ struct ContentView: View {
                         // 备注与说明模块
                         Comments(cameradata: cameradata)
                     }
-                    
                     // 主菜单选择模块
                     .tabItem {
                         Text("数据计算器")
                     }
-                    
-                    // 其他功能模块（注释掉的部分）
                 }
                 .frame(minWidth: 800, minHeight: 425)
                 .frame(maxWidth: 800, maxHeight: 425)
             }
             .padding()
-            
-            // 显示当前时间的文本，位于左上角
+        }
+        //显示当前时间的文本，位于左上角
 //            HStack {
+//                Spacer()
 //                Text(currentDate)
 //                    .font(.headline)
 //                    .foregroundColor(.secondary)
-//                    .padding([.top,.leading], 40)
+//                    .padding(.top, 35)
+//                    .padding(.trailing, 0)
 //                Text(currentTime)
 //                    .font(.headline)
 //                    .foregroundColor(.secondary)
-//                    .padding([.top,], 40)
-//                
+//                    .padding(.top, 35)
+//                    .padding(.trailing, 25)
+//
 //            }
-        }
         .onAppear(perform: updateTime)
     }
     
+    // 将重置逻辑提取为独立函数
+    private func resetAllData() {
+        cameradata.BrandName = "请选择品牌"
+        cameradata.CameraName = "请选择机型"
+        cameradata.Codec = "请选择编码"
+        cameradata.Resolution = "请选择分辨率"
+        cameradata.Media = "请选择储存卡"
+        cameradata.Rate = "请选择帧率"
+        cameradata.Format = "请选择幅面"
+        cameradata.ResolutionWidth = ""
+        cameradata.ResolutionHeight = ""
+        cameradata.ManualCodecSpeed = ""
+    }
+    
     func updateTime() {
-            let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                let timeFormatter = DateFormatter()
-                timeFormatter.dateFormat = "HH:mm:ss"
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm:ss"
 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
 
-                self.currentTime = timeFormatter.string(from: Date())
-                self.currentDate = dateFormatter.string(from: Date())
-            }
-            RunLoop.current.add(timer, forMode: .common)
+            self.currentTime = timeFormatter.string(from: Date())
+            self.currentDate = dateFormatter.string(from: Date())
         }
+        RunLoop.current.add(timer, forMode: .common)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
