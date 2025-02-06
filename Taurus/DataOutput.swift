@@ -24,101 +24,180 @@ func DataOutput(cameradata: CameraData) -> some View {
         let codecSpeed = CodecSpeedCount(cameradata: cameradata)
         let resolutionMultiplier = ResolutionMultiplier(cameradata: cameradata)
         let rateMultiplier = RateMultiplier(cameradata: cameradata)
-        let GeneralSpeed = GeneralSpeed(cameradata:cameradata)
+        let GeneralSpeed = GeneralSpeed(cameradata: cameradata)
         
         if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta") {
             let sonySpeed = SonyCodecSpeed(cameradata: cameradata)
             Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / sonySpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(sonySpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(sonySpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(sonySpeed * 450 / 1024))")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / sonySpeed))")
+                    Text("\(formatNumber(sonySpeed))")
+                    Text("\(formatNumber(sonySpeed / 8))")
+                    Text("\(formatNumber(sonySpeed * 450 / 1024))")
+                }
+            }
         }
         else if cameradata.BrandName == "Canon" {
             let canonSpeed = CanonCodecSpeed(cameradata: cameradata)
             Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / canonSpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(canonSpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(canonSpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(canonSpeed * 450 / 1024))")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / canonSpeed))")
+                    Text("\(formatNumber(canonSpeed))")
+                    Text("\(formatNumber(canonSpeed / 8))")
+                    Text("\(formatNumber(canonSpeed * 450 / 1024))")
+                }
+            }
         }
         else if cameradata.BrandName == "Panasonic" {
             let panaSpeed = PanaCodecSpeed(cameradata: cameradata)
             Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / panaSpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(panaSpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(panaSpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(panaSpeed * 450 / 1024))")
-        }
-        else if cameradata.BrandName == "Blackmagicdesign" {
-            let BMDSpeed = BMDCodecSpeedmbps(cameradata:cameradata)
-            Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(BMDSpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(BMDSpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(BMDSpeed * 450 / 1024))")
-        }
-        else if cameradata.BrandName == "Canon Cinema" {
-            let CanonCinemaSpeed = CanonCinemaCodecSpeed(cameradata:cameradata)
-            Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / CanonCinemaSpeed))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(CanonCinemaSpeed))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(CanonCinemaSpeed / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
-        }
-        else if cameradata.BrandName == "[General]" {
-            if cameradata.CameraName == "Manual Codec" {
-                Text("")
-                Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
-                Text("")
-                Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
-                Text("")
-                Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
-                Text("")
-                Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
-            }
-            else {
-                Text("")
-                Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
-                Text("")
-                Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed))")
-                Text("")
-                Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(GeneralSpeed / 8))")
-                Text("")
-                Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(GeneralSpeed * 450 / 1024))")
-                if cameradata.Codec.contains("ARRIRAW") {
-                    Text("")
-                    Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(GeneralSpeed * 270 / 1024))")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / panaSpeed))")
+                    Text("\(formatNumber(panaSpeed))")
+                    Text("\(formatNumber(panaSpeed / 8))")
+                    Text("\(formatNumber(panaSpeed * 450 / 1024))")
                 }
             }
         }
+        else if cameradata.BrandName == "Blackmagicdesign" {
+            let BMDSpeed = BMDCodecSpeedmbps(cameradata: cameradata)
+            Text("")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
+                    Text("\(formatNumber(BMDSpeed))")
+                    Text("\(formatNumber(BMDSpeed / 8))")
+                    Text("\(formatNumber(BMDSpeed * 450 / 1024))")
+                }
+            }
+        }
+        else if cameradata.BrandName == "Canon Cinema" {
+            let CanonCinemaSpeed = CanonCinemaCodecSpeed(cameradata: cameradata)
+            Text("")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / CanonCinemaSpeed))")
+                    Text("\(formatNumber(CanonCinemaSpeed))")
+                    Text("\(formatNumber(CanonCinemaSpeed / 8))")
+                    Text("\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
+                }
+            }
+        }
+        else if cameradata.BrandName == "[General]" {
+                if cameradata.Codec.contains("ARRIRAW") {
+                    Text("")
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("可录制时长[Min]:")
+                            Text("数据码率[mbps]:")
+                            Text("数据码率[MBps]:")
+                            Text("每小时数据占盘量[GB]:")
+                            Text("每小时数据占盘量[GB][HDE]:")
+                        }
+                        .padding(.trailing, 60)
+                        VStack(alignment: .trailing, spacing: 10) {
+                            Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
+                            Text("\(formatNumber(GeneralSpeed))")
+                            Text("\(formatNumber(GeneralSpeed / 8))")
+                            Text("\(formatNumber(GeneralSpeed * 450 / 1024))")
+                            Text("\(formatNumber(GeneralSpeed * 270 / 1024))")
+                        }
+                    }
+                }
+                else {
+                    Text("")
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("可录制时长[Min]:")
+                            Text("数据码率[mbps]:")
+                            Text("数据码率[MBps]:")
+                            Text("每小时数据占盘量[GB]:")
+                        }
+                        .padding(.trailing, 100)
+                        VStack(alignment: .trailing, spacing: 10) {
+                            Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
+                            Text("\(formatNumber(GeneralSpeed))")
+                            Text("\(formatNumber(GeneralSpeed / 8))")
+                            Text("\(formatNumber(GeneralSpeed * 450 / 1024))")
+                        }
+                    }
+                }
+            }
         else {
-            Text("")
-            Text("可录制时长[Min]:\(String(repeating: " ", count: 21))\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
-            Text("")
-            Text("数据码率[mbps]：\(String(repeating: " ", count: 19))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-            Text("")
-            Text("数据码率[MBps]：\(String(repeating: " ", count: 19))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
-            Text("")
-            Text("每小时数据占盘量[GB]:\(String(repeating: " ", count: 12))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
-            if cameradata.Codec == "ARRIRAW" {
+            if cameradata.Codec.contains("ARRIRAW") {
                 Text("")
-                Text("每小时数据占盘量[GB][HDE]:\(String(repeating: " ", count: 2))\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 270 / 1024))")
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("可录制时长[Min]:")
+                        Text("数据码率[mbps]:")
+                        Text("数据码率[MBps]:")
+                        Text("每小时数据占盘量[GB]:")
+                        Text("每小时数据占盘量[GB][HDE]:")
+                    }
+                    .padding(.trailing, 60)
+                    VStack(alignment: .trailing, spacing: 10) {
+                        Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 270 / 1024))")
+                    }
+                }
+            }
+            else {Text("")
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("可录制时长[Min]:")
+                        Text("数据码率[mbps]:")
+                        Text("数据码率[MBps]:")
+                        Text("每小时数据占盘量[GB]:")
+                    }
+                    .padding(.trailing, 100)
+                    VStack(alignment: .trailing, spacing: 10) {
+                        Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
+                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+                    }
+                }
             }
         }
     }

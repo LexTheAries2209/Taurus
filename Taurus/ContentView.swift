@@ -54,6 +54,7 @@ struct ContentView: View {
                                 PickerView(cameradata: cameradata)
                             }
                             .padding(.top, 20.0)
+                            
                             Spacer()
                             
                             // 计算数据输出模块
