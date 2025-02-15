@@ -13,37 +13,37 @@ func GeneralCodecSpeed(cameradata:CameraData) -> Double {
         return 645
     case "ARRIRAW[12bit]" :
         return 600
-    case "Prores 4444 XQ" :
+    case "ProRes 4444 XQ" :
         return 400
     case "CinemaDNG" :
         return 380
-    case "Prores 4444" :
+    case "ProRes 4444" :
         return 264
     case "X-OCN XT" :
         return 226.15
     case "REDCODE HQ" :
         return 199.2
-    case "Prores RAW HQ" :
+    case "ProRes RAW HQ" :
         return 190
-    case "Prores 422 HQ" :
+    case "ProRes 422 HQ" :
         return 176
     case "X-OCN ST" :
         return 154.675
-    case "Prores RAW" :
+    case "ProRes RAW" :
         return 150
     case "REDCODE MQ" :
         return 140
-    case "Prores 422" :
+    case "ProRes 422" :
         return 117.6
     case "REDCODE LQ" :
         return 87.5
     case "X-OCN LT" :
         return 91.165
-    case "Prores 422 LT" :
+    case "ProRes 422 LT" :
         return 81.2
     case "REDCODE ELQ" :
         return 54.2
-    case "Prores 422 Proxy" :
+    case "ProRes 422 Proxy" :
         return 36
     default :
         return 0
