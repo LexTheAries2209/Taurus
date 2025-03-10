@@ -184,18 +184,35 @@ func DataOutput(cameradata: CameraData) -> some View {
             }
             else {Text("")
                 HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("可录制时长[Min]:")
-                        Text("数据码率[mbps]:")
-                        Text("数据码率[MBps]:")
-                        Text("每小时数据占盘量[GB]:")
+                    if cameradata.Media.contains("Capture Drive") && cameradata.Codec.contains("ProRes") {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("可录制时长[Min]:")
+                            Text("数据码率[mbps]:")
+                            Text("数据码率[MBps]:")
+                            Text("每小时数据占盘量[GB]:")
+                        }
+                        .padding(.trailing, 100)
+                        VStack(alignment: .trailing, spacing: 10) {
+                            Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier / 2))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+                        }
                     }
-                    .padding(.trailing, 100)
-                    VStack(alignment: .trailing, spacing: 10) {
-                        Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+                    else {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("可录制时长[Min]:")
+                            Text("数据码率[mbps]:")
+                            Text("数据码率[MBps]:")
+                            Text("每小时数据占盘量[GB]:")
+                        }
+                        .padding(.trailing, 100)
+                        VStack(alignment: .trailing, spacing: 10) {
+                            Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
+                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
+                        }
                     }
                 }
             }

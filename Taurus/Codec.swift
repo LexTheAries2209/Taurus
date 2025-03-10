@@ -9,12 +9,13 @@ import Foundation
 
 public let CodecName : [String:[String]] = [
     //ARRI
-    "AMIRA" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","MPEG-2 HD 422"],
+    "AMIRA" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "ALEXA Classic" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA XT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA SXT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA 35" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA 35 Live" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
+    "ALEXA 35 Base" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA Mini" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "ALEXA Mini LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
