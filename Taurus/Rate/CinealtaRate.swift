@@ -13,19 +13,19 @@ func CinealtaRate(cameradata:CameraData) -> [String] {
     //CineAlta
         if cameradata.CameraName == "CineAlta Burano" {
             if cameradata.Resolution == "8.6K FF[8632*4856][17:9]"{
-                rates = ["23.976","24.000","25.000","29.970"]
+                rates = ["23.976","24.000","25.000","29.970","30.000"]
             }
             else if cameradata.Resolution == "8.6K FF[8632*4552][16:9]" {
-                rates = ["23.976","25.000","29.970"]
+                rates = ["23.976","25.000","29.970","30.000"]
             }
-            else if cameradata.Resolution == "6K FFcrop[6052*3404][17:9]" || cameradata.Resolution == "5.8K S35[5760*3240][17:9]" {
-                rates = ["23.976","24.000","25.000","29.970","50.000","59.940"]
+            else if cameradata.Resolution == "6K FFcrop[6052*3404][17:9]" || cameradata.Resolution == "5.8K S35[5760*3240][17:9]" || cameradata.Resolution == "4.3K S35[4256*3192][4:3]" {
+                rates = ["23.976","24.000","25.000","29.970","50.000","59.940","60.000"]
             }
-            else if cameradata.Resolution == "4K S35crop[4096*2160][17:9]" {
-                rates = ["23.976","24.000","25.000","29.970","50.000","59.940","100.000","120.000"]
+            else if cameradata.Resolution == "4K S35crop[4096*2160][17:9]" || cameradata.Resolution == "4K FFcrop[3840*2160][16:9]" {
+                rates = ["23.976","24.000","25.000","29.970","50.000","59.940","60.000","100.000","119.880","120.000"]
             }
             else if cameradata.Resolution == "6K FFcrop[6052*3192][16:9]" || cameradata.Resolution == "5.8K S35[5760*3036][16:9]" {
-                rates = ["23.976","25.000","29.970","50.000","59.940"]
+                rates = ["23.976","25.000","29.970","50.000","59.940","60.000"]
             }
             else {
                 rates = ["无选项"]

@@ -123,6 +123,8 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
         return 6.25
     case "5K VV[5120*2560][2:1]","5K S35[5120*2560][2:1]" :
         return 6.32
+    case "4.3K S35[4256*3192][4:3]" :
+        return 6.55
     case "4.5K LF[4448*3096][1.43:1]","4.5K LF[4448*3096][OG]":
         return 6.64
     case "5K VV[5120*2700][17:9]","5K S35[5120*2700][17:9]" :
