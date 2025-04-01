@@ -9,19 +9,43 @@ import Foundation
 
 public let CodecName : [String:[String]] = [
     //ARRI
-    "AMIRA" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
-    "ALEXA Classic" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA Classic EV" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA Classic Plus" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA Classic Plus 4:3" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA Classic M" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA Classic Studio" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA HD" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA HD Plus" : ["ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA XT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
-    "ALEXA SXT" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA XT Plus" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA XT Plus Monochrome" : ["ARRIRAW"],
+    "ALEXA XT M" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA XT Studio" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "AMIRA" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "AMIRA Live" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "ALEXA SXT EV" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA SXT Plus" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA SXT Studio" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA SXT W" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
     "ALEXA 35" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA 35 Live" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA 35 Base" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
     "ALEXA Mini" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "ALEXA Mini LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
+    "ALEXA Mini LF Monochrome" : ["ARRIRAW"],
     "ALEXA LF" : ["ARRIRAW","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422"],
+    "ALEXA 65 Monochrome" : ["ARRIRAW"],
     "ALEXA 65" : ["ARRIRAW"],
     "ALEXA 265" : ["ARRIRAW"],
     
+    
+    //"Kinefinity"
+    "MAVO Edge 8K" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "MAVO Edge 6K" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "MAVO Mark 2 LF" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "MAVO Mark 2 S35" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    
+       
     //RED
     "V-Raptor XL [X]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     "V-Raptor [X]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],

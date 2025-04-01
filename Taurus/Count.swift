@@ -219,7 +219,9 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
 //存储卡容量乘积
 func MediaCapacity(cameradata:CameraData) -> Double {
     switch cameradata.Media {
-    case "64GB" :
+    case "SxS Pro 32GB","32GB" :
+        return 29.792
+    case "64GB","SxS Pro 64GB","SxS Pro+ 64GB" :
         return 59.584
     case "CFExpress TypeA 80GB","80GB" :
         return 74.48
@@ -245,13 +247,13 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 614.46
     case "CFExpress TypeA 960GB","960GB" :
         return 893.76
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB","1TB","Compact Drive Express 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB","1TB","Compact Drive Express 1TB","KineMAG Nano SSD 1TB" :
         return 931
     case "CFExpress TypeB 1.3TB","1.3TB" :
         return 1241.023
     case "CFExpress TypeA 1920GB","1.92TB" :
         return 1787.52
-    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB" :
+    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB","KineMAG Nano SSD 2TB" :
         return 1862
     case "[Output]SSD 4TB","4TB" :
         return 3724

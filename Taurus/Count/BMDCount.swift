@@ -227,6 +227,9 @@ func BMDResolutionMutiplier(cameradata:CameraData) -> Double {
         else if cameradata.Resolution.contains("[2.4:1]"){
             return 1.2676
         }
+        else if cameradata.Resolution.contains("[6:5]"){
+            return 1.6180
+        }
     }
     else if cameradata.CameraName.contains("4.6K") {
         if cameradata.Resolution.contains("[16:9]") {

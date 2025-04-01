@@ -19,6 +19,9 @@ func BMDRate(cameradata:CameraData) -> [String] {
                 else if cameradata.Resolution == "12K S35[12288*5112][2.4:1]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000"]
                 }
+                else if cameradata.Resolution == "12K S35[7680*6408][6:5]" {
+                    rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000"]
+                }
                 else if cameradata.Resolution == "8K S35[8192*3408][From 12288*5112][2.4:1]" || cameradata.Resolution == "4K S35[4096*1704][From 12288*5112][2.4:1]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000","150.000","160.000"]
                 }
@@ -33,7 +36,7 @@ func BMDRate(cameradata:CameraData) -> [String] {
                 if cameradata.Resolution == "12K S35[12288*5112][2.4:1]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000"]
                 }
-                else if cameradata.Resolution == "12K S35[12288*6480][17:9]" || cameradata.Resolution ==  "12K S35[11520*6480][16:9]" {
+                else if cameradata.Resolution == "12K S35[12288*6480][17:9]" || cameradata.Resolution ==  "12K S35[11520*6480][16:9]" || cameradata.Resolution ==  "12K S35[7680*6408][6:5]" {
                     rates = ["23.976","24.000","25.000","29.970","30.000","40.000","50.000","59.940","60.000"]
                 }
                 else if cameradata.Resolution == "8K S35[8192*3408][From 12288*5112][2.4:1]" || cameradata.Resolution == "4K S35[4096*1704][From 12288*5112][2.4:1]" {
