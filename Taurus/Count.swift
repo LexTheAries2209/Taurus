@@ -17,6 +17,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 400
     case "CinemaDNG" :
         return 380
+    case "ARRICORE" :
+        return 370
     case "ProRes 4444" :
         return 264
     case "X-OCN XT" :
@@ -404,8 +406,8 @@ func ProResCompensation(cameradata:CameraData) -> Double {
     switch cameradata.CameraName {
     case "AMIRA","ALEXA Classic","ALEXA XT","ALEXA SXT","ALEXA Mini","ALEXA LF" :
         return 1.125
-    case "ALEXA 35","ALEXA 35 Live","ALEXA Mini LF","ALEXA 265":
-        return 1
+    case "ALEXA 35","ALEXA 35 Xtreme","ALEXA 35 Live":
+        return 1.225
     default :
         return 1
     }
