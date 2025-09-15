@@ -17,8 +17,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 400
     case "CinemaDNG" :
         return 380
-    case "ARRICORE" :
-        return 370
+    case "ARRICORE","ARRICORE[Overdrive]" :
+        return 300
     case "ProRes 4444" :
         return 264
     case "X-OCN XT" :
@@ -295,16 +295,24 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 25
     case "29.970","30.000" :
         return 30
+    case "35.000" :
+        return 35
     case "40.000" :
         return 40
     case "42.000" :
         return 42
+    case "45.000" :
+        return 45
     case "48.000","47.950","47.952":
         return 48
     case "50.000" :
         return 50
+    case "55.000" :
+        return 55
     case "59.940","60.000" :
         return 60
+    case "65.000" :
+        return 65
     case "66.000" :
         return 66
     case "72.000" :
@@ -315,6 +323,8 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 80
     case "84.000" :
         return 84
+    case "85.000" :
+        return 85
     case "88.000" :
         return 88
     case "90.000" :
@@ -329,32 +339,44 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 120
     case "126.000" :
         return 126
+    case "135.000" :
+        return 135
     case "137.000" :
         return 137
     case "140.000" :
         return 140
     case "144.000" :
         return 144
+    case "145.000" :
+        return 145
     case "150.000" :
         return 150
     case "160.000" :
         return 160
+    case "165.000" :
+        return 165
     case "168.000" :
         return 168
     case "175.000" :
         return 175
+    case "190.000" :
+        return 190
     case "192.000" :
         return 192
     case "200.000" :
         return 200
     case "202.000" :
         return 202
+    case "210.000" :
+        return 210
     case "240.000","239.760" :
         return 240
     case "250.000" :
         return 250
     case "253.000" :
         return 253
+    case "260.000" :
+        return 260
     case "300.000" :
         return 300
     case "320.000" :
@@ -363,14 +385,18 @@ func RateSpeed(cameradata:CameraData) -> Double {
         return 337
     case "400.000" :
         return 400
-    case "480.000" :
+    case "480.000","479.520" :
         return 480
     case "500.000" :
         return 500
     case "505.000" :
         return 505
+    case "590.000" :
+        return 590
     case "600.000" :
         return 600
+    case "660.000" :
+        return 660
     case "800.000" :
         return 800
     case "1000.000" :
