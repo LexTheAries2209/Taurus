@@ -42,6 +42,7 @@ public let CameraModel : [String:[String]] = [
              ],
     "RED" : ["V-Raptor XL [X]",
              "V-Raptor [X]",
+             "V-Raptor XE",
              "V-Raptor XL[8K VV]",
              "V-Raptor[8K VV]",
              "V-Raptor XL[8K S35]",
