@@ -16,6 +16,16 @@ func AppleResolution(cameradata:CameraData) -> [String] {
             let key = cameradata.CameraName + "_" + cameradata.Codec
             
             let AppleResolutions: [String: [String]] = [
+                "iPhone 17 Pro MAX_ProRes RAW" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro MAX_ProRes 422 HQ" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro MAX_ProRes 422" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro MAX_ProRes 422 LT" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro MAX_ProRes 422 Proxy" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro_ProRes RAW" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro_ProRes 422 HQ" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro_ProRes 422" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro_ProRes 422 LT" : ["UHD","FHD","HD"],
+                "iPhone 17 Pro_ProRes 422 Proxy" : ["UHD","FHD","HD"],
                 "iPhone 16 Pro MAX_ProRes 422 HQ" : ["UHD","FHD","HD"],
                 "iPhone 16 Pro MAX_ProRes 422" : ["UHD","FHD","HD"],
                 "iPhone 16 Pro MAX_ProRes 422 LT" : ["UHD","FHD","HD"],

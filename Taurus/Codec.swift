@@ -117,6 +117,8 @@ public let CodecName : [String:[String]] = [
     "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     
     //Apple
+    "iPhone 17 Pro MAX" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 17 Pro" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],

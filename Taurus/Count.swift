@@ -31,6 +31,8 @@ func Codecspeed(cameradata:CameraData) -> Double {
         return 176
     case "X-OCN ST" :
         return 154.675
+    case "ProRes RAW" :
+        return 150
     case "REDCODE MQ" :
         return 140
     case "ProRes 422" :
@@ -257,7 +259,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 1241.023
     case "CFExpress TypeA 1920GB","1.92TB" :
         return 1787.52
-    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB","KineMAG Nano SSD 2TB" :
+    case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB","KineMAG Nano SSD 2TB","Built-in 2TB" :
         return 1862
     case "[Output]SSD 4TB","4TB" :
         return 3724

@@ -54,6 +54,8 @@ public let MediaName : [String:[String]] = [
     "KEMODO" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB"],
     
     //Apple
+    "iPhone 17 Pro MAX" : ["Built-in 256GB","Built-in 512GB","Built-in 1TB","Built-in 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
+    "iPhone 17 Pro" : ["Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "iPhone 16 Pro MAX" : ["Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
     "iPhone 16 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
     "iPhone 15 Pro MAX" : ["Built-in 256GB","Built-in 512GB","Built-in 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"],
