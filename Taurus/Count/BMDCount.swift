@@ -8,7 +8,94 @@
 import Foundation
 
 func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
-    if cameradata.CameraName == "Blackmagic URSA Mini Pro 12K" {
+    if cameradata.CameraName.contains("Cine") {
+        if cameradata.Resolution.contains("Immersive") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 5:1" :
+                return 854
+            case "Blackmagic RAW 8:1" :
+                return 534
+            case "Blackmagic RAW 12:1" :
+                return 356
+            case "Blackmagic RAW 18:1" :
+                return 237
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("17K") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 1700
+            case "Blackmagic RAW 8:1" :
+                return 638
+            case "Blackmagic RAW 12:1" :
+                return 425
+            case "Blackmagic RAW 18:1" :
+                return 284
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("12K") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 1200
+            case "Blackmagic RAW 8:1" :
+                return 448
+            case "Blackmagic RAW 12:1" :
+                return 299
+            case "Blackmagic RAW 18:1" :
+                return 199
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("9K") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 714
+            case "Blackmagic RAW 8:1" :
+                return 268
+            case "Blackmagic RAW 12:1" :
+                return 179
+            case "Blackmagic RAW 18:1" :
+                return 119
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("8K") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 758
+            case "Blackmagic RAW 5:1" :
+                return 455
+            case "Blackmagic RAW 8:1" :
+                return 284
+            case "Blackmagic RAW 12:1" :
+                return 190
+            default :
+                return 0
+            }
+        }
+        else if cameradata.Resolution.contains("4K") {
+            switch cameradata.Codec {
+            case "Blackmagic RAW 3:1" :
+                return 191
+            case "Blackmagic RAW 4:1" :
+                return 144
+            case "Blackmagic RAW 5:1" :
+                return 115
+            case "Blackmagic RAW 6:1" :
+                return 95.9
+            default :
+                return 0
+            }
+        }
+    }
+    
+    else if cameradata.CameraName == "Blackmagic URSA Mini Pro 12K" {
         if cameradata.Resolution.contains("12K") {
             switch cameradata.Codec {
             case "Blackmagic RAW 5:1" :
@@ -217,7 +304,127 @@ func BMDCodecSpeedMBPS(cameradata:CameraData) -> Double {
 }
 
 func BMDResolutionMutiplier(cameradata:CameraData) -> Double {
-    if cameradata.CameraName.contains("12K") {
+    if cameradata.CameraName.contains("17K 65") {
+        if cameradata.Resolution.contains("17K") {
+            if cameradata.Resolution.contains("[17:9]") {
+                return 1.1406
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.22483
+            }
+            else if cameradata.Resolution.contains("[2:1]"){
+                return 1.0863
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.1019
+            }
+            else if cameradata.Resolution.contains("[OG]"){
+                return 1
+            }
+        }
+        else if cameradata.Resolution.contains("12K") {
+            if cameradata.Resolution.contains("[3:2]") {
+                return 1
+            }
+            else if cameradata.Resolution.contains("[17:9]"){
+                return 1.24074
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.1631945
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.57277
+            }
+            else if cameradata.Resolution.contains("[6:5]"){
+                return 1.273632
+            }
+        }
+        else if cameradata.Resolution.contains("8K 65") || cameradata.Resolution.contains("4K 65") {
+            if cameradata.Resolution.contains("[OG]") {
+                return 1
+            }
+            else if cameradata.Resolution.contains("[2:1]"){
+                return 1.08631
+            }
+        }
+        else if cameradata.Resolution.contains("8K LF") || cameradata.Resolution.contains("4K LF"){
+            if cameradata.Resolution.contains("[3:2]") {
+                return 1.42578125
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.65846
+            }
+            else if cameradata.Resolution.contains("[17:9]"){
+                return 1.769
+            }
+            else if cameradata.Resolution.contains("[6:5]"){
+                return 1.81592
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.242426
+            }
+        }
+    }
+    
+    else if cameradata.CameraName.contains("Immersive") {
+        return 1
+    }
+    
+    else if cameradata.CameraName.contains("12K LF") {
+        if cameradata.Resolution.contains("12K") {
+            if cameradata.Resolution.contains("[OG]") {
+                return 1
+            }
+            else if cameradata.Resolution.contains("[17:9]"){
+                return 1.24074
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.1631945
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.57277
+            }
+            else if cameradata.Resolution.contains("[6:5]"){
+                return 1.273632
+            }
+        }
+        else if cameradata.Resolution.contains("8K LF") || cameradata.Resolution.contains("4K LF"){
+            if cameradata.Resolution.contains("[OG]") {
+                return 1.42578125
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.65846
+            }
+            else if cameradata.Resolution.contains("[17:9]"){
+                return 1.769
+            }
+            else if cameradata.Resolution.contains("[6:5]"){
+                return 1.81592
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.242426
+            }
+        }
+        else if cameradata.Resolution.contains("9K") {
+            if cameradata.Resolution.contains("[3:2]") {
+                return 1
+            }
+            else if cameradata.Resolution.contains("[16:9]"){
+                return 1.38544
+            }
+            else if cameradata.Resolution.contains("[17:9]"){
+                return 1.2926
+            }
+            else if cameradata.Resolution.contains("[6:5]"){
+                return 1.197472
+            }
+            else if cameradata.Resolution.contains("[2.4:1]"){
+                return 1.63783
+            }
+        }
+    }
+    
+    else if cameradata.CameraName == "Blackmagic URSA Mini Pro 12K" {
         if cameradata.Resolution.contains("[17:9]") {
             return 1
         }
