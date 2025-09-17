@@ -1,4 +1,16 @@
 Taurus_V1.3.2:
+更新了注释。
+修复了使用XR/SXR Capture Drive储存卡记录ProRes编码时的计算错误问题。
+加入了Blackmagicdesign Mini Pro 12K机型的6:5分辨率的选择和计算。
+修复了Blackmagicdesign Mini Pro 12K机型错误的分辨率选择。
+加入了SONY CineAltaB的30fps、60fps、119.88fps和两个新分辨率的选择和计算。
+修复了ALEXA SXT机型一个分辨率错误问题。
+修复了ALEXA 35系列机型ProRes码率不正确问题。
+为ARRI机型加入了更多分辨率选择。
+加入了ARRI ALEXA 35 Xtreme机型的选择和计算。
+加入了RED V-Raptor XE机型的选择和计算。
+加入了Apple iPhone 17系列机型的选择和计算。
+修复了iPhone系列的帧率选择错误问题。
 
 Taurus_V1.3.1:
 加入了ARRI ALEXA 35 Live机型的选择和计算。

@@ -127,6 +127,8 @@ public let CodecName : [String:[String]] = [
     "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     
     //BMD
+    "Blackmagic URSA Cine 17K 65" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
+    "Blackmagic URSA Cine 12K LF" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
     "Blackmagic URSA Mini Pro 12K" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
     "Blackmagic URSA Mini Pro 4.6K G2" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
     "Blackmagic URSA Mini Pro 4.6K" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],

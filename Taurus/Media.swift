@@ -64,6 +64,8 @@ public let MediaName : [String:[String]] = [
     "iPhone 14 Pro" : ["Built-in 128GB","Built-in 256GB","Built-in 512GB","Built-in 1TB"],
     
     //BMD
+    "Blackmagic URSA Cine 17K 65" : ["Blackmagic Media Module 16TB","Blackmagic Media Module 8TB"],
+    "Blackmagic URSA Cine 12K LF" : ["Blackmagic Media Module 16TB","Blackmagic Media Module 8TB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","CFExpress TypeB 4TB"],
     "Blackmagic URSA Mini Pro 12K" : ["Dual CFast2.0 128GB","Dual CFast2.0 256GB","Dual CFast2.0 512GB","Dual CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "Blackmagic URSA Mini Pro 4.6K G2" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "Blackmagic URSA Mini Pro 4.6K" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],

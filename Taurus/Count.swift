@@ -263,9 +263,9 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 1862
     case "[Output]SSD 4TB","4TB" :
         return 3724
-    case "8TB" :
+    case "8TB","Blackmagic Media Module 8TB" :
         return 7448
-    case "16TB" :
+    case "16TB","Blackmagic Media Module 16TB" :
         return 14896
     default :
         return 0
