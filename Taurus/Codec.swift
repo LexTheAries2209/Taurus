@@ -117,14 +117,14 @@ public let CodecName : [String:[String]] = [
     "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     
     //Apple
-    "iPhone 17 Pro MAX" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 17 Pro" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 15 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 14 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
-    "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy"],
+    "iPhone 17 Pro MAX" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 17 Pro" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 15 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 14 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
     
     //BMD
     "Blackmagic URSA Cine Immersive" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
