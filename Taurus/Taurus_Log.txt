@@ -1,3 +1,10 @@
+Taurus_V1.3.3:
+修复了iPhone机型帧率选择错误的问题。
+为iPhone系列机型加入了更多编码选项。
+为部分iPhone机型加入了OpenGate模式。
+关闭了iPhone机型的选择和计算。
+修复了ARRI ALEXA 35 Xtreme机型帧率选择错误的问题。
+
 Taurus_V1.3.2:
 更新了注释。
 修复了使用XR/SXR Capture Drive储存卡记录ProRes编码时的计算错误问题。
