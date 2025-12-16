@@ -10,7 +10,7 @@ import Foundation
 func DSMC3Rate(cameradata:CameraData) -> [String] {
     var rates: [String] = []
     
-    if cameradata.CameraName == "KEMODO" {
+    if cameradata.CameraName == "KOMODO" {
         switch cameradata.Resolution {
         case "6K S35[6144*3240][17:9]","6K S35[5760*3240]" :
             rates = ["1.000","2.000","6.000","12.000","15.000","24.000","25.000","30.000","40.000"]
@@ -29,7 +29,7 @@ func DSMC3Rate(cameradata:CameraData) -> [String] {
         }
     }
     
-    if cameradata.CameraName == "KEMODO-X" {
+    else if cameradata.CameraName == "KOMODO-X" {
         switch cameradata.Resolution {
         case "6K S35[6144*3240][17:9]","6K S35[5760*3240]" :
             rates = ["1.000","2.000","6.000","12.000","15.000","24.000","25.000","30.000","40.000","42.000","48.000","50.000","60.000","72.000","75.000","80.000"]
@@ -48,7 +48,7 @@ func DSMC3Rate(cameradata:CameraData) -> [String] {
         }
     }
     
-    if cameradata.CameraName == "V-Raptor[8K VV]" || cameradata.CameraName == "V-Raptor XL[8K VV]" || cameradata.CameraName == "V-Raptor[8K S35]" || cameradata.CameraName == "V-Raptor XL[8K S35]" || cameradata.CameraName == "V-Raptor [X]" || cameradata.CameraName == "V-Raptor XL [X]" {
+    else if cameradata.CameraName == "V-Raptor[8K VV]" || cameradata.CameraName == "V-Raptor XL[8K VV]" || cameradata.CameraName == "V-Raptor[8K S35]" || cameradata.CameraName == "V-Raptor XL[8K S35]" || cameradata.CameraName == "V-Raptor [X]" || cameradata.CameraName == "V-Raptor XL [X]" {
         if cameradata.Codec == "REDCODE LQ" || cameradata.Codec == "REDCODE ELQ" {
             switch cameradata.Resolution {
             case "8K VV[8192*4320][17:9]","8K VV[7680*4320]","8K S35[8192*4320][17:9]","8K S35[7680*4320]" :

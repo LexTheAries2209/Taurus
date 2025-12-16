@@ -122,7 +122,7 @@ func ResolutionNumber(cameradata:CameraData) -> Int {
         return 121
     case "3.3K S35[3328*2790][6:5]" :
         return 122
-    case "3.4K S35[3424*2202][OG]","2.8K S35[2880*2160][Cilp 3424*2202][4:3]" :
+    case "3.4K S35[3424*2202][OG]","2.8K S35[2880*2160][Clip 3424*2202][4:3]" :
         return 123
     case "3.4K S35[3424*2202][1.55:1]" :
         return 124

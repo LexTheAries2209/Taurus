@@ -57,8 +57,8 @@ public let CodecName : [String:[String]] = [
     "V-Raptor XE" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     "V-Raptor XL[8K S35]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     "V-Raptor[8K S35]" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
-    "KEMODO-X" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
-    "KEMODO" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+    "KOMODO-X" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
+    "KOMODO" : ["REDCODE HQ","REDCODE MQ","REDCODE LQ","REDCODE ELQ"],
     
     //SONY
     //"CineAlta Venice 2[8K]": ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ"],
