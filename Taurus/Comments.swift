@@ -197,7 +197,7 @@ func Comments(cameradata:CameraData) -> some View {
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
-                Text("5. 特别鸣谢 徐理航 对于此程序的代码设计支持。特别鸣谢 郑昊 对于此程序的图标设计支持。Taurus软件作者 吴坤城 ，合作或联系可加微信：15814854313 。")
+                Text("5. 特别鸣谢**徐理航**对于此程序的代码设计支持。特别鸣谢**郑昊**对于此程序的图标设计支持。Taurus软件作者**吴坤城**，合作或联系可加微信：**15814854313**。")
                     .font(.system(size: 10))
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
