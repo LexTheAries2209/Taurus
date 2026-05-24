@@ -61,6 +61,18 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
     switch cameradata.Resolution {
     case "HD" :
         return 0.445
+    case "720p[1280*720]" :
+        return 0.445
+    case "1080p[1920*1080]" :
+        return 1
+    case "Open Gate[4032*3024]" :
+        return 5.878
+    case "4K[3840*2160]" :
+        return 4
+    case "4.2K[4224*2240][17:9]" :
+        return 4.562
+    case "Open Gate[4224*3024]" :
+        return 6.159
     case "2K S16[2048*864][2.4:1]","2K S8[2048*864][2.4:1]" :
         return 0.85
     case "FHD S35[From 2880*1620]","FHD S16[From 1600*900]","FHD S35[From 4096*2304]","FHD S35[From 1920*2160][8:9 ANA]","FHD LF[From 4320*2430]","FHD LF[From UHD]","FHD S16","FHD S8","FHD","2K FF[1920*1080][16:9]","2K S35[1920*1080][16:9]" :
@@ -437,6 +449,22 @@ func RateMultiplier(cameradata:CameraData) ->Double {
 
 //加入补偿的编码速度
 func CodecSpeedCount(cameradata:CameraData) -> Double {
+    if cameradata.BrandName == "Apple" {
+        let multiplier = ResolutionMultiplier(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
+        if multiplier == 0 {
+            return 0
+        }
+        return AppleCodecSpeed(cameradata: cameradata) / multiplier
+    }
+    
+    if cameradata.BrandName == "DJI" {
+        let multiplier = ResolutionMultiplier(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
+        if multiplier == 0 {
+            return 0
+        }
+        return DjiCodecSpeed(cameradata: cameradata) / multiplier
+    }
+    
     switch cameradata.Codec {
     case "ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422LT" :
         return Codecspeed(cameradata:cameradata)*ProResCompensation(cameradata:cameradata)
@@ -467,4 +495,283 @@ func ARRIRAWCompensation(cameradata:CameraData) -> Double {
     default :
         return 1
     }
+}
+
+// DJI official recording tables list data rate in MB/s; Taurus calculates with Mbps.
+func DjiCodecSpeed(cameradata: CameraData) -> Double {
+    return DjiCodecSpeedMBps(cameradata: cameradata) * 8
+}
+
+private func DjiCodecSpeedMBps(cameradata: CameraData) -> Double {
+    if cameradata.CameraName == "Ronin 4D[8K]" {
+        return Dji8KCodecSpeedMBps(cameradata: cameradata)
+    }
+    else if cameradata.CameraName == "Ronin 4D[6K]" {
+        return Dji6KCodecSpeedMBps(cameradata: cameradata)
+    }
+    else if cameradata.CameraName == "Inspire 3" {
+        return DjiInspire3CodecSpeedMBps(cameradata: cameradata)
+    }
+    else {
+        return 0
+    }
+}
+
+private func Dji8KCodecSpeedMBps(cameradata: CameraData) -> Double {
+    switch cameradata.Codec {
+    case "ProRes RAW HQ":
+        if DjiCountIs8KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 405, "24.000": 405, "25.000": 422])
+        }
+        else if DjiCountIs5_5KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 188, "24.000": 188, "25.000": 196, "29.970": 235, "30.000": 235, "48.000": 377, "50.000": 392])
+        }
+        else if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 101, "24.000": 101, "25.000": 105, "29.970": 126, "30.000": 127, "48.000": 203, "50.000": 211, "59.940": 253, "60.000": 253, "72.000": 304, "75.000": 316, "96.000": 405, "100.000": 422])
+        }
+    case "ProRes RAW":
+        if DjiCountIs8KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["29.970": 253, "30.000": 253, "48.000": 405, "50.000": 422, "59.940": 506, "60.000": 506])
+        }
+        else if cameradata.Resolution == "8K FF[8192*3424][2.39:1]" {
+            return DjiRateValue(cameradata.Rate, ["72.000": 482, "75.000": 502])
+        }
+        else if DjiCountIs5_5KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["59.940": 235, "60.000": 235])
+        }
+        else if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["120.000": 253])
+        }
+    case "ProRes 422 HQ":
+        if DjiCountIs8KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 359, "24.000": 360, "25.000": 375, "29.970": 449, "30.000": 450])
+        }
+        else if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 94, "29.970": 112, "30.000": 112, "48.000": 180, "50.000": 187, "59.940": 225, "60.000": 225, "72.000": 270, "75.000": 281, "96.000": 360, "100.000": 375, "120.000": 450])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 94, "29.970": 112, "30.000": 112, "48.000": 180, "50.000": 187, "59.940": 225, "60.000": 225])
+        }
+    case "H.264(10bit 4:2:0)":
+        if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25, "72.000": 36, "75.000": 36, "96.000": 36, "100.000": 36, "120.000": 36])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25])
+        }
+    default:
+        return 0
+    }
+    
+    return 0
+}
+
+private func Dji6KCodecSpeedMBps(cameradata: CameraData) -> Double {
+    switch cameradata.Codec {
+    case "ProRes RAW HQ":
+        if DjiCountIs6KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 218, "24.000": 218, "25.000": 227, "29.970": 272, "30.000": 272, "48.000": 436, "50.000": 445])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 101, "24.000": 101, "25.000": 105, "29.970": 126, "30.000": 127, "48.000": 203, "50.000": 211, "59.940": 253, "60.000": 253, "72.000": 304, "75.000": 316, "96.000": 405])
+        }
+    case "ProRes RAW":
+        if DjiCountIs6KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["59.940": 431, "60.000": 432])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["100.000": 334, "120.000": 401])
+        }
+    case "ProRes 4444 XQ":
+        if DjiCountIs6KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 435, "24.000": 435, "25.000": 453, "29.970": 543, "30.000": 544, "48.000": 870, "50.000": 890, "59.940": 863, "60.000": 864])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 202, "24.000": 202, "25.000": 211, "29.970": 253, "30.000": 253, "48.000": 405, "50.000": 421, "59.940": 505, "60.000": 506, "72.000": 607, "75.000": 632, "96.000": 809, "100.000": 668, "120.000": 802])
+        }
+    case "ProRes 422 HQ":
+        if DjiCountIs6KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 193, "24.000": 193, "25.000": 202, "29.970": 242, "30.000": 242, "48.000": 387, "50.000": 395, "59.940": 383, "60.000": 384])
+        }
+        else if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 94, "29.970": 112, "30.000": 112, "48.000": 180, "50.000": 188, "59.940": 178, "60.000": 178])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 94, "29.970": 112, "30.000": 112, "48.000": 180, "50.000": 187, "59.940": 225, "60.000": 225, "72.000": 270, "75.000": 281, "96.000": 360, "100.000": 297, "120.000": 356])
+        }
+        else if DjiCountIs2KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 24, "24.000": 24, "25.000": 25, "29.970": 30, "30.000": 30, "48.000": 48, "50.000": 50, "59.940": 60, "60.000": 60, "72.000": 72, "75.000": 75, "96.000": 96, "100.000": 100, "120.000": 120])
+        }
+        else if DjiCountIs2KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 24, "24.000": 24, "25.000": 25, "29.970": 30, "30.000": 30, "48.000": 48, "50.000": 50, "59.940": 60, "60.000": 60, "72.000": 72, "75.000": 75, "96.000": 96])
+        }
+    case "ProRes 422 LT":
+        if DjiCountIs6KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 94, "29.970": 112, "30.000": 112, "48.000": 180, "50.000": 183, "59.940": 186, "60.000": 186])
+        }
+        else if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 42, "24.000": 42, "25.000": 43, "29.970": 52, "30.000": 52, "48.000": 83, "50.000": 87, "59.940": 83, "60.000": 83])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 42, "24.000": 42, "25.000": 43, "29.970": 52, "30.000": 52, "48.000": 83, "50.000": 87, "59.940": 104, "60.000": 104, "72.000": 125, "75.000": 130, "96.000": 167, "100.000": 139, "120.000": 167])
+        }
+        else if DjiCountIs2KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 11, "24.000": 11, "25.000": 12, "29.970": 14, "30.000": 14, "48.000": 22, "50.000": 23, "59.940": 28, "60.000": 28, "72.000": 33, "75.000": 35, "96.000": 44, "100.000": 46, "120.000": 55])
+        }
+        else if DjiCountIs2KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 11, "24.000": 11, "25.000": 12, "29.970": 14, "30.000": 14, "48.000": 22, "50.000": 23, "59.940": 28, "60.000": 28, "72.000": 33, "75.000": 35, "96.000": 44])
+        }
+    case "H.264(10bit 4:2:0)":
+        if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25, "72.000": 36, "75.000": 36, "96.000": 36, "100.000": 36, "120.000": 36])
+        }
+        else if DjiCountIs2KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 7, "24.000": 7, "25.000": 7, "29.970": 7, "30.000": 7, "48.000": 11, "50.000": 11, "59.940": 11, "60.000": 11, "72.000": 18, "75.000": 18, "96.000": 18, "100.000": 18, "120.000": 18])
+        }
+        else if DjiCountIs2KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 7, "24.000": 7, "25.000": 7, "29.970": 7, "30.000": 7, "48.000": 11, "50.000": 11, "59.940": 11, "60.000": 11, "72.000": 18, "75.000": 18, "96.000": 18])
+        }
+    default:
+        return 0
+    }
+    
+    return 0
+}
+
+private func DjiInspire3CodecSpeedMBps(cameradata: CameraData) -> Double {
+    switch cameradata.Codec {
+    case "CinemaDNG":
+        if cameradata.Resolution == "8K FF[8192*4320][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 810, "24.000": 810, "25.000": 844])
+        }
+        else if cameradata.Resolution == "8K FF[7680*4320][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 759, "24.000": 759, "25.000": 791])
+        }
+        else if cameradata.Resolution == "4K FF[4096*2160][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 202, "24.000": 202, "25.000": 211, "29.970": 253, "30.000": 253, "48.000": 405, "50.000": 422, "59.940": 506, "60.000": 506, "72.000": 607, "75.000": 632, "96.000": 810, "100.000": 844])
+        }
+        else if cameradata.Resolution == "4K FF[3840*2160][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 190, "24.000": 190, "25.000": 197, "29.970": 237, "30.000": 237, "48.000": 381, "50.000": 396, "59.940": 475, "60.000": 475, "72.000": 569, "75.000": 832, "96.000": 759, "100.000": 791])
+        }
+        else if cameradata.Resolution == "5.5K S35[5568*2952][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 376, "24.000": 376, "25.000": 392, "29.970": 470, "30.000": 470, "48.000": 752, "50.000": 784])
+        }
+        else if cameradata.Resolution == "5.5K S35[5248*2952][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 355, "24.000": 355, "25.000": 369, "29.970": 443, "30.000": 443, "48.000": 710, "50.000": 739])
+        }
+    case "ProRes RAW HQ":
+        if cameradata.Resolution == "8K FF[8192*4320][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 405, "24.000": 405, "25.000": 422])
+        }
+        else if cameradata.Resolution == "8K FF[7680*4320][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 380, "24.000": 380, "25.000": 396])
+        }
+        else if cameradata.Resolution == "4K FF[4096*2160][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 101, "24.000": 101, "25.000": 106, "29.970": 127, "30.000": 127, "48.000": 202, "50.000": 211, "59.940": 300, "60.000": 253, "72.000": 304, "75.000": 317, "96.000": 405, "100.000": 422])
+        }
+        else if cameradata.Resolution == "4K FF[3840*2160][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 95, "24.000": 95, "25.000": 99, "29.970": 118, "30.000": 118, "48.000": 190, "50.000": 197, "59.940": 237, "60.000": 237, "72.000": 285, "75.000": 297, "96.000": 380, "100.000": 396])
+        }
+        else if cameradata.Resolution == "5.5K S35[5568*2952][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 189, "24.000": 189, "25.000": 196, "29.970": 236, "30.000": 236, "48.000": 377, "50.000": 393])
+        }
+        else if cameradata.Resolution == "5.5K S35[5248*2952][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 177, "24.000": 177, "25.000": 185, "29.970": 221, "30.000": 221, "48.000": 355, "50.000": 369])
+        }
+    case "ProRes RAW":
+        if cameradata.Resolution == "8K FF[8192*4320][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["29.970": 253, "30.000": 253, "48.000": 405, "50.000": 422, "59.940": 506, "60.000": 506])
+        }
+        else if cameradata.Resolution == "8K FF[7680*4320][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["29.970": 237, "30.000": 237, "48.000": 380, "50.000": 396, "59.940": 475, "60.000": 475])
+        }
+        else if cameradata.Resolution == "8K FF[8192*3424][2.39:1]" {
+            return DjiRateValue(cameradata.Rate, ["72.000": 482, "75.000": 502])
+        }
+        else if cameradata.Resolution == "4K FF[4096*2160][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["119.880": 253, "120.000": 253])
+        }
+        else if cameradata.Resolution == "4K FF[3840*2160][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["119.880": 237, "120.000": 237])
+        }
+        else if cameradata.Resolution == "5.5K S35[5568*2952][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["59.940": 471, "60.000": 471])
+        }
+        else if cameradata.Resolution == "5.5K S35[5248*2952][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["59.940": 443, "60.000": 443])
+        }
+    case "ProRes 422 HQ":
+        if cameradata.Resolution == "8K FF[8192*4320][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 360, "24.000": 360, "25.000": 375, "29.970": 449, "30.000": 449])
+        }
+        else if cameradata.Resolution == "8K FF[7680*4320][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 336, "24.000": 336, "25.000": 378, "29.970": 422, "30.000": 422])
+        }
+        else if cameradata.Resolution == "4K FF[4096*2160][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 93, "29.970": 113, "30.000": 113, "48.000": 180, "50.000": 188, "59.940": 225, "60.000": 225, "72.000": 270, "75.000": 281, "96.000": 360, "100.000": 375, "119.880": 449, "120.000": 449])
+        }
+        else if cameradata.Resolution == "4K FF[3840*2160][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 84, "24.000": 84, "25.000": 88, "29.970": 106, "30.000": 106, "48.000": 169, "50.000": 175, "59.940": 211, "60.000": 211, "72.000": 253, "75.000": 253, "96.000": 338, "100.000": 352, "119.880": 422, "120.000": 422])
+        }
+        else if cameradata.Resolution == "4K S35[4096*2160][17:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 90, "24.000": 90, "25.000": 93, "29.970": 113, "30.000": 113, "48.000": 180, "50.000": 188, "59.940": 225, "60.000": 225])
+        }
+        else if cameradata.Resolution == "4K S35[3840*2160][16:9]" {
+            return DjiRateValue(cameradata.Rate, ["23.976": 84, "24.000": 84, "25.000": 88, "29.970": 106, "30.000": 106, "48.000": 169, "50.000": 175, "59.940": 211, "60.000": 211])
+        }
+    case "H.264(10bit 4:2:0)":
+        if DjiCountIs4KFullFrame(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25, "72.000": 36, "75.000": 36, "96.000": 36, "100.000": 36, "119.880": 36, "120.000": 36])
+        }
+        else if DjiCountIs4KS35(cameradata.Resolution) {
+            return DjiRateValue(cameradata.Rate, ["23.976": 18, "24.000": 18, "25.000": 18, "29.970": 18, "30.000": 18, "48.000": 25, "50.000": 25, "59.940": 25, "60.000": 25])
+        }
+    default:
+        return 0
+    }
+    
+    return 0
+}
+
+private func DjiRateValue(_ rate: String, _ values: [String: Double]) -> Double {
+    return values[rate] ?? 0
+}
+
+private func AppleCodecSpeed(cameradata: CameraData) -> Double {
+    if cameradata.Codec == "H.265 (54 Mbps)" || cameradata.Codec == "H.264 (54 Mbps)" {
+        return 54
+    }
+    
+    return Codecspeed(cameradata: cameradata) * ResolutionMultiplier(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
+}
+
+private func DjiCountIs8KFullFrame(_ resolution: String) -> Bool {
+    return resolution == "8K FF[8192*4320][17:9]" || resolution == "8K FF[7680*4320][16:9]"
+}
+
+private func DjiCountIs5_5KS35(_ resolution: String) -> Bool {
+    return resolution == "5.5K S35[5568*2952][17:9]" || resolution == "5.5K S35[5248*2952][16:9]"
+}
+
+private func DjiCountIs6KFullFrame(_ resolution: String) -> Bool {
+    return resolution.contains("6K FF")
+}
+
+private func DjiCountIs4KFullFrame(_ resolution: String) -> Bool {
+    return resolution.contains("4K FF")
+}
+
+private func DjiCountIs4KS35(_ resolution: String) -> Bool {
+    return resolution.contains("4K S35")
+}
+
+private func DjiCountIs2KFullFrame(_ resolution: String) -> Bool {
+    return resolution.contains("2K FF")
+}
+
+private func DjiCountIs2KS35(_ resolution: String) -> Bool {
+    return resolution.contains("2K S35")
 }

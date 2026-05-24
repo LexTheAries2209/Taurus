@@ -112,19 +112,19 @@ public let CodecName : [String:[String]] = [
     "G9M2" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     
     //DJI
-    "Ronin 4D[8K]" : ["ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
-    "Ronin 4D[6K]" : ["ProRes RAW HQ","ProRes 4444 XQ","ProRes 422 HQ","ProRes 422 LT","H.264(10bit 4:2:0)"],
-    "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes 422 HQ","H.264(10bit 4:2:0)"],
+    "Ronin 4D[8K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","H.264(10bit 4:2:0)"],
+    "Ronin 4D[6K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 4444 XQ","ProRes 422 HQ","ProRes 422 LT","H.264(10bit 4:2:0)"],
+    "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     
     //Apple
-    "iPhone 17 Pro MAX" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 17 Pro" : ["ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 15 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 14 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
-    "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265","H.264"],
+    "iPhone 17 Pro MAX" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 17 Pro" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 16 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 16 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 15 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 15 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 14 Pro MAX" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
+    "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
     
     //BMD
     "Blackmagic URSA Cine Immersive" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],

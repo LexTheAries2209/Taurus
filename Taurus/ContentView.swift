@@ -29,52 +29,62 @@ struct ContentView: View {
     @State private var currentDate: String = ""
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                Text("数据计算器")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color(nsColor: .controlBackgroundColor))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color(nsColor: .separatorColor), lineWidth: 0.5)
+                            )
+                    )
+                Spacer()
+            }
+            .frame(height: 32)
+            
+            Divider()
+            
             VStack {
+                Spacer()
                 
-                // 主功能选择
-                TabView {
-                    
-                    // 数据计算器模块
-                    VStack {
-                        Spacer()
-                        
-                        // 重置按键
-                        Button("重置") {
-                            resetAllData()
-                        }
-                        .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
-                        
-                        Spacer()
-                        
-                        // 选择器与计算功能
-                        HStack {
-                            VStack(spacing: 10) {
-                                // 选择器模块
-                                PickerView(cameradata: cameradata)
-                            }
-                            .padding(.top, 20.0)
-                            
-                            Spacer()
-                            
-                            // 计算数据输出模块
-                            DataOutput(cameradata: cameradata)
-                        }
-                        Spacer()
-                        
-                        // 备注与说明模块
-                        Comments(cameradata: cameradata)
-                    }
-                    // 主菜单选择模块
-                    .tabItem {
-                        Text("数据计算器")
-                    }
+                // 重置按键
+                Button("重置") {
+                    resetAllData()
                 }
-                .frame(minWidth: 800, minHeight: 425)
-                .frame(maxWidth: 800, maxHeight: 425)
+                .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
+                
+                Spacer()
+                
+                // 选择器与计算功能
+                HStack {
+                    VStack(spacing: 10) {
+                        // 选择器模块
+                        PickerView(cameradata: cameradata)
+                    }
+                    .padding(.top, 20.0)
+                    
+                    Spacer()
+                    
+                    // 计算数据输出模块
+                    DataOutput(cameradata: cameradata)
+                }
+                Spacer()
+                
+                // 备注与说明模块
+                Comments(cameradata: cameradata)
             }
             .padding()
         }
+        .frame(minWidth: 800, minHeight: 425)
+        .frame(maxWidth: 800, maxHeight: 425)
+        .background(Color(nsColor: .windowBackgroundColor))
         //显示当前时间的文本，位于左上角
 //            HStack {
 //                Spacer()

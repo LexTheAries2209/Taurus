@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
+		582EA0412E025501001BD46A /* AppleMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0422E025501001BD46A /* AppleMedia.swift */; };
 		582EA03C2C15CEAD001BD46A /* CanonCinemaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */; };
 		582EA03E2C15CED1001BD46A /* CanonCinemaMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */; };
 		582EA0402C15D087001BD46A /* CanonCinemaRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03F2C15D087001BD46A /* CanonCinemaRate.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
+		582EA0422E025501001BD46A /* AppleMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMedia.swift; sourceTree = "<group>"; };
 		582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaCount.swift; sourceTree = "<group>"; };
 		582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaMedia.swift; sourceTree = "<group>"; };
 		582EA03F2C15D087001BD46A /* CanonCinemaRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaRate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				5839AA342BEDBA370025C74C /* SonyMedia.swift */,
 				5839AA362BEDBA500025C74C /* CanonMedia.swift */,
 				582EA0392C155C8E001BD46A /* DjiMedia.swift */,
+				582EA0422E025501001BD46A /* AppleMedia.swift */,
 				582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */,
 			);
 			path = Media;
@@ -310,6 +313,7 @@
 				587618DA2C11A055009FF3B4 /* CanonCinemaResolution.swift in Sources */,
 				5835195B2B2216D700366A4D /* CanonCount.swift in Sources */,
 				5839AA352BEDBA370025C74C /* SonyMedia.swift in Sources */,
+				582EA0412E025501001BD46A /* AppleMedia.swift in Sources */,
 				58FE691A2BB1488B008ECC8D /* DataOutput.swift in Sources */,
 				58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */,
 				588C39D92C318270008DC656 /* GeneralResolution.swift in Sources */,

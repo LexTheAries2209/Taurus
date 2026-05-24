@@ -21,6 +21,9 @@ extension View {
 
 struct PickerView: View {
     @ObservedObject var cameradata: CameraData
+    private let rowWidth: CGFloat = 405
+    private let pickerWidth: CGFloat = 305
+    private let labelWidth: CGFloat = 100
     
     var body: some View {
         VStack(spacing: 10) {
@@ -212,25 +215,29 @@ struct PickerView: View {
             medias = DjiMedia(cameradata: cameradata)
         case "Canon Cinema":
             medias = CanonCinemaMedia(cameradata: cameradata)
+        case "Apple":
+            medias = AppleMedia(cameradata: cameradata)
         case "[General]":
             medias = GeneralMedia(cameradata: cameradata)
         default:
             medias = MediaName[cameradata.CameraName] ?? ["无选项"]
         }
         
-        return createPicker(selection: $cameradata.Media, label: "请选择储存卡", options: medias, showNoOptionText: medias == ["无选项"])
+        return createPicker(selection: $cameradata.Media, label: "请选择储存卡", options: medias, showNoOptionText: medias == ["无选项"], autoSelectInvalid: true)
     }
     
-    private func createPicker(selection: Binding<String>, label: String, options: [String], showNoOptionText: Bool = false) -> some View {
-        Picker(selection: selection, label: Text(label).frame(width: 100, alignment: .center)) {
-            if showNoOptionText {
-                Text("无选项")
-            } else {
-                ForEach(options, id: \.self) { option in
-                    Text(option).tag(option)
-                }
-            }
+    private func createPicker(selection: Binding<String>, label: String, options: [String], showNoOptionText: Bool = false, autoSelectInvalid: Bool = false) -> some View {
+        HStack(spacing: 0) {
+            Text(label)
+                .frame(width: labelWidth, alignment: .center)
+            FixedWidthPopUpButton(
+                selection: selection,
+                options: showNoOptionText ? ["无选项"] : options,
+                autoSelectInvalid: autoSelectInvalid
+            )
+            .frame(minWidth: pickerWidth, idealWidth: pickerWidth, maxWidth: pickerWidth, alignment: .leading)
         }
+        .frame(width: rowWidth, alignment: .leading)
     }
     private func filterDigits(from input: String) -> String {
         let digits = "0123456789"
@@ -240,3 +247,74 @@ struct PickerView: View {
     }
 }
 
+struct FixedWidthPopUpButton: NSViewRepresentable {
+    @Binding var selection: String
+    let options: [String]
+    let autoSelectInvalid: Bool
+    
+    func makeNSView(context: Context) -> NSPopUpButton {
+        let button = NSPopUpButton(frame: .zero, pullsDown: false)
+        button.bezelStyle = .rounded
+        button.controlSize = .regular
+        button.target = context.coordinator
+        button.action = #selector(Coordinator.selectionChanged(_:))
+        button.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        button.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return button
+    }
+    
+    func updateNSView(_ nsView: NSPopUpButton, context: Context) {
+        context.coordinator.parent = self
+        
+        nsView.removeAllItems()
+        nsView.addItems(withTitles: options)
+        
+        if selection == "无选项" || options == ["无选项"] {
+            nsView.select(nil)
+            DispatchQueue.main.async {
+                if self.selection == "无选项" {
+                    self.selection = self.autoSelectInvalid ? "请选择储存卡" : ""
+                }
+            }
+        } else if options.contains(selection) {
+            nsView.selectItem(withTitle: selection)
+        } else if autoSelectInvalid {
+            nsView.select(nil)
+            DispatchQueue.main.async {
+                if !self.isPlaceholderSelection(self.selection) {
+                    self.selection = self.placeholderSelection(for: self.selection)
+                }
+            }
+        } else {
+            nsView.select(nil)
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject {
+        var parent: FixedWidthPopUpButton
+        
+        init(_ parent: FixedWidthPopUpButton) {
+            self.parent = parent
+        }
+        
+        @objc func selectionChanged(_ sender: NSPopUpButton) {
+            parent.selection = sender.titleOfSelectedItem ?? ""
+        }
+    }
+    
+    private func isPlaceholderSelection(_ value: String) -> Bool {
+        return value.hasPrefix("请选择") || value.isEmpty || value == "无选项"
+    }
+    
+    private func placeholderSelection(for value: String) -> String {
+        if value.contains("GB") || value.contains("TB") || value.contains("SSD") || value.contains("CF") || value.contains("SD") || value.contains("SxS") || value.contains("XQD") || value.contains("AXS") || value.contains("Drive") || value.contains("Built-in") {
+            return "请选择储存卡"
+        }
+        
+        return ""
+    }
+}

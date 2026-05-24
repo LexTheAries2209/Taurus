@@ -2,8 +2,13 @@ Taurus_V1.3.3:
 修复了iPhone机型帧率选择错误的问题。
 为iPhone系列机型加入了更多编码选项。
 为部分iPhone机型加入了OpenGate模式。
-关闭了iPhone机型的选择和计算。
+更新了iPhone的计算和选择。
 修复了ARRI ALEXA 35 Xtreme机型帧率选择错误的问题。
+修复了KOMODO拼写错误的问题。
+修复了ARRI一个机型的分辨率拼写错误问题。
+修改了DJI Ronin 4D的编码问题。
+修改了DJI Inspire 3的编码问题。
+修改了注释。
 
 Taurus_V1.3.2:
 更新了注释。
