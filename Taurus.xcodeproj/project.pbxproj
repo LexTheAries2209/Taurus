@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
-		582EA0412E025501001BD46A /* AppleMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0422E025501001BD46A /* AppleMedia.swift */; };
 		582EA03C2C15CEAD001BD46A /* CanonCinemaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */; };
 		582EA03E2C15CED1001BD46A /* CanonCinemaMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */; };
 		582EA0402C15D087001BD46A /* CanonCinemaRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03F2C15D087001BD46A /* CanonCinemaRate.swift */; };
+		582EA0412E025501001BD46A /* AppleMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0422E025501001BD46A /* AppleMedia.swift */; };
 		583519592B22160D00366A4D /* SonyCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583519582B22160D00366A4D /* SonyCount.swift */; };
 		5835195B2B2216D700366A4D /* CanonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195A2B2216D700366A4D /* CanonCount.swift */; };
 		5835195D2B2217A200366A4D /* PanaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195C2B2217A200366A4D /* PanaCount.swift */; };
@@ -56,10 +56,10 @@
 
 /* Begin PBXFileReference section */
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
-		582EA0422E025501001BD46A /* AppleMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMedia.swift; sourceTree = "<group>"; };
 		582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaCount.swift; sourceTree = "<group>"; };
 		582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaMedia.swift; sourceTree = "<group>"; };
 		582EA03F2C15D087001BD46A /* CanonCinemaRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaRate.swift; sourceTree = "<group>"; };
+		582EA0422E025501001BD46A /* AppleMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMedia.swift; sourceTree = "<group>"; };
 		583519582B22160D00366A4D /* SonyCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonyCount.swift; sourceTree = "<group>"; };
 		5835195A2B2216D700366A4D /* CanonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCount.swift; sourceTree = "<group>"; };
 		5835195C2B2217A200366A4D /* PanaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaCount.swift; sourceTree = "<group>"; };
@@ -478,12 +478,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.3";
+				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.4";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -506,12 +506,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.3";
+				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.4";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
