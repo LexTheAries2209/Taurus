@@ -89,6 +89,7 @@ public let CodecName : [String:[String]] = [
     "CinemaEOS C300 Mark3" : ["Cinema RAW Light","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C400" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C80" : ["Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S LongGOP","XF-AVC S Intra","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
+    "CinemaEOS C50" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-HEVC S Intra HQ","XF-HEVC S Intra ST","XF-HEVC S Intra LT","XF-HEVC S LongGOP","XF-AVC S Intra HQ","XF-AVC S Intra ST","XF-AVC S Intra LT","XF-AVC S LongGOP","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS C70" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     "CinemaEOS R5C" : ["Cinema RAW Light HQ","Cinema RAW Light ST","Cinema RAW Light LT","XF-AVC Intra","XF-AVC LongGOP"],
     
@@ -97,6 +98,8 @@ public let CodecName : [String:[String]] = [
     "EOS R3" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R5 Mark2" : ["RAW","RAW Light","XF-HEVC S Intra HQ FF","XF-HEVC S Intra ST FF","XF-HEVC S Intra LT FF","XF-HEVC S LongGOP FF","XF-HEVC S LongGOP S35","XF-AVC S Intra HQ FF","XF-AVC S Intra ST FF","XF-AVC S Intra LT FF","XF-AVC S Intra HQ S35","XF-AVC S Intra ST S35","XF-AVC S Intra LT S35","XF-AVC S LongGOP FF","XF-AVC S LongGOP S35"],
     "EOS R5" : ["RAW","RAW Light","ALL-I HEVC","ALL-I AVC","IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
+    "EOS R6 V" : ["RAW","RAW Light","XF-HEVC S Intra HQ FF","XF-HEVC S Intra ST FF","XF-HEVC S Intra LT FF","XF-HEVC S LongGOP FF","XF-HEVC S LongGOP S35","XF-AVC S Intra HQ FF","XF-AVC S Intra ST FF","XF-AVC S Intra LT FF","XF-AVC S LongGOP FF","XF-AVC S LongGOP S35"],
+    "EOS R6 Mark3" : ["RAW","RAW Light","XF-HEVC S Intra HQ FF","XF-HEVC S Intra ST FF","XF-HEVC S Intra LT FF","XF-HEVC S LongGOP FF","XF-HEVC S LongGOP S35","XF-AVC S Intra HQ FF","XF-AVC S Intra ST FF","XF-AVC S Intra LT FF","XF-AVC S LongGOP FF","XF-AVC S LongGOP S35"],
     "EOS R6 Mark2" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R6" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     "EOS R8" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],

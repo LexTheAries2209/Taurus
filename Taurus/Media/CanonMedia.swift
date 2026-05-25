@@ -11,7 +11,7 @@ func CanonMedia(cameradata:CameraData) -> [String] {
     var CanonMedia = [""]
     let CodecSpeed = CanonCodecSpeed(cameradata: cameradata)
     
-    if cameradata.CameraName == "EOS R5" || cameradata.CameraName == "EOS R3" || cameradata.CameraName == "EOS R5C" || cameradata.CameraName == "EOS R5 Mark2" {
+    if cameradata.CameraName == "EOS R5" || cameradata.CameraName == "EOS R3" || cameradata.CameraName == "EOS R5C" || cameradata.CameraName == "EOS R5 Mark2" || cameradata.CameraName == "EOS R6 V" || cameradata.CameraName == "EOS R6 Mark3" {
         if CodecSpeed <= 270 {
             CanonMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB"]
         }

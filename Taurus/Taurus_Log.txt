@@ -1,3 +1,6 @@
+Taurus_V1.3.4:
+简化了Canon机型的分辨率选择。
+
 Taurus_V1.3.3:
 修复了iPhone机型帧率选择错误的问题。
 为iPhone系列机型加入了更多编码选项。

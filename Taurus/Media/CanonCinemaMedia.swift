@@ -23,7 +23,7 @@ func CanonCinemaMedia(cameradata:CameraData) -> [String] {
         }
     }
     
-    else if cameradata.CameraName == "CinemaEOS R5C" {
+    else if cameradata.CameraName == "CinemaEOS R5C" || cameradata.CameraName == "CinemaEOS C50" {
         if CodecSpeed <= 270 {
             CanonCinemaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB"]
         }
