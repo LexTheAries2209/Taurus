@@ -28,9 +28,9 @@ func CanonCinemaRawResolution(cameradata:CameraData) -> [String] {
         let c50XFAVCResolutions = ["DCI 4K Fine FF[10bit 4:2:2][From 7K]","UHD Fine FF[10bit 4:2:2][From 7K]","DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","FHD FF[10bit 4:2:2]","DCI 2K FFcrop[10bit 4:2:2]","FHD FFcrop[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","FHD S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD S16[10bit 4:2:2]"]
         
         let CanonCinemaResolutions: [String: [String]] = [
-            "CinemaEOS C400_Cinema RAW Light HQ" : ["6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
-            "CinemaEOS C400_Cinema RAW Light ST" : ["6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
-            "CinemaEOS C400_Cinema RAW Light LT" : ["6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
+            "CinemaEOS C400_Cinema RAW Light HQ" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
+            "CinemaEOS C400_Cinema RAW Light ST" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
+            "CinemaEOS C400_Cinema RAW Light LT" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
             "CinemaEOS C400_XF-HEVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
             "CinemaEOS C400_XF-AVC S Intra" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
             "CinemaEOS C400_XF-AVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
@@ -238,7 +238,10 @@ private func CanonCinemaMergedResolutionLabel(resolutions: [String]) -> String {
         let displayFrom = infos.first(where: { $0.format == "DCI" && !$0.displayFrom.isEmpty })?.displayFrom ?? firstInfo.displayFrom
         return "\(firstInfo.family) Fine\(crop)[\(firstInfo.color)]\(tags)[\(displayFrom)]"
     }
-    return "\(firstInfo.family)\(crop)[\(firstInfo.color)]\(tags)"
+
+    let displayFrom = infos.first(where: { !$0.displayFrom.isEmpty })?.displayFrom ?? ""
+    let fromTag = displayFrom.isEmpty ? "" : "[\(displayFrom)]"
+    return "\(firstInfo.family)\(crop)[\(firstInfo.color)]\(tags)\(fromTag)"
 }
 
 private func CanonCinemaMergedResolutionSpeedsMatch(cameradata: CameraData, resolutions: [String]) -> Bool {

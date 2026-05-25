@@ -115,7 +115,10 @@ func CanonCinemaRate(cameradata:CameraData) -> [String] {
     }
     
     else if cameradata.CameraName.contains("C400") {
-        if cameradata.Codec.contains("HQ") && cameradata.Resolution.contains("6K") {
+        if cameradata.Codec.contains("RAW") && cameradata.Resolution.contains("[OG]") {
+            rates = ["23.976","24.000","25.000","29.970"]
+        }
+        else if cameradata.Codec.contains("HQ") && cameradata.Resolution.contains("6K") {
             rates = ["23.976","24.000","25.000","29.970"]
         }
         else {

@@ -730,6 +730,37 @@ private func RateSpeedValue(_ rate: String) -> Double {
     return RateSpeed(cameradata: data)
 }
 
+private func CanonCinemaC400RawOGSpeed(cameradata: CameraData) -> Double {
+    if cameradata.Codec.contains("HQ") {
+        switch cameradata.Rate {
+        case "29.970": return 2730
+        case "25.000": return 2280
+        case "24.000": return 2180
+        case "23.976": return 2180
+        default: return 0
+        }
+    }
+    else if cameradata.Codec.contains("ST") {
+        switch cameradata.Rate {
+        case "29.970": return 1340
+        case "25.000": return 1120
+        case "24.000": return 1080
+        case "23.976": return 1080
+        default: return 0
+        }
+    }
+    else if cameradata.Codec.contains("LT") {
+        switch cameradata.Rate {
+        case "29.970": return 871
+        case "25.000": return 727
+        case "24.000": return 698
+        case "23.976": return 697
+        default: return 0
+        }
+    }
+    return 0
+}
+
 func CanonCinemaCodecSpeed(cameradata:CameraData) -> Double {
     if cameradata.CameraName == "CinemaEOS C50" {
         return CanonCinemaC50CodecSpeed(cameradata: cameradata)
@@ -757,7 +788,10 @@ func CanonCinemaCodecSpeed(cameradata:CameraData) -> Double {
         }
     }
     else if cameradata.CameraName.contains("C400") || cameradata.CameraName.contains("C80") {
-        if cameradata.Codec.contains("RAW") || cameradata.Codec.contains("Intra") {
+        if cameradata.CameraName.contains("C400") && cameradata.Codec.contains("RAW") && cameradata.Resolution.contains("[OG]") {
+            return CanonCinemaC400RawOGSpeed(cameradata: cameradata)
+        }
+        else if cameradata.Codec.contains("RAW") || cameradata.Codec.contains("Intra") {
             return CanonCinemaResolutionSpeed(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
         }
         else {
