@@ -13,6 +13,7 @@ class CameraData: ObservableObject {
     @Published var BrandName = "请选择品牌"
     @Published var CameraName = "请选择机型"
     @Published var Codec = "请选择编码"
+    @Published var CanonCodecLevel = "请选择级别"
     @Published var Resolution = "请选择分辨率"
     @Published var Media = "请选择储存卡"
     @Published var Rate = "请选择帧率"
@@ -82,8 +83,8 @@ struct ContentView: View {
             }
             .padding()
         }
-        .frame(minWidth: 800, minHeight: 425)
-        .frame(maxWidth: 800, maxHeight: 425)
+        .frame(minWidth: 930, minHeight: 425)
+        .frame(maxWidth: 930, maxHeight: 425)
         .background(Color(nsColor: .windowBackgroundColor))
         //显示当前时间的文本，位于左上角
 //            HStack {
@@ -108,6 +109,7 @@ struct ContentView: View {
         cameradata.BrandName = "请选择品牌"
         cameradata.CameraName = "请选择机型"
         cameradata.Codec = "请选择编码"
+        cameradata.CanonCodecLevel = "请选择级别"
         cameradata.Resolution = "请选择分辨率"
         cameradata.Media = "请选择储存卡"
         cameradata.Rate = "请选择帧率"

@@ -9,14 +9,16 @@ import Foundation
 import Combine
 
 func CanonCodecSpeed(cameradata:CameraData) -> Double {
+    let codec = CanonEffectiveCodec(cameradata: cameradata)
+
     if cameradata.CameraName == "EOS R6 V" || cameradata.CameraName == "EOS R6 Mark3" {
-        let r6vSpeed = CanonR6VCodecSpeedValue(codec: cameradata.Codec, resolution: cameradata.Resolution)
+        let r6vSpeed = CanonR6VCodecSpeedValue(codec: codec, resolution: cameradata.Resolution)
         if r6vSpeed != 0 {
             return r6vSpeed
         }
     }
     
-    let directSpeed = CanonCodecSpeedValue(codec: cameradata.Codec, resolution: cameradata.Resolution)
+    let directSpeed = CanonCodecSpeedValue(codec: codec, resolution: cameradata.Resolution)
     if directSpeed != 0 {
         return directSpeed
     }

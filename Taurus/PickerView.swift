@@ -21,8 +21,8 @@ extension View {
 
 struct PickerView: View {
     @ObservedObject var cameradata: CameraData
-    private let rowWidth: CGFloat = 405
-    private let pickerWidth: CGFloat = 305
+    private let rowWidth: CGFloat = 530
+    private let pickerWidth: CGFloat = 430
     private let labelWidth: CGFloat = 100
     
     var body: some View {
@@ -72,11 +72,19 @@ struct PickerView: View {
                 //编码选择
                 if let codec = CodecName[cameradata.CameraName] { //选择码率
                     createPicker(selection: $cameradata.Codec, label: "请选择编码", options: codec)
+                        .onChange(of: cameradata.Codec) { _ in
+                            cameradata.CanonCodecLevel = "请选择级别"
+                        }
                 } else {
                     createPicker(selection: $cameradata.Codec, label: "请选择编码", options: ["无选项"], showNoOptionText: true)
                 }
                 
-                
+                //Canon Intra级别选择
+                let canonCodecLevels = CanonCodecLevelOptions(cameradata: cameradata)
+                if !canonCodecLevels.isEmpty {
+                    createPicker(selection: $cameradata.CanonCodecLevel, label: "请选择级别", options: canonCodecLevels)
+                }
+
                 //Panasonic幅面选择
                 if cameradata.BrandName == "Panasonic" {
                     let formats = PanaFormat(cameradata: cameradata)

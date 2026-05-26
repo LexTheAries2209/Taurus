@@ -18,9 +18,10 @@ func CanonRawResolution(cameradata:CameraData) -> [String] {
     
     if cameradata.BrandName == "Canon" {
         
-            var key = cameradata.CameraName + "_" + cameradata.Codec
+            let codec = CanonEffectiveCodec(cameradata: cameradata)
+            var key = cameradata.CameraName + "_" + codec
             if cameradata.CameraName == "EOS R6 Mark3" {
-                key = "EOS R6 V_" + cameradata.Codec
+                key = "EOS R6 V_" + codec
             }
             
             let CanonResolutions: [String: [String]] = [
@@ -131,6 +132,7 @@ private let canonResolutionFrameRateOrder = [
 private func CanonMergedResolutions(cameradata: CameraData, resolutions: [String]) -> [String] {
     let mergeContext = CanonResolutionMergeContext(resolutions: resolutions)
     let groups = CanonResolutionMergeGroups(resolutions: resolutions)
+    let codec = CanonEffectiveCodec(cameradata: cameradata)
     var emittedKeys = Set<String>()
     var mergedResolutions: [String] = []
     
@@ -139,7 +141,7 @@ private func CanonMergedResolutions(cameradata: CameraData, resolutions: [String
               let group = groups[key],
               group.count > 1,
               CanonResolutionHasMergeableFormats(resolutions: group),
-              CanonMergedResolutionSpeed(codec: cameradata.Codec, resolutions: group) != 0 else {
+              CanonMergedResolutionSpeed(codec: codec, resolutions: group) != 0 else {
             mergedResolutions.append(resolution)
             continue
         }
@@ -157,9 +159,10 @@ func CanonMergedResolutionSpeed(cameradata: CameraData) -> Double {
     let rawResolutions = CanonRawResolution(cameradata: cameradata)
     let mergeContext = CanonResolutionMergeContext(resolutions: rawResolutions)
     let groups = CanonResolutionMergeGroups(resolutions: rawResolutions)
+    let codec = CanonEffectiveCodec(cameradata: cameradata)
     
     for group in groups.values where group.count > 1 && CanonResolutionHasMergeableFormats(resolutions: group) {
-        let speed = CanonMergedResolutionSpeed(codec: cameradata.Codec, resolutions: group)
+        let speed = CanonMergedResolutionSpeed(codec: codec, resolutions: group)
         if speed != 0 && CanonMergedResolutionLabel(resolutions: group, context: mergeContext) == cameradata.Resolution {
             return speed
         }
@@ -328,4 +331,46 @@ private func CanonMergedResolutionSpeed(codec: String, resolutions: [String]) ->
         return speed
     }
     return 0
+}
+
+private let canonCodecLevelValues = ["HQ", "ST", "LT"]
+
+func CanonCodecLevelOptions(cameradata: CameraData) -> [String] {
+    return CanonCodecNeedsLevel(cameradata: cameradata) ? canonCodecLevelValues : []
+}
+
+func CanonEffectiveCodec(cameradata: CameraData) -> String {
+    guard CanonCodecNeedsLevel(cameradata: cameradata) else {
+        return cameradata.Codec
+    }
+
+    guard canonCodecLevelValues.contains(cameradata.CanonCodecLevel) else {
+        return ""
+    }
+
+    return CanonCodecWithLevel(codec: cameradata.Codec, level: cameradata.CanonCodecLevel)
+}
+
+private func CanonCodecNeedsLevel(cameradata: CameraData) -> Bool {
+    return cameradata.BrandName == "Canon" && CanonCodecNeedsLevel(codec: cameradata.Codec)
+}
+
+private func CanonCodecNeedsLevel(codec: String) -> Bool {
+    if codec.contains(" Intra HQ ") || codec.contains(" Intra ST ") || codec.contains(" Intra LT ") {
+        return false
+    }
+
+    return codec.hasPrefix("XF-HEVC S Intra ") || codec.hasPrefix("XF-AVC S Intra ")
+}
+
+private func CanonCodecWithLevel(codec: String, level: String) -> String {
+    if codec.hasPrefix("XF-HEVC S Intra ") {
+        return codec.replacingOccurrences(of: "XF-HEVC S Intra ", with: "XF-HEVC S Intra \(level) ")
+    }
+
+    if codec.hasPrefix("XF-AVC S Intra ") {
+        return codec.replacingOccurrences(of: "XF-AVC S Intra ", with: "XF-AVC S Intra \(level) ")
+    }
+
+    return codec
 }
