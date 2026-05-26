@@ -304,8 +304,8 @@ func CanonCinemaResolutionSpeed(cameradata:CameraData) -> Double {
             }
         }
         else if cameradata.Codec == "XF-AVC S Intra" {
-            if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
-                return 480
+            if let baseSpeed = CanonCinemaC400C80Intra4KBaseSpeed(cameradata: cameradata) {
+                return baseSpeed
             }
             else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
                 return 120
@@ -340,8 +340,8 @@ func CanonCinemaResolutionSpeed(cameradata:CameraData) -> Double {
             }
         }
         else if cameradata.Codec == "XF-AVC Intra" {
-            if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") {
-                return 480
+            if let baseSpeed = CanonCinemaC400C80Intra4KBaseSpeed(cameradata: cameradata) {
+                return baseSpeed
             }
             else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
                 return 120
@@ -408,13 +408,8 @@ func CanonCinemaResolutionSpeed(cameradata:CameraData) -> Double {
             }
         }
         else if cameradata.Codec == "XF-AVC S Intra" {
-            if (cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD")) {
-                if cameradata.Rate == "50.000" || cameradata.Rate == "59.940" {
-                    return 240
-                }
-                else {
-                    return 480
-                }
+            if let baseSpeed = CanonCinemaC400C80Intra4KBaseSpeed(cameradata: cameradata) {
+                return baseSpeed
             }
             else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
                 return 120
@@ -449,13 +444,8 @@ func CanonCinemaResolutionSpeed(cameradata:CameraData) -> Double {
             }
         }
         else if cameradata.Codec == "XF-AVC Intra" {
-            if (cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD")) {
-                if cameradata.Rate == "50.000" || cameradata.Rate == "59.940" {
-                    return 240
-                }
-                else {
-                    return 480
-                }
+            if let baseSpeed = CanonCinemaC400C80Intra4KBaseSpeed(cameradata: cameradata) {
+                return baseSpeed
             }
             else if cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
                 return 120
@@ -609,13 +599,13 @@ private func CanonCinemaC50RawSpeed(cameradata: CameraData) -> Double {
 }
 
 private func CanonCinemaC50HEVCSIntraSpeed(cameradata: CameraData) -> Double {
-    if cameradata.Codec.hasSuffix("HQ") {
+    if cameradata.Resolution.contains("[HQ]") || cameradata.Codec.hasSuffix("HQ") {
         return CanonCinemaC50RateValue(cameradata.Rate, values: ["23.976": 1730, "24.000": 1730], fallbackBase24: 1730)
     }
-    else if cameradata.Codec.hasSuffix("ST") {
+    else if cameradata.Resolution.contains("[ST]") || cameradata.Codec.hasSuffix("ST") {
         return CanonCinemaC50RateValue(cameradata.Rate, values: ["23.976": 1300, "24.000": 1300, "25.000": 1350, "29.970": 1620], fallbackBase24: 1300)
     }
-    else if cameradata.Codec.hasSuffix("LT") {
+    else if cameradata.Resolution.contains("[LT]") || cameradata.Codec.hasSuffix("LT") {
         return CanonCinemaC50RateValue(cameradata.Rate, values: ["23.976": 864, "24.000": 864, "25.000": 900, "29.970": 1080], fallbackBase24: 864)
     }
     return 0
@@ -628,13 +618,13 @@ private func CanonCinemaC50AVCSIntraSpeed(cameradata: CameraData) -> Double {
         return CanonCinemaC50RateValue(camerataRate: cameradata.Rate, low24: 120, low25: 125, low30: 150, high50: 250, high60: 300, hfr100: 500, hfr120: 600, hfr150: 750, hfr180: 900)
     }
     
-    if cameradata.Codec.hasSuffix("HQ") {
+    if resolution.contains("[HQ]") || cameradata.Codec.hasSuffix("HQ") {
         return CanonCinemaC50RateValue(camerataRate: cameradata.Rate, low24: 480, low25: 500, low30: 600, high50: 1000, high60: 1200)
     }
-    else if cameradata.Codec.hasSuffix("ST") {
+    else if resolution.contains("[ST]") || cameradata.Codec.hasSuffix("ST") {
         return CanonCinemaC50RateValue(camerataRate: cameradata.Rate, low24: 360, low25: 375, low30: 450, high50: 750, high60: 900, hfr100: 1500, hfr120: 1800)
     }
-    else if cameradata.Codec.hasSuffix("LT") {
+    else if resolution.contains("[LT]") || cameradata.Codec.hasSuffix("LT") {
         return CanonCinemaC50RateValue(camerataRate: cameradata.Rate, low24: 240, low25: 250, low30: 300, high50: 500, high60: 600, hfr100: 1000, hfr120: 1200)
     }
     
@@ -728,6 +718,22 @@ private func RateSpeedValue(_ rate: String) -> Double {
     let data = CameraData()
     data.Rate = rate
     return RateSpeed(cameradata: data)
+}
+
+private func CanonCinemaC400C80Intra4KBaseSpeed(cameradata: CameraData) -> Double? {
+    guard cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("UHD") else {
+        return nil
+    }
+    if cameradata.Resolution.contains("[HQ]") {
+        return 480
+    }
+    if cameradata.Resolution.contains("[ST]") {
+        return 360
+    }
+    if cameradata.Resolution.contains("[LT]") {
+        return 240
+    }
+    return 480
 }
 
 private func CanonCinemaC400RawOGSpeed(cameradata: CameraData) -> Double {

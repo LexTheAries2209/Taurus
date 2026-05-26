@@ -20,41 +20,43 @@ func CanonCinemaRawResolution(cameradata:CameraData) -> [String] {
         
         let key = cameradata.CameraName + "_" + cameradata.Codec
         let c50RawResolutions = ["7K FF[6960*4640][12bit RAW][OG]","7K FF[6960*3672][12bit RAW][17:9]","5K S35[5036*2656][12bit RAW]","2.5K S16[2524*1332][12bit RAW]"]
-        let c50HEVCSIntraResolutions = ["7K FF[6912*4608][10bit 4:2:2][OG]"]
+        let c50HEVCSIntraResolutions = ["7K FF[6912*4608][10bit 4:2:2][HQ][OG]","7K FF[6912*4608][10bit 4:2:2][ST][OG]","7K FF[6912*4608][10bit 4:2:2][LT][OG]"]
         let c50HEVCSLongGOPResolutions = ["7K FF[6912*4608][10bit 4:2:2][OG]","7K FF[6912*4608][10bit 4:2:0][OG]","DCI 4K Fine FF[10bit 4:2:2][From 7K]","UHD Fine FF[10bit 4:2:2][From 7K]","DCI 4K Fine FF[10bit 4:2:0][From 7K]","UHD Fine FF[10bit 4:2:0][From 7K]","DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 4K FF[10bit 4:2:0]","UHD FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2][From 3.5K]","FHD FF[10bit 4:2:2][From 3.5K]","DCI 2K FF[10bit 4:2:2]","FHD FF[10bit 4:2:2]","DCI 2K FFcrop[10bit 4:2:2]","FHD FFcrop[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","FHD S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0][From 3.5K]","FHD FF[10bit 4:2:0][From 3.5K]","DCI 2K FF[10bit 4:2:0]","FHD FF[10bit 4:2:0]","DCI 2K FFcrop[10bit 4:2:0]","FHD FFcrop[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","FHD S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD S16[10bit 4:2:0]"]
-        let c50AVCSIntra4KResolutions = ["DCI 4K Fine FF[10bit 4:2:2][From 7K]","UHD Fine FF[10bit 4:2:2][From 7K]","DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]"]
+        let c50AVCSIntra4KResolutions = ["HQ", "ST", "LT"].flatMap { level in
+            ["DCI 4K Fine FF[10bit 4:2:2][From 7K][\(level)]","UHD Fine FF[10bit 4:2:2][From 7K][\(level)]","DCI 4K FF[10bit 4:2:2][\(level)]","UHD FF[10bit 4:2:2][\(level)]","DCI 4K S35[10bit 4:2:2][\(level)]","UHD S35[10bit 4:2:2][\(level)]"]
+        }
         let c50AVCSIntra2KResolutions = ["DCI 2K FF[10bit 4:2:2][From 3.5K]","FHD FF[10bit 4:2:2][From 3.5K]","DCI 2K FF[10bit 4:2:2]","FHD FF[10bit 4:2:2]","DCI 2K FFcrop[10bit 4:2:2]","FHD FFcrop[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","FHD S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD S16[10bit 4:2:2]"]
         let c50AVCSLongGOPResolutions = ["DCI 4K Fine FF[10bit 4:2:2][From 7K]","UHD Fine FF[10bit 4:2:2][From 7K]","DCI 4K Fine FF[8bit 4:2:0][From 7K]","UHD Fine FF[8bit 4:2:0][From 7K]","DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 4K FF[8bit 4:2:0]","UHD FF[8bit 4:2:0]","DCI 4K S35[8bit 4:2:0]","UHD S35[8bit 4:2:0]","DCI 2K FF[10bit 4:2:2][From 3.5K]","FHD FF[10bit 4:2:2][From 3.5K]","DCI 2K FF[10bit 4:2:2]","FHD FF[10bit 4:2:2]","DCI 2K FFcrop[10bit 4:2:2]","FHD FFcrop[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","FHD S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD S16[10bit 4:2:2]","DCI 2K FF[8bit 4:2:0][From 3.5K]","FHD FF[8bit 4:2:0][From 3.5K]","DCI 2K FF[8bit 4:2:0]","FHD FF[8bit 4:2:0]","DCI 2K FFcrop[8bit 4:2:0]","FHD FFcrop[8bit 4:2:0]","DCI 2K S35[8bit 4:2:0]","FHD S35[8bit 4:2:0]","DCI 2K S16[8bit 4:2:0]","FHD S16[8bit 4:2:0]"]
         let c50XFAVCResolutions = ["DCI 4K Fine FF[10bit 4:2:2][From 7K]","UHD Fine FF[10bit 4:2:2][From 7K]","DCI 4K FF[10bit 4:2:2]","UHD FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","FHD FF[10bit 4:2:2]","DCI 2K FFcrop[10bit 4:2:2]","FHD FFcrop[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","FHD S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD S16[10bit 4:2:2]"]
+        let c400C80Intra4KResolutions = ["HQ", "ST", "LT"].flatMap { level in
+            ["DCI 4K Fine FF[10bit 4:2:2][From 6K][\(level)]","UHD Fine FF[10bit 4:2:2][From 6K][\(level)]","DCI 4K FF[10bit 4:2:2][\(level)]","UHD FF[10bit 4:2:2][\(level)]","DCI 4K S35[10bit 4:2:2][\(level)]","UHD S35[10bit 4:2:2][\(level)]"]
+        }
+        let c400C80Intra2KResolutions = ["DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"]
         
         let CanonCinemaResolutions: [String: [String]] = [
             "CinemaEOS C400_Cinema RAW Light HQ" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
             "CinemaEOS C400_Cinema RAW Light ST" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
             "CinemaEOS C400_Cinema RAW Light LT" : ["6K FF[6000*4000][12bit RAW][OG]","6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]","2K S16[2184*1152][12bit RAW][17:9]"],
             "CinemaEOS C400_XF-HEVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
-            "CinemaEOS C400_XF-AVC S Intra" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
+            "CinemaEOS C400_XF-AVC S Intra" : c400C80Intra4KResolutions + c400C80Intra2KResolutions,
             "CinemaEOS C400_XF-AVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
-            "CinemaEOS C400_XF-AVC Intra" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
+            "CinemaEOS C400_XF-AVC Intra" : c400C80Intra4KResolutions + c400C80Intra2KResolutions,
             "CinemaEOS C400_XF-AVC LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
             
             "CinemaEOS C80_Cinema RAW Light ST" : ["4.3K S35[4368*2304][12bit RAW][17:9]"],
             "CinemaEOS C80_Cinema RAW Light LT" : ["6K FF[6000*3164][12bit RAW][17:9]","4.3K S35[4368*2304][12bit RAW][17:9]"],
             "CinemaEOS C80_XF-HEVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
-            "CinemaEOS C80_XF-AVC S Intra" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
+            "CinemaEOS C80_XF-AVC S Intra" : c400C80Intra4KResolutions + c400C80Intra2KResolutions,
             "CinemaEOS C80_XF-AVC S LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","DCI 4K Fine FF[10bit 4:2:0][From 6K]","DCI 4K FF[10bit 4:2:0]","DCI 4K S35[10bit 4:2:0]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:0][From 6K]","UHD FF[10bit 4:2:0]","UHD S35[10bit 4:2:0]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","DCI 2K FF[10bit 4:2:0]","DCI 2K S35[10bit 4:2:0]","DCI 2K S16[10bit 4:2:0]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]","FHD FF[10bit 4:2:0]","FHD S35[10bit 4:2:0]","FHD S16[10bit 4:2:0]"],
-            "CinemaEOS C80_XF-AVC Intra" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
+            "CinemaEOS C80_XF-AVC Intra" : c400C80Intra4KResolutions + c400C80Intra2KResolutions,
             "CinemaEOS C80_XF-AVC LongGOP" : ["DCI 4K Fine FF[10bit 4:2:2][From 6K]","DCI 4K FF[10bit 4:2:2]","DCI 4K S35[10bit 4:2:2]","UHD Fine FF[10bit 4:2:2][From 6K]","UHD FF[10bit 4:2:2]","UHD S35[10bit 4:2:2]","DCI 2K FF[10bit 4:2:2]","DCI 2K S35[10bit 4:2:2]","DCI 2K S16[10bit 4:2:2]","FHD FF[10bit 4:2:2]","FHD S35[10bit 4:2:2]","FHD S16[10bit 4:2:2]"],
             
             "CinemaEOS C50_Cinema RAW Light HQ" : c50RawResolutions,
             "CinemaEOS C50_Cinema RAW Light ST" : c50RawResolutions,
             "CinemaEOS C50_Cinema RAW Light LT" : c50RawResolutions,
-            "CinemaEOS C50_XF-HEVC S Intra HQ" : c50HEVCSIntraResolutions,
-            "CinemaEOS C50_XF-HEVC S Intra ST" : c50HEVCSIntraResolutions,
-            "CinemaEOS C50_XF-HEVC S Intra LT" : c50HEVCSIntraResolutions,
+            "CinemaEOS C50_XF-HEVC S Intra" : c50HEVCSIntraResolutions,
             "CinemaEOS C50_XF-HEVC S LongGOP" : c50HEVCSLongGOPResolutions,
-            "CinemaEOS C50_XF-AVC S Intra HQ" : c50AVCSIntra4KResolutions,
-            "CinemaEOS C50_XF-AVC S Intra ST" : c50AVCSIntra4KResolutions + c50AVCSIntra2KResolutions,
-            "CinemaEOS C50_XF-AVC S Intra LT" : c50AVCSIntra4KResolutions,
+            "CinemaEOS C50_XF-AVC S Intra" : c50AVCSIntra4KResolutions + c50AVCSIntra2KResolutions,
             "CinemaEOS C50_XF-AVC S LongGOP" : c50AVCSLongGOPResolutions,
             "CinemaEOS C50_XF-AVC Intra" : c50XFAVCResolutions,
             "CinemaEOS C50_XF-AVC LongGOP" : c50XFAVCResolutions,
@@ -236,6 +238,9 @@ private func CanonCinemaMergedResolutionLabel(resolutions: [String]) -> String {
     
     if firstInfo.isFine {
         let displayFrom = infos.first(where: { $0.format == "DCI" && !$0.displayFrom.isEmpty })?.displayFrom ?? firstInfo.displayFrom
+        if !displayFrom.isEmpty && !tags.isEmpty {
+            return "\(firstInfo.family) Fine\(crop)[\(firstInfo.color)][\(displayFrom)]\(tags)"
+        }
         return "\(firstInfo.family) Fine\(crop)[\(firstInfo.color)]\(tags)[\(displayFrom)]"
     }
 

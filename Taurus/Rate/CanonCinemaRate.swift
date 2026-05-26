@@ -27,10 +27,10 @@ func CanonCinemaRate(cameradata:CameraData) -> [String] {
                 rates = canonCinemaC50NormalRates
             }
         }
-        else if cameradata.Codec == "XF-HEVC S Intra HQ" {
+        else if (cameradata.Codec == "XF-HEVC S Intra" && cameradata.Resolution.contains("[HQ]")) || cameradata.Codec == "XF-HEVC S Intra HQ" {
             rates = ["23.976","24.000"]
         }
-        else if cameradata.Codec == "XF-HEVC S Intra ST" || cameradata.Codec == "XF-HEVC S Intra LT" || cameradata.Resolution.contains("7K FF[6912*4608]") {
+        else if cameradata.Codec == "XF-HEVC S Intra" || cameradata.Codec == "XF-HEVC S Intra ST" || cameradata.Codec == "XF-HEVC S Intra LT" || cameradata.Resolution.contains("7K FF[6912*4608]") {
             rates = canonCinemaC50Normal30Rates
         }
         else if cameradata.Resolution.contains("FFcrop") {
@@ -42,7 +42,7 @@ func CanonCinemaRate(cameradata:CameraData) -> [String] {
         else if cameradata.Resolution.contains("S35") || cameradata.Resolution.contains("From 7K") || cameradata.Resolution.contains("From 3.5K") {
             rates = canonCinemaC50NormalRates
         }
-        else if cameradata.Codec == "XF-AVC S Intra HQ" {
+        else if (cameradata.Codec == "XF-AVC S Intra" && cameradata.Resolution.contains("[HQ]")) || cameradata.Codec == "XF-AVC S Intra HQ" {
             rates = canonCinemaC50NormalRates
         }
         else if cameradata.Resolution.contains("4K") || cameradata.Resolution.contains("2K") || cameradata.Resolution.contains("FHD") {
