@@ -108,6 +108,9 @@ public let CodecName : [String:[String]] = [
     "EOS R7" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     
     //Panasonic
+    "S1R2" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "S1M2" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
+    "S1M2E" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S1H" : ["HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2X" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S5M2" : ["HEVC LongGOP","AVC LongGOP"],

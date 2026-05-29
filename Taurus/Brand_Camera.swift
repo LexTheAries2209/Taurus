@@ -77,7 +77,7 @@ public let CameraModel : [String:[String]] = [
     "Blackmagicdesign" : ["Blackmagic URSA Cine Immersive","Blackmagic URSA Cine 17K 65","Blackmagic URSA Cine 12K LF","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2"],
     //"Blackmagicdesign" : ["Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
     //"Fujifilm" : ["GFX100 II","X-H2S","X-H2","X-T5"],
-    "Panasonic" : ["S1H","S5M2X","S5M2","S9","GH7","GH6","G9M2"],
+    "Panasonic" : ["S1R2","S1M2","S1M2E","S1H","S5M2X","S5M2","S9","GH7","GH6","G9M2"],
     //"Pana" : ["EVA-1"]
     "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
     //"ZCam" : [""]
