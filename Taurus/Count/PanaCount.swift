@@ -453,6 +453,135 @@ func PanaS1M2ECodecSpeed(_ PanaCameraCodecName:String) -> Double {
     return 0
 }
 
+func PanaGH7CodecSpeed(_ PanaCameraCodecName:String) -> Double {
+    let normalizedName = PanaNormalizedCodecName(PanaCameraCodecName)
+
+    func has(_ text:String) -> Bool {
+        normalizedName.contains(text)
+    }
+
+    func hasAny(_ texts:[String]) -> Bool {
+        texts.contains { normalizedName.contains($0) }
+    }
+
+    func proResSpeed(_ p23976:Double, _ p24:Double, _ p25:Double, _ p2997:Double, _ p50:Double? = nil, _ p5994:Double? = nil) -> Double {
+        if has("[23.976p]") { return p23976 }
+        if has("[24p]") { return p24 }
+        if has("[25p]") { return p25 }
+        if has("[29.97p]") { return p2997 }
+        if has("[50p]"), let p50 = p50 { return p50 }
+        if has("[59.94p]"), let p5994 = p5994 { return p5994 }
+        return 0
+    }
+
+    if has("_ProRes RAW HQ_") {
+        if hasAny(["5.7K[5728*3024][12bit RAW]","DCI 5.7K[5728*3024][12bit RAW]"]) {
+            return proResSpeed(3300, 3300, 3500, 4200)
+        }
+        if has("DCI 4K[12bit RAW]") {
+            return proResSpeed(1700, 1700, 1800, 2100, 3500, 4200)
+        }
+    }
+
+    if has("_ProRes RAW_") {
+        if hasAny(["5.7K[5728*3024][12bit RAW]","DCI 5.7K[5728*3024][12bit RAW]"]) {
+            return proResSpeed(2200, 2200, 2300, 2800)
+        }
+        if has("DCI 4K[12bit RAW]") {
+            return proResSpeed(1100, 1100, 1200, 1400, 2400, 2800)
+        }
+    }
+
+    if has("_ProRes 422 HQ_") {
+        if hasAny(["5.7K[5728*3024][10bit 4:2:2]","DCI 5.7K[5728*3024][10bit 4:2:2]"]) {
+            return proResSpeed(1500, 1500, 1600, 1900)
+        }
+        if has("DCI 4K[10bit 4:2:2]") {
+            return proResSpeed(778, 779, 811, 972, 1600, 1900)
+        }
+        if has("FHD[10bit 4:2:2]") {
+            return proResSpeed(181, 182, 189, 227, 378, 454)
+        }
+    }
+
+    if has("_ProRes 422_") {
+        if hasAny(["5.7K[5728*3024][10bit 4:2:2]","DCI 5.7K[5728*3024][10bit 4:2:2]"]) {
+            return proResSpeed(1000, 1000, 1100, 1300)
+        }
+        if has("DCI 4K[10bit 4:2:2]") {
+            return proResSpeed(519, 519, 541, 648, 1100, 1300)
+        }
+        if has("FHD[10bit 4:2:2]") {
+            return proResSpeed(121, 121, 126, 151, 252, 302)
+        }
+    }
+
+    if has("_HEVC LongGOP_") {
+        if hasAny(["5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","DCI 5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","4.4K 4:3[4352*3264][10bit 4:2:0][47.95p/48p/50p/59.94p]","UHD[10bit 4:2:0][100p/119.88p]","UHD[10bit 4:2:0][100p/119.88p/120p]","DCI 4K[10bit 4:2:0][100p/119.88p]","DCI 4K[10bit 4:2:0][100p/119.88p/120p]"]) {
+            return 300
+        }
+        if hasAny(["5.8K[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p][OG]","5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]"]) {
+            return 200
+        }
+        if hasAny(["UHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","DCI 4K[10bit 4:2:0][47.95p/48p/50p/59.94p]"]) {
+            return 200
+        }
+        if hasAny(["UHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","DCI 4K[10bit 4:2:0][23.976p/24p/25p/29.97p]"]) {
+            return 150
+        }
+        if hasAny(["FHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][100p/119.88p/120p]"]) {
+            return 150
+        }
+        if has("FHD[10bit 4:2:0][200p/239.76p]") {
+            return 200
+        }
+        if hasAny(["FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]"]) {
+            return 100
+        }
+    }
+
+    if has("_AVC ALL-I_") {
+        if hasAny(["FHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][100p/119.88p/120p]"]) {
+            return 400
+        }
+        if has("FHD[10bit 4:2:2][200p/239.76p]") {
+            return 800
+        }
+        if hasAny(["FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]"]) {
+            return 200
+        }
+        if hasAny(["UHD[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]"]) {
+            return 600
+        }
+        if hasAny(["UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]"]) {
+            return 800
+        }
+        if hasAny(["UHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][23.976p/24p/25p/29.97p]"]) {
+            return 400
+        }
+    }
+
+    if has("_AVC LongGOP_") {
+        if hasAny(["FHD[10bit 4:2:2][100p/119.88p]","FHD[10bit 4:2:2][100p/119.88p/120p]"]) {
+            return 150
+        }
+        if has("FHD[10bit 4:2:2][200p/239.76p]") {
+            return 200
+        }
+        if hasAny(["FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]"]) {
+            return 100
+        }
+        if hasAny(["UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]"]) {
+            return 200
+        }
+        if hasAny(["UHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","DCI 4K[10bit 4:2:2][23.976p/24p/25p/29.97p]"]) {
+            return 150
+        }
+    }
+
+    return 0
+}
+
 //松下机型码率计算区
 func PanaCodecSpeed(cameradata:CameraData) -> Double {
     let PanaCameraCodecName = PanaNormalizedCodecName(cameradata.CameraName + "_" + cameradata.Codec + "_" + cameradata.Resolution)
@@ -471,6 +600,9 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
     }
     if cameradata.CameraName == "S1M2E" {
         return PanaS1M2ECodecSpeed(PanaCameraCodecName)
+    }
+    if cameradata.CameraName == "GH7" {
+        return PanaGH7CodecSpeed(PanaCameraCodecName)
     }
     switch PanaCodecName {
     case "ProRes 422_FHD[10bit 4:2:2][23.976p]","ProRes 422_FHD[10bit 4:2:2][24p]" :
@@ -558,7 +690,7 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
 
     case "HEVC LongGOP_8.1K[8128*4288][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_UHD[10bit 4:2:0][100p/119.88p]","HEVC LongGOP_4.4K 4:3[4352*3264][10bit 4:2:0][47.95p/48p/50p/59.94p]" :
         return 300
-    case "HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.976p/24p]","HEVC LongGOP_DCI 6K[5952*3136][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_5.9K[5888*3312][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_DCI 5.8K[5776*3056][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_5.1K 3:2[5120*3416][10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0]47.95p/48p/50p/59.94p]","HEVC LongGOP_5.4K 3:2[5376*3584][10bit 4:2:0][25p/29.97p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][48p/50p]","HEVC LongGOP_UHD[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_UHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][47.95p/48p/50p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][47.95p/48p/50p]","AVC LongGOP_UHD[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","HEVC LongGOP_5.8K 4:3[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_FHD[10bit 4:2:0][200p/239.76p]","AVC LongGOP_FHD[10bit 4:2:2][200p/239.76p]" :
+    case "HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_6K 3:2[5952*3968][10bit 4:2:0][23.976p/24p]","HEVC LongGOP_DCI 6K[5952*3136][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_5.9K[5888*3312][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_DCI 5.8K[5776*3056][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_5.1K 3:2[5120*3416][10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0]47.95p/48p/50p/59.94p]","HEVC LongGOP_5.4K 3:2[5376*3584][10bit 4:2:0][25p/29.97p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][48p/50p]","HEVC LongGOP_UHD[10bit 4:2:0][48p/50p/59.94p]","HEVC LongGOP_UHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_DCI 4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","HEVC LongGOP_DCI 4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][47.95p/48p/50p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][48p/50p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][47.95p/48p/50p]","AVC LongGOP_UHD[10bit 4:2:2][48p/50p/59.94p]","AVC LongGOP_UHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","HEVC LongGOP_5.8K[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p][OG]","HEVC LongGOP_DCI 5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_FHD[10bit 4:2:0][200p/239.76p]","AVC LongGOP_FHD[10bit 4:2:2][200p/239.76p]" :
         return 200
     case "HEVC LongGOP_DCI 4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_UHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","HEVC LongGOP_FHD[10bit 4:2:0][100p/119.88p]","AVC LongGOP_DCI 4K[10bit 4:2:2][23.976p/24p/25p/29.97p]","AVC LongGOP_3.3K 4:3[3328*2496][10bit 4:2:2][23.976p/24p/25p/29.97p]","AVC LongGOP_UHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","AVC LongGOP_UHD[10bit 4:2:2][100p/119.88p]","AVC LongGOP_FHD[10bit 4:2:2][100p/119.88p]" :
         return 150

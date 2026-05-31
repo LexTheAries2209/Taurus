@@ -28,6 +28,7 @@ struct ContentView: View {
     @StateObject var cameradata = CameraData()
     @State private var currentTime: String = ""
     @State private var currentDate: String = ""
+    private let windowContentSize = CGSize(width: 930, height: 425)
     
     var body: some View {
         VStack(spacing: 0) {
@@ -83,9 +84,9 @@ struct ContentView: View {
             }
             .padding()
         }
-        .frame(minWidth: 930, minHeight: 425)
-        .frame(maxWidth: 930, maxHeight: 425)
+        .frame(width: windowContentSize.width, height: windowContentSize.height)
         .background(Color(nsColor: .windowBackgroundColor))
+        .background(FixedWindowContentSize(size: windowContentSize))
         //显示当前时间的文本，位于左上角
 //            HStack {
 //                Spacer()
@@ -131,6 +132,31 @@ struct ContentView: View {
             self.currentDate = dateFormatter.string(from: Date())
         }
         RunLoop.current.add(timer, forMode: .common)
+    }
+}
+
+struct FixedWindowContentSize: NSViewRepresentable {
+    let size: CGSize
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView(frame: .zero)
+        DispatchQueue.main.async {
+            configureWindow(for: view)
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        DispatchQueue.main.async {
+            configureWindow(for: nsView)
+        }
+    }
+
+    private func configureWindow(for view: NSView) {
+        guard let window = view.window else { return }
+        window.contentMinSize = size
+        window.contentMaxSize = size
+        window.setContentSize(size)
     }
 }
 

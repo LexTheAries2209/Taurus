@@ -358,14 +358,78 @@ func PanaResolution(cameradata:CameraData) -> [String] {
         }
     }
     
-    else if cameradata.CameraName == "GH6" || cameradata.CameraName == "G9M2" || cameradata.CameraName == "GH7" {
+    else if cameradata.CameraName == "GH7" {
+        let gh7RawM43 = ["5.7K[5728*3024][12bit RAW][23.976p][17:9]","5.7K[5728*3024][12bit RAW][24p][17:9]","5.7K[5728*3024][12bit RAW][25p][17:9]","5.7K[5728*3024][12bit RAW][29.97p][17:9]"]
+        let gh7RawPixel = ["DCI 4K[12bit RAW][23.976p]","DCI 4K[12bit RAW][24p]","DCI 4K[12bit RAW][25p]","DCI 4K[12bit RAW][29.97p]","DCI 4K[12bit RAW][50p]","DCI 4K[12bit RAW][59.94p]"]
+        let gh7ProRes5_7 = ["5.7K[5728*3024][10bit 4:2:2][23.976p][17:9]","5.7K[5728*3024][10bit 4:2:2][24p][17:9]","5.7K[5728*3024][10bit 4:2:2][25p][17:9]","5.7K[5728*3024][10bit 4:2:2][29.97p][17:9]"]
+        let gh7ProRes4K = ["DCI 4K[10bit 4:2:2][23.976p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]"]
+        let gh7ProResFHD = ["FHD[10bit 4:2:2][23.976p]","FHD[10bit 4:2:2][24p]","FHD[10bit 4:2:2][25p]","FHD[10bit 4:2:2][29.97p]","FHD[10bit 4:2:2][50p]","FHD[10bit 4:2:2][59.94p]"]
+        let gh7HevcM43 = ["5.8K[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p][OG]","5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p][17:9]","5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p][17:9]","4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][100p/119.88p/120p]","FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p/120p]","FHD[10bit 4:2:0][200p/239.76p]"]
+        let gh7HevcPixel = ["4.4K 4:3[4352*3264][10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][100p/119.88p/120p]","FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p/120p]"]
+        let gh7AvcAllIM43 = ["4K[10bit 4:2:2][23.976p/24p/25p/29.97p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]","FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p/120p]","FHD[10bit 4:2:2][200p/239.76p]"]
+        let gh7AvcAllIPixel = ["4K[10bit 4:2:2][23.976p/24p/25p/29.97p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p][Light]","FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p/120p]"]
+        let gh7AvcLongGOPM43 = ["4K[10bit 4:2:2][23.976p/24p/25p/29.97p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p/120p]","FHD[10bit 4:2:2][200p/239.76p]"]
+        let gh7AvcLongGOPPixel = ["4K[10bit 4:2:2][23.976p/24p/25p/29.97p]","4K[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:2][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:2][100p/119.88p/120p]"]
+
         if cameradata.Codec == "ProRes RAW HQ" || cameradata.Codec == "ProRes RAW" {
-            if cameradata.CameraName == "GH7" && cameradata.Format == "Pixel to Pixel" {
-                PanaResolution = ["DCI 5.7K[5728*3024][12bit RAW][23.976p]","DCI 5.7K[5728*3024][12bit RAW][24p]","DCI 5.7K[5728*3024][12bit RAW][25p]","DCI 5.7K[5728*3024][12bit RAW][29.97p]","DCI 4K[12bit RAW][23.976p]","DCI 4K[12bit RAW][24p]","DCI 4K[12bit RAW][25p]","DCI 4K[12bit RAW][29.97p]","DCI 4K[12bit RAW][50p]","DCI 4K[12bit RAW][59.94p]"]
+            if cameradata.Format == "M43" {
+                PanaResolution = gh7RawM43
+            }
+            else if cameradata.Format == "Pixel to Pixel" {
+                PanaResolution = gh7RawPixel
             }
             else {
                 PanaResolution = ["无选项"]
             }
+        }
+        else if cameradata.Codec == "ProRes 422 HQ" || cameradata.Codec == "ProRes 422" {
+            if cameradata.Format == "M43" {
+                PanaResolution = gh7ProRes5_7 + gh7ProRes4K + gh7ProResFHD
+            }
+            else if cameradata.Format == "Pixel to Pixel" {
+                PanaResolution = gh7ProRes4K + gh7ProResFHD
+            }
+            else {
+                PanaResolution = ["无选项"]
+            }
+        }
+        else if cameradata.Codec == "HEVC LongGOP" {
+            if cameradata.Format == "M43" {
+                PanaResolution = gh7HevcM43
+            }
+            else if cameradata.Format == "Pixel to Pixel" {
+                PanaResolution = gh7HevcPixel
+            }
+            else {
+                PanaResolution = ["无选项"]
+            }
+        }
+        else if cameradata.Codec == "AVC ALL-I" {
+            if cameradata.Format == "M43" {
+                PanaResolution = gh7AvcAllIM43
+            }
+            else if cameradata.Format == "Pixel to Pixel" {
+                PanaResolution = gh7AvcAllIPixel
+            }
+            else {
+                PanaResolution = ["无选项"]
+            }
+        }
+        else if cameradata.Codec == "AVC LongGOP" {
+            if cameradata.Format == "M43" {
+                PanaResolution = gh7AvcLongGOPM43
+            }
+            else if cameradata.Format == "Pixel to Pixel" {
+                PanaResolution = gh7AvcLongGOPPixel
+            }
+            else {
+                PanaResolution = ["无选项"]
+            }
+        }
+    }
+    else if cameradata.CameraName == "GH6" || cameradata.CameraName == "G9M2" {
+        if cameradata.Codec == "ProRes RAW HQ" || cameradata.Codec == "ProRes RAW" {
+            PanaResolution = ["无选项"]
         }
         else if cameradata.Codec == "ProRes 422 HQ" || cameradata.Codec == "ProRes 422" {
             if cameradata.Format == "M43" {
@@ -377,7 +441,7 @@ func PanaResolution(cameradata:CameraData) -> [String] {
         }
         else if cameradata.Codec == "HEVC LongGOP" {
             if cameradata.Format == "M43" {
-                PanaResolution = ["5.8K 4:3[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][200p/239.76p]"]
+                PanaResolution = ["5.8K[5760*4320][10bit 4:2:0][23.976p/24p/25p/29.97p][OG]","DCI 5.7K[5728*3024][10bit 4:2:0][23.976p/24p/25p/29.97p]","DCI 5.7K[5728*3024][10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][200p/239.76p]"]
             }
             else {
                 PanaResolution = ["4.4K 4:3[4352*3264][10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][23.976p/24p/25p/29.97p]","4K[10bit 4:2:0][47.95p/48p/50p/59.94p]","4K[10bit 4:2:0][100p/119.88p]","FHD[10bit 4:2:0][23.976p/24p/25p/29.97p]","FHD[10bit 4:2:0][47.95p/48p/50p/59.94p]","FHD[10bit 4:2:0][100p/119.88p]"]
