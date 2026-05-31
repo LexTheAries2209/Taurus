@@ -15,7 +15,7 @@ func SonyCodecSpeed(cameradata:CameraData) -> Double {
     case "XAVC S HD_FHD FF[10bit 4:2:2][23.976p]","XAVC S HD_FHD FF[8bit 4:2:0][23.976p]","XAVC S HD_FHD FF[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD FF[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD FF[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD FF[8bit 4:2:0][50p/59.94p]","XAVC S HD_FHD S35[10bit 4:2:2][23.976p]","XAVC S HD_FHD S35[8bit 4:2:0][23.976p]","XAVC S HD_FHD S35[10bit 4:2:2][25p/29.97p]","XAVC S HD_FHD S35[8bit 4:2:0][25p/29.97p]","XAVC S HD_FHD S35[10bit 4:2:2][50p/59.94p]","XAVC S HD_FHD S35[8bit 4:2:0][50p/59.94p]","MPEG-2 LongGOP_FHD FF[10bit 4:2:2][23.976p/25p/29.97p]","MPEG-2 LongGOP_FHD S35[10bit 4:2:2][23.976p/25p/29.97p]" :
         return 50
     case "XAVC S HD_FHD FF[8bit 4:2:0][100p/119.88p]","XAVC S HD_FHD S35[8bit 4:2:0][100p/119.88p]" :
-        return 60
+        return 100
     case "XAVC S-I HD_FHD FF[10bit 4:2:2][23.976p]","XAVC S-I HD_FHD S35[10bit 4:2:2][23.976p]" :
         return 89
     case "XAVC S-I HD_FHD FF[10bit 4:2:2][25p]","XAVC S-I HD_FHD S35[10bit 4:2:2][25p]" :
