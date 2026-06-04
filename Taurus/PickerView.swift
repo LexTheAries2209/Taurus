@@ -85,9 +85,9 @@ struct PickerView: View {
                     createPicker(selection: $cameradata.CanonCodecLevel, label: "请选择级别", options: canonCodecLevels)
                 }
 
-                //Panasonic幅面选择
-                if cameradata.BrandName == "Panasonic" {
-                    let formats = PanaFormat(cameradata: cameradata)
+                //幅面选择
+                if cameradata.BrandName == "Panasonic" || cameradata.BrandName == "Fujifilm" {
+                    let formats = cameradata.BrandName == "Fujifilm" ? FujiFormat(cameradata: cameradata) : PanaFormat(cameradata: cameradata)
                     createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
                 }
                 
@@ -130,7 +130,7 @@ struct PickerView: View {
                 }
                 
                 //DJI、CineAlta、CanonCinema帧率选择
-                if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "[General]" {
+                if cameradata.BrandName == "DJI" || cameradata.CameraName.contains("CineAlta") || cameradata.BrandName == "Canon Cinema" || cameradata.BrandName == "Fujifilm" || cameradata.BrandName == "[General]" {
                     createRatePicker()
                 }
                 
@@ -165,6 +165,8 @@ struct PickerView: View {
             resolutions = SonyResolution(cameradata: cameradata)
         case "Panasonic":
             resolutions = PanaResolution(cameradata: cameradata)
+        case "Fujifilm":
+            resolutions = FujiResolution(cameradata: cameradata)
         case "DJI":
             resolutions = DjiResolution(cameradata: cameradata)
         case "[General]":
@@ -199,6 +201,8 @@ struct PickerView: View {
                 rates = AppleRate(cameradata: cameradata)
             case "RED":
                 rates = DSMC3Rate(cameradata: cameradata)
+            case "Fujifilm":
+                rates = FujiRate(cameradata: cameradata)
             case "[General]":
                 rates = GeneralRate(cameradata: cameradata)
             default:
@@ -225,6 +229,8 @@ struct PickerView: View {
             medias = CanonCinemaMedia(cameradata: cameradata)
         case "Apple":
             medias = AppleMedia(cameradata: cameradata)
+        case "Fujifilm":
+            medias = FujiMedia(cameradata: cameradata)
         case "[General]":
             medias = GeneralMedia(cameradata: cameradata)
         default:

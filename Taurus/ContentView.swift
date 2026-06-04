@@ -28,7 +28,7 @@ struct ContentView: View {
     @StateObject var cameradata = CameraData()
     @State private var currentTime: String = ""
     @State private var currentDate: String = ""
-    private let windowContentSize = CGSize(width: 930, height: 425)
+    private let windowContentSize = CGSize(width: 930, height: 540)
     
     var body: some View {
         VStack(spacing: 0) {
@@ -49,44 +49,51 @@ struct ContentView: View {
                     )
                 Spacer()
             }
-            .frame(height: 32)
+            .padding(.top, 8)
+            .frame(height: 44)
             
             Divider()
             
-            VStack {
-                Spacer()
-                
+            VStack(spacing: 0) {
                 // 重置按键
                 Button("重置") {
                     resetAllData()
                 }
                 .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
-                
-                Spacer()
+                .padding(.top, 20)
                 
                 // 选择器与计算功能
-                HStack {
+                HStack(alignment: .center) {
                     VStack(spacing: 10) {
                         // 选择器模块
                         PickerView(cameradata: cameradata)
                     }
-                    .padding(.top, 20.0)
                     
                     Spacer()
                     
                     // 计算数据输出模块
                     DataOutput(cameradata: cameradata)
                 }
-                Spacer()
+                .padding(.top, 28)
+                
+                Spacer(minLength: 16)
                 
                 // 备注与说明模块
                 Comments(cameradata: cameradata)
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.bottom)
         }
-        .frame(width: windowContentSize.width, height: windowContentSize.height)
+        .frame(
+            minWidth: windowContentSize.width,
+            idealWidth: windowContentSize.width,
+            maxWidth: .infinity,
+            minHeight: windowContentSize.height,
+            idealHeight: windowContentSize.height,
+            maxHeight: windowContentSize.height
+        )
         .background(Color(nsColor: .windowBackgroundColor))
-        .background(FixedWindowContentSize(size: windowContentSize))
+        .background(FixedWindowHeight(size: windowContentSize))
         //显示当前时间的文本，位于左上角
 //            HStack {
 //                Spacer()
@@ -135,28 +142,62 @@ struct ContentView: View {
     }
 }
 
-struct FixedWindowContentSize: NSViewRepresentable {
+struct FixedWindowHeight: NSViewRepresentable {
     let size: CGSize
 
     func makeNSView(context: Context) -> NSView {
         let view = NSView(frame: .zero)
         DispatchQueue.main.async {
-            configureWindow(for: view)
+            configureWindow(for: view, coordinator: context.coordinator)
         }
         return view
     }
 
     func updateNSView(_ nsView: NSView, context: Context) {
         DispatchQueue.main.async {
-            configureWindow(for: nsView)
+            configureWindow(for: nsView, coordinator: context.coordinator)
         }
     }
 
-    private func configureWindow(for view: NSView) {
+    func makeCoordinator() -> Coordinator {
+        Coordinator(size: size)
+    }
+
+    private func configureWindow(for view: NSView, coordinator: Coordinator) {
         guard let window = view.window else { return }
-        window.contentMinSize = size
-        window.contentMaxSize = size
-        window.setContentSize(size)
+
+        let currentContentWidth = max(window.contentView?.bounds.width ?? size.width, size.width)
+        let fixedContentSize = CGSize(width: currentContentWidth, height: size.height)
+        let fixedFrameSize = window.frameRect(forContentRect: CGRect(origin: .zero, size: fixedContentSize)).size
+        let minFrameSize = window.frameRect(forContentRect: CGRect(origin: .zero, size: size)).size
+
+        window.contentMinSize = CGSize(width: size.width, height: size.height)
+        window.contentMaxSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: size.height)
+        window.minSize = CGSize(width: minFrameSize.width, height: fixedFrameSize.height)
+        window.maxSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: fixedFrameSize.height)
+        coordinator.fixedFrameHeight = fixedFrameSize.height
+        coordinator.minimumFrameWidth = minFrameSize.width
+        window.delegate = coordinator
+        window.setContentSize(fixedContentSize)
+    }
+
+    class Coordinator: NSObject, NSWindowDelegate {
+        let size: CGSize
+        var fixedFrameHeight: CGFloat
+        var minimumFrameWidth: CGFloat
+
+        init(size: CGSize) {
+            self.size = size
+            self.fixedFrameHeight = size.height
+            self.minimumFrameWidth = size.width
+        }
+
+        func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+            NSSize(
+                width: max(frameSize.width, minimumFrameWidth),
+                height: fixedFrameHeight
+            )
+        }
     }
 }
 

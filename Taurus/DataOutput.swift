@@ -83,6 +83,25 @@ func DataOutput(cameradata: CameraData) -> some View {
                 }
             }
         }
+        else if cameradata.BrandName == "Fujifilm" {
+            let fujiSpeed = FujiCodecSpeed(cameradata: cameradata)
+            Text("")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / fujiSpeed))")
+                    Text("\(formatNumber(fujiSpeed))")
+                    Text("\(formatNumber(fujiSpeed / 8))")
+                    Text("\(formatNumber(fujiSpeed * 450 / 1024))")
+                }
+            }
+        }
         else if cameradata.BrandName == "Blackmagicdesign" {
             let BMDSpeed = BMDCodecSpeedmbps(cameradata: cameradata)
             Text("")

@@ -119,6 +119,9 @@ public let CodecName : [String:[String]] = [
     "GH6" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "G9M2" : ["ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     
+    //Fujifilm
+    "GFX ETERNA 55" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","H.265 ALL-I","H.265 LongGOP"],
+    
     //DJI
     "Ronin 4D[8K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     "Ronin 4D[6K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 4444 XQ","ProRes 422 HQ","ProRes 422 LT","H.264(10bit 4:2:0)"],
