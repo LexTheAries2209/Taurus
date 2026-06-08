@@ -1,5 +1,14 @@
 Taurus_V1.3.4:
 简化了Canon机型的分辨率选择。
+加入了Canon R6 V、C 50、R6M3.
+优化了佳能系列机型的分辨率和编码的显示和选择。
+优化了UI显示。
+加入了Panasonic S1R2、S1M2、S1M2E。
+修复了Panasonic机型在选择ProRes RAW时的码率错误问题。
+加入了Sony A7R6、A7M5。
+修复了Panasonic GH7的分辨率选择问题。
+修复了Sony机型的一个普遍分辨率错误问题。
+加入了Fujifilm GFX Etertna55。
 
 Taurus_V1.3.3:
 修复了iPhone机型帧率选择错误的问题。

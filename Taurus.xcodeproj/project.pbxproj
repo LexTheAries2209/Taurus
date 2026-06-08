@@ -17,6 +17,11 @@
 		582EA0472E100001001BD46A /* FujiRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0482E100001001BD46A /* FujiRate.swift */; };
 		582EA0492E100001001BD46A /* FujiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA04A2E100001001BD46A /* FujiMedia.swift */; };
 		582EA04B2E100001001BD46A /* FujiCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA04C2E100001001BD46A /* FujiCount.swift */; };
+		C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000001 /* KinefinityFormat.swift */; };
+		C0DEF0012E11000100000004 /* KinefinityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000003 /* KinefinityResolution.swift */; };
+		C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000005 /* KinefinityRate.swift */; };
+		C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000007 /* KinefinityCount.swift */; };
+		C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000009 /* KinefinityMedia.swift */; };
 		583519592B22160D00366A4D /* SonyCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583519582B22160D00366A4D /* SonyCount.swift */; };
 		5835195B2B2216D700366A4D /* CanonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195A2B2216D700366A4D /* CanonCount.swift */; };
 		5835195D2B2217A200366A4D /* PanaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195C2B2217A200366A4D /* PanaCount.swift */; };
@@ -70,6 +75,11 @@
 		582EA0482E100001001BD46A /* FujiRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiRate.swift; sourceTree = "<group>"; };
 		582EA04A2E100001001BD46A /* FujiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiMedia.swift; sourceTree = "<group>"; };
 		582EA04C2E100001001BD46A /* FujiCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiCount.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000001 /* KinefinityFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityFormat.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000003 /* KinefinityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityResolution.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000005 /* KinefinityRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityRate.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000007 /* KinefinityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityCount.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000009 /* KinefinityMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityMedia.swift; sourceTree = "<group>"; };
 		583519582B22160D00366A4D /* SonyCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonyCount.swift; sourceTree = "<group>"; };
 		5835195A2B2216D700366A4D /* CanonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCount.swift; sourceTree = "<group>"; };
 		5835195C2B2217A200366A4D /* PanaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaCount.swift; sourceTree = "<group>"; };
@@ -138,6 +148,7 @@
 				5839AA4F2BEF041F0025C74C /* AppleResolution.swift */,
 				5839AA512BEF04B50025C74C /* BMDResolution.swift */,
 				587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */,
+				C0DEF0012E11000100000003 /* KinefinityResolution.swift */,
 				588C39D82C318270008DC656 /* GeneralResolution.swift */,
 			);
 			path = Resolution;
@@ -154,6 +165,7 @@
 				582EA0422E025501001BD46A /* AppleMedia.swift */,
 				582EA04A2E100001001BD46A /* FujiMedia.swift */,
 				582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */,
+				C0DEF0012E11000100000009 /* KinefinityMedia.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -168,6 +180,7 @@
 				5839AA3A2BEDBB230025C74C /* BMDCount.swift */,
 				582EA04C2E100001001BD46A /* FujiCount.swift */,
 				582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */,
+				C0DEF0012E11000100000007 /* KinefinityCount.swift */,
 			);
 			path = Count;
 			sourceTree = "<group>";
@@ -177,6 +190,7 @@
 			children = (
 				58F4E8E82B2A084C00A36613 /* PanaFormat.swift */,
 				582EA0442E100001001BD46A /* FujiFormat.swift */,
+				C0DEF0012E11000100000001 /* KinefinityFormat.swift */,
 			);
 			path = Format;
 			sourceTree = "<group>";
@@ -193,6 +207,7 @@
 				5839AA3D2BEDBECC0025C74C /* BMDRate.swift */,
 				582EA0482E100001001BD46A /* FujiRate.swift */,
 				582EA03F2C15D087001BD46A /* CanonCinemaRate.swift */,
+				C0DEF0012E11000100000005 /* KinefinityRate.swift */,
 			);
 			path = Rate;
 			sourceTree = "<group>";
@@ -334,6 +349,11 @@
 				582EA0492E100001001BD46A /* FujiMedia.swift in Sources */,
 				58FE691A2BB1488B008ECC8D /* DataOutput.swift in Sources */,
 				58D3B7F22B0F4E4F001C8FA7 /* Codec.swift in Sources */,
+				C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */,
+				C0DEF0012E11000100000004 /* KinefinityResolution.swift in Sources */,
+				C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */,
+				C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */,
+				C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */,
 				588C39D92C318270008DC656 /* GeneralResolution.swift in Sources */,
 				582EA0402C15D087001BD46A /* CanonCinemaRate.swift in Sources */,
 				5839AA3E2BEDBECC0025C74C /* BMDRate.swift in Sources */,

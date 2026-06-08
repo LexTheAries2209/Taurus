@@ -70,10 +70,4 @@ public let MediaName : [String:[String]] = [
     "Blackmagic URSA Mini Pro 12K" : ["Dual CFast2.0 128GB","Dual CFast2.0 256GB","Dual CFast2.0 512GB","Dual CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "Blackmagic URSA Mini Pro 4.6K G2" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "Blackmagic URSA Mini Pro 4.6K" : ["CFast2.0 128GB","CFast2.0 256GB","CFast2.0 512GB","CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
-    
-    //"Kinefinity"
-    "MAVO Edge 8K" : ["KineMAG Nano SSD 1TB","KineMAG Nano SSD 2TB"],
-    "MAVO Edge 6K" : ["KineMAG Nano SSD 1TB","KineMAG Nano SSD 2TB"],
-    "MAVO Mark 2 LF" : ["KineMAG Nano SSD 1TB","KineMAG Nano SSD 2TB"],
-    "MAVO Mark 2 S35" : ["KineMAG Nano SSD 1TB","KineMAG Nano SSD 2TB"],
 ]

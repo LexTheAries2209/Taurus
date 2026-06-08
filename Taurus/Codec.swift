@@ -43,10 +43,11 @@ public let CodecName : [String:[String]] = [
     
     
     //"Kinefinity"
-    "MAVO Edge 8K" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "VISTA" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","H.265 Max","H.265 High","H.265 Normal"],
+    "MAVO Edge 8K" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "MAVO Edge 6K" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
-    "MAVO Mark 2 LF" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
-    "MAVO Mark 2 S35" : ["ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "MAVO Mark2 LF" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+    "MAVO Mark2 S35" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     
        
     //RED

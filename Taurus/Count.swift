@@ -230,8 +230,26 @@ func ResolutionMultiplier(cameradata:CameraData) -> Double {
     case "8.6K FF[8640*5760][3:2]" :
         return 24
     default:
+        return ParsedResolutionMultiplier(cameradata.Resolution)
+    }
+}
+
+private func ParsedResolutionMultiplier(_ resolution:String) -> Double {
+    let pattern = #"\[(\d+)\*(\d+)\]"#
+    guard let regex = try? NSRegularExpression(pattern: pattern) else {
         return 0
     }
+
+    let fullRange = NSRange(resolution.startIndex..<resolution.endIndex, in: resolution)
+    guard let match = regex.firstMatch(in: resolution, range: fullRange),
+          let widthRange = Range(match.range(at: 1), in: resolution),
+          let heightRange = Range(match.range(at: 2), in: resolution),
+          let width = Double(resolution[widthRange]),
+          let height = Double(resolution[heightRange]) else {
+        return 0
+    }
+
+    return width * height / (1920 * 1080)
 }
 
 //存储卡容量乘积
@@ -249,6 +267,8 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 119.168
     case "CFExpress TypeA 160GB","160GB" :
         return 148.96
+    case "Built-in 220GB SSD" :
+        return 204.82
     case "SxS Pro-X 240GB","XQD 240GB","240GB" :
         return 223.44
     case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB","256GB" :
@@ -438,7 +458,7 @@ func RateSpeed(cameradata:CameraData) -> Double {
     case "ERROR" :
         return 24
     default :
-        return 0
+        return Double(cameradata.Rate) ?? 0
     }
 }
 
@@ -456,7 +476,7 @@ func CodecSpeedCount(cameradata:CameraData) -> Double {
         }
         return AppleCodecSpeed(cameradata: cameradata) / multiplier
     }
-    
+
     if cameradata.BrandName == "DJI" {
         let multiplier = ResolutionMultiplier(cameradata: cameradata) * RateMultiplier(cameradata: cameradata)
         if multiplier == 0 {
@@ -464,9 +484,9 @@ func CodecSpeedCount(cameradata:CameraData) -> Double {
         }
         return DjiCodecSpeed(cameradata: cameradata) / multiplier
     }
-    
+
     switch cameradata.Codec {
-    case "ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422LT" :
+    case "ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422LT" :
         return Codecspeed(cameradata:cameradata)*ProResCompensation(cameradata:cameradata)
     case "ARRIRAW" :
         return Codecspeed(cameradata:cameradata)*ARRIRAWCompensation(cameradata:cameradata)
@@ -562,7 +582,7 @@ private func Dji8KCodecSpeedMBps(cameradata: CameraData) -> Double {
     default:
         return 0
     }
-    
+
     return 0
 }
 
@@ -637,7 +657,7 @@ private func Dji6KCodecSpeedMBps(cameradata: CameraData) -> Double {
     default:
         return 0
     }
-    
+
     return 0
 }
 

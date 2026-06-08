@@ -140,6 +140,25 @@ func DataOutput(cameradata: CameraData) -> some View {
                 }
             }
         }
+        else if cameradata.BrandName == "Kinefinity" {
+            let kinefinitySpeed = KinefinityCodecSpeed(cameradata: cameradata)
+            Text("")
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("可录制时长[Min]:")
+                    Text("数据码率[mbps]:")
+                    Text("数据码率[MBps]:")
+                    Text("每小时数据占盘量[GB]:")
+                }
+                .padding(.trailing, 100)
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(formatNumber(capacity * 2048 / 15 / kinefinitySpeed))")
+                    Text("\(formatNumber(kinefinitySpeed))")
+                    Text("\(formatNumber(kinefinitySpeed / 8))")
+                    Text("\(formatNumber(kinefinitySpeed * 450 / 1024))")
+                }
+            }
+        }
         else if cameradata.BrandName == "[General]" {
                 if cameradata.Codec.contains("ARRIRAW") {
                     Text("")

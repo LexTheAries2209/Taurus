@@ -169,6 +169,24 @@ func Comments(cameradata:CameraData) -> some View {
                     .padding(.leading,10)
                     .frame(maxWidth: .infinity,alignment:.leading)
             }
+            else if cameradata.BrandName == "Kinefinity" {
+                Text("2. Kinefinity先按幅面过滤分辨率；FF、S35、M43、S16、Pixel to Pixel为Format选项，Pixel to Pixel表示官方Other/Crop裁切模式。")
+                    .font(.system(size: 10))
+                    .padding(.leading,10)
+                    .frame(maxWidth: .infinity,alignment:.leading)
+                Text("3. Kinefinity分辨率标签按“大体分辨率[具体分辨率][比例/OG][From 8K/6K/4K]”标注；幅面不再重复显示在分辨率中。")
+                    .font(.system(size: 10))
+                    .padding(.leading,10)
+                    .frame(maxWidth: .infinity,alignment:.leading)
+                Text("4. ProRes为Apple开发的帧内压缩编码；CinemaDNG仅显示KineOS 8.0支持的机内RAW(DNG)分辨率，并按12bit未压缩RAW像素量估算码率；VISTA的H.265按官方4K 25fps基准码率随像素和帧率换算。")
+                    .font(.system(size: 10))
+                    .padding(.leading,10)
+                    .frame(maxWidth: .infinity,alignment:.leading)
+                Text("5. 帧率选项包含常用档位和该分辨率的最高帧率；KineMAG Nano SSD按1TB≈931GiB、2TB≈1862GiB计算，VISTA内置220GB SSD按约204.82GiB计算。")
+                    .font(.system(size: 10))
+                    .padding(.leading,10)
+                    .frame(maxWidth: .infinity,alignment:.leading)
+            }
             else if cameradata.BrandName == "[General]" {
                 Text("2. 选择Manual Codec和Manual Resolution模式来自定义编码速度和分辨率。")
                     .font(.system(size: 10))
@@ -209,4 +227,3 @@ func Comments(cameradata:CameraData) -> some View {
     .padding(.top, 31.0)
     .padding([.leading,.trailing,.bottom],10)
 }
-

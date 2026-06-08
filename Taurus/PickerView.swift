@@ -74,6 +74,11 @@ struct PickerView: View {
                     createPicker(selection: $cameradata.Codec, label: "请选择编码", options: codec)
                         .onChange(of: cameradata.Codec) { _ in
                             cameradata.CanonCodecLevel = "请选择级别"
+                            if cameradata.BrandName == "Kinefinity" {
+                                cameradata.Format = "请选择幅面"
+                                cameradata.Resolution = "请选择分辨率"
+                                cameradata.Rate = "请选择帧率"
+                            }
                         }
                 } else {
                     createPicker(selection: $cameradata.Codec, label: "请选择编码", options: ["无选项"], showNoOptionText: true)
@@ -86,9 +91,8 @@ struct PickerView: View {
                 }
 
                 //幅面选择
-                if cameradata.BrandName == "Panasonic" || cameradata.BrandName == "Fujifilm" {
-                    let formats = cameradata.BrandName == "Fujifilm" ? FujiFormat(cameradata: cameradata) : PanaFormat(cameradata: cameradata)
-                    createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
+                if cameradata.BrandName == "Panasonic" || cameradata.BrandName == "Fujifilm" || cameradata.BrandName == "Kinefinity" {
+                    createFormatPicker()
                 }
                 
                 //分辨率选择
@@ -137,14 +141,34 @@ struct PickerView: View {
                 //储存卡选择
                 createMediaPicker()
                 
-                //ARRI、BMD、Apple、RED帧率选择
-                if cameradata.BrandName == "ARRI" || cameradata.BrandName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED" {
+                //ARRI、BMD、Apple、RED、Kinefinity帧率选择
+                if cameradata.BrandName == "ARRI" || cameradata.BrandName == "Blackmagicdesign" || cameradata.BrandName == "Apple" || cameradata.BrandName == "RED" || cameradata.BrandName == "Kinefinity" {
                     createRatePicker()
                 }
             }
         }
     }
     
+    private func createFormatPicker() -> some View {
+        let formats: [String]
+        switch cameradata.BrandName {
+        case "Fujifilm":
+            formats = FujiFormat(cameradata: cameradata)
+        case "Kinefinity":
+            formats = KinefinityFormat(cameradata: cameradata)
+        default:
+            formats = PanaFormat(cameradata: cameradata)
+        }
+
+        return createPicker(selection: $cameradata.Format, label: "请选择幅面", options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
+            .onChange(of: cameradata.Format) { _ in
+                if cameradata.BrandName == "Kinefinity" {
+                    cameradata.Resolution = "请选择分辨率"
+                    cameradata.Rate = "请选择帧率"
+                }
+            }
+    }
+
     private func createResolutionPicker() -> some View {
         let resolutions: [String]
         
@@ -169,6 +193,8 @@ struct PickerView: View {
             resolutions = FujiResolution(cameradata: cameradata)
         case "DJI":
             resolutions = DjiResolution(cameradata: cameradata)
+        case "Kinefinity":
+            resolutions = KinefinityResolution(cameradata: cameradata)
         case "[General]":
             resolutions = GeneralResolution(cameradata: cameradata)
         default:
@@ -203,6 +229,8 @@ struct PickerView: View {
                 rates = DSMC3Rate(cameradata: cameradata)
             case "Fujifilm":
                 rates = FujiRate(cameradata: cameradata)
+            case "Kinefinity":
+                rates = KinefinityRate(cameradata: cameradata)
             case "[General]":
                 rates = GeneralRate(cameradata: cameradata)
             default:
@@ -231,6 +259,8 @@ struct PickerView: View {
             medias = AppleMedia(cameradata: cameradata)
         case "Fujifilm":
             medias = FujiMedia(cameradata: cameradata)
+        case "Kinefinity":
+            medias = KinefinityMedia(cameradata: cameradata)
         case "[General]":
             medias = GeneralMedia(cameradata: cameradata)
         default:
