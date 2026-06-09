@@ -51,6 +51,45 @@ func DjiResolution(cameradata:CameraData) -> [String] {
             DjiResolution = ["4K FF[4096*2160][17:9]","4K FF[3840*2160][16:9]","4K S35[4096*2160][17:9]","4K S35[3840*2160][16:9]"]
         }
     }
+    else if DjiPocketCamera(cameradata.CameraName) {
+        DjiResolution = DjiPocketResolutions(cameraName: cameradata.CameraName)
+    }
     
     return DjiResolution
+}
+
+func DjiPocketCamera(_ cameraName:String) -> Bool {
+    return cameraName == "Pocket 3" || cameraName == "Pocket 4" || cameraName == "Pocket 4p"
+}
+
+private func DjiPocketResolutions(cameraName:String) -> [String] {
+    if cameraName == "Pocket 4" || cameraName == "Pocket 4p" {
+        return [
+            "4K[3840*2160][16:9][Normal]",
+            "FHD[1920*1080][16:9][Normal]",
+            "3K[1728*3072][9:16][Normal]",
+            "1080p[1080*1920][9:16][Normal]",
+            "4K[3840*2160][16:9][Slow]",
+            "FHD[1920*1080][16:9][Slow]",
+            "4K[3840*2160][16:9][Low Light]",
+            "FHD[1920*1080][16:9][Low Light]",
+        ]
+    }
+
+    return [
+        "4K[3840*2160][16:9][Normal]",
+        "2.7K[2688*1512][16:9][Normal]",
+        "FHD[1920*1080][16:9][Normal]",
+        "3K[3072*3072][1:1][Normal]",
+        "2160p[2160*2160][1:1][Normal]",
+        "1080p[1080*1080][1:1][Normal]",
+        "3K[1728*3072][9:16][Normal]",
+        "2.7K[1512*2688][9:16][Normal]",
+        "1080p[1080*1920][9:16][Normal]",
+        "4K[3840*2160][16:9][Slow]",
+        "2.7K[2688*1512][16:9][Slow]",
+        "FHD[1920*1080][16:9][Slow]",
+        "4K[3840*2160][16:9][Low Light]",
+        "FHD[1920*1080][16:9][Low Light]",
+    ]
 }

@@ -14,8 +14,14 @@ func BMDResolution(cameradata:CameraData) -> [String] {
     if cameradata.BrandName == "Blackmagicdesign" {
         
             let key = cameradata.CameraName + "_" + cameradata.Codec
-            
+            let bmcc6KResolutions = ["6K FF[6048*4032][OG]","4.8K FF[4832*4032][6:5 ANA]","6K FF[6048*3200][17:9]","6K FF[6048*2520][2.4:1]","4K S35[4096*3072][4:3]","4K S35[4096*2160][17:9]","2K S16[2112*1184][16:9]","FHD[1920*1080][16:9]"]
+
             let BMDResolutions: [String: [String]] = [
+                "Blackmagic Cinema Camera 6K_Blackmagic RAW 3:1" : bmcc6KResolutions,
+                "Blackmagic Cinema Camera 6K_Blackmagic RAW 5:1" : bmcc6KResolutions,
+                "Blackmagic Cinema Camera 6K_Blackmagic RAW 8:1" : bmcc6KResolutions,
+                "Blackmagic Cinema Camera 6K_Blackmagic RAW 12:1" : bmcc6KResolutions,
+
                 "Blackmagic URSA Cine Immersive_Blackmagic RAW 5:1" : ["8K Immersive[8160*7200*2]"],
                 "Blackmagic URSA Cine Immersive_Blackmagic RAW 8:1" : ["8K Immersive[8160*7200*2]"],
                 "Blackmagic URSA Cine Immersive_Blackmagic RAW 12:1" : ["8K Immersive[8160*7200*2]"],

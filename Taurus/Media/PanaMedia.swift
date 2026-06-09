@@ -11,7 +11,16 @@ func PanaMedia(cameradata:CameraData) -> [String] {
     var PanaMedia = [""]
     let CodecSpeed = PanaCodecSpeed(cameradata: cameradata)
 
-    if cameradata.CameraName == "S1R2" || cameradata.CameraName == "S1M2" || cameradata.CameraName == "S1M2E" {
+    if cameradata.CameraName == "EVA1" {
+        if CodecSpeed <= 150 {
+            PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+        }
+        else if CodecSpeed <= 400 {
+            PanaMedia = ["SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB"]
+        }
+    }
+
+    else if cameradata.CameraName == "S1R2" || cameradata.CameraName == "S1M2" || cameradata.CameraName == "S1M2E" {
         if CodecSpeed <= 200 {
             PanaMedia = ["SD V30 128GB","SD V30 256GB","SD V30 512GB","SD V60 128GB","SD V60 256GB","SD V60 512GB","SD V90 128GB","SD V90 256GB","SD V90 512GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB"]
         }

@@ -73,13 +73,14 @@ public let CameraModel : [String:[String]] = [
     "Canon" : ["EOS R1","EOS R3","EOS R5 Mark2","EOS R5","EOS R6 V","EOS R6 Mark3","EOS R6 Mark2","EOS R6","EOS R8","EOS R7"],
     "Canon Cinema" : ["CinemaEOS C500 Mark2","CinemaEOS C400","CinemaEOS C300 Mark3","CinemaEOS C80","CinemaEOS C50","CinemaEOS C70","CinemaEOS R5C"],
     "Kinefinity" : ["VISTA","MAVO Edge 8K","MAVO Edge 6K","MAVO Mark2 LF","MAVO Mark2 S35"],
-    //"Nikon" : ["Z 9","Z 8","Z f","Z 7II","Z 7","Z6 III","Z 6II","Z 6","Z 5","Z fc","Z 50","Z 30"],
-    "Blackmagicdesign" : ["Blackmagic URSA Cine Immersive","Blackmagic URSA Cine 17K 65","Blackmagic URSA Cine 12K LF","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2"],
-    //"Blackmagicdesign" : ["Blackmagic Cinema Camera 6K","Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
+    "Nikon" : ["ZR","Z9","Z8","Z 6III"],
+    "Blackmagicdesign" : ["Blackmagic Cinema Camera 6K","Blackmagic URSA Cine Immersive","Blackmagic URSA Cine 17K 65","Blackmagic URSA Cine 12K LF","Blackmagic URSA Mini Pro 12K","Blackmagic URSA Mini Pro 4.6K G2"],
+    //"Blackmagicdesign" : ["Blackmagic Pocket Cinema Camera 6K Pro","Blackmagic Pocket Cinema Camera 6K G2","Blackmagic Pocket Cinema Camera 6K","Blackmagic Pocket Cinema Camera 4K"],
     "Fujifilm" : ["GFX ETERNA 55"],
-    "Panasonic" : ["S1R2","S1M2","S1M2E","S1H","S5M2X","S5M2","S9","GH7","GH6","G9M2"],
-    //"Pana" : ["EVA-1"]
-    "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3"],
+    "Panasonic" : ["EVA1","S1R2","S1M2","S1M2E","S1H","S5M2X","S5M2","S9","GH7","GH6","G9M2"],
+    "DJI" : ["Ronin 4D[8K]","Ronin 4D[6K]","Inspire 3","Pocket 3","Pocket 4",
+             //"Pocket 4p"
+            ],
     //"ZCam" : [""]
     "Apple" : ["iPhone 17 Pro MAX","iPhone 17 Pro","iPhone 16 Pro MAX","iPhone 16 Pro","iPhone 15 Pro MAX","iPhone 15 Pro","iPhone 14 Pro MAX","iPhone 14 Pro"],
     "[General]" : ["Select Mode","Manual Codec","Manual Resolution"],

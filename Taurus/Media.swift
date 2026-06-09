@@ -65,6 +65,7 @@ public let MediaName : [String:[String]] = [
     
     //BMD
     "Blackmagic URSA Cine Immersive" : ["Blackmagic Media Module 16TB","Blackmagic Media Module 8TB"],
+    "Blackmagic Cinema Camera 6K" : ["CFExpress TypeB 128GB","CFExpress TypeB 256GB","CFExpress TypeB 512GB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","CFExpress TypeB 4TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],
     "Blackmagic URSA Cine 17K 65" : ["Blackmagic Media Module 16TB","Blackmagic Media Module 8TB"],
     "Blackmagic URSA Cine 12K LF" : ["Blackmagic Media Module 16TB","Blackmagic Media Module 8TB","CFExpress TypeB 1TB","CFExpress TypeB 2TB","CFExpress TypeB 4TB"],
     "Blackmagic URSA Mini Pro 12K" : ["Dual CFast2.0 128GB","Dual CFast2.0 256GB","Dual CFast2.0 512GB","Dual CFast2.0 1TB","[Output]SSD 512GB","[Output]SSD 1TB","[Output]SSD 2TB","[Output]SSD 4TB"],

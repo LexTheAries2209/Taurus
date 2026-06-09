@@ -10,7 +10,30 @@ import Foundation
 func PanaResolution(cameradata:CameraData) -> [String] {
     var PanaResolution = [""]
 
-    if cameradata.CameraName == "S1R2" || cameradata.CameraName == "S1M2" || cameradata.CameraName == "S1M2E" {
+    if cameradata.CameraName == "EVA1" {
+        if cameradata.Codec == "AVC ALL-I" {
+            switch cameradata.Format {
+            case "S35" :
+                PanaResolution = ["DCI 4K[4096*2160][10bit 4:2:2][23.976p/24p/25p/29.97p][400M]","UHD[3840*2160][10bit 4:2:2][23.976p/25p/29.97p][400M]","FHD[1920*1080][10bit 4:2:2][23.976p/24p/25p/29.97p][100M]","FHD[1920*1080][10bit 4:2:2][50p/59.94p][200M]"]
+            case "Pixel to Pixel" :
+                PanaResolution = ["2K[2048*1080][10bit 4:2:2][23.976p/24p/25p/29.97p][100M]","2K[2048*1080][10bit 4:2:2][50p/59.94p][200M]","FHD[1920*1080][10bit 4:2:2][100p/119.88p][100M]","FHD[1920*1080][10bit 4:2:2][100p/119.88p][200M]"]
+            default :
+                PanaResolution = ["无选项"]
+            }
+        }
+        else if cameradata.Codec == "AVC LongGOP" {
+            switch cameradata.Format {
+            case "S35" :
+                PanaResolution = ["DCI 4K[4096*2160][10bit 4:2:2][23.976p/24p/25p/29.97p][150M]","DCI 4K[4096*2160][8bit 4:2:0][50p/59.94p][150M]","UHD[3840*2160][10bit 4:2:2][23.976p/25p/29.97p][150M]","UHD[3840*2160][8bit 4:2:0][50p/59.94p][150M]","FHD[1920*1080][10bit 4:2:2][23.976p/24p/25p/29.97p][50M]","FHD[1920*1080][10bit 4:2:2][50p/59.94p][100M]"]
+            case "Pixel to Pixel" :
+                PanaResolution = ["2K[2048*1080][10bit 4:2:2][23.976p/24p/25p/29.97p][50M]","2K[2048*1080][10bit 4:2:2][50p/59.94p][100M]","2K[2048*1080][10bit 4:2:2][100p/119.88p][50M]","2K[2048*1080][10bit 4:2:2][100p/119.88p][100M]","2K[2048*1080][8bit 4:2:0][200p/239.76p][50M]","2K[2048*1080][8bit 4:2:0][200p/239.76p][100M]","FHD[1920*1080][10bit 4:2:2][100p/119.88p][50M]","FHD[1920*1080][10bit 4:2:2][100p/119.88p][100M]","FHD[1920*1080][8bit 4:2:0][200p/239.76p][50M]","FHD[1920*1080][8bit 4:2:0][200p/239.76p][100M]"]
+            default :
+                PanaResolution = ["无选项"]
+            }
+        }
+    }
+
+    else if cameradata.CameraName == "S1R2" || cameradata.CameraName == "S1M2" || cameradata.CameraName == "S1M2E" {
         let s1r2ProRes5_8 = ["5.8K[5760*3040][10bit 4:2:2][23.976p][17:9]","5.8K[5760*3040][10bit 4:2:2][24p][17:9]","5.8K[5760*3040][10bit 4:2:2][25p][17:9]","5.8K[5760*3040][10bit 4:2:2][29.97p][17:9]"]
         let s1r2ProRes4_7 = ["4.7K 4:3[4736*3552][10bit 4:2:2][23.976p]","4.7K 4:3[4736*3552][10bit 4:2:2][24p]","4.7K 4:3[4736*3552][10bit 4:2:2][25p]","4.7K 4:3[4736*3552][10bit 4:2:2][29.97p]"]
         let s1r2ProRes4K = ["DCI 4K[10bit 4:2:2][23.976p]","DCI 4K[10bit 4:2:2][24p]","DCI 4K[10bit 4:2:2][25p]","DCI 4K[10bit 4:2:2][29.97p]","DCI 4K[10bit 4:2:2][50p]","DCI 4K[10bit 4:2:2][59.94p]","UHD[10bit 4:2:2][23.976p]","UHD[10bit 4:2:2][24p]","UHD[10bit 4:2:2][25p]","UHD[10bit 4:2:2][29.97p]","UHD[10bit 4:2:2][50p]","UHD[10bit 4:2:2][59.94p]"]

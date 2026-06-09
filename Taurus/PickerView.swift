@@ -195,12 +195,14 @@ struct PickerView: View {
             resolutions = DjiResolution(cameradata: cameradata)
         case "Kinefinity":
             resolutions = KinefinityResolution(cameradata: cameradata)
+        case "Nikon":
+            resolutions = NikonResolution(cameradata: cameradata)
         case "[General]":
             resolutions = GeneralResolution(cameradata: cameradata)
         default:
             resolutions = ["无选项"]
         }
-        if cameradata.BrandName == "Canon" || cameradata.BrandName == "SONY" {
+        if cameradata.BrandName == "Canon" || cameradata.BrandName == "SONY" || cameradata.BrandName == "Nikon" {
             return createPicker(selection: $cameradata.Resolution, label: "请选择格式", options: resolutions, showNoOptionText: resolutions == ["无选项"])
         }
         else {
@@ -261,6 +263,8 @@ struct PickerView: View {
             medias = FujiMedia(cameradata: cameradata)
         case "Kinefinity":
             medias = KinefinityMedia(cameradata: cameradata)
+        case "Nikon":
+            medias = NikonMedia(cameradata: cameradata)
         case "[General]":
             medias = GeneralMedia(cameradata: cameradata)
         default:

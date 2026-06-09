@@ -209,6 +209,9 @@ func DjiRate(cameradata:CameraData) -> [String] {
             rates = ["无选项"]
         }
     }
+    else if DjiPocketCamera(cameradata.CameraName) {
+        rates = DjiPocketRates(cameradata: cameradata)
+    }
     else {
         rates = ["无选项"]
     }
@@ -218,6 +221,29 @@ func DjiRate(cameradata:CameraData) -> [String] {
 
 private func allDjiRates() -> [String] {
     return ["23.976","24.000","25.000","29.970","30.000","48.000","50.000","59.940","60.000","72.000","75.000","96.000","100.000","120.000"]
+}
+
+private func DjiPocketRates(cameradata:CameraData) -> [String] {
+    if cameradata.Resolution.contains("[Normal]") {
+        return ["24.000","25.000","30.000","48.000","50.000","60.000"]
+    }
+    if cameradata.Resolution.contains("[Low Light]") {
+        return ["24.000","25.000","30.000"]
+    }
+    if cameradata.Resolution == "4K[3840*2160][16:9][Slow]" {
+        if cameradata.CameraName == "Pocket 4" || cameradata.CameraName == "Pocket 4p" {
+            return ["100.000","120.000","200.000","240.000"]
+        }
+        return ["120.000"]
+    }
+    if cameradata.Resolution == "2.7K[2688*1512][16:9][Slow]" {
+        return ["120.000"]
+    }
+    if cameradata.Resolution == "FHD[1920*1080][16:9][Slow]" {
+        return ["120.000","240.000"]
+    }
+
+    return ["无选项"]
 }
 
 private func isDji8KFullFrame(_ resolution: String) -> Bool {

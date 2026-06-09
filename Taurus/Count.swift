@@ -263,7 +263,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 74.48
     case "SxS Pro-X 120GB","XQD 120GB","120GB":
         return 111.6
-    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","Built-in 128GB","XQD 128GB","128GB" :
+    case "CFast2.0 128GB","SxS Pro+ 128GB","CFExpress TypeB 128GB","SD V90 128GB","SD V60 128GB","SD V30 128GB","microSD V30 128GB","Built-in 128GB","XQD 128GB","128GB" :
         return 119.168
     case "CFExpress TypeA 160GB","160GB" :
         return 148.96
@@ -271,13 +271,13 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 204.82
     case "SxS Pro-X 240GB","XQD 240GB","240GB" :
         return 223.44
-    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB","256GB" :
+    case "CFast2.0 256GB","SxS Pro+ 256GB","AXS S24 256GB","CFExpress TypeB 256GB","SD V90 256GB","SD V60 256GB","SD V30 256GB","microSD V30 256GB","Built-in 256GB","Dual CFast2.0 128GB","XQD 256GB","256GB" :
         return 238.336
     case "CFExpress TypeA 320GB","320GB" :
         return 297.92
     case "CFExpress TypeB 330GB","330GB" :
         return 307.23
-    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB","Built-in 512GB","Dual CFast2.0 256GB","512GB" :
+    case "CFast2.0 512GB","XR Capture Drive 512GB","AXS S24 512GB","AXS S48 512GB","CFExpress TypeB 512GB","SD V90 512GB","[Output]SSD 512GB","SD V60 512GB","SD V30 512GB","microSD V30 512GB","Built-in 512GB","Dual CFast2.0 256GB","512GB" :
         return 476.672
     case "CFExpress TypeA 640GB","640GB" :
         return 585.840
@@ -285,7 +285,7 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 614.46
     case "CFExpress TypeA 960GB","960GB" :
         return 893.76
-    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB","1TB","Compact Drive Express 1TB","KineMAG Nano SSD 1TB" :
+    case "SXR Capture Drive 1TB","Compact Drive 1TB","AXS S24 1TB","AXS S48 1TB","AXS S66 1TB","CFExpress TypeB 1TB","SD V90 1TB","SD V30 1TB","microSD V30 1TB","[Output]SSD 1TB","DJI PROSSD 1TB","Built-in 1TB","CFast2.0 1TB","Dual CFast2.0 512GB","1TB","Compact Drive Express 1TB","KineMAG Nano SSD 1TB" :
         return 931
     case "CFExpress TypeB 1.3TB","1.3TB" :
         return 1241.023
@@ -293,7 +293,9 @@ func MediaCapacity(cameradata:CameraData) -> Double {
         return 1787.52
     case "SXR Capture Drive 2TB","Compact Drive 2TB","CFExpress TypeB 2TB","SD V90 2TB","[Output]SSD 2TB","Dual CFast2.0 1TB","2TB","KineMAG Nano SSD 2TB","Built-in 2TB" :
         return 1862
-    case "[Output]SSD 4TB","4TB" :
+    case "Built-in 107GB" :
+        return 99.657
+    case "CFExpress TypeB 4TB","[Output]SSD 4TB","4TB" :
         return 3724
     case "8TB","Blackmagic Media Module 8TB" :
         return 7448
@@ -532,9 +534,23 @@ private func DjiCodecSpeedMBps(cameradata: CameraData) -> Double {
     else if cameradata.CameraName == "Inspire 3" {
         return DjiInspire3CodecSpeedMBps(cameradata: cameradata)
     }
+    else if DjiPocketCamera(cameradata.CameraName) {
+        return DjiPocketCodecSpeedMBps(cameradata: cameradata)
+    }
     else {
         return 0
     }
+}
+
+private func DjiPocketCodecSpeedMBps(cameradata: CameraData) -> Double {
+    if cameradata.Codec == "H.264" || cameradata.Codec == "H.265" {
+        if cameradata.CameraName == "Pocket 4" || cameradata.CameraName == "Pocket 4p" {
+            return 180 / 8
+        }
+        return 130 / 8
+    }
+
+    return 0
 }
 
 private func Dji8KCodecSpeedMBps(cameradata: CameraData) -> Double {

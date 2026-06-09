@@ -11,6 +11,8 @@ func PanaFormat(cameradata:CameraData) -> [String] {
     var PanaFormat = [""]
     let isProResRaw = cameradata.Codec == "ProRes RAW HQ" || cameradata.Codec == "ProRes RAW"
     switch cameradata.CameraName {
+    case "EVA1" :
+        PanaFormat = ["S35","Pixel to Pixel"]
     case "S1R2" :
         PanaFormat = isProResRaw ? ["Pixel to Pixel"] : ["Full Frame","APS-C","Pixel to Pixel"]
     case "S1M2" :

@@ -454,5 +454,49 @@ func BMDResolutionMutiplier(cameradata:CameraData) -> Double {
 
 
 func BMDCodecSpeedmbps(cameradata:CameraData) -> Double {
+    if cameradata.CameraName == "Blackmagic Cinema Camera 6K" {
+        return BMCC6KCodecSpeedMbps(cameradata: cameradata)
+    }
+
     return (BMDCodecSpeedMBPS(cameradata:cameradata) * RateMultiplier(cameradata: cameradata) * 8) / BMDResolutionMutiplier (cameradata:cameradata)
+}
+
+private func BMCC6KCodecSpeedMbps(cameradata:CameraData) -> Double {
+    let storageMBpsAt30 = BMCC6KStorageRateMBpsAt30(cameradata: cameradata)
+    let rate = RateSpeed(cameradata: cameradata)
+    if storageMBpsAt30 == 0 || rate == 0 {
+        return 0
+    }
+
+    return storageMBpsAt30 * 8 * rate / 30
+}
+
+private func BMCC6KStorageRateMBpsAt30(cameradata:CameraData) -> Double {
+    let values: [String: (Double, Double, Double, Double)] = [
+        "6K FF[6048*4032][OG]": (370, 223, 140, 94),
+        "4.8K FF[4832*4032][6:5 ANA]": (297, 179, 112, 75),
+        "6K FF[6048*3200][17:9]": (295, 177, 111, 75),
+        "6K FF[6048*2520][2.4:1]": (233, 140, 88, 59),
+        "4K S35[4096*3072][4:3]": (192, 116, 73, 49),
+        "4K S35[4096*2160][17:9]": (136, 82, 52, 35),
+        "2K S16[2112*1184][16:9]": (40, 24, 16, 11),
+        "FHD[1920*1080][16:9]": (33, 20, 13, 9),
+    ]
+
+    guard let rates = values[cameradata.Resolution] else {
+        return 0
+    }
+
+    switch cameradata.Codec {
+    case "Blackmagic RAW 3:1":
+        return rates.0
+    case "Blackmagic RAW 5:1":
+        return rates.1
+    case "Blackmagic RAW 8:1":
+        return rates.2
+    case "Blackmagic RAW 12:1":
+        return rates.3
+    default:
+        return 0
+    }
 }

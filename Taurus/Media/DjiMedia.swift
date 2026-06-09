@@ -26,6 +26,12 @@ func DjiMedia(cameradata:CameraData) -> [String] {
             DjiMedia = ["DJI PROSSD 1TB"]
         }
     }
+    else if cameradata.CameraName == "Pocket 3" {
+        DjiMedia = ["microSD V30 128GB","microSD V30 256GB","microSD V30 512GB","microSD V30 1TB"]
+    }
+    else if cameradata.CameraName == "Pocket 4" || cameradata.CameraName == "Pocket 4p" {
+        DjiMedia = ["Built-in 107GB","microSD V30 128GB","microSD V30 256GB","microSD V30 512GB","microSD V30 1TB"]
+    }
     else {
         DjiMedia = ["无选项"]
     }

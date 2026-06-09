@@ -11,7 +11,11 @@ func BMDRate(cameradata:CameraData) -> [String] {
     var rates: [String] = []
     
     if cameradata.BrandName == "Blackmagicdesign" {
-        if cameradata.CameraName.contains("Immersive") {
+        if cameradata.CameraName == "Blackmagic Cinema Camera 6K" {
+            rates = BMCC6KRateValues(maxFPS: BMCC6KMaxFPS(resolution: cameradata.Resolution))
+        }
+
+        else if cameradata.CameraName.contains("Immersive") {
             rates = ["23.976","24.000","25.000","29.970","30.000","40.000","48.000","50.000","59.940","60.000","72.000","75.000","90.000"]
         }
         
@@ -167,4 +171,35 @@ func BMDRate(cameradata:CameraData) -> [String] {
         rates = ["无选项"]
     }
     return rates
+}
+
+private func BMCC6KMaxFPS(resolution:String) -> Double {
+    switch resolution {
+    case "6K FF[6048*4032][OG]", "4.8K FF[4832*4032][6:5 ANA]":
+        return 36
+    case "6K FF[6048*3200][17:9]":
+        return 48
+    case "6K FF[6048*2520][2.4:1]", "4K S35[4096*2160][17:9]":
+        return 60
+    case "4K S35[4096*3072][4:3]":
+        return 50
+    case "2K S16[2112*1184][16:9]":
+        return 100
+    case "FHD[1920*1080][16:9]":
+        return 120
+    default:
+        return 0
+    }
+}
+
+private func BMCC6KRateValues(maxFPS:Double) -> [String] {
+    if maxFPS <= 0 {
+        return ["无选项"]
+    }
+
+    var values = [23.976, 24, 25, 29.970, 30, 40, 48, 50, 59.940, 60, 72, 75, 96, 100, 119.880, 120].filter { $0 <= maxFPS + 0.0001 }
+    if !values.contains(where: { abs($0 - maxFPS) < 0.0001 }) {
+        values.append(maxFPS)
+    }
+    return values.sorted().map { String(format: "%.3f", $0) }
 }

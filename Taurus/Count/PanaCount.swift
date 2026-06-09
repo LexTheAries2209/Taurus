@@ -582,6 +582,56 @@ func PanaGH7CodecSpeed(_ PanaCameraCodecName:String) -> Double {
     return 0
 }
 
+func PanaEVA1CodecSpeed(_ PanaCameraCodecName:String) -> Double {
+    let normalizedName = PanaNormalizedCodecName(PanaCameraCodecName)
+
+    func has(_ text:String) -> Bool {
+        normalizedName.contains(text)
+    }
+
+    if has("[400M]") {
+        return 400
+    }
+    if has("[200M]") {
+        return 200
+    }
+    if has("[150M]") {
+        return 150
+    }
+    if has("[100M]") {
+        return 100
+    }
+    if has("[50M]") {
+        return 50
+    }
+
+    if has("_AVC ALL-I_") {
+        if has("DCI 4K") || has("UHD") {
+            return 400
+        }
+        if has("FHD") || has("2K") {
+            return 200
+        }
+    }
+
+    if has("_AVC LongGOP_") {
+        if has("8bit 4:2:0") && (has("[200p/239.76p]") || has("[50p/59.94p]")) {
+            return 100
+        }
+        if has("DCI 4K") || has("UHD") {
+            return 150
+        }
+        if has("[100p/119.88p]") || has("[200p/239.76p]") {
+            return 100
+        }
+        if has("FHD") || has("2K") {
+            return 100
+        }
+    }
+
+    return 0
+}
+
 //松下机型码率计算区
 func PanaCodecSpeed(cameradata:CameraData) -> Double {
     let PanaCameraCodecName = PanaNormalizedCodecName(cameradata.CameraName + "_" + cameradata.Codec + "_" + cameradata.Resolution)
@@ -603,6 +653,9 @@ func PanaCodecSpeed(cameradata:CameraData) -> Double {
     }
     if cameradata.CameraName == "GH7" {
         return PanaGH7CodecSpeed(PanaCameraCodecName)
+    }
+    if cameradata.CameraName == "EVA1" {
+        return PanaEVA1CodecSpeed(PanaCameraCodecName)
     }
     switch PanaCodecName {
     case "ProRes 422_FHD[10bit 4:2:2][23.976p]","ProRes 422_FHD[10bit 4:2:2][24p]" :

@@ -22,6 +22,9 @@
 		C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000005 /* KinefinityRate.swift */; };
 		C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000007 /* KinefinityCount.swift */; };
 		C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000009 /* KinefinityMedia.swift */; };
+		C0DEF0022E12000100000002 /* NikonResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000001 /* NikonResolution.swift */; };
+		C0DEF0022E12000100000004 /* NikonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000003 /* NikonCount.swift */; };
+		C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000005 /* NikonMedia.swift */; };
 		583519592B22160D00366A4D /* SonyCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583519582B22160D00366A4D /* SonyCount.swift */; };
 		5835195B2B2216D700366A4D /* CanonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195A2B2216D700366A4D /* CanonCount.swift */; };
 		5835195D2B2217A200366A4D /* PanaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195C2B2217A200366A4D /* PanaCount.swift */; };
@@ -80,6 +83,9 @@
 		C0DEF0012E11000100000005 /* KinefinityRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityRate.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000007 /* KinefinityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityCount.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000009 /* KinefinityMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityMedia.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000001 /* NikonResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonResolution.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000003 /* NikonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonCount.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000005 /* NikonMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonMedia.swift; sourceTree = "<group>"; };
 		583519582B22160D00366A4D /* SonyCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonyCount.swift; sourceTree = "<group>"; };
 		5835195A2B2216D700366A4D /* CanonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCount.swift; sourceTree = "<group>"; };
 		5835195C2B2217A200366A4D /* PanaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaCount.swift; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 				5839AA512BEF04B50025C74C /* BMDResolution.swift */,
 				587618D92C11A055009FF3B4 /* CanonCinemaResolution.swift */,
 				C0DEF0012E11000100000003 /* KinefinityResolution.swift */,
+				C0DEF0022E12000100000001 /* NikonResolution.swift */,
 				588C39D82C318270008DC656 /* GeneralResolution.swift */,
 			);
 			path = Resolution;
@@ -166,6 +173,7 @@
 				582EA04A2E100001001BD46A /* FujiMedia.swift */,
 				582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */,
 				C0DEF0012E11000100000009 /* KinefinityMedia.swift */,
+				C0DEF0022E12000100000005 /* NikonMedia.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				582EA04C2E100001001BD46A /* FujiCount.swift */,
 				582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */,
 				C0DEF0012E11000100000007 /* KinefinityCount.swift */,
+				C0DEF0022E12000100000003 /* NikonCount.swift */,
 			);
 			path = Count;
 			sourceTree = "<group>";
@@ -354,6 +363,9 @@
 				C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */,
 				C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */,
 				C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */,
+				C0DEF0022E12000100000002 /* NikonResolution.swift in Sources */,
+				C0DEF0022E12000100000004 /* NikonCount.swift in Sources */,
+				C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */,
 				588C39D92C318270008DC656 /* GeneralResolution.swift in Sources */,
 				582EA0402C15D087001BD46A /* CanonCinemaRate.swift in Sources */,
 				5839AA3E2BEDBECC0025C74C /* BMDRate.swift in Sources */,

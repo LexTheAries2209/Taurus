@@ -48,6 +48,12 @@ public let CodecName : [String:[String]] = [
     "MAVO Edge 6K" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "MAVO Mark2 LF" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
     "MAVO Mark2 S35" : ["CinemaDNG","ProRes 4444 XQ","ProRes 4444","ProRes 422 HQ","ProRes 422","ProRes 422 LT"],
+
+    //Nikon
+    "ZR" : ["R3D NE","N-RAW HQ","N-RAW","ProRes RAW HQ","ProRes 422 HQ","H.265 10-bit","H.265 8-bit","H.264 8-bit"],
+    "Z9" : ["N-RAW HQ","N-RAW","ProRes RAW HQ","ProRes 422 HQ","H.265 10-bit","H.265 8-bit","H.264 8-bit"],
+    "Z8" : ["N-RAW HQ","N-RAW","ProRes RAW HQ","ProRes 422 HQ","H.265 10-bit","H.265 8-bit","H.264 8-bit"],
+    "Z 6III" : ["N-RAW HQ","N-RAW","ProRes RAW HQ","ProRes 422 HQ","H.265 10-bit","H.265 8-bit","H.264 8-bit"],
     
        
     //RED
@@ -109,6 +115,7 @@ public let CodecName : [String:[String]] = [
     "EOS R7" : ["IPB HEVC","IPB AVC","IPB Light HEVC","IPB Light AVC"],
     
     //Panasonic
+    "EVA1" : ["AVC ALL-I","AVC LongGOP"],
     "S1R2" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S1M2" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
     "S1M2E" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","HEVC LongGOP","AVC ALL-I","AVC LongGOP"],
@@ -127,6 +134,9 @@ public let CodecName : [String:[String]] = [
     "Ronin 4D[8K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","H.264(10bit 4:2:0)"],
     "Ronin 4D[6K]" : ["ProRes RAW HQ","ProRes RAW","ProRes 4444 XQ","ProRes 422 HQ","ProRes 422 LT","H.264(10bit 4:2:0)"],
     "Inspire 3" : ["CinemaDNG","ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","H.264(10bit 4:2:0)"],
+    "Pocket 3" : ["H.265","H.264"],
+    "Pocket 4" : ["H.265"],
+    "Pocket 4p" : ["H.265"],
     
     //Apple
     "iPhone 17 Pro MAX" : ["ProRes RAW HQ","ProRes RAW","ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
@@ -139,6 +149,7 @@ public let CodecName : [String:[String]] = [
     "iPhone 14 Pro" : ["ProRes 422 HQ","ProRes 422","ProRes 422 LT","ProRes 422 Proxy","H.265 (54 Mbps)","H.264 (54 Mbps)"],
     
     //BMD
+    "Blackmagic Cinema Camera 6K" : ["Blackmagic RAW 3:1","Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1"],
     "Blackmagic URSA Cine Immersive" : ["Blackmagic RAW 5:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
     "Blackmagic URSA Cine 17K 65" : ["Blackmagic RAW 3:1","Blackmagic RAW 4:1","Blackmagic RAW 5:1","Blackmagic RAW 6:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
     "Blackmagic URSA Cine 12K LF" : ["Blackmagic RAW 3:1","Blackmagic RAW 4:1","Blackmagic RAW 5:1","Blackmagic RAW 6:1","Blackmagic RAW 8:1","Blackmagic RAW 12:1","Blackmagic RAW 18:1"],
