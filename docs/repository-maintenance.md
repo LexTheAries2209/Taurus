@@ -15,9 +15,10 @@
 
 - GitHub 仓库已重命名为 `LexTheAries2209/Taurus`。
 - 本地 `origin` 已指向 `https://github.com/LexTheAries2209/Taurus.git`。
-- GitHub 默认分支已恢复为 `main`，并指向当前最新版 `V1.3.4` 的历史。
+- GitHub 默认分支已恢复为 `main`，并保留已发布版 `V1.3.4` 的历史。
 - 当前正式版本 `v1.3.4` 已创建 tag 和 GitHub Release。
 - `Taurus-v1.3.4-macOS.zip` 已作为 `v1.3.4` Release 资源上传。
+- `main` 已进入 `v1.3.5` 开发/构建准备状态。
 - 历史 `V1.x.x` 分支已整理为 `v1.x.x` tags。
 - `20230928` 日期分支已保留为 `archive/20230928` tag。
 - 旧的本地和远端 `V1.x.x`、`20230928`、`codex/repo-maintenance-baseline` 分支已清理。

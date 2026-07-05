@@ -9,8 +9,8 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 ### 当前状态
 
 - 默认分支：`main`
-- 当前稳定版本：`v1.3.4`（应用内版本号：`V1.3.4`）
-- 正式发布：`v1.3.4` tag 和 GitHub Release
+- 当前开发/构建版本：`v1.3.5`（应用内版本号：`V1.3.5`）
+- 最新正式发布：`v1.3.4` tag 和 GitHub Release
 - 历史版本：已整理为 `v1.x.x` tags
 - 数据截止日期：2026-05-25
 - 平台：macOS
@@ -89,8 +89,8 @@ The calculated results are intended for planning and quick reference. Real-world
 ### Current Status
 
 - Default branch: `main`
-- Current stable version: `v1.3.4` (in-app version: `V1.3.4`)
-- Formal release: `v1.3.4` tag and GitHub Release
+- Current development/build version: `v1.3.5` (in-app version: `V1.3.5`)
+- Latest formal release: `v1.3.4` tag and GitHub Release
 - Historical versions: converted to `v1.x.x` tags
 - Data cutoff date: 2026-05-25
 - Platform: macOS

@@ -1,3 +1,5 @@
+Taurus_V1.3.5:
+
 Taurus_V1.3.4:
 简化了Canon机型的分辨率选择。
 加入了Canon R6 V、C 50、R6M3.
