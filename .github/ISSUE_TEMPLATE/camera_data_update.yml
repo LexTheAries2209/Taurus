@@ -1,0 +1,32 @@
+name: Camera data update
+description: Request a new camera, codec, resolution, frame rate, or media option.
+title: "[Data]: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: brand
+    attributes:
+      label: Brand
+      placeholder: "ARRI, Canon, DJI, Nikon..."
+    validations:
+      required: true
+  - type: input
+    id: camera
+    attributes:
+      label: Camera model
+    validations:
+      required: true
+  - type: textarea
+    id: requested_data
+    attributes:
+      label: Requested data
+      description: Codec, resolution, frame rate, media, bitrate, or capacity data to add or update.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Link or note the manufacturer source, manual, firmware release, or reliable test.
+    validations:
+      required: true
