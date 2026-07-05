@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Xcode user state
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Build products and local caches
+build/
+DerivedData/
+*.moved-aside
+*.xcarchive
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Logs and temporary files
+*.log
+tmp/
+*.tmp
