@@ -9,6 +9,7 @@ Taurus_V1.3.4:
 修复了Panasonic GH7的分辨率选择问题。
 修复了Sony机型的一个普遍分辨率错误问题。
 加入了Fujifilm GFX Etertna55。
+加入了Kinefinity Edge、Mavo Mark2、Vista。
 
 Taurus_V1.3.3:
 修复了iPhone机型帧率选择错误的问题。
