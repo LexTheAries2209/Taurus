@@ -9,8 +9,9 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 ### 当前状态
 
 - 默认分支：`main`
-- 当前稳定版本：`V1.3.4`
-- 后续正式发布建议使用：`v1.3.4` tag 和 GitHub Release
+- 当前稳定版本：`v1.3.4`（应用内版本号：`V1.3.4`）
+- 正式发布：`v1.3.4` tag 和 GitHub Release
+- 历史版本：已整理为 `v1.x.x` tags
 - 数据截止日期：2026-05-25
 - 平台：macOS
 - 技术栈：SwiftUI, Xcode project
@@ -71,7 +72,7 @@ xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
 - `vX.Y.Z` tag：正式版本
 - GitHub Release：面向使用者的版本说明和下载入口
 
-历史中的 `V1.x.x` 分支会先保留，之后应逐步整理为 `v1.x.x` tags 和 GitHub Releases。清理历史分支前，应先确认对应 commit 已经被主线、tag 或备份分支保留。
+历史中的 `V1.x.x` 分支已整理为 `v1.x.x` tags；`20230928` 日期分支已保留为 `archive/20230928` tag。远端仅保留 `main` 和必要的 `backup/*` 分支。后续如需补全旧版本说明，可以继续从 tags 创建对应的 GitHub Releases。
 
 ### 许可证
 
@@ -88,8 +89,9 @@ The calculated results are intended for planning and quick reference. Real-world
 ### Current Status
 
 - Default branch: `main`
-- Current stable version: `V1.3.4`
-- Recommended formal release marker: `v1.3.4` tag and GitHub Release
+- Current stable version: `v1.3.4` (in-app version: `V1.3.4`)
+- Formal release: `v1.3.4` tag and GitHub Release
+- Historical versions: converted to `v1.x.x` tags
 - Data cutoff date: 2026-05-25
 - Platform: macOS
 - Stack: SwiftUI, Xcode project
@@ -150,7 +152,7 @@ This repository now uses `main` as the stable development line. Recommended work
 - `vX.Y.Z` tag: formal version marker
 - GitHub Release: user-facing release notes and downloadable artifacts
 
-Historical `V1.x.x` branches are kept for now. They should gradually be converted into `v1.x.x` tags and GitHub Releases. Before deleting any historical branch, confirm that its commit is preserved by `main`, a tag, or a backup branch.
+Historical `V1.x.x` branches have been converted into `v1.x.x` tags; the `20230928` date branch is preserved as the `archive/20230928` tag. The remote now keeps only `main` and the necessary `backup/*` branches. Older release notes can be gradually backfilled as GitHub Releases from the tags if needed.
 
 ### License
 
