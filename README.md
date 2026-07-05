@@ -1,18 +1,23 @@
-# Taurus DIT Tool
+# Taurus
 
-Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 工具。当前版本主要提供“数据计算器”功能：根据摄影机、编码、分辨率、帧率和记录介质估算码率、每小时数据量和可录制时长。
+## 中文
 
-## 当前状态
+Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 工具。当前主要功能是“数据计算器”：根据摄影机、编码、分辨率、帧率和记录介质，估算数据码率、每小时数据量和可录制时长。
 
-- 当前应用版本：V1.3.4
+计算结果用于现场规划和快速参考。不同厂商固件、机内设置、可变帧率、压缩策略、外录方案和介质实际可用容量都可能让实际数据量与估算值不同。
+
+### 当前状态
+
+- 默认分支：`main`
+- 当前稳定版本：`V1.3.4`
+- 后续正式发布建议使用：`v1.3.4` tag 和 GitHub Release
 - 数据截止日期：2026-05-25
 - 平台：macOS
-- 工程：Xcode project, SwiftUI
-- 主要目标：快速估算摄影机录制数据量和储存介质时长
+- 技术栈：SwiftUI, Xcode project
+- 自动验证：GitHub Actions 运行 Xcode Release build
+- 许可证：GNU General Public License v3.0 only (`GPL-3.0-only`)
 
-计算结果用于现场规划和快速参考。不同厂商固件、机内设置、可变帧率、压缩策略和外录方案可能导致实际数据量不同。
-
-## 已覆盖品牌
+### 已覆盖品牌
 
 - ARRI
 - RED
@@ -26,9 +31,9 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 - Panasonic
 - DJI
 - Apple
-- General 自定义模式
+- `[General]` 自定义模式
 
-## 代码结构
+### 代码结构
 
 - `Taurus/ContentView.swift`：主窗口、应用状态和重置逻辑
 - `Taurus/PickerView.swift`：品牌、机型、编码、分辨率、帧率和储存卡选择器
@@ -41,7 +46,7 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 - `Taurus/Count.swift` 与 `Taurus/Count/`：码率、容量和数据量计算逻辑
 - `Taurus/Taurus_Log.txt`：应用内版本说明
 
-## 本地构建
+### 本地构建
 
 使用 Xcode 打开：
 
@@ -55,18 +60,98 @@ open Taurus.xcodeproj
 xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
 ```
 
-## 版本管理建议
+### 版本管理
 
-本仓库建议使用：
+本仓库已恢复 `main` 作为稳定主线。后续建议：
 
 - `main`：稳定主线，始终指向当前可用版本
-- `feature/<name>`：新功能或新机型数据
-- `fix/<name>`：错误修复
+- `feature/<name>`：新增机型、品牌、编码、介质或界面功能
+- `fix/<name>`：修复数据、计算或界面问题
+- `docs/<name>`：文档和仓库配置整理
 - `vX.Y.Z` tag：正式版本
 - GitHub Release：面向使用者的版本说明和下载入口
 
-历史中的 `V1.x.x` 分支应逐步整理为 `v1.x.x` tags 和 GitHub Releases。清理历史分支前，请先确认对应 tag 和 release 已经存在。
+历史中的 `V1.x.x` 分支会先保留，之后应逐步整理为 `v1.x.x` tags 和 GitHub Releases。清理历史分支前，应先确认对应 commit 已经被主线、tag 或备份分支保留。
 
-## 许可证
+### 许可证
 
-当前仓库尚未声明开源许可证。除非作者明确添加许可证，否则外部使用者不应默认拥有复制、修改或再发布权利。
+Taurus 以 GNU General Public License v3.0 only 授权，SPDX 标识为 `GPL-3.0-only`。完整条款见 `LICENSE`。
+
+---
+
+## English
+
+Taurus is a macOS SwiftUI tool for cinematography, DIT, and on-set data management workflows. Its current primary feature is a data calculator that estimates bitrate, hourly storage usage, and recording time from camera, codec, resolution, frame rate, and recording media selections.
+
+The calculated results are intended for planning and quick reference. Real-world usage can differ because of firmware versions, in-camera settings, variable frame rates, compression behavior, external recording workflows, and actual usable media capacity.
+
+### Current Status
+
+- Default branch: `main`
+- Current stable version: `V1.3.4`
+- Recommended formal release marker: `v1.3.4` tag and GitHub Release
+- Data cutoff date: 2026-05-25
+- Platform: macOS
+- Stack: SwiftUI, Xcode project
+- Automation: GitHub Actions runs an Xcode Release build
+- License: GNU General Public License v3.0 only (`GPL-3.0-only`)
+
+### Covered Brands
+
+- ARRI
+- RED
+- SONY
+- Canon
+- Canon Cinema
+- Kinefinity
+- Nikon
+- Blackmagicdesign
+- Fujifilm
+- Panasonic
+- DJI
+- Apple
+- `[General]` custom mode
+
+### Project Structure
+
+- `Taurus/ContentView.swift`: main window, app state, and reset logic
+- `Taurus/PickerView.swift`: brand, camera, codec, resolution, frame rate, and media selectors
+- `Taurus/DataOutput.swift`: recording time, bitrate, and hourly storage output
+- `Taurus/Brand_Camera.swift`: brand and camera entry data
+- `Taurus/Codec.swift`: camera-to-codec options
+- `Taurus/Media.swift` and `Taurus/Media/`: recording media options
+- `Taurus/Resolution/`: brand-specific resolution and format options
+- `Taurus/Rate/`: brand-specific frame rate options
+- `Taurus/Count.swift` and `Taurus/Count/`: bitrate, capacity, and storage calculations
+- `Taurus/Taurus_Log.txt`: in-app version notes
+
+### Local Build
+
+Open with Xcode:
+
+```sh
+open Taurus.xcodeproj
+```
+
+Or build from the command line:
+
+```sh
+xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
+```
+
+### Version Management
+
+This repository now uses `main` as the stable development line. Recommended workflow:
+
+- `main`: stable line, always pointing to the current usable version
+- `feature/<name>`: new cameras, brands, codecs, media, or UI features
+- `fix/<name>`: data, calculation, or UI fixes
+- `docs/<name>`: documentation and repository maintenance
+- `vX.Y.Z` tag: formal version marker
+- GitHub Release: user-facing release notes and downloadable artifacts
+
+Historical `V1.x.x` branches are kept for now. They should gradually be converted into `v1.x.x` tags and GitHub Releases. Before deleting any historical branch, confirm that its commit is preserved by `main`, a tag, or a backup branch.
+
+### License
+
+Taurus is licensed under the GNU General Public License v3.0 only. The SPDX identifier is `GPL-3.0-only`. See `LICENSE` for the full license text.
