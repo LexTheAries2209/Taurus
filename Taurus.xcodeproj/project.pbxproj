@@ -17,14 +17,6 @@
 		582EA0472E100001001BD46A /* FujiRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0482E100001001BD46A /* FujiRate.swift */; };
 		582EA0492E100001001BD46A /* FujiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA04A2E100001001BD46A /* FujiMedia.swift */; };
 		582EA04B2E100001001BD46A /* FujiCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA04C2E100001001BD46A /* FujiCount.swift */; };
-		C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000001 /* KinefinityFormat.swift */; };
-		C0DEF0012E11000100000004 /* KinefinityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000003 /* KinefinityResolution.swift */; };
-		C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000005 /* KinefinityRate.swift */; };
-		C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000007 /* KinefinityCount.swift */; };
-		C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000009 /* KinefinityMedia.swift */; };
-		C0DEF0022E12000100000002 /* NikonResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000001 /* NikonResolution.swift */; };
-		C0DEF0022E12000100000004 /* NikonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000003 /* NikonCount.swift */; };
-		C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000005 /* NikonMedia.swift */; };
 		583519592B22160D00366A4D /* SonyCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583519582B22160D00366A4D /* SonyCount.swift */; };
 		5835195B2B2216D700366A4D /* CanonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195A2B2216D700366A4D /* CanonCount.swift */; };
 		5835195D2B2217A200366A4D /* PanaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835195C2B2217A200366A4D /* PanaCount.swift */; };
@@ -65,6 +57,14 @@
 		58F4E8ED2B2A093B00A36613 /* func_xbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4E8EC2B2A093B00A36613 /* func_xbit.swift */; };
 		58FE691A2BB1488B008ECC8D /* DataOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE69192BB1488B008ECC8D /* DataOutput.swift */; };
 		58FE691C2BB14B44008ECC8D /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE691B2BB14B44008ECC8D /* Comments.swift */; };
+		C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000001 /* KinefinityFormat.swift */; };
+		C0DEF0012E11000100000004 /* KinefinityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000003 /* KinefinityResolution.swift */; };
+		C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000005 /* KinefinityRate.swift */; };
+		C0DEF0012E11000100000008 /* KinefinityCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000007 /* KinefinityCount.swift */; };
+		C0DEF0012E1100010000000A /* KinefinityMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000009 /* KinefinityMedia.swift */; };
+		C0DEF0022E12000100000002 /* NikonResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000001 /* NikonResolution.swift */; };
+		C0DEF0022E12000100000004 /* NikonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000003 /* NikonCount.swift */; };
+		C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000005 /* NikonMedia.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,14 +78,6 @@
 		582EA0482E100001001BD46A /* FujiRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiRate.swift; sourceTree = "<group>"; };
 		582EA04A2E100001001BD46A /* FujiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiMedia.swift; sourceTree = "<group>"; };
 		582EA04C2E100001001BD46A /* FujiCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiCount.swift; sourceTree = "<group>"; };
-		C0DEF0012E11000100000001 /* KinefinityFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityFormat.swift; sourceTree = "<group>"; };
-		C0DEF0012E11000100000003 /* KinefinityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityResolution.swift; sourceTree = "<group>"; };
-		C0DEF0012E11000100000005 /* KinefinityRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityRate.swift; sourceTree = "<group>"; };
-		C0DEF0012E11000100000007 /* KinefinityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityCount.swift; sourceTree = "<group>"; };
-		C0DEF0012E11000100000009 /* KinefinityMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityMedia.swift; sourceTree = "<group>"; };
-		C0DEF0022E12000100000001 /* NikonResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonResolution.swift; sourceTree = "<group>"; };
-		C0DEF0022E12000100000003 /* NikonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonCount.swift; sourceTree = "<group>"; };
-		C0DEF0022E12000100000005 /* NikonMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonMedia.swift; sourceTree = "<group>"; };
 		583519582B22160D00366A4D /* SonyCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonyCount.swift; sourceTree = "<group>"; };
 		5835195A2B2216D700366A4D /* CanonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCount.swift; sourceTree = "<group>"; };
 		5835195C2B2217A200366A4D /* PanaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaCount.swift; sourceTree = "<group>"; };
@@ -128,6 +120,14 @@
 		58F4E8EC2B2A093B00A36613 /* func_xbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func_xbit.swift; sourceTree = "<group>"; };
 		58FE69192BB1488B008ECC8D /* DataOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOutput.swift; sourceTree = "<group>"; };
 		58FE691B2BB14B44008ECC8D /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000001 /* KinefinityFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityFormat.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000003 /* KinefinityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityResolution.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000005 /* KinefinityRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityRate.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000007 /* KinefinityCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityCount.swift; sourceTree = "<group>"; };
+		C0DEF0012E11000100000009 /* KinefinityMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityMedia.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000001 /* NikonResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonResolution.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000003 /* NikonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonCount.swift; sourceTree = "<group>"; };
+		C0DEF0022E12000100000005 /* NikonMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonMedia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +538,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.5";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,6 +567,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.5";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
