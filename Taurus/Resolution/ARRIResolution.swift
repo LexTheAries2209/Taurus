@@ -13,7 +13,8 @@ func ARRIResolution(cameradata:CameraData) -> [String] {
     
     if cameradata.BrandName == "ARRI" {
         
-            let key = cameradata.CameraName + "_" + cameradata.Codec
+            let cameraName = cameradata.CameraName == "ALEXA 35 Live Xtreme" ? "ALEXA 35 Xtreme" : cameradata.CameraName
+            let key = cameraName + "_" + cameradata.Codec
             
             let ARRIResolutions: [String: [String]] = [
                 "ALEXA Classic_ProRes 4444" : ["2K S35[2048*1536][From 2868*2152][4:3]","2K S35[2048*1152][From 2868*1614]","FHD S35[From 2880*1620]"],
@@ -165,4 +166,3 @@ func ARRIResolution(cameradata:CameraData) -> [String] {
 
         return resolutions
     }
-

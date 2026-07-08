@@ -30,6 +30,7 @@ public let MediaName : [String:[String]] = [
     //"ALEXA SXT Studio" : ["SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
     //"ALEXA SXT W" : ["SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
     "ALEXA SXT" : ["SXR Capture Drive 1TB","SXR Capture Drive 2TB"],
+    "ALEXA 35 Live Xtreme" : ["Compact Drive 1TB","Compact Drive 2TB","Compact Drive Express 1TB"],
     "ALEXA 35 Xtreme" : ["Compact Drive 1TB","Compact Drive 2TB","Compact Drive Express 1TB"],
     "ALEXA 35" : ["Compact Drive 1TB","Compact Drive 2TB"],
     //"ALEXA 35 Live" : ["Compact Drive 1TB","Compact Drive 2TB"],

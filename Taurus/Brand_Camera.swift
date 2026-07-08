@@ -9,6 +9,7 @@ import Foundation
 
 public let CameraModel : [String:[String]] = [
     "ARRI" : ["ALEXA 265",
+              "ALEXA 35 Live Xtreme",
               "ALEXA 35 Xtreme",
               "ALEXA 35",
               //"ALEXA 35 Live",

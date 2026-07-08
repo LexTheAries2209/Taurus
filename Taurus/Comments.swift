@@ -28,7 +28,7 @@ func Comments(cameradata:CameraData) -> some View {
                 .frame(maxWidth: .infinity,alignment:.leading)
             
             if cameradata.BrandName == "ARRI" {
-                if cameradata.CameraName == "ALEXA 35 Xtreme" {
+                if cameradata.CameraName == "ALEXA 35 Xtreme" || cameradata.CameraName == "ALEXA 35 Live Xtreme" {
                     Text("2. 默认宽高比为16:9；FHD指分辨率1920x1080；UHD指分辨率3840x2160；部分录制规格根据机型不同可能需要额外激活授权。")
                         .font(.system(size: 10))
                         .padding(.leading,10)

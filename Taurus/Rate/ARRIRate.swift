@@ -129,7 +129,7 @@ func ArriRates(cameradata:CameraData) -> [String] {
         rates = ["0.750","1.000","20.000","23.976","24.000","25.000","29.970","30.000","40.000","47.952","48.000","50.000","59.940","60.000"]
     }
     
-    else if cameradata.CameraName == "ALEXA 35 Xtreme" {
+    else if cameradata.CameraName == "ALEXA 35 Xtreme" || cameradata.CameraName == "ALEXA 35 Live Xtreme" {
         if cameradata.Media == "Compact Drive Express 1TB" && (cameradata.Codec == "ARRIRAW" || cameradata.Codec == "ARRICORE" || cameradata.Codec == "ARRICORE[Overdrive]") {
             rates = ["此存储卡只能录制ProRes编码"]
         }
@@ -319,7 +319,6 @@ func ArriRates(cameradata:CameraData) -> [String] {
     }
     return rates
 }
-
 
 
 
