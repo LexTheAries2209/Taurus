@@ -28,12 +28,14 @@ struct ContentView: View {
     @StateObject var cameradata = CameraData()
     @State private var currentTime: String = ""
     @State private var currentDate: String = ""
+    @State private var activeWindow: NSWindow?
+    @State private var screenshotErrorMessage = ""
+    @State private var showsScreenshotError = false
     private let windowContentSize = CGSize(width: 930, height: 540)
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Spacer()
+            ZStack {
                 Text("数据计算器")
                     .font(.headline)
                     .fontWeight(.semibold)
@@ -47,7 +49,20 @@ struct ContentView: View {
                                     .stroke(Color(nsColor: .separatorColor), lineWidth: 0.5)
                             )
                     )
-                Spacer()
+
+                HStack {
+                    Spacer()
+                    Button {
+                        saveScreenshot()
+                    } label: {
+                        Image(systemName: "camera")
+                            .imageScale(.medium)
+                    }
+                    .buttonStyle(.borderless)
+                    .help("截图")
+                    .accessibilityLabel("截图")
+                    .padding(.trailing, 14)
+                }
             }
             .padding(.top, 8)
             .frame(height: 44)
@@ -93,7 +108,15 @@ struct ContentView: View {
             maxHeight: windowContentSize.height
         )
         .background(Color(nsColor: .windowBackgroundColor))
+        .background(WindowReader { window in
+            activeWindow = window
+        })
         .background(FixedWindowHeight(size: windowContentSize))
+        .alert("截图失败", isPresented: $showsScreenshotError) {
+            Button("好", role: .cancel) {}
+        } message: {
+            Text(screenshotErrorMessage)
+        }
         //显示当前时间的文本，位于左上角
 //            HStack {
 //                Spacer()
@@ -110,6 +133,22 @@ struct ContentView: View {
 //
 //            }
         .onAppear(perform: updateTime)
+    }
+
+    @MainActor
+    private func saveScreenshot() {
+        guard let activeWindow else {
+            screenshotErrorMessage = "没有找到当前窗口，无法截图。"
+            showsScreenshotError = true
+            return
+        }
+
+        do {
+            _ = try ScreenshotExport.saveWindowScreenshot(from: activeWindow)
+        } catch {
+            screenshotErrorMessage = error.localizedDescription
+            showsScreenshotError = true
+        }
     }
     
     // 将重置逻辑提取为独立函数
@@ -139,6 +178,29 @@ struct ContentView: View {
             self.currentDate = dateFormatter.string(from: Date())
         }
         RunLoop.current.add(timer, forMode: .common)
+    }
+}
+
+struct WindowReader: NSViewRepresentable {
+    let onResolve: (NSWindow) -> Void
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView(frame: .zero)
+        DispatchQueue.main.async {
+            resolveWindow(from: view)
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        DispatchQueue.main.async {
+            resolveWindow(from: nsView)
+        }
+    }
+
+    private func resolveWindow(from view: NSView) {
+        guard let window = view.window else { return }
+        onResolve(window)
     }
 }
 
