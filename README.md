@@ -78,6 +78,11 @@ xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
 
 Taurus 以 GNU General Public License v3.0 only 授权，SPDX 标识为 `GPL-3.0-only`。完整条款见 `LICENSE`。
 
+### 特别鸣谢
+
+- 徐理航：代码设计支持
+- 郑昊：图标设计支持
+
 ---
 
 ## English
@@ -157,3 +162,8 @@ Historical `V1.x.x` branches have been converted into `v1.x.x` tags; the `202309
 ### License
 
 Taurus is licensed under the GNU General Public License v3.0 only. The SPDX identifier is `GPL-3.0-only`. See `LICENSE` for the full license text.
+
+### Acknowledgements
+
+- 徐理航: code design support
+- 郑昊: icon design support
