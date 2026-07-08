@@ -26,17 +26,30 @@ class CameraData: ObservableObject {
 struct ContentView: View {
     
     @StateObject var cameradata = CameraData()
+    @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
     @State private var currentTime: String = ""
     @State private var currentDate: String = ""
     @State private var activeWindow: NSWindow?
     @State private var screenshotErrorMessage = ""
     @State private var showsScreenshotError = false
     private let windowContentSize = CGSize(width: 930, height: 540)
+    private var language: AppLanguage {
+        AppLanguage(rawValue: appLanguageRawValue) ?? .chinese
+    }
+    private var copy: LocalizedCopy {
+        language.copy
+    }
+    private var languageSelection: Binding<AppLanguage> {
+        Binding(
+            get: { language },
+            set: { appLanguageRawValue = $0.rawValue }
+        )
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                Text("数据计算器")
+                Text(copy.calculatorTitle)
                     .font(.headline)
                     .fontWeight(.semibold)
                     .padding(.horizontal, 8)
@@ -51,7 +64,19 @@ struct ContentView: View {
                     )
 
                 HStack {
+                    Picker("", selection: languageSelection) {
+                        ForEach(AppLanguage.allCases) { language in
+                            Text(language.toggleTitle).tag(language)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
+                    .frame(width: 88)
+                    .help(copy.languageControlHelp)
+                    .padding(.leading, 14)
+
                     Spacer()
+
                     Button {
                         saveScreenshot()
                     } label: {
@@ -59,8 +84,8 @@ struct ContentView: View {
                             .imageScale(.medium)
                     }
                     .buttonStyle(.borderless)
-                    .help("截图")
-                    .accessibilityLabel("截图")
+                    .help(copy.screenshotButton)
+                    .accessibilityLabel(copy.screenshotButton)
                     .padding(.trailing, 14)
                 }
             }
@@ -71,7 +96,7 @@ struct ContentView: View {
             
             VStack(spacing: 0) {
                 // 重置按键
-                Button("重置") {
+                Button(copy.resetButton) {
                     resetAllData()
                 }
                 .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
@@ -81,20 +106,20 @@ struct ContentView: View {
                 HStack(alignment: .center) {
                     VStack(spacing: 10) {
                         // 选择器模块
-                        PickerView(cameradata: cameradata)
+                        PickerView(cameradata: cameradata, language: language)
                     }
                     
                     Spacer()
                     
                     // 计算数据输出模块
-                    DataOutput(cameradata: cameradata)
+                    DataOutput(cameradata: cameradata, language: language)
                 }
                 .padding(.top, 28)
                 
                 Spacer(minLength: 16)
                 
                 // 备注与说明模块
-                Comments(cameradata: cameradata)
+                Comments(cameradata: cameradata, language: language)
             }
             .padding(.horizontal)
             .padding(.bottom)
@@ -112,8 +137,8 @@ struct ContentView: View {
             activeWindow = window
         })
         .background(FixedWindowHeight(size: windowContentSize))
-        .alert("截图失败", isPresented: $showsScreenshotError) {
-            Button("好", role: .cancel) {}
+        .alert(copy.screenshotErrorTitle, isPresented: $showsScreenshotError) {
+            Button(copy.okButton, role: .cancel) {}
         } message: {
             Text(screenshotErrorMessage)
         }
@@ -138,17 +163,23 @@ struct ContentView: View {
     @MainActor
     private func saveScreenshot() {
         guard let activeWindow else {
-            screenshotErrorMessage = "没有找到当前窗口，无法截图。"
+            screenshotErrorMessage = copy.screenshotErrorNoWindow
             showsScreenshotError = true
             return
         }
 
         do {
-            _ = try ScreenshotExport.saveWindowScreenshot(from: activeWindow)
+            _ = try ScreenshotExport.saveWindowScreenshot(from: activeWindow, language: language)
+        } catch let exportError as ScreenshotExport.ExportError {
+            screenshotErrorMessage = exportError.message(in: language)
+            showsScreenshotError = true
+            return
         } catch {
             screenshotErrorMessage = error.localizedDescription
             showsScreenshotError = true
+            return
         }
+        showsScreenshotError = false
     }
     
     // 将重置逻辑提取为独立函数

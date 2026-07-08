@@ -18,8 +18,12 @@ func formatNumber(_ number: Double) -> String {
 }
 
 //用于数据输出
-func DataOutput(cameradata: CameraData) -> some View {
+func DataOutput(cameradata: CameraData, language: AppLanguage) -> some View {
     VStack(alignment: .leading) {
+        let standardLabels = language.copy.outputLabels(includeHDE: false)
+        let hdeLabels = language.copy.outputLabels(includeHDE: true)
+        let metricLabelTrailing: CGFloat = language == .english ? 42 : 100
+        let hdeLabelTrailing: CGFloat = language == .english ? 8 : 60
         let capacity = MediaCapacity(cameradata: cameradata)
         let codecSpeed = CodecSpeedCount(cameradata: cameradata)
         let resolutionMultiplier = ResolutionMultiplier(cameradata: cameradata)
@@ -31,12 +35,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / sonySpeed))")
                     Text("\(formatNumber(sonySpeed))")
@@ -50,12 +54,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / canonSpeed))")
                     Text("\(formatNumber(canonSpeed))")
@@ -69,12 +73,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / panaSpeed))")
                     Text("\(formatNumber(panaSpeed))")
@@ -88,12 +92,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / fujiSpeed))")
                     Text("\(formatNumber(fujiSpeed))")
@@ -107,12 +111,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
                     Text("\(formatNumber(BMDSpeed))")
@@ -126,12 +130,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / CanonCinemaSpeed))")
                     Text("\(formatNumber(CanonCinemaSpeed))")
@@ -145,12 +149,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / kinefinitySpeed))")
                     Text("\(formatNumber(kinefinitySpeed))")
@@ -164,12 +168,12 @@ func DataOutput(cameradata: CameraData) -> some View {
             Text("")
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("可录制时长[Min]:")
-                    Text("数据码率[mbps]:")
-                    Text("数据码率[MBps]:")
-                    Text("每小时数据占盘量[GB]:")
+                    Text(standardLabels[0])
+                    Text(standardLabels[1])
+                    Text(standardLabels[2])
+                    Text(standardLabels[3])
                 }
-                .padding(.trailing, 100)
+                .padding(.trailing, metricLabelTrailing)
                 VStack(alignment: .trailing, spacing: 10) {
                     Text("\(formatNumber(capacity * 2048 / 15 / nikonSpeed))")
                     Text("\(formatNumber(nikonSpeed))")
@@ -183,13 +187,13 @@ func DataOutput(cameradata: CameraData) -> some View {
                     Text("")
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("可录制时长[Min]:")
-                            Text("数据码率[mbps]:")
-                            Text("数据码率[MBps]:")
-                            Text("每小时数据占盘量[GB]:")
-                            Text("每小时数据占盘量[GB][HDE]:")
+                            Text(standardLabels[0])
+                            Text(standardLabels[1])
+                            Text(standardLabels[2])
+                            Text(standardLabels[3])
+                            Text(hdeLabels[4])
                         }
-                        .padding(.trailing, 60)
+                        .padding(.trailing, hdeLabelTrailing)
                         VStack(alignment: .trailing, spacing: 10) {
                             Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
                             Text("\(formatNumber(GeneralSpeed))")
@@ -203,12 +207,12 @@ func DataOutput(cameradata: CameraData) -> some View {
                     Text("")
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("可录制时长[Min]:")
-                            Text("数据码率[mbps]:")
-                            Text("数据码率[MBps]:")
-                            Text("每小时数据占盘量[GB]:")
+                            Text(standardLabels[0])
+                            Text(standardLabels[1])
+                            Text(standardLabels[2])
+                            Text(standardLabels[3])
                         }
-                        .padding(.trailing, 100)
+                        .padding(.trailing, metricLabelTrailing)
                         VStack(alignment: .trailing, spacing: 10) {
                             Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
                             Text("\(formatNumber(GeneralSpeed))")
@@ -223,13 +227,13 @@ func DataOutput(cameradata: CameraData) -> some View {
                 Text("")
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("可录制时长[Min]:")
-                        Text("数据码率[mbps]:")
-                        Text("数据码率[MBps]:")
-                        Text("每小时数据占盘量[GB]:")
-                        Text("每小时数据占盘量[GB][HDE]:")
+                        Text(standardLabels[0])
+                        Text(standardLabels[1])
+                        Text(standardLabels[2])
+                        Text(standardLabels[3])
+                        Text(hdeLabels[4])
                     }
-                    .padding(.trailing, 60)
+                    .padding(.trailing, hdeLabelTrailing)
                     VStack(alignment: .trailing, spacing: 10) {
                         Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
                         Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
@@ -243,12 +247,12 @@ func DataOutput(cameradata: CameraData) -> some View {
                 HStack(alignment: .top) {
                     if cameradata.Media.contains("Capture Drive") && cameradata.Codec.contains("ProRes") {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("可录制时长[Min]:")
-                            Text("数据码率[mbps]:")
-                            Text("数据码率[MBps]:")
-                            Text("每小时数据占盘量[GB]:")
+                            Text(standardLabels[0])
+                            Text(standardLabels[1])
+                            Text(standardLabels[2])
+                            Text(standardLabels[3])
                         }
-                        .padding(.trailing, 100)
+                        .padding(.trailing, metricLabelTrailing)
                         VStack(alignment: .trailing, spacing: 10) {
                             Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier / 2))")
                             Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
@@ -258,12 +262,12 @@ func DataOutput(cameradata: CameraData) -> some View {
                     }
                     else {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("可录制时长[Min]:")
-                            Text("数据码率[mbps]:")
-                            Text("数据码率[MBps]:")
-                            Text("每小时数据占盘量[GB]:")
+                            Text(standardLabels[0])
+                            Text(standardLabels[1])
+                            Text(standardLabels[2])
+                            Text(standardLabels[3])
                         }
-                        .padding(.trailing, 100)
+                        .padding(.trailing, metricLabelTrailing)
                         VStack(alignment: .trailing, spacing: 10) {
                             Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
                             Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")

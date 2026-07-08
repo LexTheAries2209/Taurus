@@ -16,13 +16,18 @@ enum ScreenshotExport {
         case renderFailed
 
         var errorDescription: String? {
+            message(in: .chinese)
+        }
+
+        func message(in language: AppLanguage) -> String {
+            let copy = language.copy
             switch self {
             case .missingContentView:
-                return "没有找到可截图的窗口内容。"
+                return copy.missingContentViewError
             case .emptyContent:
-                return "当前窗口内容为空，无法生成截图。"
+                return copy.emptyContentError
             case .renderFailed:
-                return "截图渲染失败，请稍后再试。"
+                return copy.renderFailedError
             }
         }
     }
@@ -37,9 +42,9 @@ enum ScreenshotExport {
     }
 
     @MainActor
-    static func saveWindowScreenshot(from window: NSWindow) throws -> Bool {
+    static func saveWindowScreenshot(from window: NSWindow, language: AppLanguage) throws -> Bool {
         let imageData = try pngData(for: window)
-        guard let destinationURL = chooseDestinationURL(defaultFileName: defaultFileName()) else {
+        guard let destinationURL = chooseDestinationURL(defaultFileName: defaultFileName(), language: language) else {
             return false
         }
 
@@ -74,9 +79,9 @@ enum ScreenshotExport {
     }
 
     @MainActor
-    private static func chooseDestinationURL(defaultFileName: String) -> URL? {
+    private static func chooseDestinationURL(defaultFileName: String, language: AppLanguage) -> URL? {
         let panel = NSSavePanel()
-        panel.title = "保存截图"
+        panel.title = language.copy.saveScreenshotTitle
         panel.nameFieldStringValue = defaultFileName
         panel.canCreateDirectories = true
         panel.allowedContentTypes = [.png]

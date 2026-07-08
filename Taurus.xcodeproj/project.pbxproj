@@ -66,6 +66,7 @@
 		C0DEF0022E12000100000004 /* NikonCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000003 /* NikonCount.swift */; };
 		C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0022E12000100000005 /* NikonMedia.swift */; };
 		C0DEF0032E13000100000002 /* ScreenshotExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0032E13000100000001 /* ScreenshotExport.swift */; };
+		C0DEF0042E13000200000002 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0042E13000200000001 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		C0DEF0022E12000100000003 /* NikonCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonCount.swift; sourceTree = "<group>"; };
 		C0DEF0022E12000100000005 /* NikonMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikonMedia.swift; sourceTree = "<group>"; };
 		C0DEF0032E13000100000001 /* ScreenshotExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExport.swift; sourceTree = "<group>"; };
+		C0DEF0042E13000200000001 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				C0DEF0032E13000100000001 /* ScreenshotExport.swift */,
+				C0DEF0042E13000200000001 /* Localization.swift */,
 				58C9B8122C1A980000788819 /* PickerView.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
 				58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */,
@@ -370,6 +373,7 @@
 				C0DEF0022E12000100000004 /* NikonCount.swift in Sources */,
 				C0DEF0022E12000100000006 /* NikonMedia.swift in Sources */,
 				C0DEF0032E13000100000002 /* ScreenshotExport.swift in Sources */,
+				C0DEF0042E13000200000002 /* Localization.swift in Sources */,
 				588C39D92C318270008DC656 /* GeneralResolution.swift in Sources */,
 				582EA0402C15D087001BD46A /* CanonCinemaRate.swift in Sources */,
 				5839AA3E2BEDBECC0025C74C /* BMDRate.swift in Sources */,
