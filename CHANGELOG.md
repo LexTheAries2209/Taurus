@@ -2,6 +2,24 @@
 
 本文件用于承接 GitHub Release 的版本说明。更详细的应用内说明保留在 `Taurus/Taurus_Log.txt`。
 
+## V1.3.5
+
+### 中文
+
+- 加入英文界面翻译，数据计算器的主要界面文本现在支持英文显示。
+- 加入右上角截图功能，便于导出当前计算界面。
+- 加入 ARRI ALEXA 35 Live Xtreme 机型的选择和计算。
+- 更新底部注释，将特别鸣谢移入 README，并在应用内介绍 GitHub 仓库。
+- 调整版本命名规则：Version 保持为 `1.3`，Build 为 `5`，应用显示为 `Taurus V1.3.5`。
+
+### English
+
+- Added English UI translation for the main data-calculator interface.
+- Added a screenshot button in the upper-right corner for exporting the current calculator view.
+- Added selection and calculation support for ARRI ALEXA 35 Live Xtreme.
+- Updated the in-app notes: acknowledgements moved to the README, and the app now points users to the GitHub repository.
+- Updated version naming: Version stays at `1.3`, Build is `5`, and the app displays as `Taurus V1.3.5`.
+
 ## V1.3.4
 
 - 简化 Canon 机型的分辨率选择。

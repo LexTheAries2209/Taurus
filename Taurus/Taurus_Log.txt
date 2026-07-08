@@ -1,5 +1,8 @@
 Taurus_V1.3.5:
 加入了ARRI ALEXA 35 Live Xtreme机型的选择和计算。
+加入了截图功能。
+加入了英语翻译。
+修改了注释，推送到了Github。
 
 Taurus_V1.3.4:
 简化了Canon机型的分辨率选择。
