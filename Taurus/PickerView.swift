@@ -85,9 +85,9 @@ struct PickerView: View {
             if cameradata.CameraName == "Manual Codec" { //手动输入码率
                 HStack(spacing: 0) {
                     Text(copy.manualBitrateLabel)
+                        .font(.body)
                         .frame(width: labelWidth, alignment: .center)
                         .lineLimit(1)
-                        .minimumScaleFactor(0.8)
                     
                     Spacer()
                     
@@ -133,9 +133,9 @@ struct PickerView: View {
                 if cameradata.CameraName == "Manual Resolution" { //手动输入分辨率
                     HStack(spacing: 0) {
                         Text(copy.manualResolutionLabel)
+                            .font(.body)
                             .frame(width: labelWidth, alignment: .center)
                             .lineLimit(1)
-                            .minimumScaleFactor(0.8)
                         
                         Spacer()
                         
@@ -307,9 +307,9 @@ struct PickerView: View {
     private func createPicker(selection: Binding<String>, label: String, options: [String], placeholderValue: String, showNoOptionText: Bool = false) -> some View {
         HStack(spacing: 0) {
             Text(label)
+                .font(.body)
                 .frame(width: labelWidth, alignment: .center)
                 .lineLimit(1)
-                .minimumScaleFactor(0.8)
             FixedWidthPopUpButton(
                 selection: selection,
                 options: showNoOptionText ? ["无选项"] : options,
@@ -338,6 +338,7 @@ struct FixedWidthPopUpButton: NSViewRepresentable {
         let button = NSPopUpButton(frame: .zero, pullsDown: false)
         button.bezelStyle = .rounded
         button.controlSize = .regular
+        button.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
         button.target = context.coordinator
         button.action = #selector(Coordinator.selectionChanged(_:))
         button.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -347,6 +348,7 @@ struct FixedWidthPopUpButton: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSPopUpButton, context: Context) {
         context.coordinator.parent = self
+        nsView.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
         
         nsView.removeAllItems()
         nsView.addItem(withTitle: language.copy.localizedOptionTitle(placeholderValue))
