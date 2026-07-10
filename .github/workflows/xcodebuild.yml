@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Taurus
+    name: Test and Build Taurus
     runs-on: macos-15
 
     steps:
@@ -18,10 +18,21 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Build
+      - name: Test
         run: |
-          xcodebuild \
+          xcodebuild test \
             -project Taurus.xcodeproj \
-            -target Taurus \
+            -scheme Taurus \
+            -destination 'platform=macOS' \
+            -derivedDataPath /tmp/TaurusP0Tests \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Build Release
+        run: |
+          xcodebuild build \
+            -project Taurus.xcodeproj \
+            -scheme Taurus \
             -configuration Release \
-            build
+            -destination 'platform=macOS' \
+            -derivedDataPath /tmp/TaurusP0Release \
+            CODE_SIGNING_ALLOWED=NO
