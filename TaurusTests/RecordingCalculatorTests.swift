@@ -265,6 +265,11 @@ final class RecordingCalculatorTests: XCTestCase {
         assertSuccess(RecordingCalculator.calculate(data), bitrateMbps: 1034.528, capacityGB: 238.336)
     }
 
+    func testNewOutputTextUsesLegacyBodyStyle() {
+        XCTAssertEqual(DataOutputTypography.metricTextStyle, .body)
+        XCTAssertEqual(DataOutputTypography.messageTextStyle, .body)
+    }
+
     private func assertSuccess(
         _ result: CalculationResult,
         bitrateMbps: Double,

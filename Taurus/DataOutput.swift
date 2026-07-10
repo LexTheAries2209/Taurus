@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+enum DataOutputTypography {
+    static let metricTextStyle: Font.TextStyle = .body
+    static let messageTextStyle: Font.TextStyle = .body
+}
+
 func formatNumber(_ number: Double) -> String {
     guard number.isFinite else { return "—" }
     return String(format: "%.2f", number)
@@ -26,6 +31,7 @@ func DataOutput(cameradata: CameraData, language: AppLanguage) -> some View {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(presentation.labels, id: \.self) { label in
                     Text(label)
+                        .font(.system(DataOutputTypography.metricTextStyle))
                 }
             }
             .padding(.trailing, presentation.includesHDE ? hdeLabelTrailing : metricLabelTrailing)
@@ -33,13 +39,14 @@ func DataOutput(cameradata: CameraData, language: AppLanguage) -> some View {
             VStack(alignment: .trailing, spacing: 10) {
                 ForEach(Array(presentation.values.enumerated()), id: \.offset) { _, value in
                     Text(value)
+                        .font(.system(DataOutputTypography.metricTextStyle))
                 }
             }
         }
 
         if let message = presentation.message {
             Text(message)
-                .font(.caption)
+                .font(.system(DataOutputTypography.messageTextStyle))
                 .foregroundColor(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.top, 10)
