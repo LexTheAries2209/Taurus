@@ -251,6 +251,84 @@ struct LocalizedCopy {
         return labels
     }
 
+    func incompleteCalculationMessage(missing fields: Set<SelectionField>) -> String {
+        let names = orderedSelectionFields
+            .filter(fields.contains)
+            .map(selectionFieldTitle)
+            .joined(separator: language == .chinese ? "、" : ", ")
+
+        switch language {
+        case .chinese:
+            return "请完成选择：\(names)"
+        case .english:
+            return "Complete the following: \(names)"
+        }
+    }
+
+    func unsupportedCalculationMessage(_ issue: CalculationIssue) -> String {
+        switch (language, issue) {
+        case (.chinese, .noMatchingRule):
+            return "当前组合没有可用的计算规则。"
+        case (.english, .noMatchingRule):
+            return "No calculation rule is available for this combination."
+        case (.chinese, .invalidManualBitrate):
+            return "请输入大于 0 的有效码率。"
+        case (.english, .invalidManualBitrate):
+            return "Enter a valid bitrate greater than zero."
+        case (.chinese, .invalidManualResolution):
+            return "请输入大于 0 的有效宽度和高度。"
+        case (.english, .invalidManualResolution):
+            return "Enter valid width and height values greater than zero."
+        case (.chinese, .nonFiniteResult):
+            return "计算结果无效，请检查当前选择。"
+        case (.english, .nonFiniteResult):
+            return "The calculation result is invalid. Check the current selections."
+        }
+    }
+
+    private var orderedSelectionFields: [SelectionField] {
+        [
+            .brand,
+            .camera,
+            .codec,
+            .codecLevel,
+            .format,
+            .resolution,
+            .frameRate,
+            .media,
+            .manualBitrate,
+            .manualWidth,
+            .manualHeight
+        ]
+    }
+
+    private func selectionFieldTitle(_ field: SelectionField) -> String {
+        switch (language, field) {
+        case (.chinese, .brand): return "品牌"
+        case (.english, .brand): return "brand"
+        case (.chinese, .camera): return "机型"
+        case (.english, .camera): return "camera"
+        case (.chinese, .codec): return "编码"
+        case (.english, .codec): return "codec"
+        case (.chinese, .codecLevel): return "编码级别"
+        case (.english, .codecLevel): return "codec level"
+        case (.chinese, .format): return "幅面"
+        case (.english, .format): return "format"
+        case (.chinese, .resolution): return "分辨率"
+        case (.english, .resolution): return "resolution"
+        case (.chinese, .frameRate): return "帧率"
+        case (.english, .frameRate): return "frame rate"
+        case (.chinese, .media): return "储存卡"
+        case (.english, .media): return "media"
+        case (.chinese, .manualBitrate): return "手动码率"
+        case (.english, .manualBitrate): return "manual bitrate"
+        case (.chinese, .manualWidth): return "宽度"
+        case (.english, .manualWidth): return "width"
+        case (.chinese, .manualHeight): return "高度"
+        case (.english, .manualHeight): return "height"
+        }
+    }
+
     func localizedOptionTitle(_ rawValue: String) -> String {
         switch rawValue {
         case CameraData.brandPlaceholder:

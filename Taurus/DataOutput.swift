@@ -8,276 +8,80 @@
 import Foundation
 import SwiftUI
 
-// 辅助函数，用于格式化浮点数
 func formatNumber(_ number: Double) -> String {
-    if number.isNaN || number.isInfinite {
-        return "0.00"
-    } else {
-        return String(format: "%.2f", number)
-    }
+    guard number.isFinite else { return "—" }
+    return String(format: "%.2f", number)
 }
 
-//用于数据输出
 func DataOutput(cameradata: CameraData, language: AppLanguage) -> some View {
-    VStack(alignment: .leading) {
-        let standardLabels = language.copy.outputLabels(includeHDE: false)
-        let hdeLabels = language.copy.outputLabels(includeHDE: true)
-        let metricLabelTrailing: CGFloat = language == .english ? 42 : 100
-        let hdeLabelTrailing: CGFloat = language == .english ? 8 : 60
-        let capacity = MediaCapacity(cameradata: cameradata)
-        let codecSpeed = CodecSpeedCount(cameradata: cameradata)
-        let resolutionMultiplier = ResolutionMultiplier(cameradata: cameradata)
-        let rateMultiplier = RateMultiplier(cameradata: cameradata)
-        let GeneralSpeed = GeneralSpeed(cameradata: cameradata)
-        
-        if cameradata.BrandName == "SONY" && !cameradata.CameraName.contains("CineAlta") {
-            let sonySpeed = SonyCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
+    let result = RecordingCalculator.calculate(cameradata)
+    let presentation = DataOutputPresentation(result: result, cameradata: cameradata, copy: language.copy)
+    let metricLabelTrailing: CGFloat = language == .english ? 42 : 100
+    let hdeLabelTrailing: CGFloat = language == .english ? 8 : 60
+
+    return VStack(alignment: .leading) {
+        Text("")
+
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(presentation.labels, id: \.self) { label in
+                    Text(label)
                 }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / sonySpeed))")
-                    Text("\(formatNumber(sonySpeed))")
-                    Text("\(formatNumber(sonySpeed / 8))")
-                    Text("\(formatNumber(sonySpeed * 450 / 1024))")
+            }
+            .padding(.trailing, presentation.includesHDE ? hdeLabelTrailing : metricLabelTrailing)
+
+            VStack(alignment: .trailing, spacing: 10) {
+                ForEach(Array(presentation.values.enumerated()), id: \.offset) { _, value in
+                    Text(value)
                 }
             }
         }
-        else if cameradata.BrandName == "Canon" {
-            let canonSpeed = CanonCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / canonSpeed))")
-                    Text("\(formatNumber(canonSpeed))")
-                    Text("\(formatNumber(canonSpeed / 8))")
-                    Text("\(formatNumber(canonSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Panasonic" {
-            let panaSpeed = PanaCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / panaSpeed))")
-                    Text("\(formatNumber(panaSpeed))")
-                    Text("\(formatNumber(panaSpeed / 8))")
-                    Text("\(formatNumber(panaSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Fujifilm" {
-            let fujiSpeed = FujiCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / fujiSpeed))")
-                    Text("\(formatNumber(fujiSpeed))")
-                    Text("\(formatNumber(fujiSpeed / 8))")
-                    Text("\(formatNumber(fujiSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Blackmagicdesign" {
-            let BMDSpeed = BMDCodecSpeedmbps(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / BMDSpeed))")
-                    Text("\(formatNumber(BMDSpeed))")
-                    Text("\(formatNumber(BMDSpeed / 8))")
-                    Text("\(formatNumber(BMDSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Canon Cinema" {
-            let CanonCinemaSpeed = CanonCinemaCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / CanonCinemaSpeed))")
-                    Text("\(formatNumber(CanonCinemaSpeed))")
-                    Text("\(formatNumber(CanonCinemaSpeed / 8))")
-                    Text("\(formatNumber(CanonCinemaSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Kinefinity" {
-            let kinefinitySpeed = KinefinityCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / kinefinitySpeed))")
-                    Text("\(formatNumber(kinefinitySpeed))")
-                    Text("\(formatNumber(kinefinitySpeed / 8))")
-                    Text("\(formatNumber(kinefinitySpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "Nikon" {
-            let nikonSpeed = NikonCodecSpeed(cameradata: cameradata)
-            Text("")
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(standardLabels[0])
-                    Text(standardLabels[1])
-                    Text(standardLabels[2])
-                    Text(standardLabels[3])
-                }
-                .padding(.trailing, metricLabelTrailing)
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(formatNumber(capacity * 2048 / 15 / nikonSpeed))")
-                    Text("\(formatNumber(nikonSpeed))")
-                    Text("\(formatNumber(nikonSpeed / 8))")
-                    Text("\(formatNumber(nikonSpeed * 450 / 1024))")
-                }
-            }
-        }
-        else if cameradata.BrandName == "[General]" {
-                if cameradata.Codec.contains("ARRIRAW") {
-                    Text("")
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(standardLabels[0])
-                            Text(standardLabels[1])
-                            Text(standardLabels[2])
-                            Text(standardLabels[3])
-                            Text(hdeLabels[4])
-                        }
-                        .padding(.trailing, hdeLabelTrailing)
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
-                            Text("\(formatNumber(GeneralSpeed))")
-                            Text("\(formatNumber(GeneralSpeed / 8))")
-                            Text("\(formatNumber(GeneralSpeed * 450 / 1024))")
-                            Text("\(formatNumber(GeneralSpeed * 270 / 1024))")
-                        }
-                    }
-                }
-                else {
-                    Text("")
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(standardLabels[0])
-                            Text(standardLabels[1])
-                            Text(standardLabels[2])
-                            Text(standardLabels[3])
-                        }
-                        .padding(.trailing, metricLabelTrailing)
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Text("\(formatNumber(capacity * 2048 / 15 / GeneralSpeed))")
-                            Text("\(formatNumber(GeneralSpeed))")
-                            Text("\(formatNumber(GeneralSpeed / 8))")
-                            Text("\(formatNumber(GeneralSpeed * 450 / 1024))")
-                        }
-                    }
-                }
-            }
-        else {
-            if cameradata.Codec.contains("ARRIRAW") {
-                Text("")
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(standardLabels[0])
-                        Text(standardLabels[1])
-                        Text(standardLabels[2])
-                        Text(standardLabels[3])
-                        Text(hdeLabels[4])
-                    }
-                    .padding(.trailing, hdeLabelTrailing)
-                    VStack(alignment: .trailing, spacing: 10) {
-                        Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
-                        Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 270 / 1024))")
-                    }
-                }
-            }
-            else {Text("")
-                HStack(alignment: .top) {
-                    if cameradata.Media.contains("Capture Drive") && cameradata.Codec.contains("ProRes") {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(standardLabels[0])
-                            Text(standardLabels[1])
-                            Text(standardLabels[2])
-                            Text(standardLabels[3])
-                        }
-                        .padding(.trailing, metricLabelTrailing)
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier / 2))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
-                        }
-                    }
-                    else {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(standardLabels[0])
-                            Text(standardLabels[1])
-                            Text(standardLabels[2])
-                            Text(standardLabels[3])
-                        }
-                        .padding(.trailing, metricLabelTrailing)
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Text("\(formatNumber(capacity * 2048 / 15 / codecSpeed / resolutionMultiplier / rateMultiplier))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier / 8))")
-                            Text("\(formatNumber(codecSpeed * resolutionMultiplier * rateMultiplier * 450 / 1024))")
-                        }
-                    }
-                }
-            }
+
+        if let message = presentation.message {
+            Text(message)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, 10)
         }
     }
     .padding([.leading, .trailing], 30)
+}
+
+private struct DataOutputPresentation {
+    let labels: [String]
+    let values: [String]
+    let message: String?
+    let includesHDE: Bool
+
+    init(result: CalculationResult, cameradata: CameraData, copy: LocalizedCopy) {
+        switch result {
+        case let .success(metrics):
+            includesHDE = metrics.hdeDataPerHourGB != nil
+            labels = copy.outputLabels(includeHDE: includesHDE)
+            var formattedValues = [
+                formatNumber(metrics.recordMinutes),
+                formatNumber(metrics.bitrateMbps),
+                formatNumber(metrics.bitrateMBps),
+                formatNumber(metrics.dataPerHourGB)
+            ]
+            if let hdeDataPerHourGB = metrics.hdeDataPerHourGB {
+                formattedValues.append(formatNumber(hdeDataPerHourGB))
+            }
+            values = formattedValues
+            message = nil
+
+        case let .incomplete(fields):
+            includesHDE = cameradata.Codec.contains("ARRIRAW")
+            labels = copy.outputLabels(includeHDE: includesHDE)
+            values = Array(repeating: "—", count: labels.count)
+            message = copy.incompleteCalculationMessage(missing: fields)
+
+        case let .unsupported(issue):
+            includesHDE = cameradata.Codec.contains("ARRIRAW")
+            labels = copy.outputLabels(includeHDE: includesHDE)
+            values = Array(repeating: "—", count: labels.count)
+            message = copy.unsupportedCalculationMessage(issue)
+        }
+    }
 }
