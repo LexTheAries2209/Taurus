@@ -6,7 +6,18 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		A10000012E2000010000000D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5864C05E2A7000D900611BD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5864C0652A7000D900611BD0;
+			remoteInfo = Taurus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXBuildFile section */
+		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
 		582EA03C2C15CEAD001BD46A /* CanonCinemaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */; };
 		582EA03E2C15CED1001BD46A /* CanonCinemaMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */; };
@@ -70,6 +81,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
 		582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaCount.swift; sourceTree = "<group>"; };
 		582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaMedia.swift; sourceTree = "<group>"; };
@@ -135,6 +148,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A10000012E20000100000006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5864C0632A7000D900611BD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				5864C0682A7000D900611BD0 /* Taurus */,
+				A10000012E20000100000004 /* TaurusTests */,
 				5864C0672A7000D900611BD0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -237,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				5864C0662A7000D900611BD0 /* Taurus.app */,
+				A10000012E20000100000003 /* TaurusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,6 +291,14 @@
 			path = Taurus;
 			sourceTree = "<group>";
 		};
+		A10000012E20000100000004 /* TaurusTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10000012E20000100000001 /* ScreenshotExportTests.swift */,
+			);
+			path = TaurusTests;
+			sourceTree = "<group>";
+		};
 		5864C06F2A7000D900611BD0 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +310,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A10000012E20000100000008 /* TaurusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000012E2000010000000B /* Build configuration list for PBXNativeTarget "TaurusTests" */;
+			buildPhases = (
+				A10000012E20000100000005 /* Sources */,
+				A10000012E20000100000006 /* Frameworks */,
+				A10000012E20000100000007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10000012E2000010000000C /* PBXTargetDependency */,
+			);
+			name = TaurusTests;
+			productName = TaurusTests;
+			productReference = A10000012E20000100000003 /* TaurusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5864C0652A7000D900611BD0 /* Taurus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5864C0752A7000D900611BD0 /* Build configuration list for PBXNativeTarget "Taurus" */;
@@ -307,6 +355,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
+					A10000012E20000100000008 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 5864C0652A7000D900611BD0;
+					};
 					5864C0652A7000D900611BD0 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -326,11 +378,19 @@
 			projectRoot = "";
 			targets = (
 				5864C0652A7000D900611BD0 /* Taurus */,
+				A10000012E20000100000008 /* TaurusTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A10000012E20000100000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5864C0642A7000D900611BD0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,6 +404,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A10000012E20000100000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5864C0622A7000D900611BD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,7 +478,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A10000012E2000010000000C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5864C0652A7000D900611BD0 /* Taurus */;
+			targetProxy = A10000012E2000010000000D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A10000012E20000100000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
+			};
+			name = Debug;
+		};
+		A10000012E2000010000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
+			};
+			name = Release;
+		};
 		5864C0732A7000D900611BD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -593,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A10000012E2000010000000B /* Build configuration list for PBXNativeTarget "TaurusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000012E20000100000009 /* Debug */,
+				A10000012E2000010000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5864C0612A7000D900611BD0 /* Build configuration list for PBXProject "Taurus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

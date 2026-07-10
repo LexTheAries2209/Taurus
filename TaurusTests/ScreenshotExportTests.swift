@@ -1,13 +1,8 @@
-import Foundation
+import XCTest
+@testable import Taurus
 
-@main
-struct ScreenshotExportTests {
-    static func main() {
-        testDefaultFileNameUsesStableTimestamp()
-        testEnglishInterfaceCopy()
-    }
-
-    private static func testDefaultFileNameUsesStableTimestamp() {
+final class ScreenshotExportTests: XCTestCase {
+    func testDefaultFileNameUsesStableTimestamp() {
         let calendar = Calendar(identifier: .gregorian)
         let date = calendar.date(from: DateComponents(
             timeZone: TimeZone(secondsFromGMT: 0),
@@ -21,22 +16,38 @@ struct ScreenshotExportTests {
 
         let fileName = ScreenshotExport.defaultFileName(now: date, timeZone: TimeZone(secondsFromGMT: 0)!)
 
-        precondition(fileName == "Taurus-Screenshot-20260708-190506.png", "Unexpected screenshot file name: \(fileName)")
+        XCTAssertEqual(fileName, "Taurus-Screenshot-20260708-190506.png")
     }
 
-    private static func testEnglishInterfaceCopy() {
+    func testEnglishInterfaceCopy() {
         let copy = AppLanguage.english.copy
 
-        precondition(copy.calculatorTitle == "Data Calculator")
-        precondition(copy.resetButton == "Reset")
-        precondition(copy.noOption == "No Options")
-        precondition(copy.outputLabels(includeHDE: true) == [
+        XCTAssertEqual(copy.calculatorTitle, "Data Calculator")
+        XCTAssertEqual(copy.resetButton, "Reset")
+        XCTAssertEqual(copy.noOption, "No Options")
+        XCTAssertEqual(copy.outputLabels(includeHDE: true), [
             "Record Time [Min]:",
             "Data Rate [mbps]:",
             "Data Rate [MBps]:",
             "Data per Hour [GB]:",
             "Data per Hour [GB][HDE]:"
         ])
-        precondition(copy.localizedOptionTitle("储存卡速度不足以录制该格式") == "Media speed is too slow for this format")
+    }
+
+    func testLocalizedUnsupportedOptionMessages() {
+        let copy = AppLanguage.english.copy
+
+        XCTAssertEqual(
+            copy.localizedOptionTitle("储存卡速度不足以录制该格式"),
+            "Media speed is too slow for this format"
+        )
+        XCTAssertEqual(
+            copy.localizedOptionTitle("该储存卡无法在此机型录制ARRIRAW"),
+            "This media cannot record ARRIRAW on this camera"
+        )
+        XCTAssertEqual(
+            copy.localizedOptionTitle("此存储卡只能录制ProRes编码"),
+            "This media can only record ProRes"
+        )
     }
 }
