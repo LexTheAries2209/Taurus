@@ -253,6 +253,22 @@ struct LocalizedCopy {
 
     func localizedOptionTitle(_ rawValue: String) -> String {
         switch rawValue {
+        case CameraData.brandPlaceholder:
+            return selectBrand
+        case CameraData.cameraPlaceholder:
+            return selectCamera
+        case CameraData.codecPlaceholder:
+            return selectCodec
+        case CameraData.codecLevelPlaceholder:
+            return selectCodecLevel
+        case CameraData.formatPlaceholder:
+            return selectFormat
+        case CameraData.resolutionPlaceholder:
+            return selectResolution
+        case CameraData.frameRatePlaceholder:
+            return selectRate
+        case CameraData.mediaPlaceholder:
+            return selectMedia
         case "无选项":
             return noOption
         case "储存卡速度不足以录制该格式":

@@ -18,6 +18,10 @@
 
 /* Begin PBXBuildFile section */
 		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
+		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
+		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
+		A10000012E20000100000013 /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000012 /* CameraData.swift */; };
+		A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000014 /* PickerSelectionNormalizer.swift */; };
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
 		582EA03C2C15CEAD001BD46A /* CanonCinemaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */; };
 		582EA03E2C15CED1001BD46A /* CanonCinemaMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */; };
@@ -83,6 +87,10 @@
 /* Begin PBXFileReference section */
 		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
 		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizerTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000012 /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
+		A10000012E20000100000014 /* PickerSelectionNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizer.swift; sourceTree = "<group>"; };
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
 		582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaCount.swift; sourceTree = "<group>"; };
 		582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaMedia.swift; sourceTree = "<group>"; };
@@ -268,9 +276,11 @@
 			children = (
 				58571C232D2A75ED0015EE29 /* Taurus_Log.txt */,
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
+				A10000012E20000100000012 /* CameraData.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				C0DEF0032E13000100000001 /* ScreenshotExport.swift */,
 				C0DEF0042E13000200000001 /* Localization.swift */,
+				A10000012E20000100000014 /* PickerSelectionNormalizer.swift */,
 				58C9B8122C1A980000788819 /* PickerView.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
 				58D3B7F12B0F4E4F001C8FA7 /* Codec.swift */,
@@ -295,6 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				A10000012E20000100000001 /* ScreenshotExportTests.swift */,
+				A10000012E2000010000000E /* CameraDataSelectionTests.swift */,
+				A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */,
 			);
 			path = TaurusTests;
 			sourceTree = "<group>";
@@ -409,6 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
+				A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */,
+				A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +430,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000012E20000100000013 /* CameraData.swift in Sources */,
+				A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */,
 				5839AA462BEDCC100025C74C /* DSMC3Rate.swift in Sources */,
 				58F4E8E92B2A084C00A36613 /* PanaFormat.swift in Sources */,
 				582EA0432E100001001BD46A /* FujiFormat.swift in Sources */,

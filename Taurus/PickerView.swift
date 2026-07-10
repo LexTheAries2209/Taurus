@@ -32,21 +32,53 @@ struct PickerView: View {
     private var copy: LocalizedCopy {
         language.copy
     }
+
+    private var brandSelection: Binding<String> {
+        Binding(get: { cameradata.BrandName }, set: { cameradata.selectBrand($0) })
+    }
+
+    private var cameraSelection: Binding<String> {
+        Binding(get: { cameradata.CameraName }, set: { cameradata.selectCamera($0) })
+    }
+
+    private var codecSelection: Binding<String> {
+        Binding(get: { cameradata.Codec }, set: { cameradata.selectCodec($0) })
+    }
+
+    private var codecLevelSelection: Binding<String> {
+        Binding(get: { cameradata.CanonCodecLevel }, set: { cameradata.selectCanonCodecLevel($0) })
+    }
+
+    private var formatSelection: Binding<String> {
+        Binding(get: { cameradata.Format }, set: { cameradata.selectFormat($0) })
+    }
+
+    private var resolutionSelection: Binding<String> {
+        Binding(get: { cameradata.Resolution }, set: { cameradata.selectResolution($0) })
+    }
+
+    private var rateSelection: Binding<String> {
+        Binding(get: { cameradata.Rate }, set: { cameradata.selectRate($0) })
+    }
+
+    private var mediaSelection: Binding<String> {
+        Binding(get: { cameradata.Media }, set: { cameradata.selectMedia($0) })
+    }
     
     var body: some View {
         VStack(spacing: 10) {
             //品牌选择
-            createPicker(selection: $cameradata.BrandName, label: copy.selectBrand, options: CameraModel.keys.sorted())
+            createPicker(selection: brandSelection, label: copy.selectBrand, options: CameraModel.keys.sorted(), placeholderValue: "请选择品牌")
             
             //机型选择
             if let models = CameraModel[cameradata.BrandName] {
                 if cameradata.BrandName == "[General]" {
-                    createPicker(selection: $cameradata.CameraName, label: copy.selectMode, options: models)
+                    createPicker(selection: cameraSelection, label: copy.selectMode, options: models, placeholderValue: "请选择机型")
                 } else {
-                    createPicker(selection: $cameradata.CameraName, label: copy.selectCamera, options: models)
+                    createPicker(selection: cameraSelection, label: copy.selectCamera, options: models, placeholderValue: "请选择机型")
                 }
             } else {
-                createPicker(selection: $cameradata.CameraName, label: copy.selectCamera, options: ["无选项"], showNoOptionText: true)
+                createPicker(selection: cameraSelection, label: copy.selectCamera, options: ["无选项"], placeholderValue: "请选择机型", showNoOptionText: true)
             }
             
             //手动编码模式
@@ -81,23 +113,15 @@ struct PickerView: View {
                 
                 //编码选择
                 if let codec = CodecName[cameradata.CameraName] { //选择码率
-                    createPicker(selection: $cameradata.Codec, label: copy.selectCodec, options: codec)
-                        .onChange(of: cameradata.Codec) { _ in
-                            cameradata.CanonCodecLevel = "请选择级别"
-                            if cameradata.BrandName == "Kinefinity" {
-                                cameradata.Format = "请选择幅面"
-                                cameradata.Resolution = "请选择分辨率"
-                                cameradata.Rate = "请选择帧率"
-                            }
-                        }
+                    createPicker(selection: codecSelection, label: copy.selectCodec, options: codec, placeholderValue: "请选择编码")
                 } else {
-                    createPicker(selection: $cameradata.Codec, label: copy.selectCodec, options: ["无选项"], showNoOptionText: true)
+                    createPicker(selection: codecSelection, label: copy.selectCodec, options: ["无选项"], placeholderValue: "请选择编码", showNoOptionText: true)
                 }
                 
                 //Canon Intra级别选择
                 let canonCodecLevels = CanonCodecLevelOptions(cameradata: cameradata)
                 if !canonCodecLevels.isEmpty {
-                    createPicker(selection: $cameradata.CanonCodecLevel, label: copy.selectCodecLevel, options: canonCodecLevels)
+                    createPicker(selection: codecLevelSelection, label: copy.selectCodecLevel, options: canonCodecLevels, placeholderValue: "请选择级别")
                 }
 
                 //幅面选择
@@ -172,13 +196,7 @@ struct PickerView: View {
             formats = PanaFormat(cameradata: cameradata)
         }
 
-        return createPicker(selection: $cameradata.Format, label: copy.selectFormat, options: formats == [""] ? ["无选项"] : formats, showNoOptionText: formats == [""])
-            .onChange(of: cameradata.Format) { _ in
-                if cameradata.BrandName == "Kinefinity" {
-                    cameradata.Resolution = "请选择分辨率"
-                    cameradata.Rate = "请选择帧率"
-                }
-            }
+        return createPicker(selection: formatSelection, label: copy.selectFormat, options: formats == [""] ? ["无选项"] : formats, placeholderValue: "请选择幅面", showNoOptionText: formats == [""])
     }
 
     private func createResolutionPicker() -> some View {
@@ -215,10 +233,10 @@ struct PickerView: View {
             resolutions = ["无选项"]
         }
         if cameradata.BrandName == "Canon" || cameradata.BrandName == "SONY" || cameradata.BrandName == "Nikon" {
-            return createPicker(selection: $cameradata.Resolution, label: copy.selectResolutionFormat, options: resolutions, showNoOptionText: resolutions == ["无选项"])
+            return createPicker(selection: resolutionSelection, label: copy.selectResolutionFormat, options: resolutions, placeholderValue: "请选择分辨率", showNoOptionText: resolutions == ["无选项"])
         }
         else {
-            return createPicker(selection: $cameradata.Resolution, label: copy.selectResolution, options: resolutions, showNoOptionText: resolutions == ["无选项"])
+            return createPicker(selection: resolutionSelection, label: copy.selectResolution, options: resolutions, placeholderValue: "请选择分辨率", showNoOptionText: resolutions == ["无选项"])
         }
     }
     
@@ -252,7 +270,7 @@ struct PickerView: View {
             }
         }
         
-        return createPicker(selection: $cameradata.Rate, label: copy.selectRate, options: rates, showNoOptionText: rates == ["无选项"])
+        return createPicker(selection: rateSelection, label: copy.selectRate, options: rates, placeholderValue: "请选择帧率", showNoOptionText: rates == ["无选项"])
     }
     
     private func createMediaPicker() -> some View {
@@ -283,10 +301,10 @@ struct PickerView: View {
             medias = MediaName[cameradata.CameraName] ?? ["无选项"]
         }
         
-        return createPicker(selection: $cameradata.Media, label: copy.selectMedia, options: medias, showNoOptionText: medias == ["无选项"], autoSelectInvalid: true)
+        return createPicker(selection: mediaSelection, label: copy.selectMedia, options: medias, placeholderValue: "请选择储存卡", showNoOptionText: medias == ["无选项"])
     }
     
-    private func createPicker(selection: Binding<String>, label: String, options: [String], showNoOptionText: Bool = false, autoSelectInvalid: Bool = false) -> some View {
+    private func createPicker(selection: Binding<String>, label: String, options: [String], placeholderValue: String, showNoOptionText: Bool = false) -> some View {
         HStack(spacing: 0) {
             Text(label)
                 .frame(width: labelWidth, alignment: .center)
@@ -295,7 +313,7 @@ struct PickerView: View {
             FixedWidthPopUpButton(
                 selection: selection,
                 options: showNoOptionText ? ["无选项"] : options,
-                autoSelectInvalid: autoSelectInvalid,
+                placeholderValue: placeholderValue,
                 language: language
             )
             .frame(minWidth: pickerWidth, idealWidth: pickerWidth, maxWidth: pickerWidth, alignment: .leading)
@@ -313,7 +331,7 @@ struct PickerView: View {
 struct FixedWidthPopUpButton: NSViewRepresentable {
     @Binding var selection: String
     let options: [String]
-    let autoSelectInvalid: Bool
+    let placeholderValue: String
     let language: AppLanguage
     
     func makeNSView(context: Context) -> NSPopUpButton {
@@ -331,26 +349,36 @@ struct FixedWidthPopUpButton: NSViewRepresentable {
         context.coordinator.parent = self
         
         nsView.removeAllItems()
+        nsView.addItem(withTitle: language.copy.localizedOptionTitle(placeholderValue))
+        nsView.item(at: 0)?.isEnabled = false
         nsView.addItems(withTitles: options.map { language.copy.localizedOptionTitle($0) })
+        if options == ["无选项"] {
+            nsView.item(at: 1)?.isEnabled = false
+        }
         
-        if selection == "无选项" || options == ["无选项"] {
-            nsView.select(nil)
+        let normalizedSelection = PickerSelectionNormalizer.normalizedValue(
+            current: selection,
+            options: options,
+            placeholder: placeholderValue
+        )
+        let selectedIndex = PickerSelectionNormalizer.popupIndex(
+            current: normalizedSelection,
+            options: options,
+            placeholder: placeholderValue
+        )
+        nsView.selectItem(at: selectedIndex)
+
+        if normalizedSelection != selection {
             DispatchQueue.main.async {
-                if self.selection == "无选项" {
-                    self.selection = self.autoSelectInvalid ? "请选择储存卡" : ""
+                let latestValue = PickerSelectionNormalizer.normalizedValue(
+                    current: self.selection,
+                    options: self.options,
+                    placeholder: self.placeholderValue
+                )
+                if latestValue != self.selection {
+                    self.selection = latestValue
                 }
             }
-        } else if let selectedIndex = options.firstIndex(of: selection) {
-            nsView.selectItem(at: selectedIndex)
-        } else if autoSelectInvalid {
-            nsView.select(nil)
-            DispatchQueue.main.async {
-                if !self.isPlaceholderSelection(self.selection) {
-                    self.selection = self.placeholderSelection(for: self.selection)
-                }
-            }
-        } else {
-            nsView.select(nil)
         }
     }
     
@@ -367,23 +395,14 @@ struct FixedWidthPopUpButton: NSViewRepresentable {
         
         @objc func selectionChanged(_ sender: NSPopUpButton) {
             let selectedIndex = sender.indexOfSelectedItem
-            guard selectedIndex >= 0 && selectedIndex < parent.options.count else {
-                parent.selection = ""
+            guard let selectedValue = PickerSelectionNormalizer.optionValue(
+                popupIndex: selectedIndex,
+                options: parent.options
+            ) else {
+                parent.selection = parent.placeholderValue
                 return
             }
-            parent.selection = parent.options[selectedIndex]
+            parent.selection = selectedValue
         }
-    }
-    
-    private func isPlaceholderSelection(_ value: String) -> Bool {
-        return value.hasPrefix("请选择") || value.isEmpty || value == "无选项"
-    }
-    
-    private func placeholderSelection(for value: String) -> String {
-        if value.contains("GB") || value.contains("TB") || value.contains("SSD") || value.contains("CF") || value.contains("SD") || value.contains("SxS") || value.contains("XQD") || value.contains("AXS") || value.contains("Drive") || value.contains("Built-in") {
-            return "请选择储存卡"
-        }
-        
-        return ""
     }
 }

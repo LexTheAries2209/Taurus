@@ -7,21 +7,6 @@
 
 import SwiftUI
 import Foundation
-import Combine
-
-class CameraData: ObservableObject {
-    @Published var BrandName = "请选择品牌"
-    @Published var CameraName = "请选择机型"
-    @Published var Codec = "请选择编码"
-    @Published var CanonCodecLevel = "请选择级别"
-    @Published var Resolution = "请选择分辨率"
-    @Published var Media = "请选择储存卡"
-    @Published var Rate = "请选择帧率"
-    @Published var Format = "请选择幅面"
-    @Published var ResolutionWidth: String = ""
-    @Published var ResolutionHeight: String = ""
-    @Published var ManualCodecSpeed: String = ""
-}
 
 struct ContentView: View {
     
@@ -184,17 +169,7 @@ struct ContentView: View {
     
     // 将重置逻辑提取为独立函数
     private func resetAllData() {
-        cameradata.BrandName = "请选择品牌"
-        cameradata.CameraName = "请选择机型"
-        cameradata.Codec = "请选择编码"
-        cameradata.CanonCodecLevel = "请选择级别"
-        cameradata.Resolution = "请选择分辨率"
-        cameradata.Media = "请选择储存卡"
-        cameradata.Rate = "请选择帧率"
-        cameradata.Format = "请选择幅面"
-        cameradata.ResolutionWidth = ""
-        cameradata.ResolutionHeight = ""
-        cameradata.ManualCodecSpeed = ""
+        cameradata.reset()
     }
     
     func updateTime() {
