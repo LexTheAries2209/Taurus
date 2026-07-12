@@ -31,12 +31,25 @@ PR 应尽量包含：
 - 影响哪些品牌、机型、编码、分辨率、帧率或介质
 - 数据来源或验证方式
 - 是否更新了 `CHANGELOG.md` 和 `Taurus/Taurus_Log.txt`
-- 是否通过本地或 GitHub Actions 构建
+- 是否通过本地或 GitHub Actions 测试与 Release 构建
 
-本地构建命令：
+本地验证命令：
 
 ```sh
-xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
+xcodebuild test \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -destination 'platform=macOS' \
+  -derivedDataPath /tmp/TaurusP0Tests \
+  CODE_SIGNING_ALLOWED=NO
+
+xcodebuild build \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -configuration Release \
+  -destination 'platform=macOS' \
+  -derivedDataPath /tmp/TaurusP0Release \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
 ### 数据修改
@@ -90,12 +103,25 @@ A PR should ideally include:
 - Which brands, cameras, codecs, resolutions, frame rates, or media are affected
 - Data sources or verification notes
 - Whether `CHANGELOG.md` and `Taurus/Taurus_Log.txt` were updated
-- Whether the project builds locally or in GitHub Actions
+- Whether tests and the Release build pass locally or in GitHub Actions
 
-Local build command:
+Local verification commands:
 
 ```sh
-xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
+xcodebuild test \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -destination 'platform=macOS' \
+  -derivedDataPath /tmp/TaurusP0Tests \
+  CODE_SIGNING_ALLOWED=NO
+
+xcodebuild build \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -configuration Release \
+  -destination 'platform=macOS' \
+  -derivedDataPath /tmp/TaurusP0Release \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
 ### Camera Data Changes
