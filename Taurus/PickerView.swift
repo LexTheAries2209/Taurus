@@ -386,6 +386,7 @@ struct FixedWidthPopUpButton: NSViewRepresentable {
             self.parent = parent
         }
         
+        @MainActor
         @objc func selectionChanged(_ sender: NSPopUpButton) {
             let selectedIndex = sender.indexOfSelectedItem
             guard let selectedValue = PickerSelectionNormalizer.optionValue(
