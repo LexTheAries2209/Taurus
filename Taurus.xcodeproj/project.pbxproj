@@ -28,6 +28,7 @@
 		A20000012E21000100000006 /* RecordingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000005 /* RecordingMode.swift */; };
 		A20000012E21000100000008 /* CalculationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000007 /* CalculationEngine.swift */; };
 		A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000009 /* ARRIRecordingCatalog.swift */; };
+		A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */; };
 		A10000012E20000100000019 /* RecordingMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000018 /* RecordingMetrics.swift */; };
 		A10000012E2000010000001B /* RecordingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000001A /* RecordingCalculator.swift */; };
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
@@ -105,6 +106,7 @@
 		A20000012E21000100000005 /* RecordingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMode.swift; sourceTree = "<group>"; };
 		A20000012E21000100000007 /* CalculationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationEngine.swift; sourceTree = "<group>"; };
 		A20000012E21000100000009 /* ARRIRecordingCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIRecordingCatalog.swift; sourceTree = "<group>"; };
+		A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionAdapter.swift; sourceTree = "<group>"; };
 		A10000012E20000100000018 /* RecordingMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetrics.swift; sourceTree = "<group>"; };
 		A10000012E2000010000001A /* RecordingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculator.swift; sourceTree = "<group>"; };
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				A20000012E21000100000009 /* ARRIRecordingCatalog.swift */,
 				A20000012E21000100000003 /* CameraSelection.swift */,
+				A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */,
 				A20000012E21000100000005 /* RecordingMode.swift */,
 				A20000012E21000100000007 /* CalculationEngine.swift */,
 				A10000012E20000100000018 /* RecordingMetrics.swift */,
@@ -472,6 +475,7 @@
 				A20000012E21000100000006 /* RecordingMode.swift in Sources */,
 				A20000012E21000100000008 /* CalculationEngine.swift in Sources */,
 				A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */,
+				A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */,
 				5839AA462BEDCC100025C74C /* DSMC3Rate.swift in Sources */,
 				58F4E8E92B2A084C00A36613 /* PanaFormat.swift in Sources */,
 				582EA0432E100001001BD46A /* FujiFormat.swift in Sources */,

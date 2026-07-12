@@ -138,6 +138,83 @@ final class RecordingCalculatorTests: XCTestCase {
         )
     }
 
+    func testCameraDataCreatesImmutableSelectionSnapshot() {
+        let data = CameraData()
+        data.BrandName = "Canon"
+        data.CameraName = "EOS R5"
+        data.Codec = "RAW"
+        data.CanonCodecLevel = "Standard"
+        data.Format = "Full Frame"
+        data.Resolution = "8K FF[8192*4320][12bit RAW][23.976p/24p/25p/29.97p][17:9]"
+        data.Rate = "24.000"
+        data.Media = "CFExpress TypeB 256GB"
+        data.ManualCodecSpeed = "100"
+        data.ResolutionWidth = "8192"
+        data.ResolutionHeight = "4320"
+
+        XCTAssertEqual(
+            CameraSelection(cameradata: data),
+            CameraSelection(
+                brandID: "Canon",
+                cameraID: "EOS R5",
+                codecID: "RAW",
+                codecLevelID: "Standard",
+                formatID: "Full Frame",
+                resolutionID: "8K FF[8192*4320][12bit RAW][23.976p/24p/25p/29.97p][17:9]",
+                frameRateID: "24.000",
+                mediaID: "CFExpress TypeB 256GB",
+                manualBitrate: "100",
+                manualWidth: "8192",
+                manualHeight: "4320"
+            )
+        )
+    }
+
+    func testCameraDataSnapshotNormalizesUnsetOptionalValues() {
+        let selection = CameraSelection(cameradata: CameraData())
+
+        XCTAssertNil(selection.codecLevelID)
+        XCTAssertNil(selection.formatID)
+        XCTAssertNil(selection.manualBitrate)
+        XCTAssertNil(selection.manualWidth)
+        XCTAssertNil(selection.manualHeight)
+    }
+
+    func testCalculatorPrefersMigratedCatalogBeforeLegacyFallback() {
+        let data = alexa35ARRIRawData()
+        let selection = CameraSelection(cameradata: data)
+        let catalog = TestCatalog(
+            mode: RecordingMode(
+                selection: selection,
+                bitrateMbps: 200,
+                includesHDE: false,
+                halvesRecordMinutes: false
+            ),
+            media: MediaSpec(id: selection.mediaID, usableCapacityGB: 931)
+        )
+
+        assertSuccess(
+            RecordingCalculator.calculate(data, using: [catalog]),
+            bitrateMbps: 200,
+            capacityGB: 931
+        )
+    }
+
+    func testCalculatorFallsBackWhenCatalogDoesNotContainMode() {
+        let data = CameraData()
+        data.BrandName = "SONY"
+        data.CameraName = "FX 3"
+        data.Codec = "XAVC S 4K"
+        data.Resolution = "UHD FF[10bit 4:2:2][23.976p]"
+        data.Media = "SD V60 128GB"
+
+        assertSuccess(
+            RecordingCalculator.calculate(data, using: [EmptyCatalog()]),
+            bitrateMbps: 100,
+            capacityGB: 119.168
+        )
+    }
+
     func testCaptureDriveProResHalvesRecordMinutes() {
         let data = CameraData()
         data.BrandName = "ARRI"
@@ -312,6 +389,40 @@ final class RecordingCalculatorTests: XCTestCase {
     private func successMetrics(from result: CalculationResult) -> RecordingMetrics? {
         guard case let .success(metrics) = result else { return nil }
         return metrics
+    }
+
+    private func alexa35ARRIRawData() -> CameraData {
+        let data = CameraData()
+        data.BrandName = "ARRI"
+        data.CameraName = "ALEXA 35"
+        data.Codec = "ARRIRAW"
+        data.Resolution = "4.6K S35[4608*3164][OG]"
+        data.Rate = "0.750"
+        data.Media = "Compact Drive 1TB"
+        return data
+    }
+
+    private struct TestCatalog: CameraCatalog {
+        let mode: RecordingMode
+        let media: MediaSpec
+
+        func recordingMode(for selection: CameraSelection) -> RecordingMode? {
+            mode.selection == selection ? mode : nil
+        }
+
+        func mediaSpec(for id: String) -> MediaSpec? {
+            media.id == id ? media : nil
+        }
+    }
+
+    private struct EmptyCatalog: CameraCatalog {
+        func recordingMode(for selection: CameraSelection) -> RecordingMode? {
+            nil
+        }
+
+        func mediaSpec(for id: String) -> MediaSpec? {
+            nil
+        }
     }
 
     private func assertPositiveAndFinite(

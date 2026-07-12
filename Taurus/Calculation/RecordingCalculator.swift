@@ -1,5 +1,9 @@
 enum RecordingCalculator {
     static func calculate(_ data: CameraData) -> CalculationResult {
+        calculate(data, using: [ARRIRecordingCatalog()])
+    }
+
+    static func calculate(_ data: CameraData, using catalogs: [CameraCatalog]) -> CalculationResult {
         if isPlaceholder(data.BrandName, CameraData.brandPlaceholder) {
             return .incomplete([.brand])
         }
@@ -21,9 +25,25 @@ enum RecordingCalculator {
             return .incomplete(missingFields)
         }
 
+        let selection = CameraSelection(cameradata: data)
+        if let result = catalogResult(for: selection, using: catalogs) {
+            return result
+        }
+
         let capacity = MediaCapacity(cameradata: data)
         let bitrate = bitrateMbps(for: data)
         return makeResult(capacity: capacity, bitrateMbps: bitrate, data: data)
+    }
+
+    private static func catalogResult(
+        for selection: CameraSelection,
+        using catalogs: [CameraCatalog]
+    ) -> CalculationResult? {
+        for catalog in catalogs where catalog.recordingMode(for: selection) != nil {
+            return DefaultCalculationEngine().calculate(selection, using: catalog)
+        }
+
+        return nil
     }
 
     private static func calculateManualCodec(_ data: CameraData) -> CalculationResult {
