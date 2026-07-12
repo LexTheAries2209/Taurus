@@ -56,6 +56,7 @@ final class DITPlanExportTests: XCTestCase {
             selection: selection,
             bitrateMbps: 100,
             media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 100,
             cameraCount: 2,
             dailyPowerOnHours: 8,
             recordingRatio: 0.5,

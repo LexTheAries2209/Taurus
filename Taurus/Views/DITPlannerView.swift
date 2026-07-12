@@ -434,6 +434,12 @@ struct DITPlannerView: View {
                   label: "备份后存储", value: formatBytes(summary.storageBytes), emphasized: true)
                 InspectorRow(label: "卡次", value: "\(summary.cardCycles) 次")
                 InspectorRow(
+                  label: "读卡器", value: "\(formatNumber(summary.readerSpeedMBps)) MB/s")
+                InspectorRow(
+                  label: "有效速度",
+                  value: "\(formatNumber(summary.effectiveTransferSpeedMBps)) MB/s"
+                )
+                InspectorRow(
                   label: "每张卡时长", value: "\(formatNumber(summary.recordMinutesPerMedia)) 分钟")
                 InspectorRow(
                   label: "卸载时间", value: "\(formatNumber(summary.transferSeconds / 3_600)) 小时")
@@ -459,14 +465,16 @@ struct DITPlannerView: View {
         if let project = selectedProject {
           InspectorSection(title: "传输配置", systemImage: "externaldrive.connected.to.line.below") {
             VStack(spacing: 12) {
-              InspectorNumberStepperRow(
-                label: "读卡器",
-                value: transferBinding(project, keyPath: \.readerSpeedMBps),
-                range: 10...10_000,
-                step: 10,
-                fractionDigits: 2,
-                unit: "MB/s"
-              )
+              if let item = selectedItem {
+                InspectorNumberStepperRow(
+                  label: "读卡器",
+                  value: itemReaderSpeedBinding(item),
+                  range: 10...10_000,
+                  step: 10,
+                  fractionDigits: 2,
+                  unit: "MB/s"
+                )
+              }
               InspectorNumberStepperRow(
                 label: "目标盘",
                 value: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
@@ -712,6 +720,22 @@ struct DITPlannerView: View {
         updated.transferProfile[keyPath: keyPath] = value
         updated.touch()
         try? projectStore.update(updated)
+      }
+    )
+  }
+
+  private func itemReaderSpeedBinding(_ item: PlanItem) -> Binding<Double> {
+    Binding(
+      get: {
+        (selectedItem ?? item).readerSpeedMBps ?? DITPlanItemDefaults.readerSpeedMBps
+      },
+      set: { value in
+        guard var project = selectedProject,
+          let index = project.items.firstIndex(where: { $0.id == item.id })
+        else { return }
+        project.items[index].readerSpeedMBps = value
+        project.touch()
+        try? projectStore.update(project)
       }
     )
   }

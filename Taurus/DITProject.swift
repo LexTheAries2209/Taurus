@@ -1,6 +1,7 @@
 import Foundation
 
 enum DITPlanItemDefaults {
+    static let readerSpeedMBps = 200.0
     static let cameraCount = 1
     static let dailyPowerOnHours = 12.0
     static let recordingRatio = 0.5
@@ -16,6 +17,9 @@ struct PlanItem: Codable, Equatable, Identifiable {
     var selection: CameraSelection
     var bitrateMbps: Double
     var media: MediaSpec
+    /// Read speed for this camera's media workflow. Nil means a legacy project item
+    /// that should fall back to the project transfer profile during migration.
+    var readerSpeedMBps: Double?
     /// Active HDE output ratio. Nil means HDE is disabled or unavailable.
     var hdeDataPerHourMultiplier: Double?
     var cameraCount: Int
@@ -33,6 +37,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
+        readerSpeedMBps: Double? = DITPlanItemDefaults.readerSpeedMBps,
         hdeDataPerHourMultiplier: Double? = nil,
         cameraCount: Int = 1,
         dailyPowerOnHours: Double = 8,
@@ -46,6 +51,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
+        self.readerSpeedMBps = readerSpeedMBps
         self.hdeDataPerHourMultiplier = hdeDataPerHourMultiplier
         self.cameraCount = cameraCount
         self.dailyPowerOnHours = dailyPowerOnHours
@@ -69,6 +75,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         shootDays = DITPlanItemDefaults.shootDays
         backupCopies = DITPlanItemDefaults.backupCopies
         safetyMargin = DITPlanItemDefaults.safetyMargin
+        readerSpeedMBps = DITPlanItemDefaults.readerSpeedMBps
     }
 
     var cameraLabel: String {
@@ -88,6 +95,7 @@ enum ARRIHDE {
 struct TransferProfile: Codable, Equatable, Identifiable {
     let id: UUID
     var name: String
+    /// Legacy project-wide fallback for plan items saved before per-item speeds existed.
     var readerSpeedMBps: Double
     var targetDiskSpeedMBps: Double
     var offloadWindowHoursPerDay: Double
@@ -106,9 +114,6 @@ struct TransferProfile: Codable, Equatable, Identifiable {
         self.offloadWindowHoursPerDay = offloadWindowHoursPerDay
     }
 
-    var effectiveSpeedMBps: Double {
-        min(readerSpeedMBps, targetDiskSpeedMBps)
-    }
 }
 
 struct PlanItemSummary: Equatable {
@@ -121,6 +126,8 @@ struct PlanItemSummary: Equatable {
     let dailyStorageBytes: Double
     let storageBytes: Double
     let cardCycles: Int
+    let readerSpeedMBps: Double
+    let effectiveTransferSpeedMBps: Double
     let recordMinutesPerMedia: Double
     let transferSeconds: Double
 }
@@ -134,7 +141,6 @@ struct PlanSummary: Equatable {
     let cardCyclesByMedia: [String: Int]
     let totalTransferSeconds: Double
     let dailyTransferSeconds: Double
-    let effectiveTransferSpeedMBps: Double
     let canCompleteDailyDoubleBackup: Bool
     let issues: [DITPlanIssue]
 
@@ -143,6 +149,11 @@ struct PlanSummary: Equatable {
     var totalTransferHours: Double { totalTransferSeconds / 3_600 }
     var dailyRawDataGB: Double { dailyRawDataBytes / 1_000_000_000 }
     var dailyStorageGB: Double { dailyStorageBytes / 1_000_000_000 }
+
+    /// The slowest effective path in the project, kept as a concise headline metric.
+    var effectiveTransferSpeedMBps: Double {
+        itemSummaries.map(\.effectiveTransferSpeedMBps).min() ?? 0
+    }
 }
 
 enum DITPlanIssue: Equatable {
@@ -156,22 +167,20 @@ enum DITProjectCalculator {
         transferProfile: TransferProfile? = nil
     ) -> PlanSummary {
         let profile = transferProfile ?? project.transferProfile
-        let validSpeed =
-            profile.readerSpeedMBps.isFinite
-            && profile.readerSpeedMBps > 0
-            && profile.targetDiskSpeedMBps.isFinite
+        let validTargetSpeed =
+            profile.targetDiskSpeedMBps.isFinite
             && profile.targetDiskSpeedMBps > 0
         let validWindow =
             profile.offloadWindowHoursPerDay.isFinite
             && profile.offloadWindowHoursPerDay > 0
-        let effectiveSpeed = profile.effectiveSpeedMBps
-        var issues: [DITPlanIssue] = validSpeed && validWindow ? [] : [.invalidTransferProfile]
+        var issues: [DITPlanIssue] = validTargetSpeed && validWindow ? [] : [.invalidTransferProfile]
         var itemSummaries: [PlanItemSummary] = []
         var cardCyclesByMedia: [String: Int] = [:]
         var totalDailyRaw = 0.0
         var totalRaw = 0.0
         var totalStorage = 0.0
         var dailyStorage = 0.0
+        var dailyTransfer = 0.0
 
         for item in project.items {
             guard isValid(item) else {
@@ -180,6 +189,11 @@ enum DITProjectCalculator {
             }
 
             let captureBytesPerSecond = item.bitrateMbps * 1_000_000 / 8
+            let readerSpeed = item.readerSpeedMBps ?? profile.readerSpeedMBps
+            let validReaderSpeed = readerSpeed.isFinite && readerSpeed > 0
+            let effectiveSpeed = validTargetSpeed && validReaderSpeed
+                ? min(readerSpeed, profile.targetDiskSpeedMBps)
+                : 0
             let captureRawPerCameraPerDay =
                 captureBytesPerSecond
                 * item.dailyPowerOnHours * 3_600
@@ -193,6 +207,7 @@ enum DITProjectCalculator {
             let storage = raw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
             let dailyStorageForItem =
                 dailyRaw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
+            // Card cycles represent total media turnovers, not the physical card pool.
             let cardCyclesValue = ceil(
                 captureRaw * (1 + item.safetyMargin) / item.media.usableCapacityBytes
             )
@@ -205,6 +220,7 @@ enum DITProjectCalculator {
                 raw.isFinite,
                 storage.isFinite,
                 dailyStorageForItem.isFinite,
+                validReaderSpeed,
                 recordMinutesPerMedia.isFinite,
                 recordMinutesPerMedia > 0,
                 cardCyclesValue.isFinite,
@@ -216,17 +232,25 @@ enum DITProjectCalculator {
             }
 
             let cardCycles = Int(cardCyclesValue)
-            let transferSeconds = validSpeed ? storage / (effectiveSpeed * 1_000_000) : 0
+            let transferSeconds = effectiveSpeed > 0
+                ? storage / (effectiveSpeed * 1_000_000)
+                : 0
+            let dailyTransferSeconds = effectiveSpeed > 0
+                ? dailyStorageForItem / (effectiveSpeed * 1_000_000)
+                : 0
             let nextTotalDailyRaw = totalDailyRaw + dailyRaw
             let nextTotalRaw = totalRaw + raw
             let nextTotalStorage = totalStorage + storage
             let nextDailyStorage = dailyStorage + dailyStorageForItem
+            let nextDailyTransfer = dailyTransfer + dailyTransferSeconds
 
             guard transferSeconds.isFinite,
                 nextTotalDailyRaw.isFinite,
                 nextTotalRaw.isFinite,
                 nextTotalStorage.isFinite,
-                nextDailyStorage.isFinite
+                nextDailyStorage.isFinite,
+                dailyTransferSeconds.isFinite,
+                nextDailyTransfer.isFinite
             else {
                 issues.append(.invalidItem(id: item.id, reason: "项目汇总结果超出支持范围"))
                 continue
@@ -243,6 +267,8 @@ enum DITProjectCalculator {
                     dailyStorageBytes: dailyStorageForItem,
                     storageBytes: storage,
                     cardCycles: cardCycles,
+                    readerSpeedMBps: readerSpeed,
+                    effectiveTransferSpeedMBps: effectiveSpeed,
                     recordMinutesPerMedia: recordMinutesPerMedia,
                     transferSeconds: transferSeconds
                 )
@@ -252,12 +278,12 @@ enum DITProjectCalculator {
             totalRaw = nextTotalRaw
             totalStorage = nextTotalStorage
             dailyStorage = nextDailyStorage
+            dailyTransfer = nextDailyTransfer
         }
 
-        let dailyTransferSeconds = validSpeed ? dailyStorage / (effectiveSpeed * 1_000_000) : 0
         let canComplete =
-            validSpeed && validWindow
-            && dailyTransferSeconds <= profile.offloadWindowHoursPerDay * 3_600
+            validTargetSpeed && validWindow
+            && dailyTransfer <= profile.offloadWindowHoursPerDay * 3_600
             && !itemSummaries.isEmpty
             && issues.isEmpty
 
@@ -269,8 +295,7 @@ enum DITProjectCalculator {
             totalStorageBytes: totalStorage,
             cardCyclesByMedia: cardCyclesByMedia,
             totalTransferSeconds: itemSummaries.reduce(0) { $0 + $1.transferSeconds },
-            dailyTransferSeconds: dailyTransferSeconds,
-            effectiveTransferSpeedMBps: validSpeed ? effectiveSpeed : 0,
+            dailyTransferSeconds: dailyTransfer,
             canCompleteDailyDoubleBackup: canComplete,
             issues: issues
         )

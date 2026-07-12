@@ -25,7 +25,8 @@ enum DITPlanExport {
         var rows: [[String]] = [
             [
                 "项目", "机位", "摄影机", "编码", "HDE", "分辨率", "帧率", "介质",
-                "摄影机数量", "每日开机(小时)", "实际录制比例", "拍摄天数", "备份份数", "安全余量",
+                "读卡器(MB/s)", "有效速度(MB/s)", "摄影机数量", "每日开机(小时)", "实际录制比例",
+                "拍摄天数", "备份份数", "安全余量",
                 "单机每日(GB)", "全部机位每日(GB)", "项目原始数据(GB)", "存储需求(GB)",
                 "卡次", "每张卡时长(分钟)", "卸载时间(小时)",
             ]
@@ -42,6 +43,8 @@ enum DITPlanExport {
                 item.selection.resolutionID,
                 item.selection.frameRateID,
                 item.media.id,
+                number(itemSummary.readerSpeedMBps),
+                number(itemSummary.effectiveTransferSpeedMBps),
                 String(item.cameraCount),
                 number(item.dailyPowerOnHours),
                 percentage(item.recordingRatio),
@@ -60,7 +63,7 @@ enum DITPlanExport {
 
         rows.append(
             [project.name, "汇总"]
-                + Array(repeating: "", count: 12)
+                + Array(repeating: "", count: 14)
                 + [
                     number(summary.dailyRawDataGB),
                     number(summary.totalRawDataGB),
@@ -184,10 +187,7 @@ enum DITPlanExport {
         )
 
         appendLine("传输配置", attributes: sectionAttributes, to: output)
-        appendLine(
-            "读卡器：\(number(project.transferProfile.readerSpeedMBps)) MB/s",
-            attributes: bodyAttributes,
-            to: output)
+        appendLine("读卡器：按机位分别设置", attributes: bodyAttributes, to: output)
         appendLine(
             "目标盘：\(number(project.transferProfile.targetDiskSpeedMBps)) MB/s",
             attributes: bodyAttributes,
@@ -196,7 +196,8 @@ enum DITPlanExport {
             "每日卸载窗口：\(number(project.transferProfile.offloadWindowHoursPerDay)) 小时",
             attributes: bodyAttributes, to: output)
         appendLine(
-            "有效速度：\(number(summary.effectiveTransferSpeedMBps)) MB/s", attributes: bodyAttributes,
+            "最低有效速度：\(number(summary.effectiveTransferSpeedMBps)) MB/s",
+            attributes: bodyAttributes,
             to: output)
 
         appendLine("机位明细", attributes: sectionAttributes, to: output)
@@ -213,6 +214,10 @@ enum DITPlanExport {
                 "模式：\(item.selection.codecID) / \(item.selection.resolutionID) / \(item.selection.frameRateID)",
                 attributes: bodyAttributes, to: output)
             appendLine("HDE：\(hdeDescription(item))", attributes: bodyAttributes, to: output)
+            appendLine(
+                "读卡器：\(number(itemSummary.readerSpeedMBps)) MB/s，有效速度：\(number(itemSummary.effectiveTransferSpeedMBps)) MB/s",
+                attributes: bodyAttributes,
+                to: output)
             appendLine(
                 "介质：\(item.media.id)，预计卡次 \(itemSummary.cardCycles) 次",
                 attributes: bodyAttributes,

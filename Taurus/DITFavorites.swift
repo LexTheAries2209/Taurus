@@ -7,6 +7,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     let selection: CameraSelection
     let bitrateMbps: Double
     let media: MediaSpec
+    let readerSpeedMBps: Double?
     let hdeDataPerHourMultiplier: Double?
     let createdAt: Date
 
@@ -16,6 +17,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
+        readerSpeedMBps: Double? = DITPlanItemDefaults.readerSpeedMBps,
         hdeDataPerHourMultiplier: Double? = nil,
         createdAt: Date = Date()
     ) {
@@ -24,6 +26,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
+        self.readerSpeedMBps = readerSpeedMBps
         self.hdeDataPerHourMultiplier = hdeDataPerHourMultiplier
         self.createdAt = createdAt
     }
@@ -34,6 +37,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
             selection: item.selection,
             bitrateMbps: item.bitrateMbps,
             media: item.media,
+            readerSpeedMBps: item.readerSpeedMBps,
             hdeDataPerHourMultiplier: item.hdeDataPerHourMultiplier
         )
     }
@@ -42,6 +46,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         selection == item.selection
             && bitrateMbps == item.bitrateMbps
             && media == item.media
+            && readerSpeedMBps == item.readerSpeedMBps
             && hdeDataPerHourMultiplier == item.hdeDataPerHourMultiplier
     }
 
@@ -51,6 +56,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
             selection: selection,
             bitrateMbps: bitrateMbps,
             media: media,
+            readerSpeedMBps: readerSpeedMBps,
             hdeDataPerHourMultiplier: hdeDataPerHourMultiplier
         )
     }

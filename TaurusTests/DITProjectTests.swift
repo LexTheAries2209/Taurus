@@ -142,6 +142,7 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(item.shootDays, 1)
         XCTAssertEqual(item.backupCopies, 2)
         XCTAssertEqual(item.safetyMargin, 0.1)
+        XCTAssertEqual(item.readerSpeedMBps, 200)
         XCTAssertEqual(item.selection, selection)
         XCTAssertEqual(item.hdeDataPerHourMultiplier, 0.5)
     }
@@ -164,6 +165,7 @@ final class DITProjectTests: XCTestCase {
             selection: selection,
             bitrateMbps: 100,
             media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 100,
             cameraCount: 2,
             dailyPowerOnHours: 8,
             recordingRatio: 0.5,
@@ -198,6 +200,90 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(
             itemSummary?.rawDataPerCameraProjectBytes ?? 0, 540_000_000_000, accuracy: 0.1)
         XCTAssertEqual(itemSummary?.recordMinutesPerMedia ?? 0, 1_200, accuracy: 0.001)
+        XCTAssertEqual(itemSummary?.readerSpeedMBps ?? 0, 100, accuracy: 0.001)
+        XCTAssertEqual(itemSummary?.effectiveTransferSpeedMBps ?? 0, 100, accuracy: 0.001)
+    }
+
+    func testTransferTimeUsesReaderSpeedPerPlanItem() throws {
+        let selection = CameraSelection(
+            brandID: "[General]",
+            cameraID: "Manual Codec",
+            codecID: "ProRes",
+            resolutionID: "UHD",
+            frameRateID: "24.000",
+            mediaID: "1TB"
+        )
+        let slow = PlanItem(
+            name: "慢读卡器",
+            selection: selection,
+            bitrateMbps: 100,
+            media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 100,
+            recordingRatio: 0.5,
+            backupCopies: 1,
+            safetyMargin: 0
+        )
+        let fast = PlanItem(
+            name: "快读卡器",
+            selection: selection,
+            bitrateMbps: 100,
+            media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 400,
+            recordingRatio: 0.5,
+            backupCopies: 1,
+            safetyMargin: 0
+        )
+        let project = DITProject(
+            items: [slow, fast],
+            transferProfile: TransferProfile(
+                readerSpeedMBps: 50,
+                targetDiskSpeedMBps: 200,
+                offloadWindowHoursPerDay: 24
+            )
+        )
+
+        let summary = DITProjectCalculator.summarize(project)
+        let summaries = Dictionary(uniqueKeysWithValues: summary.itemSummaries.map { ($0.itemName, $0) })
+
+        XCTAssertEqual(summaries["慢读卡器"]?.readerSpeedMBps ?? 0, 100, accuracy: 0.001)
+        XCTAssertEqual(summaries["慢读卡器"]?.effectiveTransferSpeedMBps ?? 0, 100, accuracy: 0.001)
+        XCTAssertEqual(summaries["快读卡器"]?.effectiveTransferSpeedMBps ?? 0, 200, accuracy: 0.001)
+        XCTAssertEqual(summaries["慢读卡器"]?.transferSeconds ?? 0, 1_800, accuracy: 0.001)
+        XCTAssertEqual(summaries["快读卡器"]?.transferSeconds ?? 0, 900, accuracy: 0.001)
+        XCTAssertEqual(summary.totalTransferSeconds, 2_700, accuracy: 0.001)
+        XCTAssertEqual(summary.effectiveTransferSpeedMBps, 100, accuracy: 0.001)
+    }
+
+    func testLegacyPlanItemFallsBackToProjectReaderSpeed() throws {
+        let selection = CameraSelection(
+            brandID: "[General]",
+            cameraID: "Manual Codec",
+            codecID: "ProRes",
+            resolutionID: "UHD",
+            frameRateID: "24.000",
+            mediaID: "1TB"
+        )
+        let item = PlanItem(
+            selection: selection,
+            bitrateMbps: 100,
+            media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: nil,
+            recordingRatio: 0.5,
+            backupCopies: 1,
+            safetyMargin: 0
+        )
+        let project = DITProject(
+            items: [item],
+            transferProfile: TransferProfile(
+                readerSpeedMBps: 100,
+                targetDiskSpeedMBps: 200
+            )
+        )
+
+        let itemSummary = try XCTUnwrap(DITProjectCalculator.summarize(project).itemSummaries.first)
+
+        XCTAssertEqual(itemSummary.readerSpeedMBps, 100, accuracy: 0.001)
+        XCTAssertEqual(itemSummary.effectiveTransferSpeedMBps, 100, accuracy: 0.001)
     }
 
     func testInvalidItemDoesNotProduceNumbers() {

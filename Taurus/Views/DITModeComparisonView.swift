@@ -82,6 +82,14 @@ struct DITModeComparisonView: View {
       ComparisonValue(label: "帧率", value: item.selection.frameRateID)
       ComparisonValue(label: "码率", value: "\(formatNumber(item.bitrateMbps)) Mbps")
       ComparisonValue(label: "介质", value: item.media.id)
+      ComparisonValue(
+        label: "读卡器",
+        value: summary.map { "\(formatNumber($0.readerSpeedMBps)) MB/s" } ?? "—"
+      )
+      ComparisonValue(
+        label: "有效速度",
+        value: summary.map { "\(formatNumber($0.effectiveTransferSpeedMBps)) MB/s" } ?? "—"
+      )
       ComparisonValue(label: "单机每日", value: formatBytes(summary?.rawDataPerCameraPerDayBytes))
       ComparisonValue(label: "全部每日", value: formatBytes(summary?.rawDataPerDayBytes))
       ComparisonValue(label: "项目原始量", value: formatBytes(summary?.rawDataBytes))

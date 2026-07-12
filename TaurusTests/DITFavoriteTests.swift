@@ -50,6 +50,7 @@ final class DITFavoriteTests: XCTestCase {
         XCTAssertNotEqual(restored.id, source.id)
         XCTAssertEqual(restored.selection, source.selection)
         XCTAssertEqual(restored.media, source.media)
+        XCTAssertEqual(restored.readerSpeedMBps, 200)
         XCTAssertEqual(restored.hdeDataPerHourMultiplier, 0.5)
 
         try store.toggle(source)
