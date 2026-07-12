@@ -9,13 +9,13 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 ### 当前状态
 
 - 默认分支：`main`
-- 当前正式版本：`v1.3.5`（应用内显示：`Taurus V1.3.5`）
-- 最新正式发布：`v1.3.5` tag 和 GitHub Release
+- 当前正式版本：`v1.3.6`（应用内显示：`Taurus V1.3.6`）
+- 最新正式发布：`v1.3.6` tag 和 GitHub Release
 - 历史版本：已整理为 `v1.x.x` tags
 - 数据截止日期：2026-07-06
 - 平台：macOS
 - 技术栈：SwiftUI, Xcode project
-- 自动验证：GitHub Actions 运行 Xcode Release build
+- 自动验证：GitHub Actions 运行 XCTest 和 Xcode Release build
 - 许可证：GNU General Public License v3.0 only (`GPL-3.0-only`)
 
 ### 已覆盖品牌
@@ -36,9 +36,11 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 
 ### 代码结构
 
-- `Taurus/ContentView.swift`：主窗口、应用状态和重置逻辑
-- `Taurus/PickerView.swift`：品牌、机型、编码、分辨率、帧率和储存卡选择器
-- `Taurus/DataOutput.swift`：录制时长、码率和每小时数据量输出
+- `Taurus/ContentView.swift`：计算器根视图和状态绑定
+- `Taurus/Views/CalculatorWorkspace.swift`：选择区、结果区和备注区布局
+- `Taurus/Views/RecordingMetricsView.swift`：统一结果展示
+- `Taurus/Stores/CameraSelectionStore.swift`：级联选择状态与有效性维护
+- `Taurus/Calculation/`：纯计算引擎、摄影机选择、录制模式和 ARRI 官方目录
 - `Taurus/Brand_Camera.swift`：品牌与机型入口数据
 - `Taurus/Codec.swift`：机型与编码选项
 - `Taurus/Media.swift` 与 `Taurus/Media/`：记录介质选项
@@ -94,13 +96,13 @@ The calculated results are intended for planning and quick reference. Real-world
 ### Current Status
 
 - Default branch: `main`
-- Current formal version: `v1.3.5` (in-app display name: `Taurus V1.3.5`)
-- Latest formal release: `v1.3.5` tag and GitHub Release
+- Current formal version: `v1.3.6` (in-app display name: `Taurus V1.3.6`)
+- Latest formal release: `v1.3.6` tag and GitHub Release
 - Historical versions: converted to `v1.x.x` tags
 - Data cutoff date: 2026-07-06
 - Platform: macOS
 - Stack: SwiftUI, Xcode project
-- Automation: GitHub Actions runs an Xcode Release build
+- Automation: GitHub Actions runs XCTest and an Xcode Release build
 - License: GNU General Public License v3.0 only (`GPL-3.0-only`)
 
 ### Covered Brands
@@ -121,7 +123,11 @@ The calculated results are intended for planning and quick reference. Real-world
 
 ### Project Structure
 
-- `Taurus/ContentView.swift`: main window, app state, and reset logic
+- `Taurus/ContentView.swift`: calculator root view and state bindings
+- `Taurus/Views/CalculatorWorkspace.swift`: selection, result, and notes layout
+- `Taurus/Views/RecordingMetricsView.swift`: unified result presentation
+- `Taurus/Stores/CameraSelectionStore.swift`: cascading selection state and validity maintenance
+- `Taurus/Calculation/`: pure calculation engine, camera selection, recording modes, and the official ARRI catalog
 - `Taurus/PickerView.swift`: brand, camera, codec, resolution, frame rate, and media selectors
 - `Taurus/DataOutput.swift`: recording time, bitrate, and hourly storage output
 - `Taurus/Brand_Camera.swift`: brand and camera entry data

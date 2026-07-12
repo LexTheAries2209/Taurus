@@ -2,6 +2,26 @@
 
 本文件用于承接 GitHub Release 的版本说明。更详细的应用内说明保留在 `Taurus/Taurus_Log.txt`。
 
+## V1.3.6
+
+### 中文
+
+- 完成 P1 计算核心重构：引入稳定的摄影机选择、录制模式、介质规格、计算结果和计算引擎类型。
+- 将计算逻辑从 SwiftUI 视图中分离为可独立测试的纯计算引擎，并统一录制结果展示。
+- 根据 ARRI FDRC v2.6.3 官方数据快照重建 ARRI 录制模式和介质限制，不再依赖数字编码字符串拼接规则。
+- 修复 ARRI 分辨率选择器：所有官方 ARRI 摄影机与编码组合在选择分辨率前都能显示可用分辨率。
+- 增加级联选择和跨品牌回归测试，确保失效组合不会继续参与计算。
+- 版本命名：Version 为 `1.3`，Build 为 `6`，应用显示为 `Taurus V1.3.6`。
+
+### English
+
+- Completed the P1 calculation-core refactor with stable camera-selection, recording-mode, media-specification, calculation-result, and calculation-engine types.
+- Separated calculation logic from SwiftUI views into an independently testable pure calculation engine and unified recording-metrics presentation.
+- Rebuilt ARRI recording modes and media constraints from the official ARRI FDRC v2.6.3 data snapshot, removing numeric codec-string composition rules.
+- Fixed the ARRI resolution picker so every official ARRI camera and codec pair exposes its available resolutions before a resolution is selected.
+- Added cascading-selection and cross-brand regression tests to prevent invalid selections from reaching the calculation stage.
+- Version naming: Version is `1.3`, Build is `6`, and the app displays as `Taurus V1.3.6`.
+
 ## V1.3.5
 
 ### 中文
