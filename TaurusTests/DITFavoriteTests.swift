@@ -1,14 +1,17 @@
 import XCTest
+
 @testable import Taurus
 
 final class DITFavoriteTests: XCTestCase {
     func testCameraSearchIndexContainsKnownOfflineModels() {
-        XCTAssertTrue(CameraSearchIndex.entries.contains {
-            $0.brandID == "ARRI" && $0.cameraID == "ALEXA 35"
-        })
-        XCTAssertTrue(CameraSearchIndex.entries.contains {
-            $0.brandID == "Nikon" && $0.cameraID == "Z9"
-        })
+        XCTAssertTrue(
+            CameraSearchIndex.entries.contains {
+                $0.brandID == "ARRI" && $0.cameraID == "ALEXA 35"
+            })
+        XCTAssertTrue(
+            CameraSearchIndex.entries.contains {
+                $0.brandID == "Nikon" && $0.cameraID == "Z9"
+            })
         XCTAssertEqual(
             Set(CameraSearchIndex.entries.map(\.id)).count,
             CameraSearchIndex.entries.count
@@ -47,6 +50,7 @@ final class DITFavoriteTests: XCTestCase {
         XCTAssertNotEqual(restored.id, source.id)
         XCTAssertEqual(restored.selection, source.selection)
         XCTAssertEqual(restored.media, source.media)
+        XCTAssertEqual(restored.hdeDataPerHourMultiplier, 0.5)
 
         try store.toggle(source)
         XCTAssertTrue(store.favorites.isEmpty)
@@ -67,7 +71,8 @@ final class DITFavoriteTests: XCTestCase {
             media: MediaSpec(
                 id: "Compact Drive 1TB",
                 usableCapacityBytes: 937_687_040_000
-            )
+            ),
+            hdeDataPerHourMultiplier: 0.5
         )
     }
 }

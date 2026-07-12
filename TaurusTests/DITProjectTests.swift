@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Taurus
 
 final class DITProjectTests: XCTestCase {
@@ -42,6 +43,73 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(item.selection.mediaID, "Compact Drive 1TB")
         XCTAssertGreaterThan(item.bitrateMbps, 0)
         XCTAssertGreaterThan(item.media.usableCapacityBytes, 0)
+        XCTAssertNil(item.hdeDataPerHourMultiplier)
+
+        let hdeItem = try XCTUnwrap(
+            DITPlanItemBuilder.make(from: selection, name: "A 机位", usesHDE: true)
+        )
+        XCTAssertEqual(hdeItem.hdeDataPerHourMultiplier ?? 0, 0.5, accuracy: 0.000_001)
+    }
+
+    func testHDEReducesProjectDataButDoesNotChangeCameraMediaRequirements() throws {
+        let selection = CameraSelection(
+            brandID: "ARRI",
+            cameraID: "ALEXA 35",
+            codecID: "ARRIRAW",
+            resolutionID: "4.6K S35[4608*3164][OG]",
+            frameRateID: "24.000",
+            mediaID: "Compact Drive 1TB"
+        )
+        let rawItem = PlanItem(
+            name: "A 机位",
+            selection: selection,
+            bitrateMbps: 100,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000),
+            dailyPowerOnHours: 8,
+            recordingRatio: 0.5,
+            shootDays: 3,
+            backupCopies: 2,
+            safetyMargin: 0.1
+        )
+        var hdeItem = rawItem
+        hdeItem.hdeDataPerHourMultiplier = 0.5
+
+        let rawSummary = DITProjectCalculator.summarize(DITProject(items: [rawItem]))
+        let hdeSummary = DITProjectCalculator.summarize(DITProject(items: [hdeItem]))
+        let rawItemSummary = try XCTUnwrap(rawSummary.itemSummaries.first)
+        let hdeItemSummary = try XCTUnwrap(hdeSummary.itemSummaries.first)
+
+        XCTAssertEqual(rawSummary.totalRawDataBytes, 540_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(hdeSummary.totalRawDataBytes, 270_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(hdeSummary.totalStorageBytes, 594_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(hdeSummary.totalTransferSeconds, 2_970, accuracy: 0.001)
+        XCTAssertEqual(hdeItemSummary.requiredMediaCount, rawItemSummary.requiredMediaCount)
+        XCTAssertEqual(
+            hdeItemSummary.recordMinutesPerMedia,
+            rawItemSummary.recordMinutesPerMedia,
+            accuracy: 0.001
+        )
+    }
+
+    func testHDEIsRejectedForNonARRIRAWItems() {
+        let item = PlanItem(
+            selection: CameraSelection(
+                brandID: "ARRI",
+                cameraID: "ALEXA 35",
+                codecID: "ProRes 4444 XQ",
+                resolutionID: "4K",
+                frameRateID: "24.000",
+                mediaID: "Compact Drive 1TB"
+            ),
+            bitrateMbps: 100,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000),
+            hdeDataPerHourMultiplier: 0.5
+        )
+
+        let summary = DITProjectCalculator.summarize(DITProject(items: [item]))
+
+        XCTAssertTrue(summary.itemSummaries.isEmpty)
+        XCTAssertEqual(summary.issues.count, 1)
     }
 
     func testEmptyProjectDoesNotClaimBackupCanComplete() {
@@ -91,8 +159,10 @@ final class DITProjectTests: XCTestCase {
         XCTAssertTrue(summary.canCompleteDailyDoubleBackup)
 
         let itemSummary = try? XCTUnwrap(summary.itemSummaries.first)
-        XCTAssertEqual(itemSummary?.rawDataPerCameraPerDayBytes ?? 0, 180_000_000_000, accuracy: 0.1)
-        XCTAssertEqual(itemSummary?.rawDataPerCameraProjectBytes ?? 0, 540_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(
+            itemSummary?.rawDataPerCameraPerDayBytes ?? 0, 180_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(
+            itemSummary?.rawDataPerCameraProjectBytes ?? 0, 540_000_000_000, accuracy: 0.1)
         XCTAssertEqual(itemSummary?.recordMinutesPerMedia ?? 0, 1_200, accuracy: 0.001)
     }
 
@@ -159,11 +229,13 @@ final class DITProjectTests: XCTestCase {
         )
         let project = DITProject(
             name: "Round trip",
-            items: [PlanItem(
-                selection: selection,
-                bitrateMbps: 139.318822675241,
-                media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 937_687_040_000)
-            )]
+            items: [
+                PlanItem(
+                    selection: selection,
+                    bitrateMbps: 139.318822675241,
+                    media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 937_687_040_000)
+                )
+            ]
         )
         let store = DITProjectStore(fileURL: url)
         _ = try store.add(project)

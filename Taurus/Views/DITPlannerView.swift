@@ -332,8 +332,25 @@ struct DITPlannerView: View {
               InspectorRow(label: "摄影机", value: item.cameraLabel)
               InspectorRow(label: "编码", value: item.selection.codecID)
               InspectorRow(label: "帧率", value: item.selection.frameRateID)
-              InspectorRow(label: "码率", value: "\(formatNumber(item.bitrateMbps)) Mbps")
+              InspectorRow(
+                label: item.usesHDE ? "HDE 数据率" : "码率",
+                value:
+                  "\(formatNumber(item.bitrateMbps * (item.hdeDataPerHourMultiplier ?? 1))) Mbps"
+              )
               InspectorRow(label: "介质", value: item.media.id)
+
+              if let multiplier = ARRIHDE.multiplier(for: item.selection) {
+                Toggle(isOn: hdeBinding(item, multiplier: multiplier)) {
+                  VStack(alignment: .leading, spacing: 2) {
+                    Text("使用 HDE 无损压缩")
+                    Text("项目数据量约为 ARRIRAW 的 \(formatNumber(multiplier * 100))%")
+                      .font(.caption)
+                      .foregroundColor(.secondary)
+                  }
+                }
+                .toggleStyle(.switch)
+                .padding(.top, 4)
+              }
             }
           }
 
@@ -630,6 +647,20 @@ struct DITPlannerView: View {
           let index = project.items.firstIndex(where: { $0.id == item.id })
         else { return }
         project.items[index][keyPath: keyPath] = value
+        project.touch()
+        try? projectStore.update(project)
+      }
+    )
+  }
+
+  private func hdeBinding(_ item: PlanItem, multiplier: Double) -> Binding<Bool> {
+    Binding(
+      get: { (selectedItem ?? item).hdeDataPerHourMultiplier != nil },
+      set: { enabled in
+        guard var project = selectedProject,
+          let index = project.items.firstIndex(where: { $0.id == item.id })
+        else { return }
+        project.items[index].hdeDataPerHourMultiplier = enabled ? multiplier : nil
         project.touch()
         try? projectStore.update(project)
       }

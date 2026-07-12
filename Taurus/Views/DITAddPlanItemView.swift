@@ -1,7 +1,11 @@
 import SwiftUI
 
 enum DITPlanItemBuilder {
-  static func make(from selectionStore: CameraSelectionStore, name: String) -> PlanItem? {
+  static func make(
+    from selectionStore: CameraSelectionStore,
+    name: String,
+    usesHDE: Bool = false
+  ) -> PlanItem? {
     guard case .success(let metrics) = RecordingCalculator.calculate(selectionStore) else {
       return nil
     }
@@ -14,11 +18,15 @@ enum DITPlanItemBuilder {
     let itemName = trimmedName.isEmpty ? selectionStore.CameraName : trimmedName
     guard itemName != CameraSelectionStore.cameraPlaceholder else { return nil }
 
+    let selection = CameraSelection(selectionStore: selectionStore)
+    let hdeMultiplier = usesHDE ? ARRIHDE.multiplier(for: selection) : nil
+
     return PlanItem(
       name: itemName,
-      selection: CameraSelection(selectionStore: selectionStore),
+      selection: selection,
       bitrateMbps: metrics.bitrateMbps,
-      media: MediaSpec(id: selectionStore.Media, usableCapacityBytes: capacityBytes)
+      media: MediaSpec(id: selectionStore.Media, usableCapacityBytes: capacityBytes),
+      hdeDataPerHourMultiplier: hdeMultiplier
     )
   }
 }
@@ -29,14 +37,20 @@ struct DITAddPlanItemView: View {
   @Environment(\.presentationMode) private var presentationMode
   @StateObject private var draftSelection = CameraSelectionStore()
   @State private var itemName = ""
+  @State private var usesHDE = false
   @State private var showsCameraSearch = false
 
   private var calculation: CalculationResult {
     RecordingCalculator.calculate(draftSelection)
   }
 
+  private var hdeMultiplier: Double? {
+    guard case .success = calculation else { return nil }
+    return ARRIHDE.multiplier(for: CameraSelection(selectionStore: draftSelection))
+  }
+
   private var canAdd: Bool {
-    DITPlanItemBuilder.make(from: draftSelection, name: itemName) != nil
+    DITPlanItemBuilder.make(from: draftSelection, name: itemName, usesHDE: usesHDE) != nil
   }
 
   var body: some View {
@@ -91,6 +105,19 @@ struct DITAddPlanItemView: View {
               .frame(width: 330)
           }
 
+          if let hdeMultiplier {
+            Toggle(isOn: $usesHDE) {
+              VStack(alignment: .leading, spacing: 2) {
+                Text("使用 HDE 无损压缩")
+                Text("项目数据量约为 ARRIRAW 的 \(formatNumber(hdeMultiplier * 100))%")
+                  .font(.caption)
+                  .foregroundColor(.secondary)
+              }
+            }
+            .toggleStyle(.switch)
+            .padding(.vertical, 2)
+          }
+
           addModePreview
         }
         .padding(22)
@@ -121,6 +148,9 @@ struct DITAddPlanItemView: View {
         draftSelection.selectCamera(entry.cameraID)
       }
     }
+    .onChange(of: draftSelection.BrandName) { _ in disableUnavailableHDE() }
+    .onChange(of: draftSelection.CameraName) { _ in disableUnavailableHDE() }
+    .onChange(of: draftSelection.Codec) { _ in disableUnavailableHDE() }
   }
 
   @ViewBuilder
@@ -133,7 +163,11 @@ struct DITAddPlanItemView: View {
         HStack(spacing: 0) {
           AddPlanMetric(
             title: "摄影机", value: "\(draftSelection.BrandName) \(draftSelection.CameraName)")
-          AddPlanMetric(title: "码率", value: "\(formatNumber(metrics.bitrateMbps)) Mbps")
+          AddPlanMetric(
+            title: usesHDE ? "HDE 数据率" : "码率",
+            value:
+              "\(formatNumber(metrics.bitrateMbps * (usesHDE ? (hdeMultiplier ?? 1) : 1))) Mbps"
+          )
           AddPlanMetric(title: "介质", value: draftSelection.Media)
           AddPlanMetric(title: "每卡时长", value: "\(formatNumber(metrics.recordMinutes)) 分钟")
         }
@@ -169,9 +203,21 @@ struct DITAddPlanItemView: View {
   }
 
   private func addItem() {
-    guard let item = DITPlanItemBuilder.make(from: draftSelection, name: itemName) else { return }
+    guard
+      let item = DITPlanItemBuilder.make(
+        from: draftSelection,
+        name: itemName,
+        usesHDE: usesHDE
+      )
+    else { return }
     onAdd(item)
     presentationMode.wrappedValue.dismiss()
+  }
+
+  private func disableUnavailableHDE() {
+    if ARRIHDE.multiplier(for: CameraSelection(selectionStore: draftSelection)) == nil {
+      usesHDE = false
+    }
   }
 
   private func missingFieldNames(_ fields: Set<SelectionField>) -> String {

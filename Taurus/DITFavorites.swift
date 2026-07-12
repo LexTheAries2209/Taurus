@@ -7,6 +7,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     let selection: CameraSelection
     let bitrateMbps: Double
     let media: MediaSpec
+    let hdeDataPerHourMultiplier: Double?
     let createdAt: Date
 
     init(
@@ -15,6 +16,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
+        hdeDataPerHourMultiplier: Double? = nil,
         createdAt: Date = Date()
     ) {
         self.id = id
@@ -22,6 +24,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
+        self.hdeDataPerHourMultiplier = hdeDataPerHourMultiplier
         self.createdAt = createdAt
     }
 
@@ -30,7 +33,8 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
             name: item.name,
             selection: item.selection,
             bitrateMbps: item.bitrateMbps,
-            media: item.media
+            media: item.media,
+            hdeDataPerHourMultiplier: item.hdeDataPerHourMultiplier
         )
     }
 
@@ -38,6 +42,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         selection == item.selection
             && bitrateMbps == item.bitrateMbps
             && media == item.media
+            && hdeDataPerHourMultiplier == item.hdeDataPerHourMultiplier
     }
 
     func makePlanItem() -> PlanItem {
@@ -45,7 +50,8 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
             name: name,
             selection: selection,
             bitrateMbps: bitrateMbps,
-            media: media
+            media: media,
+            hdeDataPerHourMultiplier: hdeDataPerHourMultiplier
         )
     }
 }
@@ -119,7 +125,8 @@ final class DITFavoriteStore: ObservableObject {
     }
 
     private static func defaultFileURL(fileManager: FileManager) -> URL {
-        let base = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+        let base =
+            fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
             ?? URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
         return base.appendingPathComponent("Taurus", isDirectory: true)

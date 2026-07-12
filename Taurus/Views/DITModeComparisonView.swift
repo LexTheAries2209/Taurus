@@ -77,6 +77,7 @@ struct DITModeComparisonView: View {
 
       ComparisonValue(label: "摄影机", value: item.cameraLabel)
       ComparisonValue(label: "编码", value: item.selection.codecID)
+      ComparisonValue(label: "HDE", value: hdeDescription(item))
       ComparisonValue(label: "分辨率", value: item.selection.resolutionID)
       ComparisonValue(label: "帧率", value: item.selection.frameRateID)
       ComparisonValue(label: "码率", value: "\(formatNumber(item.bitrateMbps)) Mbps")
@@ -109,6 +110,13 @@ struct DITModeComparisonView: View {
     formatter.countStyle = .file
     formatter.allowsNonnumericFormatting = false
     return formatter.string(fromByteCount: Int64(bytes))
+  }
+
+  private func hdeDescription(_ item: PlanItem) -> String {
+    if let multiplier = item.hdeDataPerHourMultiplier {
+      return "已启用（\(formatNumber(multiplier * 100))%）"
+    }
+    return ARRIHDE.multiplier(for: item.selection) == nil ? "不适用" : "未启用"
   }
 }
 

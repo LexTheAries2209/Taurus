@@ -7,6 +7,8 @@ struct PlanItem: Codable, Equatable, Identifiable {
     var selection: CameraSelection
     var bitrateMbps: Double
     var media: MediaSpec
+    /// Active HDE output ratio. Nil means HDE is disabled or unavailable.
+    var hdeDataPerHourMultiplier: Double?
     var cameraCount: Int
     var dailyPowerOnHours: Double
     var recordingRatio: Double
@@ -22,6 +24,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
+        hdeDataPerHourMultiplier: Double? = nil,
         cameraCount: Int = 1,
         dailyPowerOnHours: Double = 8,
         recordingRatio: Double = 0.5,
@@ -34,6 +37,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
+        self.hdeDataPerHourMultiplier = hdeDataPerHourMultiplier
         self.cameraCount = cameraCount
         self.dailyPowerOnHours = dailyPowerOnHours
         self.recordingRatio = recordingRatio
@@ -46,8 +50,19 @@ struct PlanItem: Codable, Equatable, Identifiable {
 
     var effectiveCopyCount: Int { max(1, backupCopies) }
 
+    var usesHDE: Bool { hdeDataPerHourMultiplier != nil }
+
     var cameraLabel: String {
         "\(selection.brandID) \(selection.cameraID)"
+    }
+}
+
+enum ARRIHDE {
+    static func multiplier(for selection: CameraSelection) -> Double? {
+        guard selection.brandID == "ARRI", selection.codecID == "ARRIRAW" else { return nil }
+        return ARRIRecordingCatalog()
+            .recordingMode(for: selection)?
+            .hdeDataPerHourMultiplier
     }
 }
 
@@ -122,11 +137,13 @@ enum DITProjectCalculator {
         transferProfile: TransferProfile? = nil
     ) -> PlanSummary {
         let profile = transferProfile ?? project.transferProfile
-        let validSpeed = profile.readerSpeedMBps.isFinite
+        let validSpeed =
+            profile.readerSpeedMBps.isFinite
             && profile.readerSpeedMBps > 0
             && profile.targetDiskSpeedMBps.isFinite
             && profile.targetDiskSpeedMBps > 0
-        let validWindow = profile.offloadWindowHoursPerDay.isFinite
+        let validWindow =
+            profile.offloadWindowHoursPerDay.isFinite
             && profile.offloadWindowHoursPerDay > 0
         let effectiveSpeed = profile.effectiveSpeedMBps
         var issues: [DITPlanIssue] = validSpeed && validWindow ? [] : [.invalidTransferProfile]
@@ -143,29 +160,38 @@ enum DITProjectCalculator {
                 continue
             }
 
-            let bytesPerSecond = item.bitrateMbps * 1_000_000 / 8
-            let rawPerCameraPerDay = bytesPerSecond
+            let captureBytesPerSecond = item.bitrateMbps * 1_000_000 / 8
+            let captureRawPerCameraPerDay =
+                captureBytesPerSecond
                 * item.dailyPowerOnHours * 3_600
                 * item.recordingRatio
+            let hdeMultiplier = item.hdeDataPerHourMultiplier ?? 1
+            let rawPerCameraPerDay = captureRawPerCameraPerDay * hdeMultiplier
             let dailyRaw = rawPerCameraPerDay * Double(item.cameraCount)
             let rawPerCameraProject = rawPerCameraPerDay * item.shootDays
             let raw = dailyRaw * item.shootDays
+            let captureRaw = captureRawPerCameraPerDay * Double(item.cameraCount) * item.shootDays
             let storage = raw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
-            let dailyStorageForItem = dailyRaw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
-            let requiredMediaValue = ceil(raw * (1 + item.safetyMargin) / item.media.usableCapacityBytes)
-            let recordMinutesPerMedia = item.media.usableCapacityBytes / bytesPerSecond / 60
+            let dailyStorageForItem =
+                dailyRaw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
+            let requiredMediaValue = ceil(
+                captureRaw * (1 + item.safetyMargin) / item.media.usableCapacityBytes
+            )
+            let recordMinutesPerMedia = item.media.usableCapacityBytes / captureBytesPerSecond / 60
 
-            guard rawPerCameraPerDay.isFinite,
-                  dailyRaw.isFinite,
-                  rawPerCameraProject.isFinite,
-                  raw.isFinite,
-                  storage.isFinite,
-                  dailyStorageForItem.isFinite,
-                  recordMinutesPerMedia.isFinite,
-                  recordMinutesPerMedia > 0,
-                  requiredMediaValue.isFinite,
-                  requiredMediaValue > 0,
-                  requiredMediaValue <= Double(Int.max) else {
+            guard captureRawPerCameraPerDay.isFinite,
+                rawPerCameraPerDay.isFinite,
+                dailyRaw.isFinite,
+                rawPerCameraProject.isFinite,
+                raw.isFinite,
+                storage.isFinite,
+                dailyStorageForItem.isFinite,
+                recordMinutesPerMedia.isFinite,
+                recordMinutesPerMedia > 0,
+                requiredMediaValue.isFinite,
+                requiredMediaValue > 0,
+                requiredMediaValue <= Double(Int.max)
+            else {
                 issues.append(.invalidItem(id: item.id, reason: "机位计算结果超出支持范围"))
                 continue
             }
@@ -178,10 +204,11 @@ enum DITProjectCalculator {
             let nextDailyStorage = dailyStorage + dailyStorageForItem
 
             guard transferSeconds.isFinite,
-                  nextTotalDailyRaw.isFinite,
-                  nextTotalRaw.isFinite,
-                  nextTotalStorage.isFinite,
-                  nextDailyStorage.isFinite else {
+                nextTotalDailyRaw.isFinite,
+                nextTotalRaw.isFinite,
+                nextTotalStorage.isFinite,
+                nextDailyStorage.isFinite
+            else {
                 issues.append(.invalidItem(id: item.id, reason: "项目汇总结果超出支持范围"))
                 continue
             }
@@ -209,7 +236,8 @@ enum DITProjectCalculator {
         }
 
         let dailyTransferSeconds = validSpeed ? dailyStorage / (effectiveSpeed * 1_000_000) : 0
-        let canComplete = validSpeed && validWindow
+        let canComplete =
+            validSpeed && validWindow
             && dailyTransferSeconds <= profile.offloadWindowHoursPerDay * 3_600
             && !itemSummaries.isEmpty
             && issues.isEmpty
@@ -232,12 +260,22 @@ enum DITProjectCalculator {
     private static func isValid(_ item: PlanItem) -> Bool {
         item.bitrateMbps.isFinite && item.bitrateMbps > 0
             && item.media.usableCapacityBytes.isFinite && item.media.usableCapacityBytes > 0
+            && validHDE(item)
             && item.cameraCount > 0
             && item.dailyPowerOnHours.isFinite && item.dailyPowerOnHours > 0
             && item.recordingRatio.isFinite && item.recordingRatio > 0 && item.recordingRatio <= 1
             && item.shootDays.isFinite && item.shootDays > 0
             && item.backupCopies > 0
             && item.safetyMargin.isFinite && item.safetyMargin >= 0
+    }
+
+    private static func validHDE(_ item: PlanItem) -> Bool {
+        guard let multiplier = item.hdeDataPerHourMultiplier else { return true }
+        return item.selection.brandID == "ARRI"
+            && item.selection.codecID == "ARRIRAW"
+            && multiplier.isFinite
+            && multiplier > 0
+            && multiplier <= 1
     }
 }
 
