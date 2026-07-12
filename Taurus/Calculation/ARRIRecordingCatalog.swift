@@ -14,7 +14,7 @@ struct ARRIRecordingCatalog: CameraCatalog {
     }
 
     func resolutionOptions(for selection: CameraSelection) -> [String] {
-        unique(matchingRules(for: selection).map(\.resolutionID))
+        unique(cameraCodecRules(for: selection).map { $0.resolutionID })
     }
 
     func mediaOptions(for selection: CameraSelection) -> [String] {
@@ -92,11 +92,16 @@ struct ARRIRecordingCatalog: CameraCatalog {
             .map(Self.frameRateID)
     }
 
-    private func matchingRules(for selection: CameraSelection) -> [ARRIModeDefinition] {
+    private func cameraCodecRules(for selection: CameraSelection) -> [ARRIModeDefinition] {
         let cameraID = canonicalCameraID(selection.cameraID)
         return ARRIOfficialCatalogData.rules.filter {
             $0.cameraID == cameraID &&
-            $0.codecID == selection.codecID &&
+            $0.codecID == selection.codecID
+        }
+    }
+
+    private func matchingRules(for selection: CameraSelection) -> [ARRIModeDefinition] {
+        cameraCodecRules(for: selection).filter {
             resolutionMatches($0.resolutionID, selection.resolutionID)
         }
     }

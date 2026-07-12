@@ -140,6 +140,30 @@ final class CalculationEngineTests: XCTestCase {
         )
     }
 
+    func testEveryOfficialARRIModelExposesResolutionsBeforeSelection() {
+        let catalog = ARRIRecordingCatalog()
+
+        for cameraID in catalog.cameraOptions() {
+            for codecID in catalog.codecOptions(for: cameraID) {
+                let selection = CameraSelection(
+                    brandID: "ARRI",
+                    cameraID: cameraID,
+                    codecID: codecID,
+                    codecLevelID: nil,
+                    formatID: nil,
+                    resolutionID: CameraSelectionStore.resolutionPlaceholder,
+                    frameRateID: CameraSelectionStore.frameRatePlaceholder,
+                    mediaID: CameraSelectionStore.mediaPlaceholder
+                )
+
+                XCTAssertFalse(
+                    catalog.resolutionOptions(for: selection).isEmpty,
+                    "\(cameraID) / \(codecID) has no resolution options"
+                )
+            }
+        }
+    }
+
     func testEveryOfficialARRIModeHasAnExplicitCalculableRule() {
         let catalog = ARRIRecordingCatalog()
         let engine = DefaultCalculationEngine()
@@ -157,7 +181,7 @@ final class CalculationEngineTests: XCTestCase {
                 $0.sourceID == mediaID
             }),
             let frameRate = camera.sensorFrameRates.first(where: limit.contains) else {
-                XCTFail("Invalid official rule: (rule.cameraID) / (rule.codecID) / (rule.resolutionID)")
+                XCTFail("Invalid official rule: \(rule.cameraID) / \(rule.codecID) / \(rule.resolutionID)")
                 continue
             }
 
@@ -173,7 +197,7 @@ final class CalculationEngineTests: XCTestCase {
             )
 
             guard case let .success(metrics) = engine.calculate(selection, using: catalog) else {
-                XCTFail("Official rule is not calculable: (selection)")
+                XCTFail("Official rule is not calculable: \(selection)")
                 continue
             }
 

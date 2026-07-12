@@ -396,6 +396,68 @@ final class RecordingCalculatorTests: XCTestCase {
         XCTAssertEqual(presentation.message, "Enter a valid bitrate greater than zero.")
     }
 
+    func testOtherCameraResolutionFactoriesExposeOptionsBeforeSelection() {
+        let cases: [(brand: String, camera: String, codec: String, format: String?)] = [
+            ("SONY", "FX 3", "XAVC S 4K", nil),
+            ("Canon", "EOS R5", "RAW", nil),
+            ("Canon Cinema", "CinemaEOS C70", "Cinema RAW Light HQ", nil),
+            ("Panasonic", "S1R2", "ProRes 422 HQ", "Full Frame"),
+            ("Fujifilm", "GFX ETERNA 55", "ProRes 422 HQ", "GF"),
+            ("DJI", "Pocket 3", "H.264", nil),
+            ("Apple", "iPhone 16 Pro", "ProRes 422 HQ", nil),
+            ("Blackmagicdesign", "Blackmagic Cinema Camera 6K", "Blackmagic RAW 3:1", nil),
+            ("RED", "KOMODO", "REDCODE HQ", nil),
+            ("Kinefinity", "VISTA", "H.265 Max", "FF"),
+            ("Nikon", "ZR", "N-RAW HQ", nil),
+            ("[General]", "Select Mode", "ARRIRAW[13bit]", nil)
+        ]
+
+        for item in cases {
+            let data = CameraSelectionStore()
+            data.BrandName = item.brand
+            data.CameraName = item.camera
+            data.Codec = item.codec
+            if let format = item.format {
+                data.Format = format
+            }
+
+            let resolutions: [String]
+            switch item.brand {
+            case "SONY":
+                resolutions = SonyResolution(cameradata: data)
+            case "Canon":
+                resolutions = CanonResolution(cameradata: data)
+            case "Canon Cinema":
+                resolutions = CanonCinemaResolution(cameradata: data)
+            case "Panasonic":
+                resolutions = PanaResolution(cameradata: data)
+            case "Fujifilm":
+                resolutions = FujiResolution(cameradata: data)
+            case "DJI":
+                resolutions = DjiResolution(cameradata: data)
+            case "Apple":
+                resolutions = AppleResolution(cameradata: data)
+            case "Blackmagicdesign":
+                resolutions = BMDResolution(cameradata: data)
+            case "RED":
+                resolutions = REDResolution(cameradata: data)
+            case "Kinefinity":
+                resolutions = KinefinityResolution(cameradata: data)
+            case "Nikon":
+                resolutions = NikonResolution(cameradata: data)
+            case "[General]":
+                resolutions = GeneralResolution(cameradata: data)
+            default:
+                resolutions = ["无选项"]
+            }
+
+            XCTAssertFalse(
+                resolutions.isEmpty || resolutions == ["无选项"],
+                "\(item.brand) / \(item.camera) / \(item.codec) has no resolution options"
+            )
+        }
+    }
+
     private func assertSuccess(
         _ result: CalculationResult,
         bitrateMbps: Double,
