@@ -138,12 +138,12 @@ final class RecordingCalculatorTests: XCTestCase {
         )
     }
 
-    func testAvailableRecordingRatesUsesOfficialAlexa35Catalog() {
+    func testAvailableRecordingRatesUsesLegacyARRIChoicesWithinOfficialLimits() {
         XCTAssertEqual(
             AvailableRecordingRates(cameradata: alexa35ARRIRawData()),
             [
                 "0.750", "1.000", "20.000", "23.976", "24.000", "25.000",
-                "27.000", "29.000", "29.970", "30.000", "35.000"
+                "29.970", "30.000"
             ]
         )
     }

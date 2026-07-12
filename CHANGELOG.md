@@ -2,6 +2,26 @@
 
 本文件用于承接 GitHub Release 的版本说明。更详细的应用内说明保留在 `Taurus/Taurus_Log.txt`。
 
+## V1.3.7
+
+### 中文
+
+- 恢复 ARRI 分辨率选择的旧版显示格式，显示名称与官方计算模式分离。
+- 保留官方数值：ALEXA XT 3.2K 使用 `3164*1778`，ALEXA 265 5.1K 使用 `5120*3100`。
+- 按用户确认恢复旧版新增分辨率表达：ALEXA Mini ARRIRAW 1.9K/2.5K，以及 ALEXA 35 系列 3.8K 变形模式。
+- 不加入 AMIRA MPEG-2 HD 422；恢复 `ALEXA 35 Live Xtreme` 机型入口。
+- 恢复 ARRI 旧版帧率候选数量，并继续按官方介质限制过滤可用帧率。
+- 版本命名：Version 为 `1.3`，Build 为 `7`，应用显示为 `Taurus V1.3.7`。
+
+### English
+
+- Restored the legacy ARRI resolution display format while keeping display names separate from official calculation modes.
+- Preserved official dimensions: ALEXA XT 3.2K uses `3164*1778`, and ALEXA 265 5.1K uses `5120*3100`.
+- Applied the confirmed legacy-style names for ALEXA Mini ARRIRAW 1.9K/2.5K and the ALEXA 35-series 3.8K anamorphic mode.
+- Did not add AMIRA MPEG-2 HD 422, and restored the `ALEXA 35 Live Xtreme` camera entry.
+- Restored the legacy ARRI frame-rate choice set while continuing to filter it by official media limits.
+- Version naming: Version is `1.3`, Build is `7`, and the app displays as `Taurus V1.3.7`.
+
 ## V1.3.6
 
 ### 中文

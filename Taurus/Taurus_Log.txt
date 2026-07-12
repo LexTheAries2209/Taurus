@@ -1,3 +1,8 @@
+Taurus_V1.3.7:
+恢复ARRI分辨率选择的旧版显示格式，保留官方计算数值。
+恢复ARRI旧版帧率候选数量，并继续按官方储存介质限制过滤。
+恢复ALEXA 35 Live Xtreme机型入口，不加入AMIRA MPEG-2 HD 422。
+
 Taurus_V1.3.6:
 完成P1计算核心重构，分离可独立测试的计算引擎与SwiftUI界面。
 根据ARRI FDRC v2.6.3官方数据快照重建ARRI录制模式和储存介质限制。
