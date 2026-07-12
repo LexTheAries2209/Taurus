@@ -25,3 +25,12 @@ P1.1 先将 ALEXA 35 的 ARRIRAW 4.6K Open Gate / Compact Drive 1TB / 0.750 fps 
 - ALEXA 35 试点的纯引擎结果与 P0 黄金结果相同。
 - 现有 36 条 XCTest 与 Release 构建继续通过。
 
+## 官方数据更新（P1.3）
+
+P1.1 的 ALEXA 35 数值只是用于证明架构的旧公式试点；P1.3 以 ARRI Formats and Data Rate Calculator v2.6.3（2026-07-12 访问）为唯一数值来源，替换该试点。`MediaSpec` 改为保存字节容量，`RecordingMode` 保存可选 HDE 数据率倍率，计算核心使用 FDRC 的十进制 MB/GB 换算：
+
+- `Mbps = bytesPerFrame × fps × 8 / 1_000_000`
+- `GB/h = MB/s × 3600 / 1000`
+- `minutes = mediaBytes / (MB/s × 1_000_000) / 60`
+
+首批迁移范围仍限定为 ALEXA 35 / ARRIRAW / 4.6K Open Gate，但覆盖 Compact Drive 1TB 与 2TB 的全部官方允许帧率。界面帧率选择优先读取该目录；目录未覆盖的旧机型继续走既有 `ArriRates` 兼容路径。

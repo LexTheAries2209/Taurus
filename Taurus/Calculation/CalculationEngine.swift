@@ -17,23 +17,28 @@ struct DefaultCalculationEngine: CalculationEngine {
             return .unsupported(.noMatchingRule)
         }
 
-        guard media.usableCapacityGB.isFinite,
-              media.usableCapacityGB > 0,
+        guard media.usableCapacityBytes.isFinite,
+              media.usableCapacityBytes > 0,
               mode.bitrateMbps.isFinite,
               mode.bitrateMbps > 0 else {
             return .unsupported(.nonFiniteResult)
         }
 
+        if let hdeDataPerHourMultiplier = mode.hdeDataPerHourMultiplier,
+           (!hdeDataPerHourMultiplier.isFinite || hdeDataPerHourMultiplier <= 0) {
+            return .unsupported(.nonFiniteResult)
+        }
+
         let bitrateMBps = mode.bitrateMbps / 8
-        let dataPerHourGB = mode.bitrateMbps * 450 / 1024
-        var recordMinutes = media.usableCapacityGB * 2048 / 15 / mode.bitrateMbps
+        let dataPerHourGB = bitrateMBps * 3600 / 1000
+        var recordMinutes = media.usableCapacityBytes / (bitrateMBps * 1_000_000) / 60
         if mode.halvesRecordMinutes {
             recordMinutes /= 2
         }
 
-        let hdeDataPerHourGB = mode.includesHDE
-            ? mode.bitrateMbps * 270 / 1024
-            : nil
+        let hdeDataPerHourGB = mode.hdeDataPerHourMultiplier.map {
+            dataPerHourGB * $0
+        }
 
         let metrics = RecordingMetrics(
             recordMinutes: recordMinutes,

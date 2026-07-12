@@ -2,12 +2,12 @@ import Foundation
 
 struct MediaSpec: Equatable, Hashable {
     let id: String
-    let usableCapacityGB: Double
+    let usableCapacityBytes: Double
 }
 
 struct RecordingMode: Equatable, Hashable {
     let selection: CameraSelection
     let bitrateMbps: Double
-    let includesHDE: Bool
+    let hdeDataPerHourMultiplier: Double?
     let halvesRecordMinutes: Bool
 }

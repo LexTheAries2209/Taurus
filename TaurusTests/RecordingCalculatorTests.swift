@@ -130,11 +130,21 @@ final class RecordingCalculatorTests: XCTestCase {
         data.Rate = "0.750"
         data.Media = "Compact Drive 1TB"
 
-        assertSuccess(
+        assertOfficialCatalogSuccess(
             RecordingCalculator.calculate(data),
-            bitrateMbps: 141.09375,
-            capacityGB: 931,
-            includesHDE: true
+            bitrateMbps: 139.318822675241,
+            capacityBytes: 937_687_040_000,
+            hdeMultiplier: 0.5
+        )
+    }
+
+    func testAvailableRecordingRatesUsesOfficialAlexa35Catalog() {
+        XCTAssertEqual(
+            AvailableRecordingRates(cameradata: alexa35ARRIRawData()),
+            [
+                "0.750", "1.000", "20.000", "23.976", "24.000", "25.000",
+                "27.000", "29.000", "29.970", "30.000", "35.000"
+            ]
         )
     }
 
@@ -187,16 +197,17 @@ final class RecordingCalculatorTests: XCTestCase {
             mode: RecordingMode(
                 selection: selection,
                 bitrateMbps: 200,
-                includesHDE: false,
+                hdeDataPerHourMultiplier: nil,
                 halvesRecordMinutes: false
             ),
-            media: MediaSpec(id: selection.mediaID, usableCapacityGB: 931)
+            media: MediaSpec(id: selection.mediaID, usableCapacityBytes: 931_000_000_000)
         )
 
-        assertSuccess(
+        assertOfficialCatalogSuccess(
             RecordingCalculator.calculate(data, using: [catalog]),
             bitrateMbps: 200,
-            capacityGB: 931
+            capacityBytes: 931_000_000_000,
+            hdeMultiplier: nil
         )
     }
 
@@ -379,6 +390,51 @@ final class RecordingCalculatorTests: XCTestCase {
                 return
             }
             XCTAssertEqual(hdeDataPerHourGB, bitrateMbps * 270 / 1024, accuracy: 0.000_001, file: file, line: line)
+        } else {
+            XCTAssertNil(metrics.hdeDataPerHourGB, file: file, line: line)
+        }
+
+        assertPositiveAndFinite(metrics, file: file, line: line)
+    }
+
+    private func assertOfficialCatalogSuccess(
+        _ result: CalculationResult,
+        bitrateMbps: Double,
+        capacityBytes: Double,
+        hdeMultiplier: Double?,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        guard case let .success(metrics) = result else {
+            XCTFail("Expected success, got \(result)", file: file, line: line)
+            return
+        }
+
+        let bitrateMBps = bitrateMbps / 8
+        let dataPerHourGB = bitrateMBps * 3600 / 1000
+        XCTAssertEqual(metrics.bitrateMbps, bitrateMbps, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(metrics.bitrateMBps, bitrateMBps, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(metrics.dataPerHourGB, dataPerHourGB, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(
+            metrics.recordMinutes,
+            capacityBytes / (bitrateMBps * 1_000_000) / 60,
+            accuracy: 0.000_001,
+            file: file,
+            line: line
+        )
+
+        if let hdeMultiplier {
+            guard let hdeDataPerHourGB = metrics.hdeDataPerHourGB else {
+                XCTFail("Expected HDE metrics", file: file, line: line)
+                return
+            }
+            XCTAssertEqual(
+                hdeDataPerHourGB,
+                dataPerHourGB * hdeMultiplier,
+                accuracy: 0.000_001,
+                file: file,
+                line: line
+            )
         } else {
             XCTAssertNil(metrics.hdeDataPerHourGB, file: file, line: line)
         }

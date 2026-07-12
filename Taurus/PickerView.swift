@@ -241,34 +241,7 @@ struct PickerView: View {
     }
     
     private func createRatePicker() -> some View {
-        let rates: [String]
-        
-        if cameradata.CameraName.contains("CineAlta") {
-            rates = CinealtaRate(cameradata: cameradata)
-        } else {
-            switch cameradata.BrandName {
-            case "DJI":
-                rates = DjiRate(cameradata: cameradata)
-            case "Canon Cinema":
-                rates = CanonCinemaRate(cameradata: cameradata)
-            case "ARRI":
-                rates = ArriRates(cameradata: cameradata)
-            case "Blackmagicdesign":
-                rates = BMDRate(cameradata: cameradata)
-            case "Apple":
-                rates = AppleRate(cameradata: cameradata)
-            case "RED":
-                rates = DSMC3Rate(cameradata: cameradata)
-            case "Fujifilm":
-                rates = FujiRate(cameradata: cameradata)
-            case "Kinefinity":
-                rates = KinefinityRate(cameradata: cameradata)
-            case "[General]":
-                rates = GeneralRate(cameradata: cameradata)
-            default:
-                rates = ["无选项"]
-            }
-        }
+        let rates = AvailableRecordingRates(cameradata: cameradata)
         
         return createPicker(selection: rateSelection, label: copy.selectRate, options: rates, placeholderValue: "请选择帧率", showNoOptionText: rates == ["无选项"])
     }
