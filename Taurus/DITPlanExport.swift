@@ -24,7 +24,8 @@ enum DITPlanExport {
         var rows: [[String]] = [[
             "项目", "机位", "摄影机", "编码", "分辨率", "帧率", "介质",
             "摄影机数量", "每日开机(小时)", "实际录制比例", "拍摄天数", "备份份数", "安全余量",
-            "原始数据(GB)", "存储需求(GB)", "介质数量", "卸载时间(小时)"
+            "单机每日(GB)", "全部机位每日(GB)", "项目原始数据(GB)", "存储需求(GB)",
+            "介质数量", "每张卡时长(分钟)", "卸载时间(小时)"
         ]]
 
         for item in project.items {
@@ -43,9 +44,12 @@ enum DITPlanExport {
                 number(item.shootDays),
                 String(item.backupCopies),
                 percentage(item.safetyMargin),
+                number(itemSummary.rawDataPerCameraPerDayBytes / 1_000_000_000),
+                number(itemSummary.rawDataPerDayBytes / 1_000_000_000),
                 number(itemSummary.rawDataBytes / 1_000_000_000),
                 number(itemSummary.storageBytes / 1_000_000_000),
                 String(itemSummary.requiredMediaCount),
+                number(itemSummary.recordMinutesPerMedia),
                 number(itemSummary.transferSeconds / 3_600)
             ])
         }
@@ -53,9 +57,12 @@ enum DITPlanExport {
         rows.append([
             project.name, "汇总", "", "", "", "", "",
             "", "", "", "", "", "",
+            "",
+            number(summary.dailyRawDataGB),
             number(summary.totalRawDataGB),
             number(summary.totalStorageGB),
             summary.mediaCounts.map { "\($0.key): \($0.value)" }.sorted().joined(separator: "；"),
+            "",
             number(summary.totalTransferHours)
         ])
 
@@ -146,7 +153,9 @@ enum DITPlanExport {
         appendLine("更新于 \(date(project.updatedAt))", attributes: subtitleAttributes, to: output)
 
         appendLine("项目汇总", attributes: sectionAttributes, to: output)
+        appendLine("每日原始数据：\(number(summary.dailyRawDataGB)) GB", attributes: bodyAttributes, to: output)
         appendLine("原始数据：\(number(summary.totalRawDataGB)) GB", attributes: bodyAttributes, to: output)
+        appendLine("每日备份存储：\(number(summary.dailyStorageGB)) GB", attributes: bodyAttributes, to: output)
         appendLine("存储需求（含备份和安全余量）：\(number(summary.totalStorageGB)) GB", attributes: bodyAttributes, to: output)
         appendLine("卸载时间：\(number(summary.totalTransferHours)) 小时", attributes: bodyAttributes, to: output)
         appendLine(
@@ -169,8 +178,11 @@ enum DITPlanExport {
             appendLine("摄影机：\(item.cameraLabel)（\(item.cameraCount) 台）", attributes: bodyAttributes, to: output)
             appendLine("模式：\(item.selection.codecID) / \(item.selection.resolutionID) / \(item.selection.frameRateID)", attributes: bodyAttributes, to: output)
             appendLine("介质：\(item.media.id)，需要 \(itemSummary.requiredMediaCount) 张", attributes: bodyAttributes, to: output)
+            appendLine("单机每日：\(number(itemSummary.rawDataPerCameraPerDayBytes / 1_000_000_000)) GB", attributes: bodyAttributes, to: output)
+            appendLine("全部机位每日：\(number(itemSummary.rawDataPerDayBytes / 1_000_000_000)) GB", attributes: bodyAttributes, to: output)
             appendLine("原始数据：\(number(itemSummary.rawDataBytes / 1_000_000_000)) GB", attributes: bodyAttributes, to: output)
             appendLine("存储需求：\(number(itemSummary.storageBytes / 1_000_000_000)) GB", attributes: bodyAttributes, to: output)
+            appendLine("每张卡时长：\(number(itemSummary.recordMinutesPerMedia)) 分钟", attributes: bodyAttributes, to: output)
             appendLine("卸载时间：\(number(itemSummary.transferSeconds / 3_600)) 小时", attributes: bodyAttributes, to: output)
         }
 

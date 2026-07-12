@@ -13,7 +13,9 @@ final class DITPlanExportTests: XCTestCase {
         XCTAssertTrue(csv.contains("\"项目, 一\""), csv)
         XCTAssertTrue(csv.contains("A 机位"), csv)
         XCTAssertTrue(csv.contains("汇总"), csv)
-        XCTAssertTrue(csv.contains("原始数据(GB)"), csv)
+        XCTAssertTrue(csv.contains("单机每日(GB)"), csv)
+        XCTAssertTrue(csv.contains("每张卡时长(分钟)"), csv)
+        XCTAssertTrue(csv.contains("180.00,360.00,1080.00,2376.00,2,1200.00,6.60"), csv)
     }
 
     func testPDFContainsReadablePages() throws {

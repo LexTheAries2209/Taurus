@@ -80,15 +80,22 @@ struct TransferProfile: Codable, Equatable, Identifiable {
 struct PlanItemSummary: Equatable {
     let itemID: UUID
     let itemName: String
+    let rawDataPerCameraPerDayBytes: Double
+    let rawDataPerDayBytes: Double
+    let rawDataPerCameraProjectBytes: Double
     let rawDataBytes: Double
+    let dailyStorageBytes: Double
     let storageBytes: Double
     let requiredMediaCount: Int
+    let recordMinutesPerMedia: Double
     let transferSeconds: Double
 }
 
 struct PlanSummary: Equatable {
     let itemSummaries: [PlanItemSummary]
+    let dailyRawDataBytes: Double
     let totalRawDataBytes: Double
+    let dailyStorageBytes: Double
     let totalStorageBytes: Double
     let mediaCounts: [String: Int]
     let totalTransferSeconds: Double
@@ -100,6 +107,8 @@ struct PlanSummary: Equatable {
     var totalRawDataGB: Double { totalRawDataBytes / 1_000_000_000 }
     var totalStorageGB: Double { totalStorageBytes / 1_000_000_000 }
     var totalTransferHours: Double { totalTransferSeconds / 3_600 }
+    var dailyRawDataGB: Double { dailyRawDataBytes / 1_000_000_000 }
+    var dailyStorageGB: Double { dailyStorageBytes / 1_000_000_000 }
 }
 
 enum DITPlanIssue: Equatable {
@@ -123,6 +132,7 @@ enum DITProjectCalculator {
         var issues: [DITPlanIssue] = validSpeed && validWindow ? [] : [.invalidTransferProfile]
         var itemSummaries: [PlanItemSummary] = []
         var mediaCounts: [String: Int] = [:]
+        var totalDailyRaw = 0.0
         var totalRaw = 0.0
         var totalStorage = 0.0
         var dailyStorage = 0.0
@@ -134,19 +144,25 @@ enum DITProjectCalculator {
             }
 
             let bytesPerSecond = item.bitrateMbps * 1_000_000 / 8
-            let dailyRaw = bytesPerSecond
+            let rawPerCameraPerDay = bytesPerSecond
                 * item.dailyPowerOnHours * 3_600
                 * item.recordingRatio
-                * Double(item.cameraCount)
+            let dailyRaw = rawPerCameraPerDay * Double(item.cameraCount)
+            let rawPerCameraProject = rawPerCameraPerDay * item.shootDays
             let raw = dailyRaw * item.shootDays
             let storage = raw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
             let dailyStorageForItem = dailyRaw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
             let requiredMediaValue = ceil(raw * (1 + item.safetyMargin) / item.media.usableCapacityBytes)
+            let recordMinutesPerMedia = item.media.usableCapacityBytes / bytesPerSecond / 60
 
-            guard dailyRaw.isFinite,
+            guard rawPerCameraPerDay.isFinite,
+                  dailyRaw.isFinite,
+                  rawPerCameraProject.isFinite,
                   raw.isFinite,
                   storage.isFinite,
                   dailyStorageForItem.isFinite,
+                  recordMinutesPerMedia.isFinite,
+                  recordMinutesPerMedia > 0,
                   requiredMediaValue.isFinite,
                   requiredMediaValue > 0,
                   requiredMediaValue <= Double(Int.max) else {
@@ -156,11 +172,13 @@ enum DITProjectCalculator {
 
             let requiredMedia = Int(requiredMediaValue)
             let transferSeconds = validSpeed ? storage / (effectiveSpeed * 1_000_000) : 0
+            let nextTotalDailyRaw = totalDailyRaw + dailyRaw
             let nextTotalRaw = totalRaw + raw
             let nextTotalStorage = totalStorage + storage
             let nextDailyStorage = dailyStorage + dailyStorageForItem
 
             guard transferSeconds.isFinite,
+                  nextTotalDailyRaw.isFinite,
                   nextTotalRaw.isFinite,
                   nextTotalStorage.isFinite,
                   nextDailyStorage.isFinite else {
@@ -172,13 +190,19 @@ enum DITProjectCalculator {
                 PlanItemSummary(
                     itemID: item.id,
                     itemName: item.name,
+                    rawDataPerCameraPerDayBytes: rawPerCameraPerDay,
+                    rawDataPerDayBytes: dailyRaw,
+                    rawDataPerCameraProjectBytes: rawPerCameraProject,
                     rawDataBytes: raw,
+                    dailyStorageBytes: dailyStorageForItem,
                     storageBytes: storage,
                     requiredMediaCount: requiredMedia,
+                    recordMinutesPerMedia: recordMinutesPerMedia,
                     transferSeconds: transferSeconds
                 )
             )
             mediaCounts[item.mediaID, default: 0] += requiredMedia
+            totalDailyRaw = nextTotalDailyRaw
             totalRaw = nextTotalRaw
             totalStorage = nextTotalStorage
             dailyStorage = nextDailyStorage
@@ -192,7 +216,9 @@ enum DITProjectCalculator {
 
         return PlanSummary(
             itemSummaries: itemSummaries,
+            dailyRawDataBytes: totalDailyRaw,
             totalRawDataBytes: totalRaw,
+            dailyStorageBytes: dailyStorage,
             totalStorageBytes: totalStorage,
             mediaCounts: mediaCounts,
             totalTransferSeconds: itemSummaries.reduce(0) { $0 + $1.transferSeconds },

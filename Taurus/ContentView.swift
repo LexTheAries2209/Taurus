@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var selectionStore: CameraSelectionStore
     @ObservedObject var windowReference: WindowReferenceStore
     @ObservedObject var projectStore: DITProjectStore
+    @ObservedObject var favoriteStore: DITFavoriteStore
     @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
     @State private var showsPlanner = false
 
@@ -38,7 +39,12 @@ struct ContentView: View {
             Divider()
 
             if showsPlanner {
-                DITPlannerView(selectionStore: selectionStore, projectStore: projectStore)
+                DITPlannerView(
+                    selectionStore: selectionStore,
+                    projectStore: projectStore,
+                    favoriteStore: favoriteStore,
+                    showsPlanner: $showsPlanner
+                )
             } else {
                 CalculatorWorkspace(selectionStore: selectionStore, language: language)
             }
@@ -66,7 +72,8 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(
             selectionStore: CameraSelectionStore(),
             windowReference: WindowReferenceStore(),
-            projectStore: DITProjectStore(fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-projects.json"))
+            projectStore: DITProjectStore(fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-projects.json")),
+            favoriteStore: DITFavoriteStore(fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-favorites.json"))
         )
     }
 }

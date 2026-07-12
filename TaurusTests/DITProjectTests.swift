@@ -42,9 +42,16 @@ final class DITProjectTests: XCTestCase {
         XCTAssertTrue(summary.issues.isEmpty)
         XCTAssertEqual(summary.totalRawDataBytes, 1_080_000_000_000, accuracy: 0.1)
         XCTAssertEqual(summary.totalStorageBytes, 2_376_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(summary.dailyRawDataBytes, 360_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(summary.dailyStorageBytes, 792_000_000_000, accuracy: 0.1)
         XCTAssertEqual(summary.mediaCounts["1TB"], 2)
         XCTAssertEqual(summary.totalTransferSeconds, 23_760, accuracy: 0.001)
         XCTAssertTrue(summary.canCompleteDailyDoubleBackup)
+
+        let itemSummary = try? XCTUnwrap(summary.itemSummaries.first)
+        XCTAssertEqual(itemSummary?.rawDataPerCameraPerDayBytes ?? 0, 180_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(itemSummary?.rawDataPerCameraProjectBytes ?? 0, 540_000_000_000, accuracy: 0.1)
+        XCTAssertEqual(itemSummary?.recordMinutesPerMedia ?? 0, 1_200, accuracy: 0.001)
     }
 
     func testInvalidItemDoesNotProduceNumbers() {
