@@ -83,7 +83,7 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(hdeSummary.totalRawDataBytes, 270_000_000_000, accuracy: 0.1)
         XCTAssertEqual(hdeSummary.totalStorageBytes, 594_000_000_000, accuracy: 0.1)
         XCTAssertEqual(hdeSummary.totalTransferSeconds, 2_970, accuracy: 0.001)
-        XCTAssertEqual(hdeItemSummary.requiredMediaCount, rawItemSummary.requiredMediaCount)
+        XCTAssertEqual(hdeItemSummary.cardCycles, rawItemSummary.cardCycles)
         XCTAssertEqual(
             hdeItemSummary.recordMinutesPerMedia,
             rawItemSummary.recordMinutesPerMedia,
@@ -188,7 +188,7 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(summary.totalStorageBytes, 2_376_000_000_000, accuracy: 0.1)
         XCTAssertEqual(summary.dailyRawDataBytes, 360_000_000_000, accuracy: 0.1)
         XCTAssertEqual(summary.dailyStorageBytes, 792_000_000_000, accuracy: 0.1)
-        XCTAssertEqual(summary.mediaCounts["1TB"], 2)
+        XCTAssertEqual(summary.cardCyclesByMedia["1TB"], 2)
         XCTAssertEqual(summary.totalTransferSeconds, 23_760, accuracy: 0.001)
         XCTAssertTrue(summary.canCompleteDailyDoubleBackup)
 
@@ -219,7 +219,7 @@ final class DITProjectTests: XCTestCase {
 
         XCTAssertEqual(summary.totalRawDataBytes, 0)
         XCTAssertEqual(summary.totalStorageBytes, 0)
-        XCTAssertEqual(summary.mediaCounts, [:])
+        XCTAssertEqual(summary.cardCyclesByMedia, [:])
         XCTAssertEqual(summary.itemSummaries, [])
         XCTAssertEqual(summary.issues.count, 1)
         XCTAssertFalse(summary.canCompleteDailyDoubleBackup)

@@ -432,7 +432,7 @@ struct DITPlannerView: View {
                 InspectorRow(label: "项目原始量", value: formatBytes(summary.rawDataBytes))
                 InspectorRow(
                   label: "备份后存储", value: formatBytes(summary.storageBytes), emphasized: true)
-                InspectorRow(label: "介质数量", value: "\(summary.requiredMediaCount) 张")
+                InspectorRow(label: "卡次", value: "\(summary.cardCycles) 次")
                 InspectorRow(
                   label: "每张卡时长", value: "\(formatNumber(summary.recordMinutesPerMedia)) 分钟")
                 InspectorRow(

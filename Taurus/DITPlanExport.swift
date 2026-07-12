@@ -27,7 +27,7 @@ enum DITPlanExport {
                 "项目", "机位", "摄影机", "编码", "HDE", "分辨率", "帧率", "介质",
                 "摄影机数量", "每日开机(小时)", "实际录制比例", "拍摄天数", "备份份数", "安全余量",
                 "单机每日(GB)", "全部机位每日(GB)", "项目原始数据(GB)", "存储需求(GB)",
-                "介质数量", "每张卡时长(分钟)", "卸载时间(小时)",
+                "卡次", "每张卡时长(分钟)", "卸载时间(小时)",
             ]
         ]
 
@@ -52,7 +52,7 @@ enum DITPlanExport {
                 number(itemSummary.rawDataPerDayBytes / 1_000_000_000),
                 number(itemSummary.rawDataBytes / 1_000_000_000),
                 number(itemSummary.storageBytes / 1_000_000_000),
-                String(itemSummary.requiredMediaCount),
+                String(itemSummary.cardCycles),
                 number(itemSummary.recordMinutesPerMedia),
                 number(itemSummary.transferSeconds / 3_600),
             ])
@@ -65,7 +65,7 @@ enum DITPlanExport {
                     number(summary.dailyRawDataGB),
                     number(summary.totalRawDataGB),
                     number(summary.totalStorageGB),
-                    summary.mediaCounts.map { "\($0.key): \($0.value)" }.sorted().joined(separator: "；"),
+                    summary.cardCyclesByMedia.map { "\($0.key): \($0.value)" }.sorted().joined(separator: "；"),
                     "",
                     number(summary.totalTransferHours),
                 ]
@@ -214,7 +214,7 @@ enum DITPlanExport {
                 attributes: bodyAttributes, to: output)
             appendLine("HDE：\(hdeDescription(item))", attributes: bodyAttributes, to: output)
             appendLine(
-                "介质：\(item.media.id)，需要 \(itemSummary.requiredMediaCount) 张",
+                "介质：\(item.media.id)，预计卡次 \(itemSummary.cardCycles) 次",
                 attributes: bodyAttributes,
                 to: output)
             appendLine(

@@ -120,7 +120,7 @@ struct PlanItemSummary: Equatable {
     let rawDataBytes: Double
     let dailyStorageBytes: Double
     let storageBytes: Double
-    let requiredMediaCount: Int
+    let cardCycles: Int
     let recordMinutesPerMedia: Double
     let transferSeconds: Double
 }
@@ -131,7 +131,7 @@ struct PlanSummary: Equatable {
     let totalRawDataBytes: Double
     let dailyStorageBytes: Double
     let totalStorageBytes: Double
-    let mediaCounts: [String: Int]
+    let cardCyclesByMedia: [String: Int]
     let totalTransferSeconds: Double
     let dailyTransferSeconds: Double
     let effectiveTransferSpeedMBps: Double
@@ -167,7 +167,7 @@ enum DITProjectCalculator {
         let effectiveSpeed = profile.effectiveSpeedMBps
         var issues: [DITPlanIssue] = validSpeed && validWindow ? [] : [.invalidTransferProfile]
         var itemSummaries: [PlanItemSummary] = []
-        var mediaCounts: [String: Int] = [:]
+        var cardCyclesByMedia: [String: Int] = [:]
         var totalDailyRaw = 0.0
         var totalRaw = 0.0
         var totalStorage = 0.0
@@ -193,7 +193,7 @@ enum DITProjectCalculator {
             let storage = raw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
             let dailyStorageForItem =
                 dailyRaw * Double(item.effectiveCopyCount) * (1 + item.safetyMargin)
-            let requiredMediaValue = ceil(
+            let cardCyclesValue = ceil(
                 captureRaw * (1 + item.safetyMargin) / item.media.usableCapacityBytes
             )
             let recordMinutesPerMedia = item.media.usableCapacityBytes / captureBytesPerSecond / 60
@@ -207,15 +207,15 @@ enum DITProjectCalculator {
                 dailyStorageForItem.isFinite,
                 recordMinutesPerMedia.isFinite,
                 recordMinutesPerMedia > 0,
-                requiredMediaValue.isFinite,
-                requiredMediaValue > 0,
-                requiredMediaValue <= Double(Int.max)
+                cardCyclesValue.isFinite,
+                cardCyclesValue > 0,
+                cardCyclesValue <= Double(Int.max)
             else {
                 issues.append(.invalidItem(id: item.id, reason: "机位计算结果超出支持范围"))
                 continue
             }
 
-            let requiredMedia = Int(requiredMediaValue)
+            let cardCycles = Int(cardCyclesValue)
             let transferSeconds = validSpeed ? storage / (effectiveSpeed * 1_000_000) : 0
             let nextTotalDailyRaw = totalDailyRaw + dailyRaw
             let nextTotalRaw = totalRaw + raw
@@ -242,12 +242,12 @@ enum DITProjectCalculator {
                     rawDataBytes: raw,
                     dailyStorageBytes: dailyStorageForItem,
                     storageBytes: storage,
-                    requiredMediaCount: requiredMedia,
+                    cardCycles: cardCycles,
                     recordMinutesPerMedia: recordMinutesPerMedia,
                     transferSeconds: transferSeconds
                 )
             )
-            mediaCounts[item.mediaID, default: 0] += requiredMedia
+            cardCyclesByMedia[item.mediaID, default: 0] += cardCycles
             totalDailyRaw = nextTotalDailyRaw
             totalRaw = nextTotalRaw
             totalStorage = nextTotalStorage
@@ -267,7 +267,7 @@ enum DITProjectCalculator {
             totalRawDataBytes: totalRaw,
             dailyStorageBytes: dailyStorage,
             totalStorageBytes: totalStorage,
-            mediaCounts: mediaCounts,
+            cardCyclesByMedia: cardCyclesByMedia,
             totalTransferSeconds: itemSummaries.reduce(0) { $0 + $1.transferSeconds },
             dailyTransferSeconds: dailyTransferSeconds,
             effectiveTransferSpeedMBps: validSpeed ? effectiveSpeed : 0,

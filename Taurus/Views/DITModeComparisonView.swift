@@ -86,7 +86,7 @@ struct DITModeComparisonView: View {
       ComparisonValue(label: "全部每日", value: formatBytes(summary?.rawDataPerDayBytes))
       ComparisonValue(label: "项目原始量", value: formatBytes(summary?.rawDataBytes))
       ComparisonValue(label: "总存储", value: formatBytes(summary?.storageBytes))
-      ComparisonValue(label: "介质数量", value: summary.map { "\($0.requiredMediaCount) 张" } ?? "—")
+      ComparisonValue(label: "卡次", value: summary.map { "\($0.cardCycles) 次" } ?? "—")
       ComparisonValue(
         label: "每张卡时长", value: summary.map { "\(formatNumber($0.recordMinutesPerMedia)) 分钟" } ?? "—"
       )
