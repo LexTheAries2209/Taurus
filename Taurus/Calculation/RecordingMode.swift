@@ -1,6 +1,6 @@
 import Foundation
 
-struct MediaSpec: Equatable, Hashable {
+struct MediaSpec: Codable, Equatable, Hashable {
     let id: String
     let usableCapacityBytes: Double
     let proResUsableCapacityBytes: Double?

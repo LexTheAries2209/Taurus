@@ -1,6 +1,6 @@
 import Foundation
 
-struct CameraSelection: Equatable, Hashable {
+struct CameraSelection: Codable, Equatable, Hashable {
     let brandID: String
     let cameraID: String
     let codecID: String

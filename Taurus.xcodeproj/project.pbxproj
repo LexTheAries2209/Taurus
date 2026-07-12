@@ -17,6 +17,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXBuildFile section */
+		A30000012E22000100000002 /* DITProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000001 /* DITProject.swift */; };
+		A30000012E22000100000004 /* DITProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000003 /* DITProjectStore.swift */; };
+		A30000012E22000100000006 /* DITProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000005 /* DITProjectTests.swift */; };
+		A30000012E22000100000008 /* DITPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000007 /* DITPlannerView.swift */; };
 		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
 		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
 		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
@@ -99,6 +103,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A30000012E22000100000001 /* DITProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProject.swift; sourceTree = "<group>"; };
+		A30000012E22000100000003 /* DITProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectStore.swift; sourceTree = "<group>"; };
+		A30000012E22000100000005 /* DITProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectTests.swift; sourceTree = "<group>"; };
+		A30000012E22000100000007 /* DITPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlannerView.swift; sourceTree = "<group>"; };
 		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
 		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
@@ -294,6 +302,7 @@
 			children = (
 				A20000012E21000100000011 /* CalculatorToolbar.swift */,
 				A20000012E21000100000013 /* CalculatorWorkspace.swift */,
+				A30000012E22000100000007 /* DITPlannerView.swift */,
 				A20000012E21000100000015 /* RecordingMetricsView.swift */,
 			);
 			path = Views;
@@ -330,6 +339,8 @@
 			children = (
 				58571C232D2A75ED0015EE29 /* Taurus_Log.txt */,
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
+				A30000012E22000100000001 /* DITProject.swift */,
+				A30000012E22000100000003 /* DITProjectStore.swift */,
 				A10000012E20000100000012 /* CameraData.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				C0DEF0032E13000100000001 /* ScreenshotExport.swift */,
@@ -376,6 +387,7 @@
 		A10000012E20000100000004 /* TaurusTests */ = {
 			isa = PBXGroup;
 			children = (
+				A30000012E22000100000005 /* DITProjectTests.swift */,
 				A10000012E20000100000001 /* ScreenshotExportTests.swift */,
 				A10000012E2000010000000E /* CameraDataSelectionTests.swift */,
 				A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */,
@@ -494,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30000012E22000100000006 /* DITProjectTests.swift in Sources */,
 				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
 				A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */,
 				A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */,
@@ -506,6 +519,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30000012E22000100000002 /* DITProject.swift in Sources */,
+				A30000012E22000100000004 /* DITProjectStore.swift in Sources */,
+				A30000012E22000100000008 /* DITPlannerView.swift in Sources */,
 				A10000012E20000100000013 /* CameraData.swift in Sources */,
 				A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */,
 				A10000012E20000100000019 /* RecordingMetrics.swift in Sources */,

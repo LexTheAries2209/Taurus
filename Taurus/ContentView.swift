@@ -10,7 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var selectionStore: CameraSelectionStore
     @ObservedObject var windowReference: WindowReferenceStore
+    @ObservedObject var projectStore: DITProjectStore
     @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
+    @State private var showsPlanner = false
 
     private let windowContentSize = CGSize(width: 930, height: 540)
 
@@ -29,12 +31,17 @@ struct ContentView: View {
         VStack(spacing: 0) {
             CalculatorToolbar(
                 language: languageSelection,
-                windowReference: windowReference
+                windowReference: windowReference,
+                showsPlanner: $showsPlanner
             )
 
             Divider()
 
-            CalculatorWorkspace(selectionStore: selectionStore, language: language)
+            if showsPlanner {
+                DITPlannerView(selectionStore: selectionStore, projectStore: projectStore)
+            } else {
+                CalculatorWorkspace(selectionStore: selectionStore, language: language)
+            }
         }
         .frame(
             minWidth: windowContentSize.width,
@@ -58,7 +65,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(
             selectionStore: CameraSelectionStore(),
-            windowReference: WindowReferenceStore()
+            windowReference: WindowReferenceStore(),
+            projectStore: DITProjectStore(fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-projects.json"))
         )
     }
 }

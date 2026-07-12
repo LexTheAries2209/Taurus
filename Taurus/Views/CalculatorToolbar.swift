@@ -3,6 +3,7 @@ import SwiftUI
 struct CalculatorToolbar: View {
     @Binding var language: AppLanguage
     @ObservedObject var windowReference: WindowReferenceStore
+    @Binding var showsPlanner: Bool
 
     @State private var screenshotErrorMessage = ""
     @State private var showsScreenshotError = false
@@ -13,7 +14,7 @@ struct CalculatorToolbar: View {
 
     var body: some View {
         ZStack {
-            Text(copy.calculatorTitle)
+            Text(showsPlanner ? "DIT 项目规划" : copy.calculatorTitle)
                 .font(.headline)
                 .fontWeight(.semibold)
                 .padding(.horizontal, 8)
@@ -40,6 +41,16 @@ struct CalculatorToolbar: View {
                 .padding(.leading, 14)
 
                 Spacer()
+
+                Button {
+                    showsPlanner.toggle()
+                } label: {
+                    Image(systemName: showsPlanner ? "chart.bar.xaxis" : "rectangle.3.group")
+                        .imageScale(.medium)
+                }
+                .buttonStyle(.borderless)
+                .help(showsPlanner ? "返回计算器" : "打开项目规划器")
+                .accessibilityLabel(showsPlanner ? "返回计算器" : "打开项目规划器")
 
                 Button(action: saveScreenshot) {
                     Image(systemName: "camera")
