@@ -289,6 +289,12 @@ struct DITPlannerView: View {
               Button(favoriteStore.contains(item) ? "取消收藏" : "收藏模式") {
                 toggleFavorite(item)
               }
+              Divider()
+              Button {
+                resetPlanningParameters(item)
+              } label: {
+                Label("重置拍摄参数", systemImage: "arrow.counterclockwise")
+              }
             }
           }
           .onDelete(perform: deleteItems)
@@ -509,6 +515,20 @@ struct DITPlannerView: View {
   private func toggleFavorite(_ item: PlanItem) {
     do {
       try favoriteStore.toggle(item)
+    } catch {
+      showExportError(error)
+    }
+  }
+
+  private func resetPlanningParameters(_ item: PlanItem) {
+    guard var project = selectedProject,
+      let index = project.items.firstIndex(where: { $0.id == item.id })
+    else { return }
+
+    project.items[index].resetPlanningParameters()
+    project.touch()
+    do {
+      try projectStore.update(project)
     } catch {
       showExportError(error)
     }

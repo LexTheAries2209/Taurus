@@ -112,6 +112,40 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(summary.issues.count, 1)
     }
 
+    func testResetPlanningParametersRestoresDefaultsWithoutChangingRecordingMode() {
+        let selection = CameraSelection(
+            brandID: "ARRI",
+            cameraID: "ALEXA 35",
+            codecID: "ARRIRAW",
+            resolutionID: "4.6K",
+            frameRateID: "24.000",
+            mediaID: "Compact Drive 1TB"
+        )
+        var item = PlanItem(
+            selection: selection,
+            bitrateMbps: 100,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000),
+            hdeDataPerHourMultiplier: 0.5,
+            cameraCount: 74,
+            dailyPowerOnHours: 24,
+            recordingRatio: 1,
+            shootDays: 12.5,
+            backupCopies: 5,
+            safetyMargin: 1
+        )
+
+        item.resetPlanningParameters()
+
+        XCTAssertEqual(item.cameraCount, 1)
+        XCTAssertEqual(item.dailyPowerOnHours, 12)
+        XCTAssertEqual(item.recordingRatio, 0.5)
+        XCTAssertEqual(item.shootDays, 1)
+        XCTAssertEqual(item.backupCopies, 2)
+        XCTAssertEqual(item.safetyMargin, 0.1)
+        XCTAssertEqual(item.selection, selection)
+        XCTAssertEqual(item.hdeDataPerHourMultiplier, 0.5)
+    }
+
     func testEmptyProjectDoesNotClaimBackupCanComplete() {
         XCTAssertFalse(DITProjectCalculator.summarize(DITProject()).canCompleteDailyDoubleBackup)
     }

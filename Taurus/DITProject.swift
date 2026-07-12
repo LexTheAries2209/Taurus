@@ -1,5 +1,14 @@
 import Foundation
 
+enum DITPlanItemDefaults {
+    static let cameraCount = 1
+    static let dailyPowerOnHours = 12.0
+    static let recordingRatio = 0.5
+    static let shootDays = 1.0
+    static let backupCopies = 2
+    static let safetyMargin = 0.1
+}
+
 /// A persisted, immutable snapshot of the recording choice used by a plan item.
 struct PlanItem: Codable, Equatable, Identifiable {
     let id: UUID
@@ -51,6 +60,16 @@ struct PlanItem: Codable, Equatable, Identifiable {
     var effectiveCopyCount: Int { max(1, backupCopies) }
 
     var usesHDE: Bool { hdeDataPerHourMultiplier != nil }
+
+    /// Restores planning inputs without changing the selected recording mode.
+    mutating func resetPlanningParameters() {
+        cameraCount = DITPlanItemDefaults.cameraCount
+        dailyPowerOnHours = DITPlanItemDefaults.dailyPowerOnHours
+        recordingRatio = DITPlanItemDefaults.recordingRatio
+        shootDays = DITPlanItemDefaults.shootDays
+        backupCopies = DITPlanItemDefaults.backupCopies
+        safetyMargin = DITPlanItemDefaults.safetyMargin
+    }
 
     var cameraLabel: String {
         "\(selection.brandID) \(selection.cameraID)"
