@@ -28,6 +28,7 @@
 		A30000012E22000100000016 /* CameraSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000015 /* CameraSearchView.swift */; };
 		A30000012E22000100000018 /* DITModeComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000017 /* DITModeComparisonView.swift */; };
 		A30000012E2200010000001A /* DITAddPlanItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000019 /* DITAddPlanItemView.swift */; };
+		A30000012E2200010000001C /* NonnegativeNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000001B /* NonnegativeNumberField.swift */; };
 		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
 		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
 		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
@@ -121,6 +122,7 @@
 		A30000012E22000100000015 /* CameraSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSearchView.swift; sourceTree = "<group>"; };
 		A30000012E22000100000017 /* DITModeComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITModeComparisonView.swift; sourceTree = "<group>"; };
 		A30000012E22000100000019 /* DITAddPlanItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITAddPlanItemView.swift; sourceTree = "<group>"; };
+		A30000012E2200010000001B /* NonnegativeNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonnegativeNumberField.swift; sourceTree = "<group>"; };
 		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
 		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				A30000012E22000100000019 /* DITAddPlanItemView.swift */,
+				A30000012E2200010000001B /* NonnegativeNumberField.swift */,
 				A30000012E22000100000015 /* CameraSearchView.swift */,
 				A20000012E21000100000011 /* CalculatorToolbar.swift */,
 				A20000012E21000100000013 /* CalculatorWorkspace.swift */,
@@ -546,6 +549,7 @@
 				A30000012E22000100000016 /* CameraSearchView.swift in Sources */,
 				A30000012E22000100000018 /* DITModeComparisonView.swift in Sources */,
 				A30000012E2200010000001A /* DITAddPlanItemView.swift in Sources */,
+				A30000012E2200010000001C /* NonnegativeNumberField.swift in Sources */,
 				A30000012E22000100000002 /* DITProject.swift in Sources */,
 				A30000012E22000100000004 /* DITProjectStore.swift in Sources */,
 				A30000012E22000100000008 /* DITPlannerView.swift in Sources */,

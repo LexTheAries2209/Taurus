@@ -2,6 +2,25 @@ import XCTest
 @testable import Taurus
 
 final class DITProjectTests: XCTestCase {
+    func testNumericInputSanitizerRejectsLettersSignsAndExtraDecimals() {
+        XCTAssertEqual(
+            NumericInputSanitizer.sanitize("-12a.3.4", allowsDecimal: true),
+            "12.34"
+        )
+        XCTAssertEqual(
+            NumericInputSanitizer.sanitize("-12abc", allowsDecimal: false),
+            "12"
+        )
+        XCTAssertEqual(
+            NumericInputSanitizer.sanitize("1.5", allowsDecimal: false),
+            "1"
+        )
+        XCTAssertEqual(
+            NumericInputSanitizer.sanitize(".5", allowsDecimal: true),
+            "0.5"
+        )
+    }
+
     func testPlanItemBuilderRequiresACompleteRecordingMode() {
         XCTAssertNil(DITPlanItemBuilder.make(from: CameraSelectionStore(), name: "A 机位"))
     }

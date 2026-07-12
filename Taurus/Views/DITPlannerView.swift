@@ -354,55 +354,47 @@ struct DITPlannerView: View {
                   .textFieldStyle(.roundedBorder)
                   .frame(width: 190)
               }
-              InspectorControlRow(label: "摄影机数量") {
-                Stepper(
-                  "\(item.cameraCount) 台",
-                  value: itemBinding(item, keyPath: \.cameraCount),
-                  in: 1...99
-                )
-                .monospacedDigit()
-                .frame(width: 104)
-              }
-              InspectorControlRow(label: "每日开机") {
-                Stepper(
-                  "\(formatNumber(item.dailyPowerOnHours)) 小时",
-                  value: itemBinding(item, keyPath: \.dailyPowerOnHours),
-                  in: 0.5...24,
-                  step: 0.5
-                )
-                .monospacedDigit()
-                .frame(width: 130)
-              }
-              InspectorControlRow(label: "拍摄天数") {
-                Stepper(
-                  "\(formatNumber(item.shootDays)) 天",
-                  value: itemBinding(item, keyPath: \.shootDays),
-                  in: 0.5...365,
-                  step: 0.5
-                )
-                .monospacedDigit()
-                .frame(width: 118)
-              }
-              InspectorControlRow(label: "保留副本") {
-                Stepper(
-                  "\(item.backupCopies) 份",
-                  value: itemBinding(item, keyPath: \.backupCopies),
-                  in: 1...5
-                )
-                .monospacedDigit()
-                .frame(width: 104)
-              }
+              InspectorNumberStepperRow(
+                label: "摄影机数量",
+                value: integerItemBinding(item, keyPath: \.cameraCount),
+                range: 1...99,
+                step: 1,
+                fractionDigits: 0,
+                unit: "台"
+              )
+              InspectorNumberStepperRow(
+                label: "每日开机",
+                value: itemBinding(item, keyPath: \.dailyPowerOnHours),
+                range: 0.5...24,
+                step: 0.5,
+                fractionDigits: 2,
+                unit: "小时"
+              )
+              InspectorNumberStepperRow(
+                label: "拍摄天数",
+                value: itemBinding(item, keyPath: \.shootDays),
+                range: 0.5...365,
+                step: 0.5,
+                fractionDigits: 2,
+                unit: "天"
+              )
+              InspectorNumberStepperRow(
+                label: "保留副本",
+                value: integerItemBinding(item, keyPath: \.backupCopies),
+                range: 1...5,
+                step: 1,
+                fractionDigits: 0,
+                unit: "份"
+              )
               InspectorSliderRow(
                 label: "实际录制比例",
                 value: itemBinding(item, keyPath: \.recordingRatio),
-                range: 0.05...1,
-                displayValue: "\(Int(item.recordingRatio * 100))%"
+                range: 0.05...1
               )
               InspectorSliderRow(
                 label: "安全余量",
                 value: itemBinding(item, keyPath: \.safetyMargin),
-                range: 0...1,
-                displayValue: "\(Int(item.safetyMargin * 100))%"
+                range: 0...1
               )
             }
           }
@@ -444,29 +436,29 @@ struct DITPlannerView: View {
         if let project = selectedProject {
           InspectorSection(title: "传输配置", systemImage: "externaldrive.connected.to.line.below") {
             VStack(spacing: 12) {
-              TransportStepperRow(
+              InspectorNumberStepperRow(
                 label: "读卡器",
-                value: project.transferProfile.readerSpeedMBps,
-                unit: "MB/s",
-                binding: transferBinding(project, keyPath: \.readerSpeedMBps),
+                value: transferBinding(project, keyPath: \.readerSpeedMBps),
                 range: 10...10_000,
-                step: 10
+                step: 10,
+                fractionDigits: 2,
+                unit: "MB/s"
               )
-              TransportStepperRow(
+              InspectorNumberStepperRow(
                 label: "目标盘",
-                value: project.transferProfile.targetDiskSpeedMBps,
-                unit: "MB/s",
-                binding: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
+                value: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
                 range: 10...10_000,
-                step: 10
+                step: 10,
+                fractionDigits: 2,
+                unit: "MB/s"
               )
-              TransportStepperRow(
+              InspectorNumberStepperRow(
                 label: "每日窗口",
-                value: project.transferProfile.offloadWindowHoursPerDay,
-                unit: "小时",
-                binding: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
+                value: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
                 range: 0.5...24,
-                step: 0.5
+                step: 0.5,
+                fractionDigits: 2,
+                unit: "小时"
               )
             }
           }
@@ -641,6 +633,17 @@ struct DITPlannerView: View {
         project.touch()
         try? projectStore.update(project)
       }
+    )
+  }
+
+  private func integerItemBinding(
+    _ item: PlanItem,
+    keyPath: WritableKeyPath<PlanItem, Int>
+  ) -> Binding<Double> {
+    let binding = itemBinding(item, keyPath: keyPath)
+    return Binding(
+      get: { Double(binding.wrappedValue) },
+      set: { binding.wrappedValue = Int($0.rounded()) }
     )
   }
 
@@ -851,34 +854,42 @@ private struct InspectorControlRow<Content: View>: View {
   }
 }
 
-private struct TransportStepperRow: View {
+private struct InspectorNumberStepperRow: View {
   let label: String
-  let value: Double
-  let unit: String
-  @Binding var binding: Double
+  @Binding var value: Double
   let range: ClosedRange<Double>
   let step: Double
+  let fractionDigits: Int
+  let unit: String
 
   var body: some View {
     HStack(spacing: 12) {
       Text(label)
         .foregroundColor(.secondary)
       Spacer(minLength: 8)
-      HStack(spacing: 8) {
-        Text("\(formatNumber(value)) \(unit)")
-          .monospacedDigit()
+      HStack(spacing: 6) {
+        NonnegativeNumberField(
+          value: $value,
+          range: range,
+          fractionDigits: fractionDigits
+        )
+        .frame(width: 90)
+
+        Text(unit)
+          .foregroundColor(.secondary)
           .lineLimit(1)
-          .frame(width: 126, alignment: .trailing)
+          .frame(width: 42, alignment: .leading)
+
         Stepper(
           "",
-          value: $binding,
+          value: $value,
           in: range,
           step: step
         )
         .labelsHidden()
         .frame(width: 42)
       }
-      .frame(width: 178, alignment: .trailing)
+      .frame(width: 186, alignment: .trailing)
     }
   }
 }
@@ -887,7 +898,13 @@ private struct InspectorSliderRow: View {
   let label: String
   @Binding var value: Double
   let range: ClosedRange<Double>
-  let displayValue: String
+
+  private var percentageBinding: Binding<Double> {
+    Binding(
+      get: { value * 100 },
+      set: { value = $0 / 100 }
+    )
+  }
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6) {
@@ -895,8 +912,16 @@ private struct InspectorSliderRow: View {
         Text(label)
           .foregroundColor(.secondary)
         Spacer()
-        Text(displayValue)
-          .monospacedDigit()
+        HStack(spacing: 4) {
+          NonnegativeNumberField(
+            value: percentageBinding,
+            range: (range.lowerBound * 100)...(range.upperBound * 100),
+            fractionDigits: 0
+          )
+          .frame(width: 64)
+          Text("%")
+            .foregroundColor(.secondary)
+        }
       }
       Slider(value: $value, in: range)
     }
