@@ -160,16 +160,20 @@ struct DITAddPlanItemView: View {
       VStack(alignment: .leading, spacing: 10) {
         Text("录制模式预览")
           .font(.headline)
-        HStack(spacing: 0) {
+        HStack(alignment: .top, spacing: 12) {
           AddPlanMetric(
             title: "摄影机", value: "\(draftSelection.BrandName) \(draftSelection.CameraName)")
+            .frame(width: 230, alignment: .leading)
           AddPlanMetric(
             title: usesHDE ? "HDE 数据率" : "码率",
             value:
               "\(formatNumber(metrics.bitrateMbps * (usesHDE ? (hdeMultiplier ?? 1) : 1))) Mbps"
           )
+          .frame(width: 145, alignment: .leading)
           AddPlanMetric(title: "介质", value: draftSelection.Media)
+            .frame(width: 135, alignment: .leading)
           AddPlanMetric(title: "每卡时长", value: "\(formatNumber(metrics.recordMinutes)) 分钟")
+            .frame(width: 120, alignment: .leading)
         }
       }
 
@@ -269,7 +273,8 @@ private struct AddPlanMetric: View {
         .font(.caption)
         .foregroundColor(.secondary)
       Text(value)
-        .lineLimit(1)
+        .lineLimit(2)
+        .fixedSize(horizontal: false, vertical: true)
         .minimumScaleFactor(0.8)
         .monospacedDigit()
     }
