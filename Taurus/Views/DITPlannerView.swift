@@ -2,15 +2,13 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct DITPlannerView: View {
-  @ObservedObject var selectionStore: CameraSelectionStore
   @ObservedObject var projectStore: DITProjectStore
   @ObservedObject var favoriteStore: DITFavoriteStore
-  @Binding var showsPlanner: Bool
 
   @State private var selectedProjectID: UUID?
   @State private var selectedItemID: UUID?
   @State private var comparisonItemIDs: Set<UUID> = []
-  @State private var showsCameraSearch = false
+  @State private var showsAddItem = false
   @State private var showsComparison = false
   @State private var exportErrorMessage = ""
   @State private var showsExportError = false
@@ -55,8 +53,10 @@ struct DITPlannerView: View {
     } message: {
       Text(exportErrorMessage)
     }
-    .sheet(isPresented: $showsCameraSearch) {
-      CameraSearchView(onSelect: selectCamera)
+    .sheet(isPresented: $showsAddItem) {
+      DITAddPlanItemView { item in
+        addPlanItem(item)
+      }
     }
     .sheet(isPresented: $showsComparison) {
       if let project = selectedProject {
@@ -166,19 +166,6 @@ struct DITPlannerView: View {
 
         Spacer(minLength: 20)
 
-        Button(action: { showsCameraSearch = true }) {
-          Image(systemName: "magnifyingglass")
-        }
-        .help("搜索摄影机")
-        .accessibilityLabel("搜索摄影机")
-
-        Button(action: addCurrentSelection) {
-          Image(systemName: "plus")
-        }
-        .disabled(!isCurrentSelectionUsable)
-        .help("添加当前计算模式")
-        .accessibilityLabel("添加当前计算模式")
-
         Button(action: { showsComparison = true }) {
           Image(systemName: "rectangle.3.group")
         }
@@ -279,7 +266,7 @@ struct DITPlannerView: View {
         emptyState(
           title: "尚未添加机位",
           systemImage: "video.badge.plus",
-          message: "使用上方搜索或从计算器添加录制模式"
+          message: "从下方选择摄影机和录制模式"
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       } else {
@@ -308,6 +295,26 @@ struct DITPlannerView: View {
         }
         .listStyle(.inset)
       }
+
+      Divider()
+
+      HStack(spacing: 12) {
+        Image(systemName: "plus.circle")
+          .foregroundColor(.accentColor)
+        Text("为项目添加一个新的摄影机录制模式")
+          .font(.callout)
+          .foregroundColor(.secondary)
+        Spacer()
+        Button {
+          showsAddItem = true
+        } label: {
+          Label("添加机位", systemImage: "plus")
+        }
+        .buttonStyle(.borderedProminent)
+        .controlSize(.large)
+      }
+      .padding(.horizontal, 18)
+      .padding(.vertical, 14)
     }
   }
 
@@ -437,36 +444,30 @@ struct DITPlannerView: View {
         if let project = selectedProject {
           InspectorSection(title: "传输配置", systemImage: "externaldrive.connected.to.line.below") {
             VStack(spacing: 12) {
-              InspectorControlRow(label: "读卡器") {
-                Stepper(
-                  "\(formatNumber(project.transferProfile.readerSpeedMBps)) MB/s",
-                  value: transferBinding(project, keyPath: \.readerSpeedMBps),
-                  in: 10...10_000,
-                  step: 10
-                )
-                .monospacedDigit()
-                .frame(width: 150)
-              }
-              InspectorControlRow(label: "目标盘") {
-                Stepper(
-                  "\(formatNumber(project.transferProfile.targetDiskSpeedMBps)) MB/s",
-                  value: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
-                  in: 10...10_000,
-                  step: 10
-                )
-                .monospacedDigit()
-                .frame(width: 150)
-              }
-              InspectorControlRow(label: "每日窗口") {
-                Stepper(
-                  "\(formatNumber(project.transferProfile.offloadWindowHoursPerDay)) 小时",
-                  value: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
-                  in: 0.5...24,
-                  step: 0.5
-                )
-                .monospacedDigit()
-                .frame(width: 130)
-              }
+              TransportStepperRow(
+                label: "读卡器",
+                value: project.transferProfile.readerSpeedMBps,
+                unit: "MB/s",
+                binding: transferBinding(project, keyPath: \.readerSpeedMBps),
+                range: 10...10_000,
+                step: 10
+              )
+              TransportStepperRow(
+                label: "目标盘",
+                value: project.transferProfile.targetDiskSpeedMBps,
+                unit: "MB/s",
+                binding: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
+                range: 10...10_000,
+                step: 10
+              )
+              TransportStepperRow(
+                label: "每日窗口",
+                value: project.transferProfile.offloadWindowHoursPerDay,
+                unit: "小时",
+                binding: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
+                range: 0.5...24,
+                step: 0.5
+              )
             }
           }
         }
@@ -476,34 +477,16 @@ struct DITPlannerView: View {
     .background(Color(nsColor: .windowBackgroundColor))
   }
 
-  private var isCurrentSelectionUsable: Bool {
-    guard case .success = RecordingCalculator.calculate(selectionStore) else { return false }
-    return MediaCapacity(cameradata: selectionStore) > 0
-  }
-
-  private func addCurrentSelection() {
-    guard var project = selectedProject,
-      case .success(let metrics) = RecordingCalculator.calculate(selectionStore)
-    else { return }
-    let capacityGB = MediaCapacity(cameradata: selectionStore)
-    guard capacityGB.isFinite, capacityGB > 0 else { return }
-    let selection = CameraSelection(selectionStore: selectionStore)
-    let item = PlanItem(
-      name: selectionStore.CameraName,
-      selection: selection,
-      bitrateMbps: metrics.bitrateMbps,
-      media: MediaSpec(id: selectionStore.Media, usableCapacityBytes: capacityGB * 1_000_000_000)
-    )
+  private func addPlanItem(_ item: PlanItem) {
+    guard var project = selectedProject else { return }
     project.items.append(item)
     project.touch()
-    try? projectStore.update(project)
-    selectedItemID = item.id
-  }
-
-  private func selectCamera(_ entry: CameraSearchEntry) {
-    selectionStore.selectBrand(entry.brandID)
-    selectionStore.selectCamera(entry.cameraID)
-    showsPlanner = false
+    do {
+      try projectStore.update(project)
+      selectedItemID = item.id
+    } catch {
+      showExportError(error)
+    }
   }
 
   private func toggleComparison(_ itemID: UUID) {
@@ -864,6 +847,38 @@ private struct InspectorControlRow<Content: View>: View {
         .lineLimit(1)
       Spacer(minLength: 8)
       content
+    }
+  }
+}
+
+private struct TransportStepperRow: View {
+  let label: String
+  let value: Double
+  let unit: String
+  @Binding var binding: Double
+  let range: ClosedRange<Double>
+  let step: Double
+
+  var body: some View {
+    HStack(spacing: 12) {
+      Text(label)
+        .foregroundColor(.secondary)
+      Spacer(minLength: 8)
+      HStack(spacing: 8) {
+        Text("\(formatNumber(value)) \(unit)")
+          .monospacedDigit()
+          .lineLimit(1)
+          .frame(width: 126, alignment: .trailing)
+        Stepper(
+          "",
+          value: $binding,
+          in: range,
+          step: step
+        )
+        .labelsHidden()
+        .frame(width: 42)
+      }
+      .frame(width: 178, alignment: .trailing)
     }
   }
 }

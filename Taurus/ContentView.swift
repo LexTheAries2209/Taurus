@@ -50,10 +50,8 @@ struct ContentView: View {
 
       if showsPlanner {
         DITPlannerView(
-          selectionStore: selectionStore,
           projectStore: projectStore,
-          favoriteStore: favoriteStore,
-          showsPlanner: $showsPlanner
+          favoriteStore: favoriteStore
         )
       } else {
         CalculatorWorkspace(selectionStore: selectionStore, language: language)

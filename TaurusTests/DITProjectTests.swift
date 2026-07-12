@@ -2,6 +2,29 @@ import XCTest
 @testable import Taurus
 
 final class DITProjectTests: XCTestCase {
+    func testPlanItemBuilderRequiresACompleteRecordingMode() {
+        XCTAssertNil(DITPlanItemBuilder.make(from: CameraSelectionStore(), name: "A 机位"))
+    }
+
+    func testPlanItemBuilderCreatesAnARRIPlanItem() throws {
+        let selection = CameraSelectionStore()
+        selection.selectBrand("ARRI")
+        selection.selectCamera("ALEXA 35")
+        selection.selectCodec("ARRIRAW")
+        selection.selectResolution("4.6K S35[4608*3164][OG]")
+        selection.selectMedia("Compact Drive 1TB")
+        selection.selectRate("24.000")
+
+        let item = try XCTUnwrap(DITPlanItemBuilder.make(from: selection, name: "  A 机位  "))
+
+        XCTAssertEqual(item.name, "A 机位")
+        XCTAssertEqual(item.selection.cameraID, "ALEXA 35")
+        XCTAssertEqual(item.selection.codecID, "ARRIRAW")
+        XCTAssertEqual(item.selection.mediaID, "Compact Drive 1TB")
+        XCTAssertGreaterThan(item.bitrateMbps, 0)
+        XCTAssertGreaterThan(item.media.usableCapacityBytes, 0)
+    }
+
     func testEmptyProjectDoesNotClaimBackupCanComplete() {
         XCTAssertFalse(DITProjectCalculator.summarize(DITProject()).canCompleteDailyDoubleBackup)
     }
