@@ -21,6 +21,8 @@
 		A30000012E22000100000004 /* DITProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000003 /* DITProjectStore.swift */; };
 		A30000012E22000100000006 /* DITProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000005 /* DITProjectTests.swift */; };
 		A30000012E22000100000008 /* DITPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000007 /* DITPlannerView.swift */; };
+		A30000012E2200010000000A /* DITPlanExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000009 /* DITPlanExport.swift */; };
+		A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000000B /* DITPlanExportTests.swift */; };
 		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
 		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
 		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
@@ -107,6 +109,8 @@
 		A30000012E22000100000003 /* DITProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectStore.swift; sourceTree = "<group>"; };
 		A30000012E22000100000005 /* DITProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectTests.swift; sourceTree = "<group>"; };
 		A30000012E22000100000007 /* DITPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlannerView.swift; sourceTree = "<group>"; };
+		A30000012E22000100000009 /* DITPlanExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExport.swift; sourceTree = "<group>"; };
+		A30000012E2200010000000B /* DITPlanExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExportTests.swift; sourceTree = "<group>"; };
 		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
 		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				5864C0692A7000D900611BD0 /* TaurusApp.swift */,
 				A30000012E22000100000001 /* DITProject.swift */,
 				A30000012E22000100000003 /* DITProjectStore.swift */,
+				A30000012E22000100000009 /* DITPlanExport.swift */,
 				A10000012E20000100000012 /* CameraData.swift */,
 				5864C06B2A7000D900611BD0 /* ContentView.swift */,
 				C0DEF0032E13000100000001 /* ScreenshotExport.swift */,
@@ -387,6 +392,7 @@
 		A10000012E20000100000004 /* TaurusTests */ = {
 			isa = PBXGroup;
 			children = (
+				A30000012E2200010000000B /* DITPlanExportTests.swift */,
 				A30000012E22000100000005 /* DITProjectTests.swift */,
 				A10000012E20000100000001 /* ScreenshotExportTests.swift */,
 				A10000012E2000010000000E /* CameraDataSelectionTests.swift */,
@@ -506,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */,
 				A30000012E22000100000006 /* DITProjectTests.swift in Sources */,
 				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
 				A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */,
@@ -522,6 +529,7 @@
 				A30000012E22000100000002 /* DITProject.swift in Sources */,
 				A30000012E22000100000004 /* DITProjectStore.swift in Sources */,
 				A30000012E22000100000008 /* DITPlannerView.swift in Sources */,
+				A30000012E2200010000000A /* DITPlanExport.swift in Sources */,
 				A10000012E20000100000013 /* CameraData.swift in Sources */,
 				A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */,
 				A10000012E20000100000019 /* RecordingMetrics.swift in Sources */,

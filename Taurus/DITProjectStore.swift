@@ -76,7 +76,15 @@ final class DITProjectStore: ObservableObject {
     }
 
     func importProject(from url: URL) throws -> DITProject {
-        let project = try decoder.decode(DITProject.self, from: Data(contentsOf: url))
+        var project = try decoder.decode(DITProject.self, from: Data(contentsOf: url))
+        if projects.contains(where: { $0.id == project.id }) {
+            project = DITProject(
+                name: project.name.isEmpty ? "导入项目" : "\(project.name) 副本",
+                items: project.items,
+                transferProfile: project.transferProfile,
+                notes: project.notes
+            )
+        }
         projects.append(project)
         try save()
         return project

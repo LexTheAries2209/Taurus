@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct DITPlannerView: View {
     @ObservedObject var selectionStore: CameraSelectionStore
@@ -6,6 +7,8 @@ struct DITPlannerView: View {
 
     @State private var selectedProjectID: UUID?
     @State private var selectedItemID: UUID?
+    @State private var exportErrorMessage = ""
+    @State private var showsExportError = false
 
     private var selectedProject: DITProject? {
         guard let selectedProjectID else { return nil }
@@ -33,6 +36,11 @@ struct DITPlannerView: View {
         }
         .onAppear(perform: selectInitialProject)
         .onChange(of: selectedProjectID) { _ in selectedItemID = nil }
+        .alert("操作失败", isPresented: $showsExportError) {
+            Button("好", role: .cancel) {}
+        } message: {
+            Text(exportErrorMessage)
+        }
     }
 
     private var projectSidebar: some View {
@@ -92,6 +100,14 @@ struct DITPlannerView: View {
 
                 Button("添加当前机位", action: addCurrentSelection)
                     .disabled(!isCurrentSelectionUsable)
+
+                Menu("导出") {
+                    Button("导出 JSON") { exportJSON() }
+                    Button("导出 CSV") { exportCSV() }
+                    Button("导出 PDF") { exportPDF() }
+                }
+
+                Button("导入 JSON", action: importJSON)
 
                 Spacer()
 
@@ -215,6 +231,64 @@ struct DITPlannerView: View {
         project.touch()
         try? projectStore.update(project)
         selectedItemID = item.id
+    }
+
+    @MainActor
+    private func exportJSON() {
+        guard let project = selectedProject,
+              let url = DITPlanFilePanel.chooseSaveURL(
+                defaultName: "\(project.name).json",
+                contentType: .json
+              ) else { return }
+        do {
+            try projectStore.exportProject(project, to: url)
+        } catch {
+            showExportError(error)
+        }
+    }
+
+    @MainActor
+    private func exportCSV() {
+        guard let project = selectedProject,
+              let url = DITPlanFilePanel.chooseSaveURL(
+                defaultName: "\(project.name).csv",
+                contentType: .commaSeparatedText
+              ) else { return }
+        do {
+            try DITPlanExport.csvData(for: project).write(to: url, options: .atomic)
+        } catch {
+            showExportError(error)
+        }
+    }
+
+    @MainActor
+    private func exportPDF() {
+        guard let project = selectedProject,
+              let url = DITPlanFilePanel.chooseSaveURL(
+                defaultName: "\(project.name).pdf",
+                contentType: .pdf
+              ) else { return }
+        do {
+            try DITPlanExport.pdfData(for: project).write(to: url, options: .atomic)
+        } catch {
+            showExportError(error)
+        }
+    }
+
+    @MainActor
+    private func importJSON() {
+        guard let url = DITPlanFilePanel.chooseOpenURL() else { return }
+        do {
+            let project = try projectStore.importProject(from: url)
+            selectedProjectID = project.id
+        } catch {
+            showExportError(error)
+        }
+    }
+
+    private func showExportError(_ error: Error) {
+        exportErrorMessage = error.localizedDescription
+        showsExportError = true
     }
 
     private func selectInitialProject() {

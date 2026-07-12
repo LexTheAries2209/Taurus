@@ -145,6 +145,25 @@ final class DITProjectTests: XCTestCase {
         XCTAssertEqual(store.projects, [project])
     }
 
+    func testImportingExistingProjectCreatesUniqueCopy() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent("TaurusDIT-\(UUID().uuidString)", isDirectory: true)
+        let storeURL = directory.appendingPathComponent("projects.json")
+        let exportURL = directory.appendingPathComponent("export.json")
+        defer { try? FileManager.default.removeItem(at: directory) }
+
+        let project = DITProject(name: "重复导入")
+        let store = DITProjectStore(fileURL: storeURL)
+        _ = try store.add(project)
+        try store.exportProject(project, to: exportURL)
+
+        let imported = try store.importProject(from: exportURL)
+
+        XCTAssertNotEqual(imported.id, project.id)
+        XCTAssertEqual(store.projects.count, 2)
+        XCTAssertTrue(imported.name.contains("副本"))
+    }
+
     func testDailyBackupFailsWhenTransferWindowIsTooShort() {
         let selection = CameraSelection(
             brandID: "[General]",
