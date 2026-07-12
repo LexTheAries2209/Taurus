@@ -1,14 +1,14 @@
 extension CameraSelection {
-    init(cameradata data: CameraData) {
+    init(selectionStore data: CameraSelectionStore) {
         self.init(
             brandID: data.BrandName,
             cameraID: data.CameraName,
             codecID: data.Codec,
             codecLevelID: Self.optionalID(
                 data.CanonCodecLevel,
-                placeholder: CameraData.codecLevelPlaceholder
+                placeholder: CameraSelectionStore.codecLevelPlaceholder
             ),
-            formatID: Self.optionalID(data.Format, placeholder: CameraData.formatPlaceholder),
+            formatID: Self.optionalID(data.Format, placeholder: CameraSelectionStore.formatPlaceholder),
             resolutionID: data.Resolution,
             frameRateID: data.Rate,
             mediaID: data.Media,

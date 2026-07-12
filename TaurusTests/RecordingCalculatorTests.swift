@@ -163,7 +163,7 @@ final class RecordingCalculatorTests: XCTestCase {
         data.ResolutionHeight = "4320"
 
         XCTAssertEqual(
-            CameraSelection(cameradata: data),
+            CameraSelection(selectionStore: data),
             CameraSelection(
                 brandID: "Canon",
                 cameraID: "EOS R5",
@@ -181,7 +181,7 @@ final class RecordingCalculatorTests: XCTestCase {
     }
 
     func testCameraDataSnapshotNormalizesUnsetOptionalValues() {
-        let selection = CameraSelection(cameradata: CameraData())
+        let selection = CameraSelection(selectionStore: CameraData())
 
         XCTAssertNil(selection.codecLevelID)
         XCTAssertNil(selection.formatID)
@@ -192,7 +192,7 @@ final class RecordingCalculatorTests: XCTestCase {
 
     func testCalculatorPrefersMigratedCatalogBeforeLegacyFallback() {
         let data = alexa35ARRIRawData()
-        let selection = CameraSelection(cameradata: data)
+        let selection = CameraSelection(selectionStore: data)
         let catalog = TestCatalog(
             mode: RecordingMode(
                 selection: selection,
@@ -226,7 +226,26 @@ final class RecordingCalculatorTests: XCTestCase {
         )
     }
 
-    func testCaptureDriveProResHalvesRecordMinutes() {
+    func testOfficialXTCaptureDriveProResUsesItsDedicatedCapacityRule() throws {
+        let data = CameraData()
+        data.BrandName = "ARRI"
+        data.CameraName = "ALEXA XT"
+        data.Codec = "ProRes 422 HQ"
+        data.Resolution = "3.2K (3164 x 1778)"
+        data.Rate = "0.750"
+        data.Media = "XR Capture Drive 512GB"
+
+        let metrics = try XCTUnwrap(successMetrics(from: RecordingCalculator.calculate(data)))
+
+        XCTAssertEqual(metrics.bitrateMbps, 17.128488, accuracy: 0.000_001)
+        XCTAssertEqual(metrics.bitrateMBps, 2.141061, accuracy: 0.000_001)
+        XCTAssertEqual(metrics.dataPerHourGB, 7.7078196, accuracy: 0.000_001)
+        XCTAssertEqual(metrics.recordMinutes, 1865.23869851913, accuracy: 0.000_001)
+        XCTAssertNil(metrics.hdeDataPerHourGB)
+        assertPositiveAndFinite(metrics)
+    }
+
+    func testARRIWithoutACatalogModeNeverFallsBackToLegacyRules() {
         let data = CameraData()
         data.BrandName = "ARRI"
         data.CameraName = "ALEXA XT"
@@ -235,11 +254,9 @@ final class RecordingCalculatorTests: XCTestCase {
         data.Rate = "0.750"
         data.Media = "XR Capture Drive 512GB"
 
-        assertSuccess(
-            RecordingCalculator.calculate(data),
-            bitrateMbps: 16.830000000000002,
-            capacityGB: 476.672,
-            halvesRecordMinutes: true
+        XCTAssertEqual(
+            RecordingCalculator.calculate(data, using: [EmptyCatalog()]),
+            .unsupported(.noMatchingRule)
         )
     }
 
@@ -356,6 +373,27 @@ final class RecordingCalculatorTests: XCTestCase {
     func testNewOutputTextUsesLegacyBodyStyle() {
         XCTAssertEqual(DataOutputTypography.metricTextStyle, .body)
         XCTAssertEqual(DataOutputTypography.messageTextStyle, .body)
+    }
+
+    func testMetricsPresentationUsesCalculationResultWithoutCreatingAView() {
+        let presentation = RecordingMetricsPresentation(
+            result: .unsupported(.invalidManualBitrate),
+            codecID: "ARRIRAW",
+            copy: AppLanguage.english.copy
+        )
+
+        XCTAssertEqual(
+            presentation.labels,
+            [
+                "Record Time [Min]:",
+                "Data Rate [mbps]:",
+                "Data Rate [MBps]:",
+                "Data per Hour [GB]:",
+                "Data per Hour [GB][HDE]:"
+            ]
+        )
+        XCTAssertEqual(presentation.values, Array(repeating: "—", count: 5))
+        XCTAssertEqual(presentation.message, "Enter a valid bitrate greater than zero.")
     }
 
     private func assertSuccess(

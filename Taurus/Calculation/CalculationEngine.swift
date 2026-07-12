@@ -31,7 +31,19 @@ struct DefaultCalculationEngine: CalculationEngine {
 
         let bitrateMBps = mode.bitrateMbps / 8
         let dataPerHourGB = bitrateMBps * 3600 / 1000
-        var recordMinutes = media.usableCapacityBytes / (bitrateMBps * 1_000_000) / 60
+        let recordingBytesPerSecond = mode.recordingBytesPerSecond ?? bitrateMBps * 1_000_000
+        let recordingCapacityBytes = mode.recordingCapacityBytes ?? media.usableCapacityBytes
+
+        guard recordingBytesPerSecond.isFinite,
+              recordingBytesPerSecond > 0,
+              recordingCapacityBytes.isFinite,
+              recordingCapacityBytes > 0,
+              mode.recordDurationSecondsOffset.isFinite else {
+            return .unsupported(.nonFiniteResult)
+        }
+
+        var recordMinutes = recordingCapacityBytes / recordingBytesPerSecond / 60
+        recordMinutes += mode.recordDurationSecondsOffset / 60
         if mode.halvesRecordMinutes {
             recordMinutes /= 2
         }

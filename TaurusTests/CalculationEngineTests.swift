@@ -88,7 +88,7 @@ final class CalculationEngineTests: XCTestCase {
         )
     }
 
-    func testAlexa35ARRIRawOpenGateUsesExplicitModeWithoutXbit() {
+    func testAlexa35ARRIRawOpenGateUsesExplicitMode() {
         assertMetrics(
             DefaultCalculationEngine().calculate(
                 alexa35Selection,
@@ -138,6 +138,50 @@ final class CalculationEngineTests: XCTestCase {
                 "70.000", "72.000", "75.000"
             ]
         )
+    }
+
+    func testEveryOfficialARRIModeHasAnExplicitCalculableRule() {
+        let catalog = ARRIRecordingCatalog()
+        let engine = DefaultCalculationEngine()
+
+        XCTAssertEqual(ARRIOfficialCatalogData.cameras.count, 11)
+        XCTAssertEqual(ARRIOfficialCatalogData.rules.count, 317)
+
+        for rule in ARRIOfficialCatalogData.rules {
+            guard let camera = ARRIOfficialCatalogData.cameras.first(where: {
+                $0.displayName == rule.cameraID
+            }),
+            let mediaID = rule.mediaLimits.keys.sorted().first,
+            let limit = rule.mediaLimits[mediaID],
+            let media = ARRIOfficialCatalogData.media.first(where: {
+                $0.sourceID == mediaID
+            }),
+            let frameRate = camera.sensorFrameRates.first(where: limit.contains) else {
+                XCTFail("Invalid official rule: (rule.cameraID) / (rule.codecID) / (rule.resolutionID)")
+                continue
+            }
+
+            let selection = CameraSelection(
+                brandID: "ARRI",
+                cameraID: rule.cameraID,
+                codecID: rule.codecID,
+                codecLevelID: nil,
+                formatID: nil,
+                resolutionID: rule.resolutionID,
+                frameRateID: String(format: "%.3f", frameRate),
+                mediaID: media.displayName
+            )
+
+            guard case let .success(metrics) = engine.calculate(selection, using: catalog) else {
+                XCTFail("Official rule is not calculable: (selection)")
+                continue
+            }
+
+            XCTAssertGreaterThan(metrics.recordMinutes, 0)
+            XCTAssertGreaterThan(metrics.bitrateMbps, 0)
+            XCTAssertTrue(metrics.recordMinutes.isFinite)
+            XCTAssertTrue(metrics.bitrateMbps.isFinite)
+        }
     }
 
     private struct InMemoryCatalog: CameraCatalog {

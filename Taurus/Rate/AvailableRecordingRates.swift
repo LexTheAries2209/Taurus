@@ -1,6 +1,6 @@
 import Foundation
 
-func AvailableRecordingRates(cameradata: CameraData) -> [String] {
+func AvailableRecordingRates(cameradata: CameraSelectionStore) -> [String] {
     if cameradata.CameraName.contains("CineAlta") {
         return CinealtaRate(cameradata: cameradata)
     }
@@ -12,9 +12,9 @@ func AvailableRecordingRates(cameradata: CameraData) -> [String] {
         return CanonCinemaRate(cameradata: cameradata)
     case "ARRI":
         let catalogRates = ARRIRecordingCatalog().frameRates(
-            for: CameraSelection(cameradata: cameradata)
+            for: CameraSelection(selectionStore: cameradata)
         )
-        return catalogRates.isEmpty ? ArriRates(cameradata: cameradata) : catalogRates
+        return catalogRates.isEmpty ? ["无选项"] : catalogRates
     case "Blackmagicdesign":
         return BMDRate(cameradata: cameradata)
     case "Apple":

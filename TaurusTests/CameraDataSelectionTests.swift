@@ -1,9 +1,9 @@
 import XCTest
 @testable import Taurus
 
-final class CameraDataSelectionTests: XCTestCase {
+final class CameraSelectionStoreTests: XCTestCase {
     func testChangingBrandClearsCameraAndAllDependentSelections() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.BrandName = "ARRI"
         data.CameraName = "ALEXA 35"
         data.Codec = "ARRIRAW"
@@ -32,7 +32,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testChangingCodecClearsOldResolutionAndDownstreamSelections() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.BrandName = "ARRI"
         data.CameraName = "ALEXA 35"
         data.Codec = "ARRIRAW"
@@ -53,7 +53,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testChangingResolutionClearsOldRateAndMedia() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.Resolution = "UHD S35"
         data.Rate = "24"
         data.Media = "Codex Compact Drive 2TB"
@@ -66,7 +66,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testChangingARRIMediaClearsOldRate() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.BrandName = "ARRI"
         data.Rate = "24"
         data.Media = "Codex Compact Drive 1TB"
@@ -78,7 +78,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testChangingDJIMediaPreservesSelectedRate() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.BrandName = "DJI"
         data.Rate = "24"
         data.Media = "CFexpress Type B 1TB"
@@ -90,7 +90,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testMediaDependentBrandCanCompleteMediaThenRateSelection() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
 
         data.selectBrand("ARRI")
         data.selectCamera("ALEXA 35")
@@ -104,7 +104,7 @@ final class CameraDataSelectionTests: XCTestCase {
     }
 
     func testChangingRateStillClearsMediaWhenRateDoesNotDependOnMedia() {
-        let data = CameraData()
+        let data = CameraSelectionStore()
         data.BrandName = "DJI"
         data.Rate = "23.976"
         data.Media = "DJI PROSSD 1TB"

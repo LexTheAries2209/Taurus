@@ -19,8 +19,8 @@ extension View {
         }
 }
 
-struct PickerView: View {
-    @ObservedObject var cameradata: CameraData
+struct CameraSelectionPanel: View {
+    @ObservedObject var cameradata: CameraSelectionStore
     let language: AppLanguage
     private let rowWidth: CGFloat = 530
     private var pickerWidth: CGFloat {
@@ -64,6 +64,27 @@ struct PickerView: View {
     private var mediaSelection: Binding<String> {
         Binding(get: { cameradata.Media }, set: { cameradata.selectMedia($0) })
     }
+
+    private var cameraOptions: [String] {
+        if cameradata.BrandName == "ARRI" {
+            return arriCatalog.cameraOptions()
+        }
+
+        return CameraModel[cameradata.BrandName] ?? ["无选项"]
+    }
+
+    private var codecOptions: [String] {
+        if cameradata.BrandName == "ARRI" {
+            let options = arriCatalog.codecOptions(for: cameradata.CameraName)
+            return options.isEmpty ? ["无选项"] : options
+        }
+
+        return CodecName[cameradata.CameraName] ?? ["无选项"]
+    }
+
+    private var arriCatalog: ARRIRecordingCatalog {
+        ARRIRecordingCatalog()
+    }
     
     var body: some View {
         VStack(spacing: 10) {
@@ -71,14 +92,10 @@ struct PickerView: View {
             createPicker(selection: brandSelection, label: copy.selectBrand, options: CameraModel.keys.sorted(), placeholderValue: "请选择品牌")
             
             //机型选择
-            if let models = CameraModel[cameradata.BrandName] {
-                if cameradata.BrandName == "[General]" {
-                    createPicker(selection: cameraSelection, label: copy.selectMode, options: models, placeholderValue: "请选择机型")
-                } else {
-                    createPicker(selection: cameraSelection, label: copy.selectCamera, options: models, placeholderValue: "请选择机型")
-                }
+            if cameradata.BrandName == "[General]" {
+                createPicker(selection: cameraSelection, label: copy.selectMode, options: cameraOptions, placeholderValue: "请选择机型", showNoOptionText: cameraOptions == ["无选项"])
             } else {
-                createPicker(selection: cameraSelection, label: copy.selectCamera, options: ["无选项"], placeholderValue: "请选择机型", showNoOptionText: true)
+                createPicker(selection: cameraSelection, label: copy.selectCamera, options: cameraOptions, placeholderValue: "请选择机型", showNoOptionText: cameraOptions == ["无选项"])
             }
             
             //手动编码模式
@@ -112,11 +129,7 @@ struct PickerView: View {
             else {
                 
                 //编码选择
-                if let codec = CodecName[cameradata.CameraName] { //选择码率
-                    createPicker(selection: codecSelection, label: copy.selectCodec, options: codec, placeholderValue: "请选择编码")
-                } else {
-                    createPicker(selection: codecSelection, label: copy.selectCodec, options: ["无选项"], placeholderValue: "请选择编码", showNoOptionText: true)
-                }
+                createPicker(selection: codecSelection, label: copy.selectCodec, options: codecOptions, placeholderValue: "请选择编码", showNoOptionText: codecOptions == ["无选项"])
                 
                 //Canon Intra级别选择
                 let canonCodecLevels = CanonCodecLevelOptions(cameradata: cameradata)
@@ -250,6 +263,11 @@ struct PickerView: View {
         let medias: [String]
         
         switch cameradata.BrandName {
+        case "ARRI":
+            let options = arriCatalog.mediaOptions(
+                for: CameraSelection(selectionStore: cameradata)
+            )
+            medias = options.isEmpty ? ["无选项"] : options
         case "Canon":
             medias = CanonMedia(cameradata: cameradata)
         case "SONY":

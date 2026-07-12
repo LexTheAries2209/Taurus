@@ -331,21 +331,21 @@ struct LocalizedCopy {
 
     func localizedOptionTitle(_ rawValue: String) -> String {
         switch rawValue {
-        case CameraData.brandPlaceholder:
+        case CameraSelectionStore.brandPlaceholder:
             return selectBrand
-        case CameraData.cameraPlaceholder:
+        case CameraSelectionStore.cameraPlaceholder:
             return selectCamera
-        case CameraData.codecPlaceholder:
+        case CameraSelectionStore.codecPlaceholder:
             return selectCodec
-        case CameraData.codecLevelPlaceholder:
+        case CameraSelectionStore.codecLevelPlaceholder:
             return selectCodecLevel
-        case CameraData.formatPlaceholder:
+        case CameraSelectionStore.formatPlaceholder:
             return selectFormat
-        case CameraData.resolutionPlaceholder:
+        case CameraSelectionStore.resolutionPlaceholder:
             return selectResolution
-        case CameraData.frameRatePlaceholder:
+        case CameraSelectionStore.frameRatePlaceholder:
             return selectRate
-        case CameraData.mediaPlaceholder:
+        case CameraSelectionStore.mediaPlaceholder:
             return selectMedia
         case "无选项":
             return noOption

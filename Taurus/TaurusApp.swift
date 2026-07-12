@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct TaurusApp: App {
+    @StateObject private var selectionStore = CameraSelectionStore()
+    @StateObject private var windowReference = WindowReferenceStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(
+                selectionStore: selectionStore,
+                windowReference: windowReference
+            )
         }
     }
 }

@@ -6,24 +6,18 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct ContentView: View {
-    
-    @StateObject var cameradata = CameraData()
+    @ObservedObject var selectionStore: CameraSelectionStore
+    @ObservedObject var windowReference: WindowReferenceStore
     @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
-    @State private var currentTime: String = ""
-    @State private var currentDate: String = ""
-    @State private var activeWindow: NSWindow?
-    @State private var screenshotErrorMessage = ""
-    @State private var showsScreenshotError = false
+
     private let windowContentSize = CGSize(width: 930, height: 540)
+
     private var language: AppLanguage {
         AppLanguage(rawValue: appLanguageRawValue) ?? .chinese
     }
-    private var copy: LocalizedCopy {
-        language.copy
-    }
+
     private var languageSelection: Binding<AppLanguage> {
         Binding(
             get: { language },
@@ -33,81 +27,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                Text(copy.calculatorTitle)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 3)
-                    .background(
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(Color(nsColor: .controlBackgroundColor))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color(nsColor: .separatorColor), lineWidth: 0.5)
-                            )
-                    )
+            CalculatorToolbar(
+                language: languageSelection,
+                windowReference: windowReference
+            )
 
-                HStack {
-                    Picker("", selection: languageSelection) {
-                        ForEach(AppLanguage.allCases) { language in
-                            Text(language.toggleTitle).tag(language)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .labelsHidden()
-                    .frame(width: 88)
-                    .help(copy.languageControlHelp)
-                    .padding(.leading, 14)
-
-                    Spacer()
-
-                    Button {
-                        saveScreenshot()
-                    } label: {
-                        Image(systemName: "camera")
-                            .imageScale(.medium)
-                    }
-                    .buttonStyle(.borderless)
-                    .help(copy.screenshotButton)
-                    .accessibilityLabel(copy.screenshotButton)
-                    .padding(.trailing, 14)
-                }
-            }
-            .padding(.top, 8)
-            .frame(height: 44)
-            
             Divider()
-            
-            VStack(spacing: 0) {
-                // 重置按键
-                Button(copy.resetButton) {
-                    resetAllData()
-                }
-                .keyboardShortcut("r", modifiers: [.command]) // 添加键盘快捷键
-                .padding(.top, 20)
-                
-                // 选择器与计算功能
-                HStack(alignment: .center) {
-                    VStack(spacing: 10) {
-                        // 选择器模块
-                        PickerView(cameradata: cameradata, language: language)
-                    }
-                    
-                    Spacer()
-                    
-                    // 计算数据输出模块
-                    DataOutput(cameradata: cameradata, language: language)
-                }
-                .padding(.top, 28)
-                
-                Spacer(minLength: 16)
-                
-                // 备注与说明模块
-                Comments(cameradata: cameradata, language: language)
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
+
+            CalculatorWorkspace(selectionStore: selectionStore, language: language)
         }
         .frame(
             minWidth: windowContentSize.width,
@@ -118,159 +45,20 @@ struct ContentView: View {
             maxHeight: windowContentSize.height
         )
         .background(Color(nsColor: .windowBackgroundColor))
-        .background(WindowReader { window in
-            activeWindow = window
-        })
-        .background(FixedWindowHeight(size: windowContentSize))
-        .alert(copy.screenshotErrorTitle, isPresented: $showsScreenshotError) {
-            Button(copy.okButton, role: .cancel) {}
-        } message: {
-            Text(screenshotErrorMessage)
-        }
-        //显示当前时间的文本，位于左上角
-//            HStack {
-//                Spacer()
-//                Text(currentDate)
-//                    .font(.headline)
-//                    .foregroundColor(.secondary)
-//                    .padding(.top, 35)
-//                    .padding(.trailing, 0)
-//                Text(currentTime)
-//                    .font(.headline)
-//                    .foregroundColor(.secondary)
-//                    .padding(.top, 35)
-//                    .padding(.trailing, 25)
-//
-//            }
-        .onAppear(perform: updateTime)
-    }
-
-    @MainActor
-    private func saveScreenshot() {
-        guard let activeWindow else {
-            screenshotErrorMessage = copy.screenshotErrorNoWindow
-            showsScreenshotError = true
-            return
-        }
-
-        do {
-            _ = try ScreenshotExport.saveWindowScreenshot(from: activeWindow, language: language)
-        } catch let exportError as ScreenshotExport.ExportError {
-            screenshotErrorMessage = exportError.message(in: language)
-            showsScreenshotError = true
-            return
-        } catch {
-            screenshotErrorMessage = error.localizedDescription
-            showsScreenshotError = true
-            return
-        }
-        showsScreenshotError = false
-    }
-    
-    // 将重置逻辑提取为独立函数
-    private func resetAllData() {
-        cameradata.reset()
-    }
-    
-    func updateTime() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm:ss"
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-
-            self.currentTime = timeFormatter.string(from: Date())
-            self.currentDate = dateFormatter.string(from: Date())
-        }
-        RunLoop.current.add(timer, forMode: .common)
-    }
-}
-
-struct WindowReader: NSViewRepresentable {
-    let onResolve: (NSWindow) -> Void
-
-    func makeNSView(context: Context) -> NSView {
-        let view = NSView(frame: .zero)
-        DispatchQueue.main.async {
-            resolveWindow(from: view)
-        }
-        return view
-    }
-
-    func updateNSView(_ nsView: NSView, context: Context) {
-        DispatchQueue.main.async {
-            resolveWindow(from: nsView)
-        }
-    }
-
-    private func resolveWindow(from view: NSView) {
-        guard let window = view.window else { return }
-        onResolve(window)
-    }
-}
-
-struct FixedWindowHeight: NSViewRepresentable {
-    let size: CGSize
-
-    func makeNSView(context: Context) -> NSView {
-        let view = NSView(frame: .zero)
-        DispatchQueue.main.async {
-            configureWindow(for: view, coordinator: context.coordinator)
-        }
-        return view
-    }
-
-    func updateNSView(_ nsView: NSView, context: Context) {
-        DispatchQueue.main.async {
-            configureWindow(for: nsView, coordinator: context.coordinator)
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(size: size)
-    }
-
-    private func configureWindow(for view: NSView, coordinator: Coordinator) {
-        guard let window = view.window else { return }
-
-        let currentContentWidth = max(window.contentView?.bounds.width ?? size.width, size.width)
-        let fixedContentSize = CGSize(width: currentContentWidth, height: size.height)
-        let fixedFrameSize = window.frameRect(forContentRect: CGRect(origin: .zero, size: fixedContentSize)).size
-        let minFrameSize = window.frameRect(forContentRect: CGRect(origin: .zero, size: size)).size
-
-        window.contentMinSize = CGSize(width: size.width, height: size.height)
-        window.contentMaxSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: size.height)
-        window.minSize = CGSize(width: minFrameSize.width, height: fixedFrameSize.height)
-        window.maxSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: fixedFrameSize.height)
-        coordinator.fixedFrameHeight = fixedFrameSize.height
-        coordinator.minimumFrameWidth = minFrameSize.width
-        window.delegate = coordinator
-        window.setContentSize(fixedContentSize)
-    }
-
-    class Coordinator: NSObject, NSWindowDelegate {
-        let size: CGSize
-        var fixedFrameHeight: CGFloat
-        var minimumFrameWidth: CGFloat
-
-        init(size: CGSize) {
-            self.size = size
-            self.fixedFrameHeight = size.height
-            self.minimumFrameWidth = size.width
-        }
-
-        func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-            NSSize(
-                width: max(frameSize.width, minimumFrameWidth),
-                height: fixedFrameHeight
+        .background(
+            WindowSizingBridge(
+                contentSize: windowContentSize,
+                windowReference: windowReference
             )
-        }
+        )
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(
+            selectionStore: CameraSelectionStore(),
+            windowReference: WindowReferenceStore()
+        )
     }
 }

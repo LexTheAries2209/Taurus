@@ -1,14 +1,14 @@
 enum RecordingCalculator {
-    static func calculate(_ data: CameraData) -> CalculationResult {
+    static func calculate(_ data: CameraSelectionStore) -> CalculationResult {
         calculate(data, using: [ARRIRecordingCatalog()])
     }
 
-    static func calculate(_ data: CameraData, using catalogs: [CameraCatalog]) -> CalculationResult {
-        if isPlaceholder(data.BrandName, CameraData.brandPlaceholder) {
+    static func calculate(_ data: CameraSelectionStore, using catalogs: [CameraCatalog]) -> CalculationResult {
+        if isPlaceholder(data.BrandName, CameraSelectionStore.brandPlaceholder) {
             return .incomplete([.brand])
         }
 
-        if isPlaceholder(data.CameraName, CameraData.cameraPlaceholder) {
+        if isPlaceholder(data.CameraName, CameraSelectionStore.cameraPlaceholder) {
             return .incomplete([.camera])
         }
 
@@ -25,9 +25,13 @@ enum RecordingCalculator {
             return .incomplete(missingFields)
         }
 
-        let selection = CameraSelection(cameradata: data)
+        let selection = CameraSelection(selectionStore: data)
         if let result = catalogResult(for: selection, using: catalogs) {
             return result
+        }
+
+        if data.BrandName == "ARRI" {
+            return .unsupported(.noMatchingRule)
         }
 
         let capacity = MediaCapacity(cameradata: data)
@@ -46,12 +50,12 @@ enum RecordingCalculator {
         return nil
     }
 
-    private static func calculateManualCodec(_ data: CameraData) -> CalculationResult {
+    private static func calculateManualCodec(_ data: CameraSelectionStore) -> CalculationResult {
         guard let bitrate = positiveFiniteDouble(data.ManualCodecSpeed) else {
             return .unsupported(.invalidManualBitrate)
         }
 
-        if isPlaceholder(data.Media, CameraData.mediaPlaceholder) {
+        if isPlaceholder(data.Media, CameraSelectionStore.mediaPlaceholder) {
             return .incomplete([.media])
         }
 
@@ -62,16 +66,16 @@ enum RecordingCalculator {
         )
     }
 
-    private static func calculateManualResolution(_ data: CameraData) -> CalculationResult {
+    private static func calculateManualResolution(_ data: CameraSelectionStore) -> CalculationResult {
         guard positiveFiniteDouble(data.ResolutionWidth) != nil,
               positiveFiniteDouble(data.ResolutionHeight) != nil else {
             return .unsupported(.invalidManualResolution)
         }
 
         var missingFields = Set<SelectionField>()
-        addIfPlaceholder(data.Codec, CameraData.codecPlaceholder, field: .codec, to: &missingFields)
-        addIfPlaceholder(data.Rate, CameraData.frameRatePlaceholder, field: .frameRate, to: &missingFields)
-        addIfPlaceholder(data.Media, CameraData.mediaPlaceholder, field: .media, to: &missingFields)
+        addIfPlaceholder(data.Codec, CameraSelectionStore.codecPlaceholder, field: .codec, to: &missingFields)
+        addIfPlaceholder(data.Rate, CameraSelectionStore.frameRatePlaceholder, field: .frameRate, to: &missingFields)
+        addIfPlaceholder(data.Media, CameraSelectionStore.mediaPlaceholder, field: .media, to: &missingFields)
 
         if !missingFields.isEmpty {
             return .incomplete(missingFields)
@@ -84,28 +88,28 @@ enum RecordingCalculator {
         )
     }
 
-    private static func missingFields(for data: CameraData) -> Set<SelectionField> {
+    private static func missingFields(for data: CameraSelectionStore) -> Set<SelectionField> {
         var fields = Set<SelectionField>()
-        addIfPlaceholder(data.Codec, CameraData.codecPlaceholder, field: .codec, to: &fields)
-        addIfPlaceholder(data.Resolution, CameraData.resolutionPlaceholder, field: .resolution, to: &fields)
-        addIfPlaceholder(data.Media, CameraData.mediaPlaceholder, field: .media, to: &fields)
+        addIfPlaceholder(data.Codec, CameraSelectionStore.codecPlaceholder, field: .codec, to: &fields)
+        addIfPlaceholder(data.Resolution, CameraSelectionStore.resolutionPlaceholder, field: .resolution, to: &fields)
+        addIfPlaceholder(data.Media, CameraSelectionStore.mediaPlaceholder, field: .media, to: &fields)
 
         if formatRequiredBrands.contains(data.BrandName) {
-            addIfPlaceholder(data.Format, CameraData.formatPlaceholder, field: .format, to: &fields)
+            addIfPlaceholder(data.Format, CameraSelectionStore.formatPlaceholder, field: .format, to: &fields)
         }
 
         if !CanonCodecLevelOptions(cameradata: data).isEmpty {
-            addIfPlaceholder(data.CanonCodecLevel, CameraData.codecLevelPlaceholder, field: .codecLevel, to: &fields)
+            addIfPlaceholder(data.CanonCodecLevel, CameraSelectionStore.codecLevelPlaceholder, field: .codecLevel, to: &fields)
         }
 
         if requiresIndependentFrameRate(data) {
-            addIfPlaceholder(data.Rate, CameraData.frameRatePlaceholder, field: .frameRate, to: &fields)
+            addIfPlaceholder(data.Rate, CameraSelectionStore.frameRatePlaceholder, field: .frameRate, to: &fields)
         }
 
         return fields
     }
 
-    private static func bitrateMbps(for data: CameraData) -> Double {
+    private static func bitrateMbps(for data: CameraSelectionStore) -> Double {
         switch data.BrandName {
         case "SONY" where !data.CameraName.contains("CineAlta"):
             return SonyCodecSpeed(cameradata: data)
@@ -135,7 +139,7 @@ enum RecordingCalculator {
     private static func makeResult(
         capacity: Double,
         bitrateMbps: Double,
-        data: CameraData
+        data: CameraSelectionStore
     ) -> CalculationResult {
         if capacity == 0 || bitrateMbps == 0 {
             return .unsupported(.noMatchingRule)
@@ -212,7 +216,7 @@ enum RecordingCalculator {
         value.isEmpty || value == placeholder || value == "无选项"
     }
 
-    private static func requiresIndependentFrameRate(_ data: CameraData) -> Bool {
+    private static func requiresIndependentFrameRate(_ data: CameraSelectionStore) -> Bool {
         if data.CameraName.contains("CineAlta") {
             return true
         }

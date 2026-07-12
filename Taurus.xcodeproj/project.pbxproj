@@ -30,6 +30,12 @@
 		A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000009 /* ARRIRecordingCatalog.swift */; };
 		A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */; };
 		A20000012E2100010000000E /* AvailableRecordingRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000D /* AvailableRecordingRates.swift */; };
+		A20000012E21000100000010 /* CameraSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000F /* CameraSelectionStore.swift */; };
+		A20000012E21000100000012 /* CalculatorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000011 /* CalculatorToolbar.swift */; };
+		A20000012E21000100000014 /* CalculatorWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000013 /* CalculatorWorkspace.swift */; };
+		A20000012E21000100000016 /* RecordingMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000015 /* RecordingMetricsView.swift */; };
+		A20000012E21000100000018 /* WindowBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000017 /* WindowBridge.swift */; };
+		A20000012E2100010000001D /* ARRIOfficialCatalogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */; };
 		A10000012E20000100000019 /* RecordingMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000018 /* RecordingMetrics.swift */; };
 		A10000012E2000010000001B /* RecordingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000001A /* RecordingCalculator.swift */; };
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
@@ -78,8 +84,6 @@
 		58D3B7F82B0F4F82001C8FA7 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B7F72B0F4F82001C8FA7 /* Media.swift */; };
 		58ECDDF72B14D57C00B049BD /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ECDDF62B14D57C00B049BD /* Count.swift */; };
 		58F4E8E92B2A084C00A36613 /* PanaFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4E8E82B2A084C00A36613 /* PanaFormat.swift */; };
-		58F4E8EB2B2A089C00A36613 /* ARRIRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4E8EA2B2A089C00A36613 /* ARRIRate.swift */; };
-		58F4E8ED2B2A093B00A36613 /* func_xbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4E8EC2B2A093B00A36613 /* func_xbit.swift */; };
 		58FE691A2BB1488B008ECC8D /* DataOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE69192BB1488B008ECC8D /* DataOutput.swift */; };
 		58FE691C2BB14B44008ECC8D /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE691B2BB14B44008ECC8D /* Comments.swift */; };
 		C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000001 /* KinefinityFormat.swift */; };
@@ -109,6 +113,12 @@
 		A20000012E21000100000009 /* ARRIRecordingCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIRecordingCatalog.swift; sourceTree = "<group>"; };
 		A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionAdapter.swift; sourceTree = "<group>"; };
 		A20000012E2100010000000D /* AvailableRecordingRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableRecordingRates.swift; sourceTree = "<group>"; };
+		A20000012E2100010000000F /* CameraSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelectionStore.swift; sourceTree = "<group>"; };
+		A20000012E21000100000011 /* CalculatorToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorToolbar.swift; sourceTree = "<group>"; };
+		A20000012E21000100000013 /* CalculatorWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorWorkspace.swift; sourceTree = "<group>"; };
+		A20000012E21000100000015 /* RecordingMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetricsView.swift; sourceTree = "<group>"; };
+		A20000012E21000100000017 /* WindowBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowBridge.swift; sourceTree = "<group>"; };
+		A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIOfficialCatalogData.swift; sourceTree = "<group>"; };
 		A10000012E20000100000018 /* RecordingMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetrics.swift; sourceTree = "<group>"; };
 		A10000012E2000010000001A /* RecordingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculator.swift; sourceTree = "<group>"; };
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
@@ -159,8 +169,6 @@
 		58D3B7F72B0F4F82001C8FA7 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		58ECDDF62B14D57C00B049BD /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
 		58F4E8E82B2A084C00A36613 /* PanaFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaFormat.swift; sourceTree = "<group>"; };
-		58F4E8EA2B2A089C00A36613 /* ARRIRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIRate.swift; sourceTree = "<group>"; };
-		58F4E8EC2B2A093B00A36613 /* func_xbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func_xbit.swift; sourceTree = "<group>"; };
 		58FE69192BB1488B008ECC8D /* DataOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOutput.swift; sourceTree = "<group>"; };
 		58FE691B2BB14B44008ECC8D /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000001 /* KinefinityFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityFormat.swift; sourceTree = "<group>"; };
@@ -260,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				A20000012E2100010000000D /* AvailableRecordingRates.swift */,
-				58F4E8EA2B2A089C00A36613 /* ARRIRate.swift */,
 				588C39D42C31769D008DC656 /* GeneralRate.swift */,
 				5839AA3F2BEDC09D0025C74C /* AppleRate.swift */,
 				5839AA412BEDC4A90025C74C /* CinealtaRate.swift */,
@@ -272,6 +279,32 @@
 				C0DEF0012E11000100000005 /* KinefinityRate.swift */,
 			);
 			path = Rate;
+			sourceTree = "<group>";
+		};
+		A20000012E21000100000019 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A20000012E2100010000000F /* CameraSelectionStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		A20000012E2100010000001A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000012E21000100000011 /* CalculatorToolbar.swift */,
+				A20000012E21000100000013 /* CalculatorWorkspace.swift */,
+				A20000012E21000100000015 /* RecordingMetricsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A20000012E2100010000001B /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				A20000012E21000100000017 /* WindowBridge.swift */,
+			);
+			path = AppKit;
 			sourceTree = "<group>";
 		};
 		5864C05D2A7000D900611BD0 = {
@@ -302,6 +335,9 @@
 				C0DEF0032E13000100000001 /* ScreenshotExport.swift */,
 				C0DEF0042E13000200000001 /* Localization.swift */,
 				A10000012E20000100000014 /* PickerSelectionNormalizer.swift */,
+				A20000012E21000100000019 /* Stores */,
+				A20000012E2100010000001A /* Views */,
+				A20000012E2100010000001B /* AppKit */,
 				A10000012E2000010000001C /* Calculation */,
 				58C9B8122C1A980000788819 /* PickerView.swift */,
 				58D3B7F52B0F4F30001C8FA7 /* Brand_Camera.swift */,
@@ -310,7 +346,6 @@
 				58ECDDF62B14D57C00B049BD /* Count.swift */,
 				58FE69192BB1488B008ECC8D /* DataOutput.swift */,
 				58FE691B2BB14B44008ECC8D /* Comments.swift */,
-				58F4E8EC2B2A093B00A36613 /* func_xbit.swift */,
 				5839AA2C2BEDB99D0025C74C /* Resolution */,
 				5839AA312BEDBA140025C74C /* Media */,
 				5839AA3C2BEDBEB30025C74C /* Rate */,
@@ -327,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000012E21000100000009 /* ARRIRecordingCatalog.swift */,
+				A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */,
 				A20000012E21000100000003 /* CameraSelection.swift */,
 				A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */,
 				A20000012E21000100000005 /* RecordingMode.swift */,
@@ -478,12 +514,17 @@
 				A20000012E21000100000006 /* RecordingMode.swift in Sources */,
 				A20000012E21000100000008 /* CalculationEngine.swift in Sources */,
 				A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */,
+				A20000012E2100010000001D /* ARRIOfficialCatalogData.swift in Sources */,
 				A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */,
 				A20000012E2100010000000E /* AvailableRecordingRates.swift in Sources */,
+				A20000012E21000100000010 /* CameraSelectionStore.swift in Sources */,
+				A20000012E21000100000012 /* CalculatorToolbar.swift in Sources */,
+				A20000012E21000100000014 /* CalculatorWorkspace.swift in Sources */,
+				A20000012E21000100000016 /* RecordingMetricsView.swift in Sources */,
+				A20000012E21000100000018 /* WindowBridge.swift in Sources */,
 				5839AA462BEDCC100025C74C /* DSMC3Rate.swift in Sources */,
 				58F4E8E92B2A084C00A36613 /* PanaFormat.swift in Sources */,
 				582EA0432E100001001BD46A /* FujiFormat.swift in Sources */,
-				58F4E8EB2B2A089C00A36613 /* ARRIRate.swift in Sources */,
 				5839AA442BEDC9B80025C74C /* DjiRate.swift in Sources */,
 				582EA0472E100001001BD46A /* FujiRate.swift in Sources */,
 				58D3B7F62B0F4F30001C8FA7 /* Brand_Camera.swift in Sources */,
@@ -531,7 +572,6 @@
 				5839AA402BEDC09D0025C74C /* AppleRate.swift in Sources */,
 				58FE691C2BB14B44008ECC8D /* Comments.swift in Sources */,
 				5864C06A2A7000D900611BD0 /* TaurusApp.swift in Sources */,
-				58F4E8ED2B2A093B00A36613 /* func_xbit.swift in Sources */,
 				5839AA422BEDC4A90025C74C /* CinealtaRate.swift in Sources */,
 				588C39D72C31788B008DC656 /* GeneralCount.swift in Sources */,
 				5839AA4E2BEF038E0025C74C /* REDResolution.swift in Sources */,
