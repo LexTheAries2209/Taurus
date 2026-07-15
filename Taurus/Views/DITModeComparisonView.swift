@@ -3,8 +3,11 @@ import SwiftUI
 struct DITModeComparisonView: View {
   let project: DITProject
   let itemIDs: Set<UUID>
+  let language: AppLanguage
 
   @Environment(\.presentationMode) private var presentationMode
+
+  private var copy: DITPlannerCopy { language.copy.ditPlanner }
 
   private var summaryByID: [UUID: PlanItemSummary] {
     Dictionary(
@@ -42,9 +45,9 @@ struct DITModeComparisonView: View {
   private var comparisonToolbar: some View {
     HStack(spacing: 12) {
       VStack(alignment: .leading, spacing: 2) {
-        Text("模式比较")
+        Text(copy.text("模式比较"))
           .font(.headline)
-        Text("\(items.count) 个模式")
+        Text(copy.modeCount(items.count))
           .font(.caption)
           .foregroundColor(.secondary)
       }
@@ -54,7 +57,7 @@ struct DITModeComparisonView: View {
       Button {
         presentationMode.wrappedValue.dismiss()
       } label: {
-        Label("关闭", systemImage: "xmark")
+        Label(copy.text("关闭"), systemImage: "xmark")
       }
       .keyboardShortcut(.cancelAction)
       .buttonStyle(.bordered)
@@ -75,32 +78,37 @@ struct DITModeComparisonView: View {
 
       Divider()
 
-      ComparisonValue(label: "摄影机", value: item.cameraLabel)
-      ComparisonValue(label: "编码", value: item.selection.codecID)
+      ComparisonValue(label: copy.text("摄影机"), value: item.cameraLabel)
+      ComparisonValue(label: copy.text("编码"), value: item.selection.codecID)
       ComparisonValue(label: "HDE", value: hdeDescription(item))
-      ComparisonValue(label: "分辨率", value: item.selection.resolutionID)
-      ComparisonValue(label: "帧率", value: item.selection.frameRateID)
-      ComparisonValue(label: "码率", value: "\(formatNumber(item.bitrateMbps)) Mbps")
-      ComparisonValue(label: "介质", value: item.media.id)
+      ComparisonValue(label: copy.text("分辨率"), value: item.selection.resolutionID)
+      ComparisonValue(label: copy.text("帧率"), value: item.selection.frameRateID)
+      ComparisonValue(label: copy.text("码率"), value: "\(formatNumber(item.bitrateMbps)) Mbps")
+      ComparisonValue(label: copy.text("介质"), value: item.media.id)
       ComparisonValue(
-        label: "读卡器",
+        label: copy.text("读卡器"),
         value: summary.map { "\(formatNumber($0.readerSpeedMBps)) MB/s" } ?? "—"
       )
       ComparisonValue(
-        label: "有效速度",
+        label: copy.text("有效速度"),
         value: summary.map { "\(formatNumber($0.effectiveTransferSpeedMBps)) MB/s" } ?? "—"
       )
-      ComparisonValue(label: "单机每日", value: formatBytes(summary?.rawDataPerCameraPerDayBytes))
-      ComparisonValue(label: "全部每日", value: formatBytes(summary?.rawDataPerDayBytes))
-      ComparisonValue(label: "项目原始量", value: formatBytes(summary?.rawDataBytes))
-      ComparisonValue(label: "总存储", value: formatBytes(summary?.storageBytes))
-      ComparisonValue(label: "卡次", value: summary.map { "\($0.cardCycles) 次" } ?? "—")
+      ComparisonValue(label: copy.text("单机每日"), value: formatBytes(summary?.rawDataPerCameraPerDayBytes))
+      ComparisonValue(label: copy.text("全部每日"), value: formatBytes(summary?.rawDataPerDayBytes))
+      ComparisonValue(label: copy.text("项目原始量"), value: formatBytes(summary?.rawDataBytes))
+      ComparisonValue(label: copy.text("总存储"), value: formatBytes(summary?.storageBytes))
       ComparisonValue(
-        label: "每张卡时长", value: summary.map { "\(formatNumber($0.recordMinutesPerMedia)) 分钟" } ?? "—"
+        label: copy.text("卡次"),
+        value: summary.map { "\($0.cardCycles) \(copy.text("次"))" } ?? "—"
       )
       ComparisonValue(
-        label: "卸载时间",
-        value: summary.map { "\(formatNumber($0.transferSeconds / 3_600)) 小时" } ?? "—")
+        label: copy.text("每张卡时长"),
+        value: summary.map { "\(formatNumber($0.recordMinutesPerMedia)) \(copy.text("分钟"))" } ?? "—"
+      )
+      ComparisonValue(
+        label: copy.text("卸载时间"),
+        value: summary.map { "\(formatNumber($0.transferSeconds / 3_600)) \(copy.text("小时"))" } ?? "—"
+      )
     }
     .padding(12)
     .frame(width: 220, alignment: .topLeading)
@@ -122,9 +130,11 @@ struct DITModeComparisonView: View {
 
   private func hdeDescription(_ item: PlanItem) -> String {
     if let multiplier = item.hdeDataPerHourMultiplier {
-      return "已启用（\(formatNumber(multiplier * 100))%）"
+      return copy.hdeState(percent: formatNumber(multiplier * 100))
     }
-    return ARRIHDE.multiplier(for: item.selection) == nil ? "不适用" : "未启用"
+    return ARRIHDE.multiplier(for: item.selection) == nil
+      ? copy.text("不适用")
+      : copy.text("未启用")
   }
 }
 

@@ -504,3 +504,199 @@ struct LocalizedCopy {
         return lines
     }
 }
+
+extension LocalizedCopy {
+    var plannerTitle: String {
+        language == .chinese ? "DIT 项目规划" : "DIT Project Planner"
+    }
+
+    var ditPlanner: DITPlannerCopy {
+        DITPlannerCopy(language: language)
+    }
+}
+
+struct DITPlannerCopy {
+    let language: AppLanguage
+
+    func text(_ chinese: String) -> String {
+        guard language == .english else { return chinese }
+        switch chinese {
+        case "暂无项目": return "No Projects"
+        case "新建一个项目开始多机位规划": return "Create a project to start multi-camera planning"
+        case "项目": return "Projects"
+        case "新建项目": return "New Project"
+        case "项目与方案": return "Projects & Plans"
+        case "未命名项目": return "Untitled Project"
+        case "复制方案": return "Duplicate Plan"
+        case "删除项目": return "Delete Project"
+        case "收藏模式": return "Favorites"
+        case "暂无收藏": return "No Favorites"
+        case "添加到当前项目": return "Add to Current Project"
+        case "删除收藏": return "Delete Favorite"
+        case "删除": return "Delete"
+        case "项目名称": return "Project Name"
+        case "比较已勾选的 2 至 4 个模式": return "Compare 2 to 4 selected modes"
+        case "模式比较": return "Compare Modes"
+        case "导出 JSON": return "Export JSON"
+        case "导出 CSV": return "Export CSV"
+        case "导出 PDF": return "Export PDF"
+        case "导出项目": return "Export Project"
+        case "导入项目 JSON": return "Import Project JSON"
+        case "每日原始量": return "Daily Raw Data"
+        case "项目原始量": return "Project Raw Data"
+        case "备份后存储": return "Storage After Backups"
+        case "每日双备份": return "Daily Double Backup"
+        case "可完成": return "Ready"
+        case "需调整": return "Needs Adjustment"
+        case "机位规划": return "Camera Plan"
+        case "机位": return "Camera"
+        case "台数": return "Count"
+        case "项目存储": return "Project Storage"
+        case "选择机位后在右侧调整参数": return "Select a camera to adjust its parameters in the inspector"
+        case "尚未添加机位": return "No Cameras Added"
+        case "从下方选择摄影机和录制模式": return "Select a camera and recording mode below"
+        case "复制机位": return "Duplicate Camera"
+        case "上移": return "Move Up"
+        case "下移": return "Move Down"
+        case "移出比较": return "Remove from Compare"
+        case "加入比较": return "Add to Compare"
+        case "取消收藏": return "Remove Favorite"
+        case "重置拍摄参数": return "Reset Shooting Parameters"
+        case "为项目添加一个新的摄影机录制模式": return "Add a camera recording mode to the project"
+        case "添加机位": return "Add Camera"
+        case "机位检查器": return "Camera Inspector"
+        case "录制模式": return "Recording Mode"
+        case "摄影机": return "Camera"
+        case "编码": return "Codec"
+        case "幅面": return "Format"
+        case "格式": return "Resolution"
+        case "帧率": return "Frame Rate"
+        case "码率": return "Bitrate"
+        case "HDE 数据码率": return "HDE Data Rate"
+        case "分辨率": return "Resolution"
+        case "总存储": return "Total Storage"
+        case "介质": return "Media"
+        case "使用 HDE 无损压缩": return "Use HDE Lossless Compression"
+        case "修改录制模式": return "Edit Recording Mode"
+        case "拍摄参数": return "Shooting Parameters"
+        case "机位名称": return "Camera Name"
+        case "机位备注": return "Camera Note"
+        case "主机位、斯坦尼康等": return "Main camera, Steadicam, etc."
+        case "摄影机数量": return "Camera Count"
+        case "每日开机": return "Power-on Hours"
+        case "拍摄天数": return "Shoot Days"
+        case "保留副本": return "Backup Copies"
+        case "实际录制比例": return "Recording Ratio"
+        case "安全余量": return "Safety Margin"
+        case "规划结果": return "Plan Results"
+        case "单机每日": return "Per Camera / Day"
+        case "全部每日": return "All Cameras / Day"
+        case "单机全项目": return "Per Camera / Project"
+        case "卡次": return "Card Cycles"
+        case "读卡器": return "Reader"
+        case "有效速度": return "Effective Speed"
+        case "每张卡时长": return "Time per Card"
+        case "卸载时间": return "Offload Time"
+        case "选择一个机位": return "Select a Camera"
+        case "录制模式、拍摄参数与规划结果将在这里显示":
+            return "Recording mode, shooting parameters, and plan results appear here"
+        case "传输配置": return "Transfer Configuration"
+        case "目标盘": return "Target Disk"
+        case "每日窗口": return "Daily Window"
+        case "台": return "units"
+        case "小时": return "hours"
+        case "天": return "days"
+        case "份": return "copies"
+        case "次": return "cycles"
+        case "分钟": return "minutes"
+        case "不适用": return "Not Applicable"
+        case "未启用": return "Disabled"
+        case "调整列宽": return "Resize Column"
+        case "拖动调整列宽": return "Drag to resize column"
+        case "操作失败": return "Operation Failed"
+        case "好": return "OK"
+        case "继续选择": return "Continue selecting"
+        case "当前录制组合不可用于项目规划，请更换录制模式":
+            return "This recording combination is unavailable for project planning. Choose another mode."
+        case "当前模式不支持项目规划": return "This mode is not supported for project planning"
+        case "请完成录制模式选择": return "Complete the recording mode selection"
+        case "录制模式预览": return "Recording Mode Preview"
+        case "每卡时长": return "Time per Card"
+        case "选择摄影机和录制模式": return "Select Camera and Recording Mode"
+        case "确认机位信息": return "Confirm Camera Info"
+        case "搜索摄影机": return "Search Cameras"
+        case "完成": return "Done"
+        case "取消": return "Cancel"
+        case "关闭": return "Close"
+        case "例如：A 机位 - 主摄影机": return "e.g. A Camera - Main Camera"
+        case "添加到项目": return "Add to Project"
+        case "保存修改": return "Save Changes"
+        case "修改摄影机、编码、格式、分辨率、帧率或介质":
+            return "Modify the camera, codec, format, resolution, frame rate, or media"
+        case "选择摄影机的完整录制模式，再加入当前项目":
+            return "Select a complete recording mode, then add it to the current project"
+        case "录制模式完整，可以添加": return "Recording mode complete, ready to add"
+        case "录制模式完整，可以保存": return "Recording mode complete, ready to save"
+        case "品牌或机型": return "Brand or camera model"
+        case "工作区": return "Workspace"
+        case "切换工作区": return "Switch Workspace"
+        default: return chinese
+        }
+    }
+
+    func itemCount(_ count: Int) -> String {
+        language == .chinese ? "\(count) 个机位" : "\(count) camera\(count == 1 ? "" : "s")"
+    }
+
+    func selectedModes(_ count: Int) -> String {
+        language == .chinese ? "已选 \(count) / 4" : "Selected \(count) / 4"
+    }
+
+    func modeCount(_ count: Int) -> String {
+        language == .chinese ? "\(count) 个模式" : "\(count) mode\(count == 1 ? "" : "s")"
+    }
+
+    func hdeDataDescription(percent: String) -> String {
+        language == .chinese
+            ? "项目数据量约为 ARRIRAW 的 \(percent)%"
+            : "Project data is approximately \(percent)% of ARRIRAW"
+    }
+
+    func hdeState(percent: String) -> String {
+        language == .chinese ? "已启用（\(percent)%）" : "Enabled (\(percent)%)"
+    }
+
+    func missingFieldName(_ field: SelectionField) -> String {
+        switch (language, field) {
+        case (.chinese, .brand): return "品牌"
+        case (.english, .brand): return "brand"
+        case (.chinese, .camera): return "摄影机"
+        case (.english, .camera): return "camera"
+        case (.chinese, .codec): return "编码"
+        case (.english, .codec): return "codec"
+        case (.chinese, .codecLevel): return "级别"
+        case (.english, .codecLevel): return "codec level"
+        case (.chinese, .format): return "幅面"
+        case (.english, .format): return "format"
+        case (.chinese, .resolution): return "分辨率"
+        case (.english, .resolution): return "resolution"
+        case (.chinese, .frameRate): return "帧率"
+        case (.english, .frameRate): return "frame rate"
+        case (.chinese, .media): return "介质"
+        case (.english, .media): return "media"
+        case (.chinese, .manualBitrate): return "手动码率"
+        case (.english, .manualBitrate): return "manual bitrate"
+        case (.chinese, .manualWidth): return "宽度"
+        case (.english, .manualWidth): return "width"
+        case (.chinese, .manualHeight): return "高度"
+        case (.english, .manualHeight): return "height"
+        }
+    }
+
+    func hdeApplicableState(isApplicable: Bool) -> String {
+        if isApplicable {
+            return text("未启用")
+        }
+        return text("不适用")
+    }
+}

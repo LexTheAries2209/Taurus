@@ -25,10 +25,18 @@ enum CameraSearchIndex {
 }
 
 struct CameraSearchView: View {
+    let language: AppLanguage
     let onSelect: (CameraSearchEntry) -> Void
 
     @Environment(\.presentationMode) private var presentationMode
     @State private var query = ""
+
+    private var copy: DITPlannerCopy { language.copy.ditPlanner }
+
+    init(language: AppLanguage = .chinese, onSelect: @escaping (CameraSearchEntry) -> Void) {
+        self.language = language
+        self.onSelect = onSelect
+    }
 
     private var filteredEntries: [CameraSearchEntry] {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -42,10 +50,10 @@ struct CameraSearchView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("搜索摄影机")
+                Text(copy.text("搜索摄影机"))
                     .font(.headline)
                 Spacer()
-                Button("完成") { presentationMode.wrappedValue.dismiss() }
+                Button(copy.text("完成")) { presentationMode.wrappedValue.dismiss() }
             }
             .padding(12)
 
@@ -73,7 +81,7 @@ struct CameraSearchView: View {
                 }
                 .buttonStyle(.plain)
             }
-            .searchable(text: $query, placement: .toolbar, prompt: "品牌或机型")
+            .searchable(text: $query, placement: .toolbar, prompt: copy.text("品牌或机型"))
         }
         .frame(minWidth: 520, minHeight: 420)
     }

@@ -54,6 +54,7 @@ enum DITPlanItemBuilder {
 
 struct DITAddPlanItemView: View {
   let existingItem: PlanItem?
+  let language: AppLanguage
   let onSave: (PlanItem) -> Void
 
   @Environment(\.presentationMode) private var presentationMode
@@ -62,13 +63,20 @@ struct DITAddPlanItemView: View {
   @State private var usesHDE: Bool
   @State private var showsCameraSearch = false
 
-  init(existingItem: PlanItem? = nil, onSave: @escaping (PlanItem) -> Void) {
+  private var copy: DITPlannerCopy { language.copy.ditPlanner }
+
+  init(
+    existingItem: PlanItem? = nil,
+    language: AppLanguage = .chinese,
+    onSave: @escaping (PlanItem) -> Void
+  ) {
     let draftSelection = CameraSelectionStore()
     if let existingItem {
       draftSelection.restore(existingItem.selection)
     }
 
     self.existingItem = existingItem
+    self.language = language
     self.onSave = onSave
     _draftSelection = StateObject(wrappedValue: draftSelection)
     _itemName = State(initialValue: existingItem?.name ?? "")
@@ -101,13 +109,13 @@ struct DITAddPlanItemView: View {
     VStack(spacing: 0) {
       HStack(spacing: 12) {
         VStack(alignment: .leading, spacing: 3) {
-          Text(existingItem == nil ? "添加机位" : "修改录制模式")
+          Text(copy.text(existingItem == nil ? "添加机位" : "修改录制模式"))
             .font(.title2)
             .fontWeight(.semibold)
           Text(
             existingItem == nil
-              ? "选择摄影机的完整录制模式，再加入当前项目"
-              : "修改摄影机、编码、格式、分辨率、帧率或介质"
+              ? copy.text("选择摄影机的完整录制模式，再加入当前项目")
+              : copy.text("修改摄影机、编码、格式、分辨率、帧率或介质")
           )
             .font(.caption)
             .foregroundColor(.secondary)
@@ -118,12 +126,12 @@ struct DITAddPlanItemView: View {
         Button {
           showsCameraSearch = true
         } label: {
-          Label("搜索摄影机", systemImage: "magnifyingglass")
+          Label(copy.text("搜索摄影机"), systemImage: "magnifyingglass")
         }
         .buttonStyle(.bordered)
         .controlSize(.large)
 
-        Button("取消") {
+        Button(copy.text("取消")) {
           presentationMode.wrappedValue.dismiss()
         }
         .keyboardShortcut(.cancelAction)
@@ -135,20 +143,20 @@ struct DITAddPlanItemView: View {
 
       ScrollView {
         VStack(alignment: .leading, spacing: 18) {
-          AddPlanStepHeader(number: "1", title: "选择摄影机和录制模式")
+          AddPlanStepHeader(number: "1", title: copy.text("选择摄影机和录制模式"))
 
-          CameraSelectionPanel(cameradata: draftSelection, language: .chinese)
+          CameraSelectionPanel(cameradata: draftSelection, language: language)
             .frame(width: 570)
             .padding(.horizontal, 8)
 
           Divider()
 
-          AddPlanStepHeader(number: "2", title: "确认机位信息")
+          AddPlanStepHeader(number: "2", title: copy.text("确认机位信息"))
 
           HStack(spacing: 12) {
-            Text("机位名称")
+            Text(copy.text("机位名称"))
               .foregroundColor(.secondary)
-            TextField("例如：A 机位 - 主摄影机", text: $itemName)
+            TextField(copy.text("例如：A 机位 - 主摄影机"), text: $itemName)
               .textFieldStyle(.roundedBorder)
               .frame(width: 330)
           }
@@ -156,8 +164,8 @@ struct DITAddPlanItemView: View {
           if let hdeMultiplier {
             HStack(alignment: .center, spacing: 10) {
               VStack(alignment: .leading, spacing: 2) {
-                Text("使用 HDE 无损压缩")
-                Text("项目数据量约为 ARRIRAW 的 \(formatNumber(hdeMultiplier * 100))%")
+                Text(copy.text("使用 HDE 无损压缩"))
+                Text(copy.hdeDataDescription(percent: formatNumber(hdeMultiplier * 100)))
                   .font(.caption)
                   .foregroundColor(.secondary)
               }
@@ -183,7 +191,7 @@ struct DITAddPlanItemView: View {
         Spacer()
         Button(action: saveItem) {
           Label(
-            existingItem == nil ? "添加到项目" : "保存修改",
+            copy.text(existingItem == nil ? "添加到项目" : "保存修改"),
             systemImage: existingItem == nil ? "plus" : "checkmark"
           )
         }
@@ -196,7 +204,7 @@ struct DITAddPlanItemView: View {
     }
     .frame(minWidth: 720, idealWidth: 720, minHeight: 690, idealHeight: 720)
     .sheet(isPresented: $showsCameraSearch) {
-      CameraSearchView { entry in
+      CameraSearchView(language: language) { entry in
         draftSelection.selectBrand(entry.brandID)
         draftSelection.selectCamera(entry.cameraID)
       }
@@ -211,21 +219,24 @@ struct DITAddPlanItemView: View {
     switch calculation {
     case .success(let metrics):
       VStack(alignment: .leading, spacing: 10) {
-        Text("录制模式预览")
+        Text(copy.text("录制模式预览"))
           .font(.headline)
         HStack(alignment: .top, spacing: 12) {
           AddPlanMetric(
-            title: "摄影机", value: "\(draftSelection.BrandName) \(draftSelection.CameraName)")
+            title: copy.text("摄影机"), value: "\(draftSelection.BrandName) \(draftSelection.CameraName)")
             .frame(width: 230, alignment: .leading)
           AddPlanMetric(
-            title: usesHDE ? "HDE 数据码率" : "码率",
+            title: copy.text(usesHDE ? "HDE 数据码率" : "码率"),
             value:
               "\(formatNumber(metrics.bitrateMbps * (usesHDE ? (hdeMultiplier ?? 1) : 1))) Mbps"
           )
           .frame(width: 145, alignment: .leading)
-          AddPlanMetric(title: "介质", value: draftSelection.Media)
+          AddPlanMetric(title: copy.text("介质"), value: draftSelection.Media)
             .frame(width: 135, alignment: .leading)
-          AddPlanMetric(title: "每卡时长", value: "\(formatNumber(metrics.recordMinutes)) 分钟")
+          AddPlanMetric(
+            title: copy.text("每卡时长"),
+            value: "\(formatNumber(metrics.recordMinutes)) \(copy.text("分钟"))"
+          )
             .frame(width: 120, alignment: .leading)
         }
       }
@@ -233,13 +244,13 @@ struct DITAddPlanItemView: View {
     case .incomplete(let fields):
       AddPlanMessage(
         systemImage: "arrow.right.circle",
-        text: "继续选择：\(missingFieldNames(fields))"
+        text: "\(copy.text("继续选择"))\(language == .chinese ? "：" : ": ")\(missingFieldNames(fields))"
       )
 
     case .unsupported:
       AddPlanMessage(
         systemImage: "exclamationmark.triangle",
-        text: "当前录制组合不可用于项目规划，请更换录制模式"
+        text: copy.text("当前录制组合不可用于项目规划，请更换录制模式")
       )
     }
   }
@@ -249,15 +260,15 @@ struct DITAddPlanItemView: View {
     switch calculation {
     case .success:
       Label(
-        existingItem == nil ? "录制模式完整，可以添加" : "录制模式完整，可以保存",
+        copy.text(existingItem == nil ? "录制模式完整，可以添加" : "录制模式完整，可以保存"),
         systemImage: "checkmark.circle"
       )
         .foregroundColor(.green)
     case .incomplete:
-      Label("请完成录制模式选择", systemImage: "info.circle")
+      Label(copy.text("请完成录制模式选择"), systemImage: "info.circle")
         .foregroundColor(.secondary)
     case .unsupported:
-      Label("当前模式不支持项目规划", systemImage: "exclamationmark.triangle")
+      Label(copy.text("当前模式不支持项目规划"), systemImage: "exclamationmark.triangle")
         .foregroundColor(.orange)
     }
   }
@@ -275,24 +286,15 @@ struct DITAddPlanItemView: View {
   }
 
   private func missingFieldNames(_ fields: Set<SelectionField>) -> String {
-    let names: [(SelectionField, String)] = [
-      (.brand, "品牌"),
-      (.camera, "摄影机"),
-      (.codec, "编码"),
-      (.codecLevel, "级别"),
-      (.format, "幅面"),
-      (.resolution, "分辨率"),
-      (.frameRate, "帧率"),
-      (.media, "介质"),
-      (.manualBitrate, "手动码率"),
-      (.manualWidth, "宽度"),
-      (.manualHeight, "高度"),
+    let fieldsInOrder: [SelectionField] = [
+      .brand, .camera, .codec, .codecLevel, .format, .resolution, .frameRate, .media,
+      .manualBitrate, .manualWidth, .manualHeight,
     ]
     return
-      names
-      .filter { fields.contains($0.0) }
-      .map(\.1)
-      .joined(separator: "、")
+      fieldsInOrder
+      .filter { fields.contains($0) }
+      .map(copy.missingFieldName)
+      .joined(separator: language == .chinese ? "、" : ", ")
   }
 }
 

@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 struct DITPlannerView: View {
   @ObservedObject var projectStore: DITProjectStore
   @ObservedObject var favoriteStore: DITFavoriteStore
+  let language: AppLanguage
 
   @State private var selectedProjectID: UUID?
   @State private var selectedItemID: UUID?
@@ -18,6 +19,8 @@ struct DITPlannerView: View {
   @State private var showsComparison = false
   @State private var exportErrorMessage = ""
   @State private var showsExportError = false
+
+  private var copy: DITPlannerCopy { language.copy.ditPlanner }
 
   private var selectedProject: DITProject? {
     guard let selectedProjectID else { return nil }
@@ -68,7 +71,11 @@ struct DITPlannerView: View {
       if let project = selectedProject {
         projectWorkspace(project)
       } else {
-        emptyState(title: "暂无项目", systemImage: "rectangle.3.group", message: "新建一个项目开始多机位规划")
+        emptyState(
+          title: copy.text("暂无项目"),
+          systemImage: "rectangle.3.group",
+          message: copy.text("新建一个项目开始多机位规划")
+        )
           .frame(maxWidth: .infinity, maxHeight: .infinity)
       }
     }
@@ -77,24 +84,24 @@ struct DITPlannerView: View {
       selectedItemID = nil
       comparisonItemIDs.removeAll()
     }
-    .alert("操作失败", isPresented: $showsExportError) {
-      Button("好", role: .cancel) {}
+    .alert(copy.text("操作失败"), isPresented: $showsExportError) {
+      Button(copy.text("好"), role: .cancel) {}
     } message: {
       Text(exportErrorMessage)
     }
     .sheet(isPresented: $showsAddItem) {
-      DITAddPlanItemView { item in
+      DITAddPlanItemView(language: language) { item in
         addPlanItem(item)
       }
     }
     .sheet(item: $editingItem) { item in
-      DITAddPlanItemView(existingItem: item) { updatedItem in
+      DITAddPlanItemView(existingItem: item, language: language) { updatedItem in
         updatePlanItem(updatedItem)
       }
     }
     .sheet(isPresented: $showsComparison) {
       if let project = selectedProject {
-        DITModeComparisonView(project: project, itemIDs: comparisonItemIDs)
+        DITModeComparisonView(project: project, itemIDs: comparisonItemIDs, language: language)
       }
     }
   }
@@ -102,39 +109,39 @@ struct DITPlannerView: View {
   private var projectSidebar: some View {
     VStack(spacing: 0) {
       HStack {
-        Text("项目")
+        Text(copy.text("项目"))
           .font(.headline)
         Spacer()
         Button(action: createProject) {
           Image(systemName: "plus")
         }
         .buttonStyle(.borderless)
-        .help("新建项目")
+        .help(copy.text("新建项目"))
       }
       .padding(.horizontal, 12)
       .padding(.vertical, 10)
 
       List(selection: $selectedProjectID) {
-        Section("项目与方案") {
+        Section(copy.text("项目与方案")) {
           ForEach(projectStore.projects) { project in
             VStack(alignment: .leading, spacing: 2) {
-              Text(project.name.isEmpty ? "未命名项目" : project.name)
+              Text(projectDisplayName(project))
                 .lineLimit(1)
-              Text("\(project.items.count) 个机位")
+              Text(copy.itemCount(project.items.count))
                 .font(.caption)
                 .foregroundColor(.secondary)
             }
             .tag(Optional(project.id))
             .contextMenu {
-              Button("复制方案") { duplicate(project) }
-              Button("删除项目", role: .destructive) { delete(project) }
+              Button(copy.text("复制方案")) { duplicate(project) }
+              Button(copy.text("删除项目"), role: .destructive) { delete(project) }
             }
           }
         }
 
-        Section("收藏模式") {
+        Section(copy.text("收藏模式")) {
           if favoriteStore.favorites.isEmpty {
-            Text("暂无收藏")
+            Text(copy.text("暂无收藏"))
               .font(.caption)
               .foregroundColor(.secondary)
           } else {
@@ -160,8 +167,8 @@ struct DITPlannerView: View {
               }
               .buttonStyle(.plain)
               .contextMenu {
-                Button("添加到当前项目") { addFavoriteToProject(favorite) }
-                Button("删除收藏", role: .destructive) { removeFavorite(favorite) }
+                Button(copy.text("添加到当前项目")) { addFavoriteToProject(favorite) }
+                Button(copy.text("删除收藏"), role: .destructive) { removeFavorite(favorite) }
               }
             }
           }
@@ -170,12 +177,12 @@ struct DITPlannerView: View {
       .listStyle(.sidebar)
 
       HStack {
-        Button("复制方案") {
+        Button(copy.text("复制方案")) {
           if let project = selectedProject { duplicate(project) }
         }
         .disabled(selectedProject == nil)
         Spacer()
-        Button("删除", role: .destructive) {
+        Button(copy.text("删除"), role: .destructive) {
           if let project = selectedProject { delete(project) }
         }
         .disabled(selectedProject == nil)
@@ -189,12 +196,12 @@ struct DITPlannerView: View {
 
     return VStack(alignment: .leading, spacing: 0) {
       HStack(spacing: 10) {
-        TextField("项目名称", text: projectNameBinding(project))
+        TextField(copy.text("项目名称"), text: projectNameBinding(project))
           .textFieldStyle(.roundedBorder)
           .font(.headline)
           .frame(minWidth: 180, idealWidth: 240, maxWidth: 280)
 
-        Label("\(project.items.count) 个机位", systemImage: "video")
+        Label(copy.itemCount(project.items.count), systemImage: "video")
           .font(.callout)
           .foregroundColor(.secondary)
 
@@ -204,24 +211,24 @@ struct DITPlannerView: View {
           Image(systemName: "rectangle.3.group")
         }
         .disabled(!(2...4).contains(comparisonItemIDs.count))
-        .help("比较已勾选的 2 至 4 个模式")
-        .accessibilityLabel("模式比较")
+        .help(copy.text("比较已勾选的 2 至 4 个模式"))
+        .accessibilityLabel(copy.text("模式比较"))
 
         Menu {
-          Button("导出 JSON") { exportJSON() }
-          Button("导出 CSV") { exportCSV() }
-          Button("导出 PDF") { exportPDF() }
+          Button(copy.text("导出 JSON")) { exportJSON() }
+          Button(copy.text("导出 CSV")) { exportCSV() }
+          Button(copy.text("导出 PDF")) { exportPDF() }
         } label: {
           Image(systemName: "square.and.arrow.up")
         }
-        .help("导出项目")
-        .accessibilityLabel("导出项目")
+        .help(copy.text("导出项目"))
+        .accessibilityLabel(copy.text("导出项目"))
 
         Button(action: importJSON) {
           Image(systemName: "square.and.arrow.down")
         }
-        .help("导入项目 JSON")
-        .accessibilityLabel("导入项目 JSON")
+        .help(copy.text("导入项目 JSON"))
+        .accessibilityLabel(copy.text("导入项目 JSON"))
       }
       .controlSize(.large)
       .padding(.horizontal, 18)
@@ -231,23 +238,23 @@ struct DITPlannerView: View {
 
       HStack(spacing: 0) {
         SummaryMetric(
-          title: "每日原始量",
+          title: copy.text("每日原始量"),
           value: formatBytes(summary.dailyRawDataBytes),
           systemImage: "sun.max"
         )
         SummaryMetric(
-          title: "项目原始量",
+          title: copy.text("项目原始量"),
           value: formatBytes(summary.totalRawDataBytes),
           systemImage: "calendar"
         )
         SummaryMetric(
-          title: "备份后存储",
+          title: copy.text("备份后存储"),
           value: formatBytes(summary.totalStorageBytes),
           systemImage: "externaldrive.badge.plus"
         )
         SummaryMetric(
-          title: "每日双备份",
-          value: summary.canCompleteDailyDoubleBackup ? "可完成" : "需调整",
+          title: copy.text("每日双备份"),
+          value: copy.text(summary.canCompleteDailyDoubleBackup ? "可完成" : "需调整"),
           systemImage: summary.canCompleteDailyDoubleBackup
             ? "checkmark.circle" : "exclamationmark.triangle",
           valueColor: summary.canCompleteDailyDoubleBackup ? .green : .orange
@@ -277,15 +284,15 @@ struct DITPlannerView: View {
 
       VStack(alignment: .leading, spacing: 0) {
         HStack(alignment: .firstTextBaseline) {
-          Text("机位规划")
+          Text(copy.text("机位规划"))
             .font(.title3)
             .fontWeight(.semibold)
-          Text("选择机位后在右侧调整参数")
+          Text(copy.text("选择机位后在右侧调整参数"))
             .font(.caption)
             .foregroundColor(.secondary)
           Spacer()
           if !comparisonItemIDs.isEmpty {
-            Text("已选 \(comparisonItemIDs.count) / 4")
+            Text(copy.selectedModes(comparisonItemIDs.count))
               .font(.caption)
               .foregroundColor(.secondary)
           }
@@ -296,7 +303,8 @@ struct DITPlannerView: View {
 
         CameraPlanHeader(
           widths: tableColumnWidthsBinding,
-          availableWidth: availableWidth
+          availableWidth: availableWidth,
+          copy: copy
         )
         .padding(.horizontal, 18)
         .padding(.bottom, 6)
@@ -305,9 +313,9 @@ struct DITPlannerView: View {
 
         if project.items.isEmpty {
           emptyState(
-            title: "尚未添加机位",
+            title: copy.text("尚未添加机位"),
             systemImage: "video.badge.plus",
-            message: "从下方选择摄影机和录制模式"
+            message: copy.text("从下方选择摄影机和录制模式")
           )
           .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
@@ -320,6 +328,7 @@ struct DITPlannerView: View {
                 isCompared: comparisonItemIDs.contains(item.id),
                 comparisonDisabled: !comparisonItemIDs.contains(item.id)
                   && comparisonItemIDs.count >= 4,
+                copy: copy,
                 toggleComparison: { toggleComparison(item.id) }
               )
               .tag(Optional(item.id))
@@ -327,33 +336,33 @@ struct DITPlannerView: View {
                 Button {
                   duplicatePlanItem(item)
                 } label: {
-                  Label("复制机位", systemImage: "plus.square.on.square")
+                  Label(copy.text("复制机位"), systemImage: "plus.square.on.square")
                 }
                 Button {
                   movePlanItem(item, by: -1)
                 } label: {
-                  Label("上移", systemImage: "arrow.up")
+                  Label(copy.text("上移"), systemImage: "arrow.up")
                 }
                 .disabled(!canMovePlanItem(item, by: -1))
                 Button {
                   movePlanItem(item, by: 1)
                 } label: {
-                  Label("下移", systemImage: "arrow.down")
+                  Label(copy.text("下移"), systemImage: "arrow.down")
                 }
                 .disabled(!canMovePlanItem(item, by: 1))
                 Divider()
-                Button(comparisonItemIDs.contains(item.id) ? "移出比较" : "加入比较") {
+                Button(copy.text(comparisonItemIDs.contains(item.id) ? "移出比较" : "加入比较")) {
                   toggleComparison(item.id)
                 }
                 .disabled(!comparisonItemIDs.contains(item.id) && comparisonItemIDs.count >= 4)
-                Button(favoriteStore.contains(item) ? "取消收藏" : "收藏模式") {
+                Button(copy.text(favoriteStore.contains(item) ? "取消收藏" : "收藏模式")) {
                   toggleFavorite(item)
                 }
                 Divider()
                 Button {
                   resetPlanningParameters(item)
                 } label: {
-                  Label("重置拍摄参数", systemImage: "arrow.counterclockwise")
+                  Label(copy.text("重置拍摄参数"), systemImage: "arrow.counterclockwise")
                 }
               }
             }
@@ -368,14 +377,14 @@ struct DITPlannerView: View {
         HStack(spacing: 12) {
           Image(systemName: "plus.circle")
             .foregroundColor(.accentColor)
-          Text("为项目添加一个新的摄影机录制模式")
+          Text(copy.text("为项目添加一个新的摄影机录制模式"))
             .font(.callout)
             .foregroundColor(.secondary)
           Spacer()
           Button {
             showsAddItem = true
           } label: {
-            Label("添加机位", systemImage: "plus")
+            Label(copy.text("添加机位"), systemImage: "plus")
           }
           .buttonStyle(.borderedProminent)
           .controlSize(.large)
@@ -390,32 +399,32 @@ struct DITPlannerView: View {
   private var inspector: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 18) {
-        Text("机位检查器")
+        Text(copy.text("机位检查器"))
           .font(.title3)
           .fontWeight(.semibold)
 
         if let item = selectedItem {
-          InspectorSection(title: "录制模式", systemImage: "video") {
+          InspectorSection(title: copy.text("录制模式"), systemImage: "video") {
             VStack(spacing: 8) {
-              InspectorRow(label: "摄影机", value: item.cameraLabel)
-              InspectorRow(label: "编码", value: item.selection.codecID)
+              InspectorRow(label: copy.text("摄影机"), value: item.cameraLabel)
+              InspectorRow(label: copy.text("编码"), value: item.selection.codecID)
               if let formatID = item.selection.formatID {
-                InspectorRow(label: "幅面", value: formatID)
+                InspectorRow(label: copy.text("幅面"), value: formatID)
               }
-              InspectorRow(label: "格式", value: item.selection.resolutionID)
-              InspectorRow(label: "帧率", value: item.selection.frameRateID)
+              InspectorRow(label: copy.text("格式"), value: item.selection.resolutionID)
+              InspectorRow(label: copy.text("帧率"), value: item.selection.frameRateID)
               InspectorRow(
-                label: item.usesHDE ? "HDE 数据码率" : "码率",
+                label: copy.text(item.usesHDE ? "HDE 数据码率" : "码率"),
                 value:
                   "\(formatNumber(item.bitrateMbps * (item.hdeDataPerHourMultiplier ?? 1))) Mbps"
               )
-              InspectorRow(label: "介质", value: item.media.id)
+              InspectorRow(label: copy.text("介质"), value: item.media.id)
 
               if let multiplier = ARRIHDE.multiplier(for: item.selection) {
                 HStack(alignment: .center, spacing: 10) {
                   VStack(alignment: .leading, spacing: 2) {
-                    Text("使用 HDE 无损压缩")
-                    Text("项目数据量约为 ARRIRAW 的 \(formatNumber(multiplier * 100))%")
+                    Text(copy.text("使用 HDE 无损压缩"))
+                    Text(copy.hdeDataDescription(percent: formatNumber(multiplier * 100)))
                       .font(.caption)
                       .foregroundColor(.secondary)
                   }
@@ -431,7 +440,7 @@ struct DITPlannerView: View {
               Button {
                 editingItem = item
               } label: {
-                Label("修改录制模式", systemImage: "pencil")
+                Label(copy.text("修改录制模式"), systemImage: "pencil")
               }
               .buttonStyle(.bordered)
               .frame(maxWidth: .infinity, alignment: .leading)
@@ -444,7 +453,7 @@ struct DITPlannerView: View {
               toggleFavorite(item)
             } label: {
               Label(
-                favoriteStore.contains(item) ? "取消收藏" : "收藏模式",
+                copy.text(favoriteStore.contains(item) ? "取消收藏" : "收藏模式"),
                 systemImage: favoriteStore.contains(item) ? "star.fill" : "star"
               )
             }
@@ -453,60 +462,60 @@ struct DITPlannerView: View {
             Button {
               duplicatePlanItem(item)
             } label: {
-              Label("复制机位", systemImage: "plus.square.on.square")
+              Label(copy.text("复制机位"), systemImage: "plus.square.on.square")
             }
             .buttonStyle(.bordered)
           }
 
-          InspectorSection(title: "拍摄参数", systemImage: "slider.horizontal.3") {
+          InspectorSection(title: copy.text("拍摄参数"), systemImage: "slider.horizontal.3") {
             VStack(spacing: 12) {
-              InspectorControlRow(label: "机位名称") {
-                TextField("机位名称", text: itemBinding(item, keyPath: \.name))
+              InspectorControlRow(label: copy.text("机位名称")) {
+                TextField(copy.text("机位名称"), text: itemBinding(item, keyPath: \.name))
                   .textFieldStyle(.roundedBorder)
                   .multilineTextAlignment(.center)
                   .frame(width: InspectorNumberFieldRow.controlWidth)
               }
-              InspectorControlRow(label: "机位备注") {
-                TextField("主机位、斯坦尼康等", text: itemPositionNoteBinding(item))
+              InspectorControlRow(label: copy.text("机位备注")) {
+                TextField(copy.text("主机位、斯坦尼康等"), text: itemPositionNoteBinding(item))
                   .textFieldStyle(.roundedBorder)
                   .multilineTextAlignment(.center)
                   .frame(width: InspectorNumberFieldRow.controlWidth)
               }
               InspectorNumberFieldRow(
-                label: "摄影机数量",
+                label: copy.text("摄影机数量"),
                 value: integerItemBinding(item, keyPath: \.cameraCount),
                 range: 1...99,
                 fractionDigits: 0,
-                unit: "台"
+                unit: copy.text("台")
               )
               InspectorNumberFieldRow(
-                label: "每日开机",
+                label: copy.text("每日开机"),
                 value: itemBinding(item, keyPath: \.dailyPowerOnHours),
                 range: 0.5...24,
                 fractionDigits: 2,
-                unit: "小时"
+                unit: copy.text("小时")
               )
               InspectorNumberFieldRow(
-                label: "拍摄天数",
+                label: copy.text("拍摄天数"),
                 value: itemBinding(item, keyPath: \.shootDays),
                 range: 0.5...365,
                 fractionDigits: 2,
-                unit: "天"
+                unit: copy.text("天")
               )
               InspectorNumberFieldRow(
-                label: "保留副本",
+                label: copy.text("保留副本"),
                 value: integerItemBinding(item, keyPath: \.backupCopies),
                 range: 1...5,
                 fractionDigits: 0,
-                unit: "份"
+                unit: copy.text("份")
               )
               InspectorSliderRow(
-                label: "实际录制比例",
+                label: copy.text("实际录制比例"),
                 value: itemBinding(item, keyPath: \.recordingRatio),
                 range: 0.05...1
               )
               InspectorSliderRow(
-                label: "安全余量",
+                label: copy.text("安全余量"),
                 value: itemBinding(item, keyPath: \.safetyMargin),
                 range: 0...1
               )
@@ -514,26 +523,43 @@ struct DITPlannerView: View {
           }
 
           if let summary = selectedItemSummary {
-            InspectorSection(title: "规划结果", systemImage: "chart.bar") {
+            InspectorSection(title: copy.text("规划结果"), systemImage: "chart.bar") {
               VStack(spacing: 8) {
-                InspectorRow(label: "单机每日", value: formatBytes(summary.rawDataPerCameraPerDayBytes))
-                InspectorRow(label: "全部每日", value: formatBytes(summary.rawDataPerDayBytes))
                 InspectorRow(
-                  label: "单机全项目", value: formatBytes(summary.rawDataPerCameraProjectBytes))
-                InspectorRow(label: "项目原始量", value: formatBytes(summary.rawDataBytes))
+                  label: copy.text("单机每日"),
+                  value: formatBytes(summary.rawDataPerCameraPerDayBytes)
+                )
+                InspectorRow(label: copy.text("全部每日"), value: formatBytes(summary.rawDataPerDayBytes))
                 InspectorRow(
-                  label: "备份后存储", value: formatBytes(summary.storageBytes), emphasized: true)
-                InspectorRow(label: "卡次", value: "\(summary.cardCycles) 次")
+                  label: copy.text("单机全项目"),
+                  value: formatBytes(summary.rawDataPerCameraProjectBytes)
+                )
+                InspectorRow(label: copy.text("项目原始量"), value: formatBytes(summary.rawDataBytes))
                 InspectorRow(
-                  label: "读卡器", value: "\(formatNumber(summary.readerSpeedMBps)) MB/s")
+                  label: copy.text("备份后存储"),
+                  value: formatBytes(summary.storageBytes),
+                  emphasized: true
+                )
                 InspectorRow(
-                  label: "有效速度",
+                  label: copy.text("卡次"),
+                  value: "\(summary.cardCycles) \(copy.text("次"))"
+                )
+                InspectorRow(
+                  label: copy.text("读卡器"),
+                  value: "\(formatNumber(summary.readerSpeedMBps)) MB/s"
+                )
+                InspectorRow(
+                  label: copy.text("有效速度"),
                   value: "\(formatNumber(summary.effectiveTransferSpeedMBps)) MB/s"
                 )
                 InspectorRow(
-                  label: "每张卡时长", value: "\(formatNumber(summary.recordMinutesPerMedia)) 分钟")
+                  label: copy.text("每张卡时长"),
+                  value: "\(formatNumber(summary.recordMinutesPerMedia)) \(copy.text("分钟"))"
+                )
                 InspectorRow(
-                  label: "卸载时间", value: "\(formatNumber(summary.transferSeconds / 3_600)) 小时")
+                  label: copy.text("卸载时间"),
+                  value: "\(formatNumber(summary.transferSeconds / 3_600)) \(copy.text("小时"))"
+                )
               }
             }
           }
@@ -542,9 +568,9 @@ struct DITPlannerView: View {
             Image(systemName: "sidebar.right")
               .font(.title2)
               .foregroundColor(.secondary)
-            Text("选择一个机位")
+            Text(copy.text("选择一个机位"))
               .font(.headline)
-            Text("录制模式、拍摄参数与规划结果将在这里显示")
+            Text(copy.text("录制模式、拍摄参数与规划结果将在这里显示"))
               .font(.caption)
               .foregroundColor(.secondary)
               .multilineTextAlignment(.center)
@@ -554,11 +580,14 @@ struct DITPlannerView: View {
         }
 
         if let project = selectedProject {
-          InspectorSection(title: "传输配置", systemImage: "externaldrive.connected.to.line.below") {
+          InspectorSection(
+            title: copy.text("传输配置"),
+            systemImage: "externaldrive.connected.to.line.below"
+          ) {
             VStack(spacing: 12) {
               if let item = selectedItem {
                 InspectorNumberFieldRow(
-                  label: "读卡器",
+                  label: copy.text("读卡器"),
                   value: itemReaderSpeedBinding(item),
                   range: 10...10_000,
                   fractionDigits: 2,
@@ -566,18 +595,18 @@ struct DITPlannerView: View {
                 )
               }
               InspectorNumberFieldRow(
-                label: "目标盘",
+                label: copy.text("目标盘"),
                 value: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
                 range: 10...10_000,
                 fractionDigits: 2,
                 unit: "MB/s"
               )
               InspectorNumberFieldRow(
-                label: "每日窗口",
+                label: copy.text("每日窗口"),
                 value: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
                 range: 0.5...24,
                 fractionDigits: 2,
-                unit: "小时"
+                unit: copy.text("小时")
               )
             }
           }
@@ -800,7 +829,10 @@ struct DITPlannerView: View {
 
   private func projectNameBinding(_ project: DITProject) -> Binding<String> {
     Binding(
-      get: { projectStore.projects.first { $0.id == project.id }?.name ?? "" },
+      get: {
+        let name = projectStore.projects.first { $0.id == project.id }?.name ?? ""
+        return name.isEmpty || name == "未命名项目" ? copy.text("未命名项目") : name
+      },
       set: { value in
         var updated = projectStore.projects.first { $0.id == project.id } ?? project
         updated.name = value
@@ -808,6 +840,11 @@ struct DITPlannerView: View {
         try? projectStore.update(updated)
       }
     )
+  }
+
+  private func projectDisplayName(_ project: DITProject) -> String {
+    let name = project.name.trimmingCharacters(in: .whitespacesAndNewlines)
+    return name.isEmpty || name == "未命名项目" ? copy.text("未命名项目") : name
   }
 
   private func itemBinding<Value>(_ item: PlanItem, keyPath: WritableKeyPath<PlanItem, Value>)
@@ -1090,6 +1127,7 @@ enum PlannerTableColumnBoundary {
 private struct CameraPlanHeader: View {
   @Binding var widths: PlannerTableColumnWidths
   let availableWidth: CGFloat
+  let copy: DITPlannerCopy
 
   private var resolvedWidths: PlannerTableColumnWidths {
     widths.resolved(for: availableWidth)
@@ -1097,37 +1135,41 @@ private struct CameraPlanHeader: View {
 
   var body: some View {
     HStack(spacing: 0) {
-      Text("机位")
+      Text(copy.text("机位"))
         .frame(width: resolvedWidths.name, alignment: .center)
       PlannerColumnResizeGap(
         widths: $widths,
         resolvedWidths: resolvedWidths,
-        boundary: .nameCamera
+        boundary: .nameCamera,
+        copy: copy
       )
-      Text("摄影机 / 编码")
+      Text("\(copy.text("摄影机")) / \(copy.text("编码"))")
         .frame(width: resolvedWidths.camera, alignment: .center)
       PlannerColumnResizeGap(
         widths: $widths,
         resolvedWidths: resolvedWidths,
-        boundary: .cameraCount
+        boundary: .cameraCount,
+        copy: copy
       )
-      Text("台数")
+      Text(copy.text("台数"))
         .frame(width: resolvedWidths.count, alignment: .center)
       PlannerColumnResizeGap(
         widths: $widths,
         resolvedWidths: resolvedWidths,
-        boundary: .countStorage
+        boundary: .countStorage,
+        copy: copy
       )
-      Text("项目存储")
+      Text(copy.text("项目存储"))
         .frame(width: resolvedWidths.storage, alignment: .center)
       PlannerColumnResizeGap(
         widths: $widths,
         resolvedWidths: resolvedWidths,
-        boundary: .storageComparison
+        boundary: .storageComparison,
+        copy: copy
       )
       Image(systemName: "rectangle.3.group")
         .frame(width: resolvedWidths.comparison)
-        .help("模式比较")
+        .help(copy.text("模式比较"))
       Spacer(minLength: 0)
     }
     .font(.caption)
@@ -1140,6 +1182,7 @@ private struct PlannerColumnResizeGap: View {
   @Binding var widths: PlannerTableColumnWidths
   let resolvedWidths: PlannerTableColumnWidths
   let boundary: PlannerTableColumnBoundary
+  let copy: DITPlannerCopy
 
   @State private var dragStartWidths: PlannerTableColumnWidths?
   @State private var isHovered = false
@@ -1173,8 +1216,8 @@ private struct PlannerColumnResizeGap: View {
         }
     )
     .accessibilityElement()
-    .accessibilityLabel("调整列宽")
-    .help("拖动调整列宽")
+    .accessibilityLabel(copy.text("调整列宽"))
+    .help(copy.text("拖动调整列宽"))
   }
 }
 
@@ -1184,6 +1227,7 @@ private struct CameraPlanRow: View {
   let storage: String
   let isCompared: Bool
   let comparisonDisabled: Bool
+  let copy: DITPlannerCopy
   let toggleComparison: () -> Void
 
   var body: some View {
@@ -1244,7 +1288,7 @@ private struct CameraPlanRow: View {
       .buttonStyle(.borderless)
       .disabled(comparisonDisabled)
       .frame(width: widths.comparison)
-      .help(isCompared ? "移出比较" : "加入比较")
+      .help(copy.text(isCompared ? "移出比较" : "加入比较"))
 
       Spacer(minLength: 0)
     }
@@ -1330,6 +1374,7 @@ private struct InspectorNumberFieldRow: View {
         Text(unit)
           .foregroundColor(.secondary)
           .lineLimit(1)
+          .minimumScaleFactor(0.75)
           .frame(width: Self.unitWidth, alignment: .trailing)
       }
       .frame(width: Self.controlWidth, alignment: .trailing)

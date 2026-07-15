@@ -85,7 +85,8 @@ struct ContentView: View {
         if showsPlanner {
           DITPlannerView(
             projectStore: projectStore,
-            favoriteStore: favoriteStore
+            favoriteStore: favoriteStore,
+            language: language
           )
           .transition(workspaceTransition)
           .zIndex(1)

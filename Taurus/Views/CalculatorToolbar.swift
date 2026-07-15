@@ -12,19 +12,23 @@ struct CalculatorToolbar: View {
     language.copy
   }
 
+  private var plannerCopy: DITPlannerCopy {
+    copy.ditPlanner
+  }
+
   var body: some View {
     ZStack {
-      Picker("工作区", selection: $workspace) {
+      Picker(plannerCopy.text("工作区"), selection: $workspace) {
         Label(copy.calculatorTitle, systemImage: "chart.bar.xaxis")
           .tag(WorkspaceTab.calculator)
-        Label("DIT 项目规划", systemImage: "rectangle.3.group")
+        Label(copy.plannerTitle, systemImage: "rectangle.3.group")
           .tag(WorkspaceTab.planner)
       }
       .pickerStyle(.segmented)
       .labelsHidden()
       .frame(width: 320)
-      .help("切换工作区")
-      .accessibilityLabel("工作区")
+      .help(plannerCopy.text("切换工作区"))
+      .accessibilityLabel(plannerCopy.text("工作区"))
 
       HStack {
         Picker("", selection: $language) {

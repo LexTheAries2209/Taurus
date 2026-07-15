@@ -34,6 +34,21 @@ final class ScreenshotExportTests: XCTestCase {
         ])
     }
 
+    func testDITPlannerCopyChangesWithLanguage() {
+        let chinese = AppLanguage.chinese.copy.ditPlanner
+        let english = AppLanguage.english.copy.ditPlanner
+
+        XCTAssertEqual(AppLanguage.chinese.copy.plannerTitle, "DIT 项目规划")
+        XCTAssertEqual(AppLanguage.english.copy.plannerTitle, "DIT Project Planner")
+        XCTAssertEqual(chinese.text("机位检查器"), "机位检查器")
+        XCTAssertEqual(english.text("机位检查器"), "Camera Inspector")
+        XCTAssertEqual(english.itemCount(2), "2 cameras")
+        XCTAssertEqual(
+            english.hdeDataDescription(percent: "60.00"),
+            "Project data is approximately 60.00% of ARRIRAW"
+        )
+    }
+
     func testVersionCommentsAreUpdatedInChineseAndEnglish() {
         XCTAssertEqual(
             AppLanguage.chinese.copy.comments(for: "", cameraName: "").first,
