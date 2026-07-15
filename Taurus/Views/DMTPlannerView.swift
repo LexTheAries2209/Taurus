@@ -364,6 +364,12 @@ struct DMTPlannerView: View {
                 } label: {
                   Label(copy.text("重置拍摄参数"), systemImage: "arrow.counterclockwise")
                 }
+                Divider()
+                Button(role: .destructive) {
+                  deletePlanItem(item)
+                } label: {
+                  Label(copy.text("删除机位"), systemImage: "trash")
+                }
               }
             }
             .onDelete(perform: deleteItems)
@@ -796,6 +802,13 @@ struct DMTPlannerView: View {
     try? projectStore.update(project)
     comparisonItemIDs.subtract(removedIDs)
     if let selectedItemID, removedIDs.contains(selectedItemID) { self.selectedItemID = nil }
+  }
+
+  private func deletePlanItem(_ item: PlanItem) {
+    guard let index = selectedProject?.items.firstIndex(where: { $0.id == item.id }) else {
+      return
+    }
+    deleteItems(at: IndexSet(integer: index))
   }
 
   private func moveItems(from offsets: IndexSet, to destination: Int) {

@@ -42,6 +42,7 @@ final class ScreenshotExportTests: XCTestCase {
         XCTAssertEqual(AppLanguage.english.copy.plannerTitle, "DMT Project Planner")
         XCTAssertEqual(chinese.text("机位检查器"), "机位检查器")
         XCTAssertEqual(english.text("机位检查器"), "Camera Inspector")
+        XCTAssertEqual(english.text("删除机位"), "Delete Camera")
         XCTAssertEqual(english.itemCount(2), "2 cameras")
         XCTAssertEqual(
             english.hdeDataDescription(percent: "60.00"),

@@ -534,6 +534,7 @@ struct DMTPlannerCopy {
         case "添加到当前项目": return "Add to Current Project"
         case "删除收藏": return "Delete Favorite"
         case "删除": return "Delete"
+        case "删除机位": return "Delete Camera"
         case "项目名称": return "Project Name"
         case "比较已勾选的 2 至 4 个模式": return "Compare 2 to 4 selected modes"
         case "模式比较": return "Compare Modes"
