@@ -201,6 +201,33 @@ final class CalculationEngineTests: XCTestCase {
         )
     }
 
+    func testAMIRAARRIRAWExposesHDEMultiplier() throws {
+        let selection = CameraSelection(
+            brandID: "ARRI",
+            cameraID: "AMIRA",
+            codecID: "ARRIRAW",
+            resolutionID: "2.8K S35[2880*1620]",
+            frameRateID: "24.000",
+            mediaID: "LEXAR 3600x 128GB"
+        )
+
+        let mode = try XCTUnwrap(ARRIRecordingCatalog().recordingMode(for: selection))
+
+        XCTAssertEqual(mode.hdeDataPerHourMultiplier ?? 0, 0.6, accuracy: 0.000_001)
+        XCTAssertNil(
+            ARRIRecordingCatalog().recordingMode(
+                for: CameraSelection(
+                    brandID: "ARRI",
+                    cameraID: "AMIRA",
+                    codecID: "ProRes 422 HQ",
+                    resolutionID: "HD (1920 x 1080) — 16:9 2.8K",
+                    frameRateID: "24.000",
+                    mediaID: "LEXAR 3600x 128GB"
+                )
+            )?.hdeDataPerHourMultiplier
+        )
+    }
+
     func testARRIResolutionOptionsUseLegacyDisplayFormat() {
         let catalog = ARRIRecordingCatalog()
 

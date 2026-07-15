@@ -2,6 +2,43 @@ import XCTest
 @testable import Taurus
 
 final class CameraSelectionStoreTests: XCTestCase {
+    func testRestoringARRISelectionPreservesMediaBeforeFrameRate() {
+        let selection = CameraSelection(
+            brandID: "ARRI",
+            cameraID: "ALEXA 35",
+            codecID: "ARRIRAW",
+            resolutionID: "4.6K S35[4608*3164][OG]",
+            frameRateID: "24.000",
+            mediaID: "Compact Drive 1TB"
+        )
+        let data = CameraSelectionStore()
+
+        data.restore(selection)
+
+        XCTAssertEqual(CameraSelection(selectionStore: data), selection)
+    }
+
+    func testRestoringSelectionPreservesOptionalAndManualFields() {
+        let selection = CameraSelection(
+            brandID: "General",
+            cameraID: "Manual Camera",
+            codecID: "Manual Codec",
+            codecLevelID: "High",
+            formatID: "S35",
+            resolutionID: "Manual Resolution",
+            frameRateID: "24.000",
+            mediaID: "1TB",
+            manualBitrate: "800",
+            manualWidth: "4096",
+            manualHeight: "2160"
+        )
+        let data = CameraSelectionStore()
+
+        data.restore(selection)
+
+        XCTAssertEqual(CameraSelection(selectionStore: data), selection)
+    }
+
     func testChangingBrandClearsCameraAndAllDependentSelections() {
         let data = CameraSelectionStore()
         data.BrandName = "ARRI"

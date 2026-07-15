@@ -29,16 +29,51 @@ enum DITPlanItemBuilder {
       hdeDataPerHourMultiplier: hdeMultiplier
     )
   }
+
+  static func replacingRecordingMode(of existingItem: PlanItem, with draftItem: PlanItem)
+    -> PlanItem
+  {
+    PlanItem(
+      id: existingItem.id,
+      name: draftItem.name,
+      positionNote: existingItem.positionNote,
+      selection: draftItem.selection,
+      bitrateMbps: draftItem.bitrateMbps,
+      media: draftItem.media,
+      readerSpeedMBps: existingItem.readerSpeedMBps,
+      hdeDataPerHourMultiplier: draftItem.hdeDataPerHourMultiplier,
+      cameraCount: existingItem.cameraCount,
+      dailyPowerOnHours: existingItem.dailyPowerOnHours,
+      recordingRatio: existingItem.recordingRatio,
+      shootDays: existingItem.shootDays,
+      backupCopies: existingItem.backupCopies,
+      safetyMargin: existingItem.safetyMargin
+    )
+  }
 }
 
 struct DITAddPlanItemView: View {
-  let onAdd: (PlanItem) -> Void
+  let existingItem: PlanItem?
+  let onSave: (PlanItem) -> Void
 
   @Environment(\.presentationMode) private var presentationMode
-  @StateObject private var draftSelection = CameraSelectionStore()
-  @State private var itemName = ""
-  @State private var usesHDE = false
+  @StateObject private var draftSelection: CameraSelectionStore
+  @State private var itemName: String
+  @State private var usesHDE: Bool
   @State private var showsCameraSearch = false
+
+  init(existingItem: PlanItem? = nil, onSave: @escaping (PlanItem) -> Void) {
+    let draftSelection = CameraSelectionStore()
+    if let existingItem {
+      draftSelection.restore(existingItem.selection)
+    }
+
+    self.existingItem = existingItem
+    self.onSave = onSave
+    _draftSelection = StateObject(wrappedValue: draftSelection)
+    _itemName = State(initialValue: existingItem?.name ?? "")
+    _usesHDE = State(initialValue: existingItem?.usesHDE ?? false)
+  }
 
   private var calculation: CalculationResult {
     RecordingCalculator.calculate(draftSelection)
@@ -49,18 +84,31 @@ struct DITAddPlanItemView: View {
     return ARRIHDE.multiplier(for: CameraSelection(selectionStore: draftSelection))
   }
 
-  private var canAdd: Bool {
-    DITPlanItemBuilder.make(from: draftSelection, name: itemName, usesHDE: usesHDE) != nil
+  private var draftItem: PlanItem? {
+    guard
+      let item = DITPlanItemBuilder.make(
+        from: draftSelection,
+        name: itemName,
+        usesHDE: usesHDE
+      )
+    else { return nil }
+
+    guard let existingItem else { return item }
+    return DITPlanItemBuilder.replacingRecordingMode(of: existingItem, with: item)
   }
 
   var body: some View {
     VStack(spacing: 0) {
       HStack(spacing: 12) {
         VStack(alignment: .leading, spacing: 3) {
-          Text("添加机位")
+          Text(existingItem == nil ? "添加机位" : "修改录制模式")
             .font(.title2)
             .fontWeight(.semibold)
-          Text("选择摄影机的完整录制模式，再加入当前项目")
+          Text(
+            existingItem == nil
+              ? "选择摄影机的完整录制模式，再加入当前项目"
+              : "修改摄影机、编码、格式、分辨率、帧率或介质"
+          )
             .font(.caption)
             .foregroundColor(.secondary)
         }
@@ -106,15 +154,19 @@ struct DITAddPlanItemView: View {
           }
 
           if let hdeMultiplier {
-            Toggle(isOn: $usesHDE) {
+            HStack(alignment: .center, spacing: 10) {
               VStack(alignment: .leading, spacing: 2) {
                 Text("使用 HDE 无损压缩")
                 Text("项目数据量约为 ARRIRAW 的 \(formatNumber(hdeMultiplier * 100))%")
                   .font(.caption)
                   .foregroundColor(.secondary)
               }
+              Spacer(minLength: 8)
+              Toggle("", isOn: $usesHDE)
+                .labelsHidden()
+                .toggleStyle(.switch)
             }
-            .toggleStyle(.switch)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 2)
           }
 
@@ -129,14 +181,15 @@ struct DITAddPlanItemView: View {
       HStack(spacing: 12) {
         statusMessage
         Spacer()
-        Button {
-          addItem()
-        } label: {
-          Label("添加到项目", systemImage: "plus")
+        Button(action: saveItem) {
+          Label(
+            existingItem == nil ? "添加到项目" : "保存修改",
+            systemImage: existingItem == nil ? "plus" : "checkmark"
+          )
         }
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
-        .disabled(!canAdd)
+        .disabled(draftItem == nil)
       }
       .padding(.horizontal, 22)
       .padding(.vertical, 14)
@@ -165,7 +218,7 @@ struct DITAddPlanItemView: View {
             title: "摄影机", value: "\(draftSelection.BrandName) \(draftSelection.CameraName)")
             .frame(width: 230, alignment: .leading)
           AddPlanMetric(
-            title: usesHDE ? "HDE 数据率" : "码率",
+            title: usesHDE ? "HDE 数据码率" : "码率",
             value:
               "\(formatNumber(metrics.bitrateMbps * (usesHDE ? (hdeMultiplier ?? 1) : 1))) Mbps"
           )
@@ -195,7 +248,10 @@ struct DITAddPlanItemView: View {
   private var statusMessage: some View {
     switch calculation {
     case .success:
-      Label("录制模式完整，可以添加", systemImage: "checkmark.circle")
+      Label(
+        existingItem == nil ? "录制模式完整，可以添加" : "录制模式完整，可以保存",
+        systemImage: "checkmark.circle"
+      )
         .foregroundColor(.green)
     case .incomplete:
       Label("请完成录制模式选择", systemImage: "info.circle")
@@ -206,15 +262,9 @@ struct DITAddPlanItemView: View {
     }
   }
 
-  private func addItem() {
-    guard
-      let item = DITPlanItemBuilder.make(
-        from: draftSelection,
-        name: itemName,
-        usesHDE: usesHDE
-      )
-    else { return }
-    onAdd(item)
+  private func saveItem() {
+    guard let draftItem else { return }
+    onSave(draftItem)
     presentationMode.wrappedValue.dismiss()
   }
 

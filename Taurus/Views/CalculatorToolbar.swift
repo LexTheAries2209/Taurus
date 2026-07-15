@@ -5,6 +5,7 @@ struct CalculatorToolbar: View {
   @ObservedObject var windowReference: WindowReferenceStore
   @Binding var showsPlanner: Bool
 
+  @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @State private var screenshotErrorMessage = ""
   @State private var showsScreenshotError = false
 
@@ -14,9 +15,20 @@ struct CalculatorToolbar: View {
 
   var body: some View {
     ZStack {
-      Text(showsPlanner ? "DIT 项目规划" : copy.calculatorTitle)
-        .font(.headline)
-        .fontWeight(.semibold)
+      ZStack {
+        if showsPlanner {
+          Text("DIT 项目规划")
+            .font(.headline)
+            .fontWeight(.semibold)
+            .transition(titleTransition)
+        } else {
+          Text(copy.calculatorTitle)
+            .font(.headline)
+            .fontWeight(.semibold)
+            .transition(titleTransition)
+        }
+      }
+      .animation(titleAnimation, value: showsPlanner)
 
       HStack {
         Picker("", selection: $language) {
@@ -31,9 +43,7 @@ struct CalculatorToolbar: View {
 
         Spacer()
 
-        Button {
-          showsPlanner.toggle()
-        } label: {
+        Button(action: toggleWorkspace) {
           Image(systemName: showsPlanner ? "chart.bar.xaxis" : "rectangle.3.group")
             .imageScale(.medium)
         }
@@ -59,6 +69,22 @@ struct CalculatorToolbar: View {
     } message: {
       Text(screenshotErrorMessage)
     }
+  }
+
+  private var titleTransition: AnyTransition {
+    accessibilityReduceMotion
+      ? .opacity
+      : .scale(scale: 0.9, anchor: .center).combined(with: .opacity)
+  }
+
+  private var titleAnimation: Animation {
+    accessibilityReduceMotion
+      ? .easeOut(duration: 0.12)
+      : .spring(response: 0.42, dampingFraction: 0.86, blendDuration: 0.08)
+  }
+
+  private func toggleWorkspace() {
+    showsPlanner.toggle()
   }
 
   @MainActor

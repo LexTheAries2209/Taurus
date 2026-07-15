@@ -12,6 +12,7 @@ struct ContentView: View {
   @ObservedObject var windowReference: WindowReferenceStore
   @ObservedObject var projectStore: DITProjectStore
   @ObservedObject var favoriteStore: DITFavoriteStore
+  @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
   @State private var showsPlanner = false
 
@@ -38,6 +39,23 @@ struct ContentView: View {
     )
   }
 
+  private var workspaceTransition: AnyTransition {
+    if accessibilityReduceMotion {
+      return .opacity
+    }
+
+    return .asymmetric(
+      insertion: .scale(scale: 0.94, anchor: .center).combined(with: .opacity),
+      removal: .scale(scale: 1.035, anchor: .center).combined(with: .opacity)
+    )
+  }
+
+  private var workspaceAnimation: Animation {
+    accessibilityReduceMotion
+      ? .easeOut(duration: 0.12)
+      : .spring(response: 0.42, dampingFraction: 0.86, blendDuration: 0.08)
+  }
+
   var body: some View {
     VStack(spacing: 0) {
       CalculatorToolbar(
@@ -48,14 +66,25 @@ struct ContentView: View {
 
       Divider()
 
-      if showsPlanner {
-        DITPlannerView(
-          projectStore: projectStore,
-          favoriteStore: favoriteStore
-        )
-      } else {
-        CalculatorWorkspace(selectionStore: selectionStore, language: language)
+      ZStack {
+        if !showsPlanner {
+          CalculatorWorkspace(selectionStore: selectionStore, language: language)
+            .transition(workspaceTransition)
+            .zIndex(0)
+        }
+
+        if showsPlanner {
+          DITPlannerView(
+            projectStore: projectStore,
+            favoriteStore: favoriteStore
+          )
+          .transition(workspaceTransition)
+          .zIndex(1)
+        }
       }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .clipped()
+      .animation(workspaceAnimation, value: showsPlanner)
     }
     .frame(
       minWidth: windowMinimumSize.width,
@@ -70,6 +99,7 @@ struct ContentView: View {
       WindowSizingBridge(
         minimumContentSize: windowMinimumSize,
         preferredContentSize: windowPreferredSize,
+        animatesSizeChanges: !accessibilityReduceMotion,
         windowReference: windowReference
       )
     )

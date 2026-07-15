@@ -87,7 +87,7 @@ struct CameraSelectionPanel: View {
     }
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 14) {
             //品牌选择
             createPicker(selection: brandSelection, label: copy.selectBrand, options: CameraModel.keys.sorted(), placeholderValue: "请选择品牌")
             

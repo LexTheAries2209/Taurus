@@ -24,7 +24,7 @@ enum DITPlanExport {
             uniqueKeysWithValues: summary.itemSummaries.map { ($0.itemID, $0) })
         var rows: [[String]] = [
             [
-                "项目", "机位", "摄影机", "编码", "HDE", "分辨率", "帧率", "介质",
+                "项目", "机位", "机位备注", "摄影机", "编码", "HDE", "分辨率", "帧率", "介质",
                 "读卡器(MB/s)", "有效速度(MB/s)", "摄影机数量", "每日开机(小时)", "实际录制比例",
                 "拍摄天数", "备份份数", "安全余量",
                 "单机每日(GB)", "全部机位每日(GB)", "项目原始数据(GB)", "存储需求(GB)",
@@ -37,6 +37,7 @@ enum DITPlanExport {
             rows.append([
                 project.name,
                 item.name,
+                item.positionNote ?? "",
                 item.cameraLabel,
                 item.selection.codecID,
                 hdeDescription(item),
@@ -63,7 +64,7 @@ enum DITPlanExport {
 
         rows.append(
             [project.name, "汇总"]
-                + Array(repeating: "", count: 14)
+                + Array(repeating: "", count: 16)
                 + [
                     number(summary.dailyRawDataGB),
                     number(summary.totalRawDataGB),
@@ -207,6 +208,12 @@ enum DITPlanExport {
                 continue
             }
             appendLine(item.name, attributes: itemAttributes, to: output)
+            if let positionNote = item.positionNote?.trimmingCharacters(in: .whitespacesAndNewlines),
+                !positionNote.isEmpty
+            {
+                appendLine(
+                    "机位备注：\(positionNote)", attributes: bodyAttributes, to: output)
+            }
             appendLine(
                 "摄影机：\(item.cameraLabel)（\(item.cameraCount) 台）", attributes: bodyAttributes,
                 to: output)

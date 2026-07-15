@@ -18,6 +18,7 @@ final class WindowReferenceStore: ObservableObject {
 struct WindowSizingBridge: NSViewRepresentable {
   let minimumContentSize: CGSize
   let preferredContentSize: CGSize
+  let animatesSizeChanges: Bool
   let windowReference: WindowReferenceStore
 
   func makeNSView(context: Context) -> NSView {
@@ -57,9 +58,30 @@ struct WindowSizingBridge: NSViewRepresentable {
     )
 
     if coordinator.lastPreferredContentSize != preferredContentSize {
+      let isInitialConfiguration = coordinator.lastPreferredContentSize == nil
       coordinator.lastPreferredContentSize = preferredContentSize
-      window.setContentSize(preferredContentSize)
-      window.center()
+
+      if isInitialConfiguration {
+        window.setContentSize(preferredContentSize)
+        window.center()
+      } else {
+        let targetFrameSize = window.frameRect(
+          forContentRect: CGRect(origin: .zero, size: preferredContentSize)
+        ).size
+        let currentFrame = window.frame
+        let targetFrame = CGRect(
+          x: currentFrame.midX - targetFrameSize.width / 2,
+          y: currentFrame.midY - targetFrameSize.height / 2,
+          width: targetFrameSize.width,
+          height: targetFrameSize.height
+        )
+
+        window.setFrame(
+          targetFrame,
+          display: true,
+          animate: animatesSizeChanges
+        )
+      }
     }
   }
 

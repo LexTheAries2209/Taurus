@@ -13,7 +13,7 @@ enum ARRIOfficialCatalogData {
         .init(sourceID: "alexa35xtreme", displayName: "ALEXA 35 Xtreme", sensorFrameRates: [0.75, 1, 20, 23.976, 24, 25, 27, 29, 29.97, 30, 35, 37, 38, 40, 41, 42, 43, 45, 48, 50, 55, 59.94, 60, 65, 70, 72, 75, 80, 90, 95, 96, 100, 105, 120, 125, 130, 135, 140, 145, 150, 165, 190, 195, 200, 210, 240, 330], hdeDataPerHourMultiplier: 0.5),
         .init(sourceID: "alexa65", displayName: "ALEXA 65", sensorFrameRates: [20, 24, 25, 27, 29.97, 30, 48, 50, 54, 59.94, 60], hdeDataPerHourMultiplier: 0.6),
         .init(sourceID: "alexa265", displayName: "ALEXA 265", sensorFrameRates: [0.75, 1, 20, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 65, 70, 72, 75, 80, 90, 96, 100], hdeDataPerHourMultiplier: 0.6),
-        .init(sourceID: "amira", displayName: "AMIRA", sensorFrameRates: [0.75, 1, 20, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 90, 96, 100, 120, 150, 200], hdeDataPerHourMultiplier: nil),
+        .init(sourceID: "amira", displayName: "AMIRA", sensorFrameRates: [0.75, 1, 20, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 90, 96, 100, 120, 150, 200], hdeDataPerHourMultiplier: 0.6),
     ]
 
     static let media: [ARRIMediaDefinition] = [

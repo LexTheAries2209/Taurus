@@ -8,7 +8,13 @@ struct DITPlannerView: View {
   @State private var selectedProjectID: UUID?
   @State private var selectedItemID: UUID?
   @State private var comparisonItemIDs: Set<UUID> = []
+  @AppStorage("ditPlanner.nameColumnWidth") private var tableNameColumnWidth = 170.0
+  @AppStorage("ditPlanner.cameraColumnWidth") private var tableCameraColumnWidth = 220.0
+  @AppStorage("ditPlanner.countColumnWidth") private var tableCountColumnWidth = 52.0
+  @AppStorage("ditPlanner.storageColumnWidth") private var tableStorageColumnWidth = 112.0
+  @AppStorage("ditPlanner.comparisonColumnWidth") private var tableComparisonColumnWidth = 28.0
   @State private var showsAddItem = false
+  @State private var editingItem: PlanItem?
   @State private var showsComparison = false
   @State private var exportErrorMessage = ""
   @State private var showsExportError = false
@@ -27,6 +33,29 @@ struct DITPlannerView: View {
     guard let selectedItemID, let project = selectedProject else { return nil }
     return DITProjectCalculator.summarize(project)
       .itemSummaries.first { $0.itemID == selectedItemID }
+  }
+
+  private var tableColumnWidths: PlannerTableColumnWidths {
+    PlannerTableColumnWidths(
+      name: CGFloat(tableNameColumnWidth),
+      camera: CGFloat(tableCameraColumnWidth),
+      count: CGFloat(tableCountColumnWidth),
+      storage: CGFloat(tableStorageColumnWidth),
+      comparison: CGFloat(tableComparisonColumnWidth)
+    )
+  }
+
+  private var tableColumnWidthsBinding: Binding<PlannerTableColumnWidths> {
+    Binding(
+      get: { tableColumnWidths },
+      set: { widths in
+        tableNameColumnWidth = Double(widths.name)
+        tableCameraColumnWidth = Double(widths.camera)
+        tableCountColumnWidth = Double(widths.count)
+        tableStorageColumnWidth = Double(widths.storage)
+        tableComparisonColumnWidth = Double(widths.comparison)
+      }
+    )
   }
 
   var body: some View {
@@ -56,6 +85,11 @@ struct DITPlannerView: View {
     .sheet(isPresented: $showsAddItem) {
       DITAddPlanItemView { item in
         addPlanItem(item)
+      }
+    }
+    .sheet(item: $editingItem) { item in
+      DITAddPlanItemView(existingItem: item) { updatedItem in
+        updatePlanItem(updatedItem)
       }
     }
     .sheet(isPresented: $showsComparison) {
@@ -237,90 +271,118 @@ struct DITPlannerView: View {
   }
 
   private func cameraPlan(_ project: DITProject) -> some View {
-    VStack(alignment: .leading, spacing: 0) {
-      HStack(alignment: .firstTextBaseline) {
-        Text("机位规划")
-          .font(.title3)
-          .fontWeight(.semibold)
-        Text("选择机位后在右侧调整参数")
-          .font(.caption)
-          .foregroundColor(.secondary)
-        Spacer()
-        if !comparisonItemIDs.isEmpty {
-          Text("已选 \(comparisonItemIDs.count) / 4")
+    GeometryReader { proxy in
+      let availableWidth = max(0, proxy.size.width - 36)
+      let resolvedColumnWidths = tableColumnWidths.resolved(for: availableWidth)
+
+      VStack(alignment: .leading, spacing: 0) {
+        HStack(alignment: .firstTextBaseline) {
+          Text("机位规划")
+            .font(.title3)
+            .fontWeight(.semibold)
+          Text("选择机位后在右侧调整参数")
             .font(.caption)
             .foregroundColor(.secondary)
+          Spacer()
+          if !comparisonItemIDs.isEmpty {
+            Text("已选 \(comparisonItemIDs.count) / 4")
+              .font(.caption)
+              .foregroundColor(.secondary)
+          }
         }
-      }
-      .padding(.horizontal, 18)
-      .padding(.top, 18)
-      .padding(.bottom, 14)
+        .padding(.horizontal, 18)
+        .padding(.top, 18)
+        .padding(.bottom, 14)
 
-      CameraPlanHeader()
+        CameraPlanHeader(
+          widths: tableColumnWidthsBinding,
+          availableWidth: availableWidth
+        )
         .padding(.horizontal, 18)
         .padding(.bottom, 6)
 
-      Divider()
+        Divider()
 
-      if project.items.isEmpty {
-        emptyState(
-          title: "尚未添加机位",
-          systemImage: "video.badge.plus",
-          message: "从下方选择摄影机和录制模式"
-        )
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-      } else {
-        List(selection: $selectedItemID) {
-          ForEach(project.items) { item in
-            CameraPlanRow(
-              item: item,
-              storage: formatBytes(itemStorage(project: project, item: item)),
-              isCompared: comparisonItemIDs.contains(item.id),
-              comparisonDisabled: !comparisonItemIDs.contains(item.id)
-                && comparisonItemIDs.count >= 4,
-              toggleComparison: { toggleComparison(item.id) }
-            )
-            .tag(Optional(item.id))
-            .contextMenu {
-              Button(comparisonItemIDs.contains(item.id) ? "移出比较" : "加入比较") {
-                toggleComparison(item.id)
-              }
-              .disabled(!comparisonItemIDs.contains(item.id) && comparisonItemIDs.count >= 4)
-              Button(favoriteStore.contains(item) ? "取消收藏" : "收藏模式") {
-                toggleFavorite(item)
-              }
-              Divider()
-              Button {
-                resetPlanningParameters(item)
-              } label: {
-                Label("重置拍摄参数", systemImage: "arrow.counterclockwise")
+        if project.items.isEmpty {
+          emptyState(
+            title: "尚未添加机位",
+            systemImage: "video.badge.plus",
+            message: "从下方选择摄影机和录制模式"
+          )
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+          List(selection: $selectedItemID) {
+            ForEach(project.items) { item in
+              CameraPlanRow(
+                item: item,
+                widths: resolvedColumnWidths,
+                storage: formatBytes(itemStorage(project: project, item: item)),
+                isCompared: comparisonItemIDs.contains(item.id),
+                comparisonDisabled: !comparisonItemIDs.contains(item.id)
+                  && comparisonItemIDs.count >= 4,
+                toggleComparison: { toggleComparison(item.id) }
+              )
+              .tag(Optional(item.id))
+              .contextMenu {
+                Button {
+                  duplicatePlanItem(item)
+                } label: {
+                  Label("复制机位", systemImage: "plus.square.on.square")
+                }
+                Button {
+                  movePlanItem(item, by: -1)
+                } label: {
+                  Label("上移", systemImage: "arrow.up")
+                }
+                .disabled(!canMovePlanItem(item, by: -1))
+                Button {
+                  movePlanItem(item, by: 1)
+                } label: {
+                  Label("下移", systemImage: "arrow.down")
+                }
+                .disabled(!canMovePlanItem(item, by: 1))
+                Divider()
+                Button(comparisonItemIDs.contains(item.id) ? "移出比较" : "加入比较") {
+                  toggleComparison(item.id)
+                }
+                .disabled(!comparisonItemIDs.contains(item.id) && comparisonItemIDs.count >= 4)
+                Button(favoriteStore.contains(item) ? "取消收藏" : "收藏模式") {
+                  toggleFavorite(item)
+                }
+                Divider()
+                Button {
+                  resetPlanningParameters(item)
+                } label: {
+                  Label("重置拍摄参数", systemImage: "arrow.counterclockwise")
+                }
               }
             }
+            .onDelete(perform: deleteItems)
+            .onMove(perform: moveItems)
           }
-          .onDelete(perform: deleteItems)
+          .listStyle(.inset)
         }
-        .listStyle(.inset)
-      }
 
-      Divider()
+        Divider()
 
-      HStack(spacing: 12) {
-        Image(systemName: "plus.circle")
-          .foregroundColor(.accentColor)
-        Text("为项目添加一个新的摄影机录制模式")
-          .font(.callout)
-          .foregroundColor(.secondary)
-        Spacer()
-        Button {
-          showsAddItem = true
-        } label: {
-          Label("添加机位", systemImage: "plus")
+        HStack(spacing: 12) {
+          Image(systemName: "plus.circle")
+            .foregroundColor(.accentColor)
+          Text("为项目添加一个新的摄影机录制模式")
+            .font(.callout)
+            .foregroundColor(.secondary)
+          Spacer()
+          Button {
+            showsAddItem = true
+          } label: {
+            Label("添加机位", systemImage: "plus")
+          }
+          .buttonStyle(.borderedProminent)
+          .controlSize(.large)
         }
-        .buttonStyle(.borderedProminent)
-        .controlSize(.large)
+        .padding(.horizontal, 18)
+        .padding(.vertical, 14)
       }
-      .padding(.horizontal, 18)
-      .padding(.vertical, 14)
     }
   }
 
@@ -337,75 +399,104 @@ struct DITPlannerView: View {
             VStack(spacing: 8) {
               InspectorRow(label: "摄影机", value: item.cameraLabel)
               InspectorRow(label: "编码", value: item.selection.codecID)
+              if let formatID = item.selection.formatID {
+                InspectorRow(label: "幅面", value: formatID)
+              }
+              InspectorRow(label: "格式", value: item.selection.resolutionID)
               InspectorRow(label: "帧率", value: item.selection.frameRateID)
               InspectorRow(
-                label: item.usesHDE ? "HDE 数据率" : "码率",
+                label: item.usesHDE ? "HDE 数据码率" : "码率",
                 value:
                   "\(formatNumber(item.bitrateMbps * (item.hdeDataPerHourMultiplier ?? 1))) Mbps"
               )
               InspectorRow(label: "介质", value: item.media.id)
 
               if let multiplier = ARRIHDE.multiplier(for: item.selection) {
-                Toggle(isOn: hdeBinding(item, multiplier: multiplier)) {
+                HStack(alignment: .center, spacing: 10) {
                   VStack(alignment: .leading, spacing: 2) {
                     Text("使用 HDE 无损压缩")
                     Text("项目数据量约为 ARRIRAW 的 \(formatNumber(multiplier * 100))%")
                       .font(.caption)
                       .foregroundColor(.secondary)
                   }
+                  Spacer(minLength: 8)
+                  Toggle("", isOn: hdeBinding(item, multiplier: multiplier))
+                    .labelsHidden()
+                    .toggleStyle(.switch)
                 }
-                .toggleStyle(.switch)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 4)
               }
+
+              Button {
+                editingItem = item
+              } label: {
+                Label("修改录制模式", systemImage: "pencil")
+              }
+              .buttonStyle(.bordered)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding(.top, 4)
             }
           }
 
-          Button {
-            toggleFavorite(item)
-          } label: {
-            Label(
-              favoriteStore.contains(item) ? "取消收藏" : "收藏模式",
-              systemImage: favoriteStore.contains(item) ? "star.fill" : "star"
-            )
+          HStack(spacing: 8) {
+            Button {
+              toggleFavorite(item)
+            } label: {
+              Label(
+                favoriteStore.contains(item) ? "取消收藏" : "收藏模式",
+                systemImage: favoriteStore.contains(item) ? "star.fill" : "star"
+              )
+            }
+            .buttonStyle(.bordered)
+
+            Button {
+              duplicatePlanItem(item)
+            } label: {
+              Label("复制机位", systemImage: "plus.square.on.square")
+            }
+            .buttonStyle(.bordered)
           }
-          .buttonStyle(.bordered)
 
           InspectorSection(title: "拍摄参数", systemImage: "slider.horizontal.3") {
             VStack(spacing: 12) {
               InspectorControlRow(label: "机位名称") {
                 TextField("机位名称", text: itemBinding(item, keyPath: \.name))
                   .textFieldStyle(.roundedBorder)
-                  .frame(width: 190)
+                  .multilineTextAlignment(.center)
+                  .frame(width: InspectorNumberFieldRow.controlWidth)
               }
-              InspectorNumberStepperRow(
+              InspectorControlRow(label: "机位备注") {
+                TextField("主机位、斯坦尼康等", text: itemPositionNoteBinding(item))
+                  .textFieldStyle(.roundedBorder)
+                  .multilineTextAlignment(.center)
+                  .frame(width: InspectorNumberFieldRow.controlWidth)
+              }
+              InspectorNumberFieldRow(
                 label: "摄影机数量",
                 value: integerItemBinding(item, keyPath: \.cameraCount),
                 range: 1...99,
-                step: 1,
                 fractionDigits: 0,
                 unit: "台"
               )
-              InspectorNumberStepperRow(
+              InspectorNumberFieldRow(
                 label: "每日开机",
                 value: itemBinding(item, keyPath: \.dailyPowerOnHours),
                 range: 0.5...24,
-                step: 0.5,
                 fractionDigits: 2,
                 unit: "小时"
               )
-              InspectorNumberStepperRow(
+              InspectorNumberFieldRow(
                 label: "拍摄天数",
                 value: itemBinding(item, keyPath: \.shootDays),
                 range: 0.5...365,
-                step: 0.5,
                 fractionDigits: 2,
                 unit: "天"
               )
-              InspectorNumberStepperRow(
+              InspectorNumberFieldRow(
                 label: "保留副本",
                 value: integerItemBinding(item, keyPath: \.backupCopies),
                 range: 1...5,
-                step: 1,
                 fractionDigits: 0,
                 unit: "份"
               )
@@ -466,28 +557,25 @@ struct DITPlannerView: View {
           InspectorSection(title: "传输配置", systemImage: "externaldrive.connected.to.line.below") {
             VStack(spacing: 12) {
               if let item = selectedItem {
-                InspectorNumberStepperRow(
+                InspectorNumberFieldRow(
                   label: "读卡器",
                   value: itemReaderSpeedBinding(item),
                   range: 10...10_000,
-                  step: 10,
                   fractionDigits: 2,
                   unit: "MB/s"
                 )
               }
-              InspectorNumberStepperRow(
+              InspectorNumberFieldRow(
                 label: "目标盘",
                 value: transferBinding(project, keyPath: \.targetDiskSpeedMBps),
                 range: 10...10_000,
-                step: 10,
                 fractionDigits: 2,
                 unit: "MB/s"
               )
-              InspectorNumberStepperRow(
+              InspectorNumberFieldRow(
                 label: "每日窗口",
                 value: transferBinding(project, keyPath: \.offloadWindowHoursPerDay),
                 range: 0.5...24,
-                step: 0.5,
                 fractionDigits: 2,
                 unit: "小时"
               )
@@ -503,6 +591,34 @@ struct DITPlannerView: View {
   private func addPlanItem(_ item: PlanItem) {
     guard var project = selectedProject else { return }
     project.items.append(item)
+    project.touch()
+    do {
+      try projectStore.update(project)
+      selectedItemID = item.id
+    } catch {
+      showExportError(error)
+    }
+  }
+
+  private func duplicatePlanItem(_ item: PlanItem) {
+    guard var project = selectedProject else { return }
+    let copy = item.duplicated()
+    project.items.append(copy)
+    project.touch()
+    do {
+      try projectStore.update(project)
+      selectedItemID = copy.id
+    } catch {
+      showExportError(error)
+    }
+  }
+
+  private func updatePlanItem(_ item: PlanItem) {
+    guard var project = selectedProject,
+      let index = project.items.firstIndex(where: { $0.id == item.id })
+    else { return }
+
+    project.items[index] = item
     project.touch()
     do {
       try projectStore.update(project)
@@ -653,6 +769,35 @@ struct DITPlannerView: View {
     if let selectedItemID, removedIDs.contains(selectedItemID) { self.selectedItemID = nil }
   }
 
+  private func moveItems(from offsets: IndexSet, to destination: Int) {
+    guard var project = selectedProject,
+      project.movePlanItems(fromOffsets: offsets, toOffset: destination)
+    else { return }
+    do {
+      try projectStore.update(project)
+    } catch {
+      showExportError(error)
+    }
+  }
+
+  private func movePlanItem(_ item: PlanItem, by offset: Int) {
+    guard var project = selectedProject,
+      project.movePlanItem(id: item.id, by: offset)
+    else { return }
+    do {
+      try projectStore.update(project)
+    } catch {
+      showExportError(error)
+    }
+  }
+
+  private func canMovePlanItem(_ item: PlanItem, by offset: Int) -> Bool {
+    guard let items = selectedProject?.items,
+      let index = items.firstIndex(where: { $0.id == item.id })
+    else { return false }
+    return items.indices.contains(index + offset)
+  }
+
   private func projectNameBinding(_ project: DITProject) -> Binding<String> {
     Binding(
       get: { projectStore.projects.first { $0.id == project.id }?.name ?? "" },
@@ -703,6 +848,20 @@ struct DITPlannerView: View {
     return Binding(
       get: { Double(binding.wrappedValue) },
       set: { binding.wrappedValue = Int($0.rounded()) }
+    )
+  }
+
+  private func itemPositionNoteBinding(_ item: PlanItem) -> Binding<String> {
+    Binding(
+      get: { (selectedItem ?? item).positionNote ?? "" },
+      set: { value in
+        guard var project = selectedProject,
+          let index = project.items.firstIndex(where: { $0.id == item.id })
+        else { return }
+        project.items[index].positionNote = value.isEmpty ? nil : value
+        project.touch()
+        try? projectStore.update(project)
+      }
     )
   }
 
@@ -811,75 +970,289 @@ private struct SummaryMetric: View {
   }
 }
 
+struct PlannerTableColumnWidths: Equatable {
+  var name: CGFloat = 170
+  var camera: CGFloat = 220
+  var count: CGFloat = 52
+  var storage: CGFloat = 112
+  var comparison: CGFloat = 28
+
+  static let columnGap: CGFloat = 12
+  static let headerHeight: CGFloat = 30
+  static let minimumName: CGFloat = 120
+  static let minimumCamera: CGFloat = 155
+  static let minimumCount: CGFloat = 44
+  static let minimumStorage: CGFloat = 88
+  static let minimumComparison: CGFloat = 24
+
+  var totalWidth: CGFloat {
+    name + camera + count + storage + comparison + Self.columnGap * 4
+  }
+
+  func resolved(for availableWidth: CGFloat) -> Self {
+    var resolved = self
+    let extraWidth = availableWidth - totalWidth
+
+    if extraWidth >= 0 {
+      resolved.name += extraWidth
+      return resolved
+    }
+
+    var deficit = -extraWidth
+    let nameReduction = min(deficit, max(0, resolved.name - Self.minimumName))
+    resolved.name -= nameReduction
+    deficit -= nameReduction
+
+    let cameraReduction = min(deficit, max(0, resolved.camera - Self.minimumCamera))
+    resolved.camera -= cameraReduction
+    deficit -= cameraReduction
+
+    let storageReduction = min(deficit, max(0, resolved.storage - Self.minimumStorage))
+    resolved.storage -= storageReduction
+    deficit -= storageReduction
+
+    let countReduction = min(deficit, max(0, resolved.count - Self.minimumCount))
+    resolved.count -= countReduction
+    deficit -= countReduction
+
+    if deficit > 0 {
+      resolved.comparison = max(Self.minimumComparison, resolved.comparison - deficit)
+    }
+    return resolved
+  }
+
+  mutating func adjust(_ boundary: PlannerTableColumnBoundary, by delta: CGFloat) {
+    switch boundary {
+    case .nameCamera:
+      let change = clampedChange(
+        delta,
+        left: name,
+        leftMinimum: Self.minimumName,
+        right: camera,
+        rightMinimum: Self.minimumCamera
+      )
+      name += change
+      camera -= change
+    case .cameraCount:
+      let change = clampedChange(
+        delta,
+        left: camera,
+        leftMinimum: Self.minimumCamera,
+        right: count,
+        rightMinimum: Self.minimumCount
+      )
+      camera += change
+      count -= change
+    case .countStorage:
+      let change = clampedChange(
+        delta,
+        left: count,
+        leftMinimum: Self.minimumCount,
+        right: storage,
+        rightMinimum: Self.minimumStorage
+      )
+      count += change
+      storage -= change
+    case .storageComparison:
+      let change = clampedChange(
+        delta,
+        left: storage,
+        leftMinimum: Self.minimumStorage,
+        right: comparison,
+        rightMinimum: Self.minimumComparison
+      )
+      storage += change
+      comparison -= change
+    }
+  }
+
+  private func clampedChange(
+    _ delta: CGFloat,
+    left: CGFloat,
+    leftMinimum: CGFloat,
+    right: CGFloat,
+    rightMinimum: CGFloat
+  ) -> CGFloat {
+    min(
+      max(delta, -(left - leftMinimum)),
+      right - rightMinimum
+    )
+  }
+}
+
+enum PlannerTableColumnBoundary {
+  case nameCamera
+  case cameraCount
+  case countStorage
+  case storageComparison
+}
+
 private struct CameraPlanHeader: View {
+  @Binding var widths: PlannerTableColumnWidths
+  let availableWidth: CGFloat
+
+  private var resolvedWidths: PlannerTableColumnWidths {
+    widths.resolved(for: availableWidth)
+  }
+
   var body: some View {
-    HStack(spacing: 12) {
+    HStack(spacing: 0) {
       Text("机位")
-        .frame(minWidth: 120, maxWidth: .infinity, alignment: .leading)
+        .frame(width: resolvedWidths.name, alignment: .center)
+      PlannerColumnResizeGap(
+        widths: $widths,
+        resolvedWidths: resolvedWidths,
+        boundary: .nameCamera
+      )
       Text("摄影机 / 编码")
-        .frame(width: 165, alignment: .leading)
+        .frame(width: resolvedWidths.camera, alignment: .center)
+      PlannerColumnResizeGap(
+        widths: $widths,
+        resolvedWidths: resolvedWidths,
+        boundary: .cameraCount
+      )
       Text("台数")
-        .frame(width: 44, alignment: .trailing)
+        .frame(width: resolvedWidths.count, alignment: .center)
+      PlannerColumnResizeGap(
+        widths: $widths,
+        resolvedWidths: resolvedWidths,
+        boundary: .countStorage
+      )
       Text("项目存储")
-        .frame(width: 92, alignment: .trailing)
+        .frame(width: resolvedWidths.storage, alignment: .center)
+      PlannerColumnResizeGap(
+        widths: $widths,
+        resolvedWidths: resolvedWidths,
+        boundary: .storageComparison
+      )
       Image(systemName: "rectangle.3.group")
-        .frame(width: 24)
+        .frame(width: resolvedWidths.comparison)
         .help("模式比较")
+      Spacer(minLength: 0)
     }
     .font(.caption)
     .foregroundColor(.secondary)
+    .frame(height: PlannerTableColumnWidths.headerHeight)
+  }
+}
+
+private struct PlannerColumnResizeGap: View {
+  @Binding var widths: PlannerTableColumnWidths
+  let resolvedWidths: PlannerTableColumnWidths
+  let boundary: PlannerTableColumnBoundary
+
+  @State private var dragStartWidths: PlannerTableColumnWidths?
+  @State private var isHovered = false
+
+  var body: some View {
+    ZStack {
+      Color.clear
+      Rectangle()
+        .fill(isHovered ? Color.accentColor : Color.secondary.opacity(0.28))
+        .frame(width: 1)
+    }
+    .frame(
+      width: PlannerTableColumnWidths.columnGap,
+      height: PlannerTableColumnWidths.headerHeight
+    )
+    .contentShape(Rectangle())
+    .onHover { isHovered = $0 }
+    .gesture(
+      DragGesture(minimumDistance: 1)
+        .onChanged { value in
+          if dragStartWidths == nil {
+            dragStartWidths = resolvedWidths
+          }
+          guard let dragStartWidths else { return }
+          var updatedWidths = dragStartWidths
+          updatedWidths.adjust(boundary, by: value.translation.width)
+          widths = updatedWidths
+        }
+        .onEnded { _ in
+          dragStartWidths = nil
+        }
+    )
+    .accessibilityElement()
+    .accessibilityLabel("调整列宽")
+    .help("拖动调整列宽")
   }
 }
 
 private struct CameraPlanRow: View {
   let item: PlanItem
+  let widths: PlannerTableColumnWidths
   let storage: String
   let isCompared: Bool
   let comparisonDisabled: Bool
   let toggleComparison: () -> Void
 
   var body: some View {
-    HStack(spacing: 12) {
-      VStack(alignment: .leading, spacing: 2) {
+    HStack(spacing: 0) {
+      VStack(spacing: 2) {
         Text(item.name)
           .fontWeight(.medium)
           .lineLimit(1)
-        Text(item.media.id)
-          .font(.caption)
-          .foregroundColor(.secondary)
-          .lineLimit(1)
+          .truncationMode(.middle)
+        if !positionNote.isEmpty {
+          Text(positionNote)
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+            .truncationMode(.middle)
+        }
       }
-      .frame(minWidth: 120, maxWidth: .infinity, alignment: .leading)
+      .multilineTextAlignment(.center)
+      .frame(width: widths.name, alignment: .center)
+
+      Color.clear
+        .frame(width: PlannerTableColumnWidths.columnGap)
 
       VStack(alignment: .leading, spacing: 2) {
         Text(item.cameraLabel)
           .lineLimit(1)
-        Text(item.selection.codecID)
+          .truncationMode(.middle)
+        Text("\(item.selection.codecID)·\(item.media.id)")
           .font(.caption)
           .foregroundColor(.secondary)
           .lineLimit(1)
+          .truncationMode(.middle)
       }
-      .frame(width: 165, alignment: .leading)
+      .frame(width: widths.camera, alignment: .leading)
+
+      Color.clear
+        .frame(width: PlannerTableColumnWidths.columnGap)
 
       Text("\(item.cameraCount)")
         .monospacedDigit()
-        .frame(width: 44, alignment: .trailing)
+        .frame(width: widths.count, alignment: .center)
+
+      Color.clear
+        .frame(width: PlannerTableColumnWidths.columnGap)
 
       Text(storage)
         .monospacedDigit()
         .lineLimit(1)
         .minimumScaleFactor(0.8)
-        .frame(width: 92, alignment: .trailing)
+        .frame(width: widths.storage, alignment: .trailing)
+
+      Color.clear
+        .frame(width: PlannerTableColumnWidths.columnGap)
 
       Button(action: toggleComparison) {
         Image(systemName: isCompared ? "checkmark.circle.fill" : "circle")
       }
       .buttonStyle(.borderless)
       .disabled(comparisonDisabled)
-      .frame(width: 24)
+      .frame(width: widths.comparison)
       .help(isCompared ? "移出比较" : "加入比较")
+
+      Spacer(minLength: 0)
     }
     .padding(.vertical, 5)
+  }
+
+  private var positionNote: String {
+    (item.positionNote ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
   }
 }
 
@@ -919,52 +1292,47 @@ private struct InspectorControlRow<Content: View>: View {
   }
 
   var body: some View {
-    HStack(alignment: .center, spacing: 12) {
+    HStack(alignment: .center, spacing: 8) {
       Text(label)
         .foregroundColor(.secondary)
         .lineLimit(1)
-      Spacer(minLength: 8)
+      Spacer(minLength: 0)
       content
     }
   }
 }
 
-private struct InspectorNumberStepperRow: View {
+private struct InspectorNumberFieldRow: View {
+  static let controlWidth: CGFloat = 166
+  private static let numberFieldWidth: CGFloat = 128
+  private static let unitWidth: CGFloat = 36
+  private static let unitSpacing: CGFloat = 2
+
   let label: String
   @Binding var value: Double
   let range: ClosedRange<Double>
-  let step: Double
   let fractionDigits: Int
   let unit: String
 
   var body: some View {
-    HStack(spacing: 12) {
+    HStack(spacing: 8) {
       Text(label)
         .foregroundColor(.secondary)
-      Spacer(minLength: 8)
-      HStack(spacing: 6) {
+      Spacer(minLength: 0)
+      HStack(spacing: Self.unitSpacing) {
         NonnegativeNumberField(
           value: $value,
           range: range,
           fractionDigits: fractionDigits
         )
-        .frame(width: 90)
+        .frame(width: Self.numberFieldWidth)
 
         Text(unit)
           .foregroundColor(.secondary)
           .lineLimit(1)
-          .frame(width: 42, alignment: .leading)
-
-        Stepper(
-          "",
-          value: $value,
-          in: range,
-          step: step
-        )
-        .labelsHidden()
-        .frame(width: 42)
+          .frame(width: Self.unitWidth, alignment: .trailing)
       }
-      .frame(width: 186, alignment: .trailing)
+      .frame(width: Self.controlWidth, alignment: .trailing)
     }
   }
 }

@@ -13,6 +13,8 @@ final class DITPlanExportTests: XCTestCase {
         XCTAssertEqual(Data(data.prefix(3)), Data([0xEF, 0xBB, 0xBF]))
         XCTAssertTrue(csv.contains("\"项目, 一\""), csv)
         XCTAssertTrue(csv.contains("A 机位"), csv)
+        XCTAssertTrue(csv.contains("机位备注"), csv)
+        XCTAssertTrue(csv.contains("主机位"), csv)
         XCTAssertTrue(csv.contains("汇总"), csv)
         XCTAssertTrue(csv.contains("HDE"), csv)
         XCTAssertTrue(csv.contains("不适用"), csv)
@@ -38,6 +40,16 @@ final class DITPlanExportTests: XCTestCase {
         try data.write(to: previewURL, options: .atomic)
     }
 
+    func testCSVRowsHaveConsistentColumnCounts() throws {
+        let data = DITPlanExport.csvData(for: sampleProject())
+        let csv = try XCTUnwrap(String(data: data, encoding: .utf8))
+        let columnCounts = csv
+            .split(separator: "\n")
+            .map { $0.split(separator: ",", omittingEmptySubsequences: false).count }
+
+        XCTAssertEqual(Set(columnCounts), [24], csv)
+    }
+
     func testPDFRejectsEmptyOrInvalidProject() {
         XCTAssertThrowsError(try DITPlanExport.pdfData(for: DITProject()))
     }
@@ -53,6 +65,7 @@ final class DITPlanExportTests: XCTestCase {
         )
         let item = PlanItem(
             name: "A 机位",
+            positionNote: "主机位",
             selection: selection,
             bitrateMbps: 100,
             media: MediaSpec(id: "1TB", usableCapacityBytes: 900_000_000_000),

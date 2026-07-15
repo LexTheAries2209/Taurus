@@ -3,6 +3,178 @@ import XCTest
 @testable import Taurus
 
 final class DITProjectTests: XCTestCase {
+    func testReplacingRecordingModePreservesPlanningAndTransferParameters() {
+        let existing = PlanItem(
+            name: "A 机位",
+            positionNote: "主机位",
+            selection: CameraSelection(
+                brandID: "ARRI",
+                cameraID: "ALEXA 35",
+                codecID: "ARRIRAW",
+                resolutionID: "4.6K",
+                frameRateID: "24.000",
+                mediaID: "Compact Drive 1TB"
+            ),
+            bitrateMbps: 3_000,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 780,
+            hdeDataPerHourMultiplier: 0.5,
+            cameraCount: 3,
+            dailyPowerOnHours: 12,
+            recordingRatio: 0.65,
+            shootDays: 8,
+            backupCopies: 3,
+            safetyMargin: 0.25
+        )
+        let draft = PlanItem(
+            name: "A 机位",
+            selection: CameraSelection(
+                brandID: "SONY",
+                cameraID: "CineAlta Venice 2[8K]",
+                codecID: "X-OCN XT",
+                resolutionID: "8.6K FF[8640*5760][3:2]",
+                frameRateID: "29.970",
+                mediaID: "AXS S66 1TB"
+            ),
+            bitrateMbps: 6_784.5,
+            media: MediaSpec(id: "AXS S66 1TB", usableCapacityBytes: 1_000_000_000_000)
+        )
+
+        let updated = DITPlanItemBuilder.replacingRecordingMode(of: existing, with: draft)
+
+        XCTAssertEqual(updated.id, existing.id)
+        XCTAssertEqual(updated.positionNote, existing.positionNote)
+        XCTAssertEqual(updated.selection, draft.selection)
+        XCTAssertEqual(updated.bitrateMbps, draft.bitrateMbps)
+        XCTAssertEqual(updated.media, draft.media)
+        XCTAssertNil(updated.hdeDataPerHourMultiplier)
+        XCTAssertEqual(updated.readerSpeedMBps, existing.readerSpeedMBps)
+        XCTAssertEqual(updated.cameraCount, existing.cameraCount)
+        XCTAssertEqual(updated.dailyPowerOnHours, existing.dailyPowerOnHours)
+        XCTAssertEqual(updated.recordingRatio, existing.recordingRatio)
+        XCTAssertEqual(updated.shootDays, existing.shootDays)
+        XCTAssertEqual(updated.backupCopies, existing.backupCopies)
+        XCTAssertEqual(updated.safetyMargin, existing.safetyMargin)
+    }
+
+    func testPlannerColumnWidthsCanMoveFlexibleSpaceIntoCameraColumn() {
+        let availableWidth: CGFloat = 900
+        let initial = PlannerTableColumnWidths().resolved(for: availableWidth)
+        var adjusted = initial
+
+        adjusted.adjust(.nameCamera, by: -120)
+
+        XCTAssertEqual(initial.totalWidth, availableWidth, accuracy: 0.001)
+        XCTAssertEqual(adjusted.totalWidth, availableWidth, accuracy: 0.001)
+        XCTAssertEqual(adjusted.name, initial.name - 120, accuracy: 0.001)
+        XCTAssertEqual(adjusted.camera, initial.camera + 120, accuracy: 0.001)
+    }
+
+    func testPlannerColumnResizeStopsAtMinimumWidths() {
+        var widths = PlannerTableColumnWidths().resolved(for: 900)
+        let initialTotal = widths.totalWidth
+
+        widths.adjust(.nameCamera, by: -10_000)
+
+        XCTAssertEqual(widths.name, PlannerTableColumnWidths.minimumName, accuracy: 0.001)
+        XCTAssertEqual(widths.totalWidth, initialTotal, accuracy: 0.001)
+    }
+
+    func testDuplicatedPlanItemPreservesSettingsWithNewID() {
+        let item = PlanItem(
+            name: "A 机位",
+            positionNote: "斯坦尼康",
+            selection: CameraSelection(
+                brandID: "ARRI",
+                cameraID: "ALEXA 35",
+                codecID: "ARRIRAW",
+                resolutionID: "4.6K",
+                frameRateID: "24.000",
+                mediaID: "Compact Drive 1TB"
+            ),
+            bitrateMbps: 3_000,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000),
+            readerSpeedMBps: 780,
+            hdeDataPerHourMultiplier: 0.5,
+            cameraCount: 3,
+            dailyPowerOnHours: 12,
+            recordingRatio: 0.65,
+            shootDays: 8,
+            backupCopies: 3,
+            safetyMargin: 0.25
+        )
+
+        let copy = item.duplicated()
+
+        XCTAssertNotEqual(copy.id, item.id)
+        XCTAssertEqual(copy.name, "A 机位 副本")
+        XCTAssertEqual(copy.positionNote, item.positionNote)
+        XCTAssertEqual(copy.selection, item.selection)
+        XCTAssertEqual(copy.bitrateMbps, item.bitrateMbps)
+        XCTAssertEqual(copy.media, item.media)
+        XCTAssertEqual(copy.readerSpeedMBps, item.readerSpeedMBps)
+        XCTAssertEqual(copy.hdeDataPerHourMultiplier, item.hdeDataPerHourMultiplier)
+        XCTAssertEqual(copy.cameraCount, item.cameraCount)
+        XCTAssertEqual(copy.dailyPowerOnHours, item.dailyPowerOnHours)
+        XCTAssertEqual(copy.recordingRatio, item.recordingRatio)
+        XCTAssertEqual(copy.shootDays, item.shootDays)
+        XCTAssertEqual(copy.backupCopies, item.backupCopies)
+        XCTAssertEqual(copy.safetyMargin, item.safetyMargin)
+    }
+
+    func testPlanItemDecodesLegacyJSONWithoutPositionNote() throws {
+        let item = PlanItem(
+            name: "A 机位",
+            selection: CameraSelection(
+                brandID: "ARRI",
+                cameraID: "ALEXA 35",
+                codecID: "ARRIRAW",
+                resolutionID: "4.6K",
+                frameRateID: "24.000",
+                mediaID: "Compact Drive 1TB"
+            ),
+            bitrateMbps: 3_000,
+            media: MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000)
+        )
+        let encoded = try JSONEncoder().encode(item)
+        var object = try XCTUnwrap(
+            JSONSerialization.jsonObject(with: encoded) as? [String: Any]
+        )
+        object.removeValue(forKey: "positionNote")
+        let legacyData = try JSONSerialization.data(withJSONObject: object)
+
+        let decoded = try JSONDecoder().decode(PlanItem.self, from: legacyData)
+
+        XCTAssertNil(decoded.positionNote)
+        XCTAssertEqual(decoded.name, item.name)
+        XCTAssertEqual(decoded.selection, item.selection)
+    }
+
+    func testProjectPlanItemsCanBeReorderedByMenuAndDragSemantics() {
+        let selection = CameraSelection(
+            brandID: "ARRI",
+            cameraID: "ALEXA 35",
+            codecID: "ARRIRAW",
+            resolutionID: "4.6K",
+            frameRateID: "24.000",
+            mediaID: "Compact Drive 1TB"
+        )
+        let media = MediaSpec(id: "Compact Drive 1TB", usableCapacityBytes: 900_000_000_000)
+        let itemA = PlanItem(name: "A", selection: selection, bitrateMbps: 100, media: media)
+        let itemB = PlanItem(name: "B", selection: selection, bitrateMbps: 100, media: media)
+        let itemC = PlanItem(name: "C", selection: selection, bitrateMbps: 100, media: media)
+        var project = DITProject(items: [itemA, itemB, itemC])
+
+        XCTAssertTrue(project.movePlanItem(id: itemC.id, by: -1))
+        XCTAssertEqual(project.items.map(\.id), [itemA.id, itemC.id, itemB.id])
+        XCTAssertFalse(project.movePlanItem(id: itemA.id, by: -1))
+
+        XCTAssertTrue(
+            project.movePlanItems(fromOffsets: IndexSet(integer: 0), toOffset: 3)
+        )
+        XCTAssertEqual(project.items.map(\.id), [itemC.id, itemB.id, itemA.id])
+    }
+
     func testNumericInputSanitizerRejectsLettersSignsAndExtraDecimals() {
         XCTAssertEqual(
             NumericInputSanitizer.sanitize("-12a.3.4", allowsDecimal: true),

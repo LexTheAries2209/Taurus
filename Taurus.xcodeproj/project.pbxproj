@@ -6,50 +6,7 @@
 	objectVersion = 56;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		A10000012E2000010000000D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5864C05E2A7000D900611BD0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5864C0652A7000D900611BD0;
-			remoteInfo = Taurus;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXBuildFile section */
-		A30000012E22000100000002 /* DITProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000001 /* DITProject.swift */; };
-		A30000012E22000100000004 /* DITProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000003 /* DITProjectStore.swift */; };
-		A30000012E22000100000006 /* DITProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000005 /* DITProjectTests.swift */; };
-		A30000012E22000100000008 /* DITPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000007 /* DITPlannerView.swift */; };
-		A30000012E2200010000000A /* DITPlanExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000009 /* DITPlanExport.swift */; };
-		A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000000B /* DITPlanExportTests.swift */; };
-		A30000012E22000100000012 /* DITFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000011 /* DITFavorites.swift */; };
-		A30000012E22000100000014 /* DITFavoriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000013 /* DITFavoriteTests.swift */; };
-		A30000012E22000100000016 /* CameraSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000015 /* CameraSearchView.swift */; };
-		A30000012E22000100000018 /* DITModeComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000017 /* DITModeComparisonView.swift */; };
-		A30000012E2200010000001A /* DITAddPlanItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000019 /* DITAddPlanItemView.swift */; };
-		A30000012E2200010000001C /* NonnegativeNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000001B /* NonnegativeNumberField.swift */; };
-		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
-		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
-		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
-		A10000012E20000100000013 /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000012 /* CameraData.swift */; };
-		A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000014 /* PickerSelectionNormalizer.swift */; };
-		A10000012E20000100000017 /* RecordingCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000016 /* RecordingCalculatorTests.swift */; };
-		A20000012E21000100000002 /* CalculationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000001 /* CalculationEngineTests.swift */; };
-		A20000012E21000100000004 /* CameraSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000003 /* CameraSelection.swift */; };
-		A20000012E21000100000006 /* RecordingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000005 /* RecordingMode.swift */; };
-		A20000012E21000100000008 /* CalculationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000007 /* CalculationEngine.swift */; };
-		A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000009 /* ARRIRecordingCatalog.swift */; };
-		A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */; };
-		A20000012E2100010000000E /* AvailableRecordingRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000D /* AvailableRecordingRates.swift */; };
-		A20000012E21000100000010 /* CameraSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000F /* CameraSelectionStore.swift */; };
-		A20000012E21000100000012 /* CalculatorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000011 /* CalculatorToolbar.swift */; };
-		A20000012E21000100000014 /* CalculatorWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000013 /* CalculatorWorkspace.swift */; };
-		A20000012E21000100000016 /* RecordingMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000015 /* RecordingMetricsView.swift */; };
-		A20000012E21000100000018 /* WindowBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000017 /* WindowBridge.swift */; };
-		A20000012E2100010000001D /* ARRIOfficialCatalogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */; };
-		A10000012E20000100000019 /* RecordingMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000018 /* RecordingMetrics.swift */; };
-		A10000012E2000010000001B /* RecordingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000001A /* RecordingCalculator.swift */; };
 		582EA03A2C155C8E001BD46A /* DjiMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA0392C155C8E001BD46A /* DjiMedia.swift */; };
 		582EA03C2C15CEAD001BD46A /* CanonCinemaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */; };
 		582EA03E2C15CED1001BD46A /* CanonCinemaMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */; };
@@ -98,6 +55,39 @@
 		58F4E8E92B2A084C00A36613 /* PanaFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4E8E82B2A084C00A36613 /* PanaFormat.swift */; };
 		58FE691A2BB1488B008ECC8D /* DataOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE69192BB1488B008ECC8D /* DataOutput.swift */; };
 		58FE691C2BB14B44008ECC8D /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE691B2BB14B44008ECC8D /* Comments.swift */; };
+		A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000001 /* ScreenshotExportTests.swift */; };
+		A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000000E /* CameraDataSelectionTests.swift */; };
+		A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */; };
+		A10000012E20000100000013 /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000012 /* CameraData.swift */; };
+		A10000012E20000100000015 /* PickerSelectionNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000014 /* PickerSelectionNormalizer.swift */; };
+		A10000012E20000100000017 /* RecordingCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000016 /* RecordingCalculatorTests.swift */; };
+		A10000012E20000100000019 /* RecordingMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E20000100000018 /* RecordingMetrics.swift */; };
+		A10000012E2000010000001B /* RecordingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012E2000010000001A /* RecordingCalculator.swift */; };
+		A20000012E21000100000002 /* CalculationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000001 /* CalculationEngineTests.swift */; };
+		A20000012E21000100000004 /* CameraSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000003 /* CameraSelection.swift */; };
+		A20000012E21000100000006 /* RecordingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000005 /* RecordingMode.swift */; };
+		A20000012E21000100000008 /* CalculationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000007 /* CalculationEngine.swift */; };
+		A20000012E2100010000000A /* ARRIRecordingCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000009 /* ARRIRecordingCatalog.swift */; };
+		A20000012E2100010000000C /* CameraDataSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */; };
+		A20000012E2100010000000E /* AvailableRecordingRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000D /* AvailableRecordingRates.swift */; };
+		A20000012E21000100000010 /* CameraSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000000F /* CameraSelectionStore.swift */; };
+		A20000012E21000100000012 /* CalculatorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000011 /* CalculatorToolbar.swift */; };
+		A20000012E21000100000014 /* CalculatorWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000013 /* CalculatorWorkspace.swift */; };
+		A20000012E21000100000016 /* RecordingMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000015 /* RecordingMetricsView.swift */; };
+		A20000012E21000100000018 /* WindowBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E21000100000017 /* WindowBridge.swift */; };
+		A20000012E2100010000001D /* ARRIOfficialCatalogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */; };
+		A30000012E22000100000002 /* DITProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000001 /* DITProject.swift */; };
+		A30000012E22000100000004 /* DITProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000003 /* DITProjectStore.swift */; };
+		A30000012E22000100000006 /* DITProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000005 /* DITProjectTests.swift */; };
+		A30000012E22000100000008 /* DITPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000007 /* DITPlannerView.swift */; };
+		A30000012E2200010000000A /* DITPlanExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000009 /* DITPlanExport.swift */; };
+		A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000000B /* DITPlanExportTests.swift */; };
+		A30000012E22000100000012 /* DITFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000011 /* DITFavorites.swift */; };
+		A30000012E22000100000014 /* DITFavoriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000013 /* DITFavoriteTests.swift */; };
+		A30000012E22000100000016 /* CameraSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000015 /* CameraSearchView.swift */; };
+		A30000012E22000100000018 /* DITModeComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000017 /* DITModeComparisonView.swift */; };
+		A30000012E2200010000001A /* DITAddPlanItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E22000100000019 /* DITAddPlanItemView.swift */; };
+		A30000012E2200010000001C /* NonnegativeNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000012E2200010000001B /* NonnegativeNumberField.swift */; };
 		C0DEF0012E11000100000002 /* KinefinityFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000001 /* KinefinityFormat.swift */; };
 		C0DEF0012E11000100000004 /* KinefinityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000003 /* KinefinityResolution.swift */; };
 		C0DEF0012E11000100000006 /* KinefinityRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0012E11000100000005 /* KinefinityRate.swift */; };
@@ -110,41 +100,17 @@
 		C0DEF0042E13000200000002 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF0042E13000200000001 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A10000012E2000010000000D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5864C05E2A7000D900611BD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5864C0652A7000D900611BD0;
+			remoteInfo = Taurus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		A30000012E22000100000001 /* DITProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProject.swift; sourceTree = "<group>"; };
-		A30000012E22000100000003 /* DITProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectStore.swift; sourceTree = "<group>"; };
-		A30000012E22000100000005 /* DITProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectTests.swift; sourceTree = "<group>"; };
-		A30000012E22000100000007 /* DITPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlannerView.swift; sourceTree = "<group>"; };
-		A30000012E22000100000009 /* DITPlanExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExport.swift; sourceTree = "<group>"; };
-		A30000012E2200010000000B /* DITPlanExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExportTests.swift; sourceTree = "<group>"; };
-		A30000012E22000100000011 /* DITFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITFavorites.swift; sourceTree = "<group>"; };
-		A30000012E22000100000013 /* DITFavoriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITFavoriteTests.swift; sourceTree = "<group>"; };
-		A30000012E22000100000015 /* CameraSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSearchView.swift; sourceTree = "<group>"; };
-		A30000012E22000100000017 /* DITModeComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITModeComparisonView.swift; sourceTree = "<group>"; };
-		A30000012E22000100000019 /* DITAddPlanItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITAddPlanItemView.swift; sourceTree = "<group>"; };
-		A30000012E2200010000001B /* NonnegativeNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonnegativeNumberField.swift; sourceTree = "<group>"; };
-		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
-		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
-		A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizerTests.swift; sourceTree = "<group>"; };
-		A10000012E20000100000012 /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
-		A10000012E20000100000014 /* PickerSelectionNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizer.swift; sourceTree = "<group>"; };
-		A10000012E20000100000016 /* RecordingCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculatorTests.swift; sourceTree = "<group>"; };
-		A20000012E21000100000001 /* CalculationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationEngineTests.swift; sourceTree = "<group>"; };
-		A20000012E21000100000003 /* CameraSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelection.swift; sourceTree = "<group>"; };
-		A20000012E21000100000005 /* RecordingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMode.swift; sourceTree = "<group>"; };
-		A20000012E21000100000007 /* CalculationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationEngine.swift; sourceTree = "<group>"; };
-		A20000012E21000100000009 /* ARRIRecordingCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIRecordingCatalog.swift; sourceTree = "<group>"; };
-		A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionAdapter.swift; sourceTree = "<group>"; };
-		A20000012E2100010000000D /* AvailableRecordingRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableRecordingRates.swift; sourceTree = "<group>"; };
-		A20000012E2100010000000F /* CameraSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelectionStore.swift; sourceTree = "<group>"; };
-		A20000012E21000100000011 /* CalculatorToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorToolbar.swift; sourceTree = "<group>"; };
-		A20000012E21000100000013 /* CalculatorWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorWorkspace.swift; sourceTree = "<group>"; };
-		A20000012E21000100000015 /* RecordingMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetricsView.swift; sourceTree = "<group>"; };
-		A20000012E21000100000017 /* WindowBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowBridge.swift; sourceTree = "<group>"; };
-		A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIOfficialCatalogData.swift; sourceTree = "<group>"; };
-		A10000012E20000100000018 /* RecordingMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetrics.swift; sourceTree = "<group>"; };
-		A10000012E2000010000001A /* RecordingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculator.swift; sourceTree = "<group>"; };
 		582EA0392C155C8E001BD46A /* DjiMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjiMedia.swift; sourceTree = "<group>"; };
 		582EA03B2C15CEAD001BD46A /* CanonCinemaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaCount.swift; sourceTree = "<group>"; };
 		582EA03D2C15CED1001BD46A /* CanonCinemaMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonCinemaMedia.swift; sourceTree = "<group>"; };
@@ -195,6 +161,40 @@
 		58F4E8E82B2A084C00A36613 /* PanaFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanaFormat.swift; sourceTree = "<group>"; };
 		58FE69192BB1488B008ECC8D /* DataOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOutput.swift; sourceTree = "<group>"; };
 		58FE691B2BB14B44008ECC8D /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		A10000012E20000100000001 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000003 /* TaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000012E2000010000000E /* CameraDataSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000010 /* PickerSelectionNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizerTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000012 /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
+		A10000012E20000100000014 /* PickerSelectionNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionNormalizer.swift; sourceTree = "<group>"; };
+		A10000012E20000100000016 /* RecordingCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculatorTests.swift; sourceTree = "<group>"; };
+		A10000012E20000100000018 /* RecordingMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetrics.swift; sourceTree = "<group>"; };
+		A10000012E2000010000001A /* RecordingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCalculator.swift; sourceTree = "<group>"; };
+		A20000012E21000100000001 /* CalculationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationEngineTests.swift; sourceTree = "<group>"; };
+		A20000012E21000100000003 /* CameraSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelection.swift; sourceTree = "<group>"; };
+		A20000012E21000100000005 /* RecordingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMode.swift; sourceTree = "<group>"; };
+		A20000012E21000100000007 /* CalculationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationEngine.swift; sourceTree = "<group>"; };
+		A20000012E21000100000009 /* ARRIRecordingCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIRecordingCatalog.swift; sourceTree = "<group>"; };
+		A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataSelectionAdapter.swift; sourceTree = "<group>"; };
+		A20000012E2100010000000D /* AvailableRecordingRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableRecordingRates.swift; sourceTree = "<group>"; };
+		A20000012E2100010000000F /* CameraSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSelectionStore.swift; sourceTree = "<group>"; };
+		A20000012E21000100000011 /* CalculatorToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorToolbar.swift; sourceTree = "<group>"; };
+		A20000012E21000100000013 /* CalculatorWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorWorkspace.swift; sourceTree = "<group>"; };
+		A20000012E21000100000015 /* RecordingMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetricsView.swift; sourceTree = "<group>"; };
+		A20000012E21000100000017 /* WindowBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowBridge.swift; sourceTree = "<group>"; };
+		A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRIOfficialCatalogData.swift; sourceTree = "<group>"; };
+		A30000012E22000100000001 /* DITProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProject.swift; sourceTree = "<group>"; };
+		A30000012E22000100000003 /* DITProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectStore.swift; sourceTree = "<group>"; };
+		A30000012E22000100000005 /* DITProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITProjectTests.swift; sourceTree = "<group>"; };
+		A30000012E22000100000007 /* DITPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlannerView.swift; sourceTree = "<group>"; };
+		A30000012E22000100000009 /* DITPlanExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExport.swift; sourceTree = "<group>"; };
+		A30000012E2200010000000B /* DITPlanExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITPlanExportTests.swift; sourceTree = "<group>"; };
+		A30000012E22000100000011 /* DITFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITFavorites.swift; sourceTree = "<group>"; };
+		A30000012E22000100000013 /* DITFavoriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITFavoriteTests.swift; sourceTree = "<group>"; };
+		A30000012E22000100000015 /* CameraSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSearchView.swift; sourceTree = "<group>"; };
+		A30000012E22000100000017 /* DITModeComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITModeComparisonView.swift; sourceTree = "<group>"; };
+		A30000012E22000100000019 /* DITAddPlanItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITAddPlanItemView.swift; sourceTree = "<group>"; };
+		A30000012E2200010000001B /* NonnegativeNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonnegativeNumberField.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000001 /* KinefinityFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityFormat.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000003 /* KinefinityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityResolution.swift; sourceTree = "<group>"; };
 		C0DEF0012E11000100000005 /* KinefinityRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinefinityRate.swift; sourceTree = "<group>"; };
@@ -208,14 +208,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A10000012E20000100000006 /* Frameworks */ = {
+		5864C0632A7000D900611BD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5864C0632A7000D900611BD0 /* Frameworks */ = {
+		A10000012E20000100000006 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,37 +305,6 @@
 			path = Rate;
 			sourceTree = "<group>";
 		};
-		A20000012E21000100000019 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-				A20000012E2100010000000F /* CameraSelectionStore.swift */,
-			);
-			path = Stores;
-			sourceTree = "<group>";
-		};
-		A20000012E2100010000001A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A30000012E22000100000019 /* DITAddPlanItemView.swift */,
-				A30000012E2200010000001B /* NonnegativeNumberField.swift */,
-				A30000012E22000100000015 /* CameraSearchView.swift */,
-				A20000012E21000100000011 /* CalculatorToolbar.swift */,
-				A20000012E21000100000013 /* CalculatorWorkspace.swift */,
-				A30000012E22000100000007 /* DITPlannerView.swift */,
-				A30000012E22000100000017 /* DITModeComparisonView.swift */,
-				A20000012E21000100000015 /* RecordingMetricsView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A20000012E2100010000001B /* AppKit */ = {
-			isa = PBXGroup;
-			children = (
-				A20000012E21000100000017 /* WindowBridge.swift */,
-			);
-			path = AppKit;
-			sourceTree = "<group>";
-		};
 		5864C05D2A7000D900611BD0 = {
 			isa = PBXGroup;
 			children = (
@@ -391,19 +360,12 @@
 			path = Taurus;
 			sourceTree = "<group>";
 		};
-		A10000012E2000010000001C /* Calculation */ = {
+		5864C06F2A7000D900611BD0 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A20000012E21000100000009 /* ARRIRecordingCatalog.swift */,
-				A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */,
-				A20000012E21000100000003 /* CameraSelection.swift */,
-				A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */,
-				A20000012E21000100000005 /* RecordingMode.swift */,
-				A20000012E21000100000007 /* CalculationEngine.swift */,
-				A10000012E20000100000018 /* RecordingMetrics.swift */,
-				A10000012E2000010000001A /* RecordingCalculator.swift */,
+				5864C0702A7000D900611BD0 /* Preview Assets.xcassets */,
 			);
-			path = Calculation;
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		A10000012E20000100000004 /* TaurusTests */ = {
@@ -421,17 +383,72 @@
 			path = TaurusTests;
 			sourceTree = "<group>";
 		};
-		5864C06F2A7000D900611BD0 /* Preview Content */ = {
+		A10000012E2000010000001C /* Calculation */ = {
 			isa = PBXGroup;
 			children = (
-				5864C0702A7000D900611BD0 /* Preview Assets.xcassets */,
+				A20000012E21000100000009 /* ARRIRecordingCatalog.swift */,
+				A20000012E2100010000001C /* ARRIOfficialCatalogData.swift */,
+				A20000012E21000100000003 /* CameraSelection.swift */,
+				A20000012E2100010000000B /* CameraDataSelectionAdapter.swift */,
+				A20000012E21000100000005 /* RecordingMode.swift */,
+				A20000012E21000100000007 /* CalculationEngine.swift */,
+				A10000012E20000100000018 /* RecordingMetrics.swift */,
+				A10000012E2000010000001A /* RecordingCalculator.swift */,
 			);
-			path = "Preview Content";
+			path = Calculation;
+			sourceTree = "<group>";
+		};
+		A20000012E21000100000019 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A20000012E2100010000000F /* CameraSelectionStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		A20000012E2100010000001A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A30000012E22000100000019 /* DITAddPlanItemView.swift */,
+				A30000012E2200010000001B /* NonnegativeNumberField.swift */,
+				A30000012E22000100000015 /* CameraSearchView.swift */,
+				A20000012E21000100000011 /* CalculatorToolbar.swift */,
+				A20000012E21000100000013 /* CalculatorWorkspace.swift */,
+				A30000012E22000100000007 /* DITPlannerView.swift */,
+				A30000012E22000100000017 /* DITModeComparisonView.swift */,
+				A20000012E21000100000015 /* RecordingMetricsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A20000012E2100010000001B /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				A20000012E21000100000017 /* WindowBridge.swift */,
+			);
+			path = AppKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5864C0652A7000D900611BD0 /* Taurus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5864C0752A7000D900611BD0 /* Build configuration list for PBXNativeTarget "Taurus" */;
+			buildPhases = (
+				5864C0622A7000D900611BD0 /* Sources */,
+				5864C0632A7000D900611BD0 /* Frameworks */,
+				5864C0642A7000D900611BD0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Taurus;
+			productName = Taurus;
+			productReference = 5864C0662A7000D900611BD0 /* Taurus.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A10000012E20000100000008 /* TaurusTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A10000012E2000010000000B /* Build configuration list for PBXNativeTarget "TaurusTests" */;
@@ -450,23 +467,6 @@
 			productReference = A10000012E20000100000003 /* TaurusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5864C0652A7000D900611BD0 /* Taurus */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5864C0752A7000D900611BD0 /* Build configuration list for PBXNativeTarget "Taurus" */;
-			buildPhases = (
-				5864C0622A7000D900611BD0 /* Sources */,
-				5864C0632A7000D900611BD0 /* Frameworks */,
-				5864C0642A7000D900611BD0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Taurus;
-			productName = Taurus;
-			productReference = 5864C0662A7000D900611BD0 /* Taurus.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -477,12 +477,12 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
+					5864C0652A7000D900611BD0 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					A10000012E20000100000008 = {
 						CreatedOnToolsVersion = 26.0;
 						TestTargetID = 5864C0652A7000D900611BD0;
-					};
-					5864C0652A7000D900611BD0 = {
-						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
@@ -506,13 +506,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A10000012E20000100000007 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5864C0642A7000D900611BD0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,24 +516,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		A10000012E20000100000005 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		A10000012E20000100000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30000012E22000100000014 /* DITFavoriteTests.swift in Sources */,
-				A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */,
-				A30000012E22000100000006 /* DITProjectTests.swift in Sources */,
-				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
-				A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */,
-				A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */,
-				A10000012E20000100000017 /* RecordingCalculatorTests.swift in Sources */,
-				A20000012E21000100000002 /* CalculationEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		5864C0622A7000D900611BD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -628,6 +613,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A10000012E20000100000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A30000012E22000100000014 /* DITFavoriteTests.swift in Sources */,
+				A30000012E2200010000000C /* DITPlanExportTests.swift in Sources */,
+				A30000012E22000100000006 /* DITProjectTests.swift in Sources */,
+				A10000012E20000100000002 /* ScreenshotExportTests.swift in Sources */,
+				A10000012E2000010000000F /* CameraDataSelectionTests.swift in Sources */,
+				A10000012E20000100000011 /* PickerSelectionNormalizerTests.swift in Sources */,
+				A10000012E20000100000017 /* RecordingCalculatorTests.swift in Sources */,
+				A20000012E21000100000002 /* CalculationEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -639,60 +639,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		A10000012E20000100000009 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
-			};
-			name = Debug;
-		};
-		A10000012E2000010000000A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					XCTest,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
-			};
-			name = Release;
-		};
 		5864C0732A7000D900611BD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -822,12 +768,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.7";
+				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V2.0.1";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -835,7 +781,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lex.Taurus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -851,12 +797,12 @@
 				CODE_SIGN_ENTITLEMENTS = Taurus/Taurus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Taurus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V1.3.7";
+				INFOPLIST_KEY_CFBundleDisplayName = "Taurus V2.0.1";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -864,7 +810,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lex.Taurus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -872,18 +818,63 @@
 			};
 			name = Release;
 		};
+		A10000012E20000100000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
+			};
+			name = Debug;
+		};
+		A10000012E2000010000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lex.TaurusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taurus.app/Contents/MacOS/Taurus";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A10000012E2000010000000B /* Build configuration list for PBXNativeTarget "TaurusTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A10000012E20000100000009 /* Debug */,
-				A10000012E2000010000000A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5864C0612A7000D900611BD0 /* Build configuration list for PBXProject "Taurus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -898,6 +889,15 @@
 			buildConfigurations = (
 				5864C0762A7000D900611BD0 /* Debug */,
 				5864C0772A7000D900611BD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000012E2000010000000B /* Build configuration list for PBXNativeTarget "TaurusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000012E20000100000009 /* Debug */,
+				A10000012E2000010000000A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

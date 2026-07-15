@@ -48,6 +48,7 @@ final class DITFavoriteTests: XCTestCase {
         let restored = favorite.makePlanItem()
 
         XCTAssertNotEqual(restored.id, source.id)
+        XCTAssertEqual(restored.positionNote, source.positionNote)
         XCTAssertEqual(restored.selection, source.selection)
         XCTAssertEqual(restored.media, source.media)
         XCTAssertEqual(restored.readerSpeedMBps, 200)
@@ -60,6 +61,7 @@ final class DITFavoriteTests: XCTestCase {
     private func sampleItem() -> PlanItem {
         PlanItem(
             name: "ALEXA 35 ARRIRAW",
+            positionNote: "主机位",
             selection: CameraSelection(
                 brandID: "ARRI",
                 cameraID: "ALEXA 35",

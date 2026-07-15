@@ -4,6 +4,7 @@ import Foundation
 struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     let id: UUID
     var name: String
+    let positionNote: String?
     let selection: CameraSelection
     let bitrateMbps: Double
     let media: MediaSpec
@@ -14,6 +15,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     init(
         id: UUID = UUID(),
         name: String,
+        positionNote: String? = nil,
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
@@ -23,6 +25,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     ) {
         self.id = id
         self.name = name
+        self.positionNote = positionNote
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
@@ -34,6 +37,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     init(item: PlanItem) {
         self.init(
             name: item.name,
+            positionNote: item.positionNote,
             selection: item.selection,
             bitrateMbps: item.bitrateMbps,
             media: item.media,
@@ -53,6 +57,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     func makePlanItem() -> PlanItem {
         PlanItem(
             name: name,
+            positionNote: positionNote,
             selection: selection,
             bitrateMbps: bitrateMbps,
             media: media,

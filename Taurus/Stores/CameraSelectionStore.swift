@@ -91,6 +91,33 @@ final class CameraSelectionStore: ObservableObject {
         resetCameraAndDownstream()
     }
 
+    func restore(_ selection: CameraSelection) {
+        reset()
+        selectBrand(selection.brandID)
+        selectCamera(selection.cameraID)
+        selectCodec(selection.codecID)
+
+        if let codecLevelID = selection.codecLevelID {
+            selectCanonCodecLevel(codecLevelID)
+        }
+        if let formatID = selection.formatID {
+            selectFormat(formatID)
+        }
+        selectResolution(selection.resolutionID)
+
+        if Self.mediaDependentRateBrands.contains(selection.brandID) {
+            selectMedia(selection.mediaID)
+            selectRate(selection.frameRateID)
+        } else {
+            selectRate(selection.frameRateID)
+            selectMedia(selection.mediaID)
+        }
+
+        ManualCodecSpeed = selection.manualBitrate ?? ""
+        ResolutionWidth = selection.manualWidth ?? ""
+        ResolutionHeight = selection.manualHeight ?? ""
+    }
+
     private static let mediaDependentRateBrands: Set<String> = [
         "ARRI",
         "Blackmagicdesign",

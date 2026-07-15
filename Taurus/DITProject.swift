@@ -14,6 +14,8 @@ enum DITPlanItemDefaults {
 struct PlanItem: Codable, Equatable, Identifiable {
     let id: UUID
     var name: String
+    /// Optional operational role or rig note, for example main camera or Steadicam.
+    var positionNote: String?
     var selection: CameraSelection
     var bitrateMbps: Double
     var media: MediaSpec
@@ -34,6 +36,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
     init(
         id: UUID = UUID(),
         name: String = "机位",
+        positionNote: String? = nil,
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
@@ -48,6 +51,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
     ) {
         self.id = id
         self.name = name
+        self.positionNote = positionNote
         self.selection = selection
         self.bitrateMbps = bitrateMbps
         self.media = media
@@ -76,6 +80,26 @@ struct PlanItem: Codable, Equatable, Identifiable {
         backupCopies = DITPlanItemDefaults.backupCopies
         safetyMargin = DITPlanItemDefaults.safetyMargin
         readerSpeedMBps = DITPlanItemDefaults.readerSpeedMBps
+    }
+
+    func duplicated() -> PlanItem {
+        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let copyName = trimmedName.isEmpty ? "机位 副本" : "\(trimmedName) 副本"
+        return PlanItem(
+            name: copyName,
+            positionNote: positionNote,
+            selection: selection,
+            bitrateMbps: bitrateMbps,
+            media: media,
+            readerSpeedMBps: readerSpeedMBps,
+            hdeDataPerHourMultiplier: hdeDataPerHourMultiplier,
+            cameraCount: cameraCount,
+            dailyPowerOnHours: dailyPowerOnHours,
+            recordingRatio: recordingRatio,
+            shootDays: shootDays,
+            backupCopies: backupCopies,
+            safetyMargin: safetyMargin
+        )
     }
 
     var cameraLabel: String {
@@ -352,5 +376,42 @@ struct DITProject: Codable, Equatable, Identifiable {
 
     mutating func touch(at date: Date = Date()) {
         updatedAt = date
+    }
+
+    @discardableResult
+    mutating func movePlanItem(id: UUID, by offset: Int) -> Bool {
+        guard offset != 0,
+            let sourceIndex = items.firstIndex(where: { $0.id == id })
+        else { return false }
+        let destinationIndex = sourceIndex + offset
+        guard items.indices.contains(destinationIndex) else { return false }
+
+        items.swapAt(sourceIndex, destinationIndex)
+        touch()
+        return true
+    }
+
+    @discardableResult
+    mutating func movePlanItems(fromOffsets offsets: IndexSet, toOffset destination: Int) -> Bool {
+        guard !offsets.isEmpty,
+            offsets.allSatisfy(items.indices.contains),
+            (0...items.count).contains(destination)
+        else { return false }
+
+        let movingItems = offsets.map { items[$0] }
+        var remainingItems = items.enumerated()
+            .filter { !offsets.contains($0.offset) }
+            .map(\.element)
+        let removedBeforeDestination = offsets.filter { $0 < destination }.count
+        let insertionIndex = min(
+            remainingItems.count,
+            max(0, destination - removedBeforeDestination)
+        )
+        remainingItems.insert(contentsOf: movingItems, at: insertionIndex)
+        guard remainingItems != items else { return false }
+
+        items = remainingItems
+        touch()
+        return true
     }
 }
