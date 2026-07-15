@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum WorkspaceTab: Hashable {
+  case calculator
+  case planner
+}
+
 struct ContentView: View {
   @ObservedObject var selectionStore: CameraSelectionStore
   @ObservedObject var windowReference: WindowReferenceStore
@@ -14,7 +19,11 @@ struct ContentView: View {
   @ObservedObject var favoriteStore: DITFavoriteStore
   @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
-  @State private var showsPlanner = false
+  @State private var selectedWorkspace = WorkspaceTab.calculator
+
+  private var showsPlanner: Bool {
+    selectedWorkspace == .planner
+  }
 
   private var windowMinimumSize: CGSize {
     showsPlanner
@@ -61,7 +70,7 @@ struct ContentView: View {
       CalculatorToolbar(
         language: languageSelection,
         windowReference: windowReference,
-        showsPlanner: $showsPlanner
+        workspace: $selectedWorkspace
       )
 
       Divider()

@@ -3,9 +3,8 @@ import SwiftUI
 struct CalculatorToolbar: View {
   @Binding var language: AppLanguage
   @ObservedObject var windowReference: WindowReferenceStore
-  @Binding var showsPlanner: Bool
+  @Binding var workspace: WorkspaceTab
 
-  @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @State private var screenshotErrorMessage = ""
   @State private var showsScreenshotError = false
 
@@ -15,20 +14,17 @@ struct CalculatorToolbar: View {
 
   var body: some View {
     ZStack {
-      ZStack {
-        if showsPlanner {
-          Text("DIT 项目规划")
-            .font(.headline)
-            .fontWeight(.semibold)
-            .transition(titleTransition)
-        } else {
-          Text(copy.calculatorTitle)
-            .font(.headline)
-            .fontWeight(.semibold)
-            .transition(titleTransition)
-        }
+      Picker("工作区", selection: $workspace) {
+        Label(copy.calculatorTitle, systemImage: "chart.bar.xaxis")
+          .tag(WorkspaceTab.calculator)
+        Label("DIT 项目规划", systemImage: "rectangle.3.group")
+          .tag(WorkspaceTab.planner)
       }
-      .animation(titleAnimation, value: showsPlanner)
+      .pickerStyle(.segmented)
+      .labelsHidden()
+      .frame(width: 320)
+      .help("切换工作区")
+      .accessibilityLabel("工作区")
 
       HStack {
         Picker("", selection: $language) {
@@ -42,14 +38,6 @@ struct CalculatorToolbar: View {
         .help(copy.languageControlHelp)
 
         Spacer()
-
-        Button(action: toggleWorkspace) {
-          Image(systemName: showsPlanner ? "chart.bar.xaxis" : "rectangle.3.group")
-            .imageScale(.medium)
-        }
-        .buttonStyle(.borderless)
-        .help(showsPlanner ? "返回计算器" : "打开项目规划器")
-        .accessibilityLabel(showsPlanner ? "返回计算器" : "打开项目规划器")
 
         Button(action: saveScreenshot) {
           Image(systemName: "camera")
@@ -69,22 +57,6 @@ struct CalculatorToolbar: View {
     } message: {
       Text(screenshotErrorMessage)
     }
-  }
-
-  private var titleTransition: AnyTransition {
-    accessibilityReduceMotion
-      ? .opacity
-      : .scale(scale: 0.9, anchor: .center).combined(with: .opacity)
-  }
-
-  private var titleAnimation: Animation {
-    accessibilityReduceMotion
-      ? .easeOut(duration: 0.12)
-      : .spring(response: 0.42, dampingFraction: 0.86, blendDuration: 0.08)
-  }
-
-  private func toggleWorkspace() {
-    showsPlanner.toggle()
   }
 
   @MainActor
