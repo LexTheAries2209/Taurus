@@ -1,5 +1,9 @@
 import SwiftUI
 
+enum CalculatorWorkspaceLayout {
+    static let resetVerticalSpacing: CGFloat = 28
+}
+
 struct CalculatorWorkspace: View {
     @ObservedObject var selectionStore: CameraSelectionStore
     let language: AppLanguage
@@ -14,8 +18,8 @@ struct CalculatorWorkspace: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 20)
-                .frame(maxHeight: 48)
+            Spacer(minLength: 0)
+                .frame(height: CalculatorWorkspaceLayout.resetVerticalSpacing)
 
             Button(copy.resetButton, action: selectionStore.reset)
                 .keyboardShortcut("r", modifiers: [.command])
@@ -31,7 +35,7 @@ struct CalculatorWorkspace: View {
                     language: language
                 )
             }
-            .padding(.top, 28)
+            .padding(.top, CalculatorWorkspaceLayout.resetVerticalSpacing)
 
             Spacer(minLength: 16)
 

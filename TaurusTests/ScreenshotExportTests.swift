@@ -65,6 +65,10 @@ final class ScreenshotExportTests: XCTestCase {
         )
     }
 
+    func testCalculatorResetUsesBalancedVerticalSpacing() {
+        XCTAssertEqual(CalculatorWorkspaceLayout.resetVerticalSpacing, 28)
+    }
+
     func testWorkspaceWindowResizePreservesCenterAcrossRepeatedSwitches() {
         let initialCenter = CGPoint(x: 860, y: 520)
         let calculatorFrameSize = CGSize(width: 930, height: 648)
