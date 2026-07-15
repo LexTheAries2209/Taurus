@@ -17,6 +17,7 @@ enum WorkspaceWindowMetrics {
   static let calculatorPreferredSize = CGSize(width: 930, height: 620)
   static let plannerMinimumSize = CGSize(width: 1_180, height: 680)
   static let plannerPreferredSize = CGSize(width: 1_320, height: 780)
+  static let rootMinimumSize = calculatorMinimumSize
 }
 
 struct ContentView: View {
@@ -55,6 +56,17 @@ struct ContentView: View {
     )
   }
 
+  private var workspaceSelection: Binding<WorkspaceTab> {
+    Binding(
+      get: { selectedWorkspace },
+      set: { workspace in
+        guard workspace != selectedWorkspace else { return }
+        windowReference.prepareForWorkspaceResize()
+        selectedWorkspace = workspace
+      }
+    )
+  }
+
   private var workspaceTransition: AnyTransition {
     if accessibilityReduceMotion {
       return .opacity
@@ -77,7 +89,7 @@ struct ContentView: View {
       CalculatorToolbar(
         language: languageSelection,
         windowReference: windowReference,
-        workspace: $selectedWorkspace
+        workspace: workspaceSelection
       )
 
       Divider()
@@ -104,11 +116,9 @@ struct ContentView: View {
       .animation(workspaceAnimation, value: showsPlanner)
     }
     .frame(
-      minWidth: windowMinimumSize.width,
-      idealWidth: windowPreferredSize.width,
+      minWidth: WorkspaceWindowMetrics.rootMinimumSize.width,
       maxWidth: .infinity,
-      minHeight: windowMinimumSize.height,
-      idealHeight: windowPreferredSize.height,
+      minHeight: WorkspaceWindowMetrics.rootMinimumSize.height,
       maxHeight: .infinity
     )
     .background(Color(nsColor: .windowBackgroundColor))

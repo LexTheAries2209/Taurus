@@ -2,6 +2,10 @@ import AppKit
 import SwiftUI
 
 enum WindowFrameGeometry {
+  static func center(of frame: CGRect) -> CGPoint {
+    CGPoint(x: frame.midX, y: frame.midY)
+  }
+
   static func centeredFrame(size: CGSize, around center: CGPoint) -> CGRect {
     CGRect(
       x: center.x - size.width / 2,
@@ -14,9 +18,23 @@ enum WindowFrameGeometry {
 
 final class WindowReferenceStore: ObservableObject {
   private weak var window: NSWindow?
+  private var pendingWorkspaceResizeCenter: CGPoint?
 
+  @MainActor
   func resolve(_ window: NSWindow) {
     self.window = window
+  }
+
+  @MainActor
+  func prepareForWorkspaceResize() {
+    guard let window else { return }
+    pendingWorkspaceResizeCenter = WindowFrameGeometry.center(of: window.frame)
+  }
+
+  @MainActor
+  func consumeWorkspaceResizeCenter(fallback: CGPoint) -> CGPoint {
+    defer { pendingWorkspaceResizeCenter = nil }
+    return pendingWorkspaceResizeCenter ?? fallback
   }
 
   @MainActor
@@ -50,13 +68,11 @@ struct WindowSizingBridge: NSViewRepresentable {
     Coordinator()
   }
 
+  @MainActor
   private func configureWindow(for view: NSView, coordinator: Coordinator) {
     guard let window = view.window else { return }
 
-    let centerBeforeConstraintUpdate = CGPoint(
-      x: window.frame.midX,
-      y: window.frame.midY
-    )
+    let centerBeforeConstraintUpdate = WindowFrameGeometry.center(of: window.frame)
 
     windowReference.resolve(window)
     window.contentMinSize = minimumContentSize
@@ -81,12 +97,15 @@ struct WindowSizingBridge: NSViewRepresentable {
         window.setContentSize(preferredContentSize)
         window.center()
       } else {
+        let resizeCenter = windowReference.consumeWorkspaceResizeCenter(
+          fallback: centerBeforeConstraintUpdate
+        )
         let targetFrameSize = window.frameRect(
           forContentRect: CGRect(origin: .zero, size: preferredContentSize)
         ).size
         let targetFrame = WindowFrameGeometry.centeredFrame(
           size: targetFrameSize,
-          around: centerBeforeConstraintUpdate
+          around: resizeCenter
         )
 
         window.setFrame(

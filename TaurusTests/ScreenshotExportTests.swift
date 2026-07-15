@@ -1,3 +1,4 @@
+import AppKit
 import XCTest
 @testable import Taurus
 
@@ -59,6 +60,10 @@ final class ScreenshotExportTests: XCTestCase {
             WorkspaceWindowMetrics.calculatorPreferredSize,
             CGSize(width: 930, height: 620)
         )
+        XCTAssertEqual(
+            WorkspaceWindowMetrics.rootMinimumSize,
+            WorkspaceWindowMetrics.calculatorMinimumSize
+        )
         XCTAssertGreaterThan(
             WorkspaceWindowMetrics.calculatorPreferredSize.height,
             WorkspaceWindowMetrics.calculatorMinimumSize.height
@@ -88,6 +93,29 @@ final class ScreenshotExportTests: XCTestCase {
             XCTAssertEqual(frame.midX, initialCenter.x, accuracy: 0.001)
             XCTAssertEqual(frame.midY, initialCenter.y, accuracy: 0.001)
         }
+    }
+
+    @MainActor
+    func testWorkspaceResizeUsesCenterCapturedBeforeContentConstraintsChange() {
+        let window = NSWindow(
+            contentRect: CGRect(x: 220, y: 180, width: 930, height: 620),
+            styleMask: [.titled, .resizable],
+            backing: .buffered,
+            defer: false
+        )
+        let windowReference = WindowReferenceStore()
+        windowReference.resolve(window)
+        let centerBeforeConstraintChange = WindowFrameGeometry.center(of: window.frame)
+
+        windowReference.prepareForWorkspaceResize()
+        window.setFrameOrigin(CGPoint(x: 470, y: 272))
+        let shiftedCenter = WindowFrameGeometry.center(of: window.frame)
+
+        XCTAssertNotEqual(shiftedCenter, centerBeforeConstraintChange)
+        XCTAssertEqual(
+            windowReference.consumeWorkspaceResizeCenter(fallback: shiftedCenter),
+            centerBeforeConstraintChange
+        )
     }
 
     func testVersionCommentsAreUpdatedInChineseAndEnglish() {
