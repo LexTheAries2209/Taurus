@@ -34,6 +34,17 @@ final class ScreenshotExportTests: XCTestCase {
         ])
     }
 
+    func testVersionCommentsAreUpdatedInChineseAndEnglish() {
+        XCTAssertEqual(
+            AppLanguage.chinese.copy.comments(for: "", cameraName: "").first,
+            "1. 当前版本为[V2.0.1]。摄影机规格参数数据截止至2026.07.06。计算结果仅供参考，实际数据量可能与计算不同。"
+        )
+        XCTAssertEqual(
+            AppLanguage.english.copy.comments(for: "", cameraName: "").first,
+            "1. Current version: V2.0.1. Camera specifications are current through 2026.07.06. Calculation results are estimates and may differ from actual data volumes."
+        )
+    }
+
     func testLocalizedUnsupportedOptionMessages() {
         let copy = AppLanguage.english.copy
 

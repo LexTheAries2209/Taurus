@@ -379,7 +379,7 @@ struct LocalizedCopy {
     }
 
     private func chineseComments(for brandName: String, cameraName: String) -> [String] {
-        var lines = ["1. 此版本[V1.3.5]仅包含《数据计算器》功能。摄影机规格参数数据截止至2026.07.06。计算结果仅供参考，实际数据量可能与计算不同。"]
+        var lines = ["1. 当前版本为[V2.0.1]。摄影机规格参数数据截止至2026.07.06。计算结果仅供参考，实际数据量可能与计算不同。"]
 
         switch brandName {
         case "ARRI":
@@ -442,7 +442,7 @@ struct LocalizedCopy {
     }
 
     private func englishComments(for brandName: String, cameraName: String) -> [String] {
-        var lines = ["1. V1.3.5 includes the Data Calculator only. Specs current to 2026.07.06; results are estimates."]
+        var lines = ["1. Current version: V2.0.1. Camera specifications are current through 2026.07.06. Calculation results are estimates and may differ from actual data volumes."]
 
         switch brandName {
         case "ARRI":
