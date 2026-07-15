@@ -1,6 +1,6 @@
 import Foundation
 
-enum DITPlanItemDefaults {
+enum DMTPlanItemDefaults {
     static let readerSpeedMBps = 200.0
     static let cameraCount = 1
     static let dailyPowerOnHours = 12.0
@@ -40,7 +40,7 @@ struct PlanItem: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
-        readerSpeedMBps: Double? = DITPlanItemDefaults.readerSpeedMBps,
+        readerSpeedMBps: Double? = DMTPlanItemDefaults.readerSpeedMBps,
         hdeDataPerHourMultiplier: Double? = nil,
         cameraCount: Int = 1,
         dailyPowerOnHours: Double = 8,
@@ -73,13 +73,13 @@ struct PlanItem: Codable, Equatable, Identifiable {
 
     /// Restores planning inputs without changing the selected recording mode.
     mutating func resetPlanningParameters() {
-        cameraCount = DITPlanItemDefaults.cameraCount
-        dailyPowerOnHours = DITPlanItemDefaults.dailyPowerOnHours
-        recordingRatio = DITPlanItemDefaults.recordingRatio
-        shootDays = DITPlanItemDefaults.shootDays
-        backupCopies = DITPlanItemDefaults.backupCopies
-        safetyMargin = DITPlanItemDefaults.safetyMargin
-        readerSpeedMBps = DITPlanItemDefaults.readerSpeedMBps
+        cameraCount = DMTPlanItemDefaults.cameraCount
+        dailyPowerOnHours = DMTPlanItemDefaults.dailyPowerOnHours
+        recordingRatio = DMTPlanItemDefaults.recordingRatio
+        shootDays = DMTPlanItemDefaults.shootDays
+        backupCopies = DMTPlanItemDefaults.backupCopies
+        safetyMargin = DMTPlanItemDefaults.safetyMargin
+        readerSpeedMBps = DMTPlanItemDefaults.readerSpeedMBps
     }
 
     func duplicated() -> PlanItem {
@@ -166,7 +166,7 @@ struct PlanSummary: Equatable {
     let totalTransferSeconds: Double
     let dailyTransferSeconds: Double
     let canCompleteDailyDoubleBackup: Bool
-    let issues: [DITPlanIssue]
+    let issues: [DMTPlanIssue]
 
     var totalRawDataGB: Double { totalRawDataBytes / 1_000_000_000 }
     var totalStorageGB: Double { totalStorageBytes / 1_000_000_000 }
@@ -180,14 +180,14 @@ struct PlanSummary: Equatable {
     }
 }
 
-enum DITPlanIssue: Equatable {
+enum DMTPlanIssue: Equatable {
     case invalidItem(id: UUID, reason: String)
     case invalidTransferProfile
 }
 
-enum DITProjectCalculator {
+enum DMTProjectCalculator {
     static func summarize(
-        _ project: DITProject,
+        _ project: DMTProject,
         transferProfile: TransferProfile? = nil
     ) -> PlanSummary {
         let profile = transferProfile ?? project.transferProfile
@@ -197,7 +197,7 @@ enum DITProjectCalculator {
         let validWindow =
             profile.offloadWindowHoursPerDay.isFinite
             && profile.offloadWindowHoursPerDay > 0
-        var issues: [DITPlanIssue] = validTargetSpeed && validWindow ? [] : [.invalidTransferProfile]
+        var issues: [DMTPlanIssue] = validTargetSpeed && validWindow ? [] : [.invalidTransferProfile]
         var itemSummaries: [PlanItemSummary] = []
         var cardCyclesByMedia: [String: Int] = [:]
         var totalDailyRaw = 0.0
@@ -347,7 +347,7 @@ enum DITProjectCalculator {
     }
 }
 
-struct DITProject: Codable, Equatable, Identifiable {
+struct DMTProject: Codable, Equatable, Identifiable {
     let id: UUID
     var name: String
     var createdAt: Date

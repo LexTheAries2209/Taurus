@@ -11,8 +11,8 @@ import SwiftUI
 struct TaurusApp: App {
     @StateObject private var selectionStore = CameraSelectionStore()
     @StateObject private var windowReference = WindowReferenceStore()
-    @StateObject private var projectStore = DITProjectStore()
-    @StateObject private var favoriteStore = DITFavoriteStore()
+    @StateObject private var projectStore = DMTProjectStore()
+    @StateObject private var favoriteStore = DMTFavoriteStore()
 
     var body: some Scene {
         WindowGroup {

@@ -19,7 +19,7 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
         selection: CameraSelection,
         bitrateMbps: Double,
         media: MediaSpec,
-        readerSpeedMBps: Double? = DITPlanItemDefaults.readerSpeedMBps,
+        readerSpeedMBps: Double? = DMTPlanItemDefaults.readerSpeedMBps,
         hdeDataPerHourMultiplier: Double? = nil,
         createdAt: Date = Date()
     ) {
@@ -67,30 +67,40 @@ struct FavoriteRecordingMode: Codable, Equatable, Identifiable {
     }
 }
 
-final class DITFavoriteStore: ObservableObject {
+final class DMTFavoriteStore: ObservableObject {
     @Published private(set) var favorites: [FavoriteRecordingMode] = []
 
     let fileURL: URL
     private let fileManager: FileManager
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
+    private let legacyFileURL: URL?
 
     init(fileURL: URL? = nil, fileManager: FileManager = .default) {
         self.fileManager = fileManager
         self.fileURL = fileURL ?? Self.defaultFileURL(fileManager: fileManager)
+        self.legacyFileURL = fileURL == nil ? Self.legacyFileURL(fileManager: fileManager) : nil
         _ = try? load()
     }
 
     @discardableResult
     func load() throws -> [FavoriteRecordingMode] {
-        guard fileManager.fileExists(atPath: fileURL.path) else {
+        let sourceURL: URL
+        if fileManager.fileExists(atPath: fileURL.path) {
+            sourceURL = fileURL
+        } else if let legacyFileURL, fileManager.fileExists(atPath: legacyFileURL.path) {
+            sourceURL = legacyFileURL
+        } else {
             favorites = []
             return favorites
         }
         favorites = try decoder.decode(
             [FavoriteRecordingMode].self,
-            from: Data(contentsOf: fileURL)
+            from: Data(contentsOf: sourceURL)
         )
+        if sourceURL != fileURL {
+            try save()
+        }
         return favorites
     }
 
@@ -136,6 +146,15 @@ final class DITFavoriteStore: ObservableObject {
     }
 
     private static func defaultFileURL(fileManager: FileManager) -> URL {
+        let base =
+            fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            ?? fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+            ?? URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        return base.appendingPathComponent("Taurus", isDirectory: true)
+            .appendingPathComponent("DMTFavorites.json")
+    }
+
+    private static func legacyFileURL(fileManager: FileManager) -> URL {
         let base =
             fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? fileManager.urls(for: .documentDirectory, in: .userDomainMask).first

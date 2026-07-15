@@ -3,7 +3,13 @@ import CoreText
 import Foundation
 import UniformTypeIdentifiers
 
-enum DITPlanExport {
+enum DMTPlanExport {
+    static let reportSubtitle = "Taurus DMT 项目报告"
+
+    static func footerText(pageNumber: Int) -> String {
+        "Taurus DMT Project Plan - Page \(pageNumber)"
+    }
+
     enum ExportError: LocalizedError {
         case invalidProject
         case pdfContext
@@ -18,8 +24,8 @@ enum DITPlanExport {
         }
     }
 
-    static func csvData(for project: DITProject) -> Data {
-        let summary = DITProjectCalculator.summarize(project)
+    static func csvData(for project: DMTProject) -> Data {
+        let summary = DMTProjectCalculator.summarize(project)
         let summaryByID = Dictionary(
             uniqueKeysWithValues: summary.itemSummaries.map { ($0.itemID, $0) })
         var rows: [[String]] = [
@@ -80,8 +86,8 @@ enum DITPlanExport {
         return Data("\u{FEFF}\(csv)".utf8)
     }
 
-    static func pdfData(for project: DITProject) throws -> Data {
-        let summary = DITProjectCalculator.summarize(project)
+    static func pdfData(for project: DMTProject) throws -> Data {
+        let summary = DMTProjectCalculator.summarize(project)
         guard !project.items.isEmpty, summary.issues.isEmpty else {
             throw ExportError.invalidProject
         }
@@ -127,7 +133,7 @@ enum DITPlanExport {
         return output as Data
     }
 
-    private static func reportAttributedText(project: DITProject, summary: PlanSummary)
+    private static func reportAttributedText(project: DMTProject, summary: PlanSummary)
         -> NSAttributedString
     {
         let output = NSMutableAttributedString()
@@ -166,7 +172,7 @@ enum DITPlanExport {
         ]
 
         appendLine(project.name, attributes: titleAttributes, to: output)
-        appendLine("Taurus DIT 项目报告", attributes: subtitleAttributes, to: output)
+        appendLine(reportSubtitle, attributes: subtitleAttributes, to: output)
         appendLine("更新于 \(date(project.updatedAt))", attributes: subtitleAttributes, to: output)
 
         appendLine("项目汇总", attributes: sectionAttributes, to: output)
@@ -257,7 +263,7 @@ enum DITPlanExport {
 
     private static func drawFooter(pageNumber: Int, in context: CGContext, pageRect: CGRect) {
         let footer = NSAttributedString(
-            string: "Taurus DIT Project Plan - Page \(pageNumber)",
+            string: footerText(pageNumber: pageNumber),
             attributes: [
                 .font: NSFont.systemFont(ofSize: 8),
                 .foregroundColor: NSColor(calibratedWhite: 0.4, alpha: 1),
@@ -312,7 +318,7 @@ enum DITPlanExport {
 }
 
 @MainActor
-enum DITPlanFilePanel {
+enum DMTPlanFilePanel {
     static func chooseOpenURL() -> URL? {
         let panel = NSOpenPanel()
         panel.title = "导入 Taurus 项目"

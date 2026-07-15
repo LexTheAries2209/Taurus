@@ -12,8 +12,8 @@ struct CalculatorToolbar: View {
     language.copy
   }
 
-  private var plannerCopy: DITPlannerCopy {
-    copy.ditPlanner
+  private var plannerCopy: DMTPlannerCopy {
+    copy.dmtPlanner
   }
 
   var body: some View {

@@ -34,12 +34,12 @@ final class ScreenshotExportTests: XCTestCase {
         ])
     }
 
-    func testDITPlannerCopyChangesWithLanguage() {
-        let chinese = AppLanguage.chinese.copy.ditPlanner
-        let english = AppLanguage.english.copy.ditPlanner
+    func testDMTPlannerCopyChangesWithLanguage() {
+        let chinese = AppLanguage.chinese.copy.dmtPlanner
+        let english = AppLanguage.english.copy.dmtPlanner
 
-        XCTAssertEqual(AppLanguage.chinese.copy.plannerTitle, "DIT 项目规划")
-        XCTAssertEqual(AppLanguage.english.copy.plannerTitle, "DIT Project Planner")
+        XCTAssertEqual(AppLanguage.chinese.copy.plannerTitle, "DMT 项目规划")
+        XCTAssertEqual(AppLanguage.english.copy.plannerTitle, "DMT Project Planner")
         XCTAssertEqual(chinese.text("机位检查器"), "机位检查器")
         XCTAssertEqual(english.text("机位检查器"), "Camera Inspector")
         XCTAssertEqual(english.itemCount(2), "2 cameras")

@@ -2,7 +2,7 @@ import XCTest
 
 @testable import Taurus
 
-final class DITProjectTests: XCTestCase {
+final class DMTProjectTests: XCTestCase {
     func testReplacingRecordingModePreservesPlanningAndTransferParameters() {
         let existing = PlanItem(
             name: "A 机位",
@@ -40,7 +40,7 @@ final class DITProjectTests: XCTestCase {
             media: MediaSpec(id: "AXS S66 1TB", usableCapacityBytes: 1_000_000_000_000)
         )
 
-        let updated = DITPlanItemBuilder.replacingRecordingMode(of: existing, with: draft)
+        let updated = DMTPlanItemBuilder.replacingRecordingMode(of: existing, with: draft)
 
         XCTAssertEqual(updated.id, existing.id)
         XCTAssertEqual(updated.positionNote, existing.positionNote)
@@ -163,7 +163,7 @@ final class DITProjectTests: XCTestCase {
         let itemA = PlanItem(name: "A", selection: selection, bitrateMbps: 100, media: media)
         let itemB = PlanItem(name: "B", selection: selection, bitrateMbps: 100, media: media)
         let itemC = PlanItem(name: "C", selection: selection, bitrateMbps: 100, media: media)
-        var project = DITProject(items: [itemA, itemB, itemC])
+        var project = DMTProject(items: [itemA, itemB, itemC])
 
         XCTAssertTrue(project.movePlanItem(id: itemC.id, by: -1))
         XCTAssertEqual(project.items.map(\.id), [itemA.id, itemC.id, itemB.id])
@@ -195,7 +195,7 @@ final class DITProjectTests: XCTestCase {
     }
 
     func testPlanItemBuilderRequiresACompleteRecordingMode() {
-        XCTAssertNil(DITPlanItemBuilder.make(from: CameraSelectionStore(), name: "A 机位"))
+        XCTAssertNil(DMTPlanItemBuilder.make(from: CameraSelectionStore(), name: "A 机位"))
     }
 
     func testPlanItemBuilderCreatesAnARRIPlanItem() throws {
@@ -207,7 +207,7 @@ final class DITProjectTests: XCTestCase {
         selection.selectMedia("Compact Drive 1TB")
         selection.selectRate("24.000")
 
-        let item = try XCTUnwrap(DITPlanItemBuilder.make(from: selection, name: "  A 机位  "))
+        let item = try XCTUnwrap(DMTPlanItemBuilder.make(from: selection, name: "  A 机位  "))
 
         XCTAssertEqual(item.name, "A 机位")
         XCTAssertEqual(item.selection.cameraID, "ALEXA 35")
@@ -218,7 +218,7 @@ final class DITProjectTests: XCTestCase {
         XCTAssertNil(item.hdeDataPerHourMultiplier)
 
         let hdeItem = try XCTUnwrap(
-            DITPlanItemBuilder.make(from: selection, name: "A 机位", usesHDE: true)
+            DMTPlanItemBuilder.make(from: selection, name: "A 机位", usesHDE: true)
         )
         XCTAssertEqual(hdeItem.hdeDataPerHourMultiplier ?? 0, 0.5, accuracy: 0.000_001)
     }
@@ -246,8 +246,8 @@ final class DITProjectTests: XCTestCase {
         var hdeItem = rawItem
         hdeItem.hdeDataPerHourMultiplier = 0.5
 
-        let rawSummary = DITProjectCalculator.summarize(DITProject(items: [rawItem]))
-        let hdeSummary = DITProjectCalculator.summarize(DITProject(items: [hdeItem]))
+        let rawSummary = DMTProjectCalculator.summarize(DMTProject(items: [rawItem]))
+        let hdeSummary = DMTProjectCalculator.summarize(DMTProject(items: [hdeItem]))
         let rawItemSummary = try XCTUnwrap(rawSummary.itemSummaries.first)
         let hdeItemSummary = try XCTUnwrap(hdeSummary.itemSummaries.first)
 
@@ -278,7 +278,7 @@ final class DITProjectTests: XCTestCase {
             hdeDataPerHourMultiplier: 0.5
         )
 
-        let summary = DITProjectCalculator.summarize(DITProject(items: [item]))
+        let summary = DMTProjectCalculator.summarize(DMTProject(items: [item]))
 
         XCTAssertTrue(summary.itemSummaries.isEmpty)
         XCTAssertEqual(summary.issues.count, 1)
@@ -320,7 +320,7 @@ final class DITProjectTests: XCTestCase {
     }
 
     func testEmptyProjectDoesNotClaimBackupCanComplete() {
-        XCTAssertFalse(DITProjectCalculator.summarize(DITProject()).canCompleteDailyDoubleBackup)
+        XCTAssertFalse(DMTProjectCalculator.summarize(DMTProject()).canCompleteDailyDoubleBackup)
     }
 
     func testSummaryAggregatesCamerasCopiesMarginAndMedia() {
@@ -345,7 +345,7 @@ final class DITProjectTests: XCTestCase {
             backupCopies: 2,
             safetyMargin: 0.1
         )
-        let project = DITProject(
+        let project = DMTProject(
             name: "测试项目",
             items: [item],
             transferProfile: TransferProfile(
@@ -355,7 +355,7 @@ final class DITProjectTests: XCTestCase {
             )
         )
 
-        let summary = DITProjectCalculator.summarize(project)
+        let summary = DMTProjectCalculator.summarize(project)
 
         XCTAssertTrue(summary.issues.isEmpty)
         XCTAssertEqual(summary.totalRawDataBytes, 1_080_000_000_000, accuracy: 0.1)
@@ -405,7 +405,7 @@ final class DITProjectTests: XCTestCase {
             backupCopies: 1,
             safetyMargin: 0
         )
-        let project = DITProject(
+        let project = DMTProject(
             items: [slow, fast],
             transferProfile: TransferProfile(
                 readerSpeedMBps: 50,
@@ -414,7 +414,7 @@ final class DITProjectTests: XCTestCase {
             )
         )
 
-        let summary = DITProjectCalculator.summarize(project)
+        let summary = DMTProjectCalculator.summarize(project)
         let summaries = Dictionary(uniqueKeysWithValues: summary.itemSummaries.map { ($0.itemName, $0) })
 
         XCTAssertEqual(summaries["慢读卡器"]?.readerSpeedMBps ?? 0, 100, accuracy: 0.001)
@@ -444,7 +444,7 @@ final class DITProjectTests: XCTestCase {
             backupCopies: 1,
             safetyMargin: 0
         )
-        let project = DITProject(
+        let project = DMTProject(
             items: [item],
             transferProfile: TransferProfile(
                 readerSpeedMBps: 100,
@@ -452,7 +452,7 @@ final class DITProjectTests: XCTestCase {
             )
         )
 
-        let itemSummary = try XCTUnwrap(DITProjectCalculator.summarize(project).itemSummaries.first)
+        let itemSummary = try XCTUnwrap(DMTProjectCalculator.summarize(project).itemSummaries.first)
 
         XCTAssertEqual(itemSummary.readerSpeedMBps, 100, accuracy: 0.001)
         XCTAssertEqual(itemSummary.effectiveTransferSpeedMBps, 100, accuracy: 0.001)
@@ -473,7 +473,7 @@ final class DITProjectTests: XCTestCase {
             media: MediaSpec(id: "bad", usableCapacityBytes: 0)
         )
 
-        let summary = DITProjectCalculator.summarize(DITProject(items: [item]))
+        let summary = DMTProjectCalculator.summarize(DMTProject(items: [item]))
 
         XCTAssertEqual(summary.totalRawDataBytes, 0)
         XCTAssertEqual(summary.totalStorageBytes, 0)
@@ -498,7 +498,7 @@ final class DITProjectTests: XCTestCase {
             media: MediaSpec(id: "1TB", usableCapacityBytes: 1)
         )
 
-        let summary = DITProjectCalculator.summarize(DITProject(items: [item]))
+        let summary = DMTProjectCalculator.summarize(DMTProject(items: [item]))
 
         XCTAssertEqual(summary.totalRawDataBytes, 0)
         XCTAssertEqual(summary.itemSummaries, [])
@@ -507,7 +507,7 @@ final class DITProjectTests: XCTestCase {
 
     func testStoreRoundTripsAndDuplicatesProject() throws {
         let directory = FileManager.default.temporaryDirectory
-            .appendingPathComponent("TaurusDIT-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("TaurusDMT-\(UUID().uuidString)", isDirectory: true)
         let url = directory.appendingPathComponent("projects.json")
         defer { try? FileManager.default.removeItem(at: directory) }
 
@@ -519,7 +519,7 @@ final class DITProjectTests: XCTestCase {
             frameRateID: "24.000",
             mediaID: "Compact Drive 1TB"
         )
-        let project = DITProject(
+        let project = DMTProject(
             name: "Round trip",
             items: [
                 PlanItem(
@@ -529,10 +529,10 @@ final class DITProjectTests: XCTestCase {
                 )
             ]
         )
-        let store = DITProjectStore(fileURL: url)
+        let store = DMTProjectStore(fileURL: url)
         _ = try store.add(project)
 
-        let reloaded = DITProjectStore(fileURL: url)
+        let reloaded = DMTProjectStore(fileURL: url)
         XCTAssertEqual(reloaded.projects, [project])
 
         let copy = try reloaded.duplicate(project)
@@ -544,13 +544,13 @@ final class DITProjectTests: XCTestCase {
 
     func testExportAndImportProject() throws {
         let directory = FileManager.default.temporaryDirectory
-            .appendingPathComponent("TaurusDIT-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("TaurusDMT-\(UUID().uuidString)", isDirectory: true)
         let storeURL = directory.appendingPathComponent("projects.json")
         let exportURL = directory.appendingPathComponent("export.json")
         defer { try? FileManager.default.removeItem(at: directory) }
 
-        let project = DITProject(name: "导出")
-        let store = DITProjectStore(fileURL: storeURL)
+        let project = DMTProject(name: "导出")
+        let store = DMTProjectStore(fileURL: storeURL)
         try store.exportProject(project, to: exportURL)
         let imported = try store.importProject(from: exportURL)
 
@@ -560,13 +560,13 @@ final class DITProjectTests: XCTestCase {
 
     func testImportingExistingProjectCreatesUniqueCopy() throws {
         let directory = FileManager.default.temporaryDirectory
-            .appendingPathComponent("TaurusDIT-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("TaurusDMT-\(UUID().uuidString)", isDirectory: true)
         let storeURL = directory.appendingPathComponent("projects.json")
         let exportURL = directory.appendingPathComponent("export.json")
         defer { try? FileManager.default.removeItem(at: directory) }
 
-        let project = DITProject(name: "重复导入")
-        let store = DITProjectStore(fileURL: storeURL)
+        let project = DMTProject(name: "重复导入")
+        let store = DMTProjectStore(fileURL: storeURL)
         _ = try store.add(project)
         try store.exportProject(project, to: exportURL)
 
@@ -593,7 +593,7 @@ final class DITProjectTests: XCTestCase {
             dailyPowerOnHours: 12,
             recordingRatio: 1
         )
-        let project = DITProject(
+        let project = DMTProject(
             items: [item],
             transferProfile: TransferProfile(
                 readerSpeedMBps: 100,
@@ -602,6 +602,6 @@ final class DITProjectTests: XCTestCase {
             )
         )
 
-        XCTAssertFalse(DITProjectCalculator.summarize(project).canCompleteDailyDoubleBackup)
+        XCTAssertFalse(DMTProjectCalculator.summarize(project).canCompleteDailyDoubleBackup)
     }
 }

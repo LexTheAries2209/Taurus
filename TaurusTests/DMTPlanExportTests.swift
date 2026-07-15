@@ -3,11 +3,11 @@ import XCTest
 
 @testable import Taurus
 
-final class DITPlanExportTests: XCTestCase {
+final class DMTPlanExportTests: XCTestCase {
     func testCSVIncludesDetailAndSummaryRows() throws {
         let project = sampleProject(name: "项目, 一")
 
-        let data = DITPlanExport.csvData(for: project)
+        let data = DMTPlanExport.csvData(for: project)
         let csv = try XCTUnwrap(String(data: data, encoding: .utf8))
 
         XCTAssertEqual(Data(data.prefix(3)), Data([0xEF, 0xBB, 0xBF]))
@@ -27,9 +27,14 @@ final class DITPlanExportTests: XCTestCase {
     func testPDFContainsReadablePages() throws {
         let project = sampleProject()
 
-        let data = try DITPlanExport.pdfData(for: project)
+        let data = try DMTPlanExport.pdfData(for: project)
         XCTAssertEqual(Data(data.prefix(4)), Data("%PDF".utf8))
         XCTAssertGreaterThan(data.count, 1_000)
+        XCTAssertEqual(DMTPlanExport.reportSubtitle, "Taurus DMT 项目报告")
+        XCTAssertEqual(
+            DMTPlanExport.footerText(pageNumber: 2),
+            "Taurus DMT Project Plan - Page 2"
+        )
 
         let provider = CGDataProvider(data: data as CFData)
         let document = try XCTUnwrap(provider.flatMap(CGPDFDocument.init))
@@ -41,7 +46,7 @@ final class DITPlanExportTests: XCTestCase {
     }
 
     func testCSVRowsHaveConsistentColumnCounts() throws {
-        let data = DITPlanExport.csvData(for: sampleProject())
+        let data = DMTPlanExport.csvData(for: sampleProject())
         let csv = try XCTUnwrap(String(data: data, encoding: .utf8))
         let columnCounts = csv
             .split(separator: "\n")
@@ -51,10 +56,10 @@ final class DITPlanExportTests: XCTestCase {
     }
 
     func testPDFRejectsEmptyOrInvalidProject() {
-        XCTAssertThrowsError(try DITPlanExport.pdfData(for: DITProject()))
+        XCTAssertThrowsError(try DMTPlanExport.pdfData(for: DMTProject()))
     }
 
-    private func sampleProject(name: String = "测试项目") -> DITProject {
+    private func sampleProject(name: String = "测试项目") -> DMTProject {
         let selection = CameraSelection(
             brandID: "[General]",
             cameraID: "Manual Codec",
@@ -77,7 +82,7 @@ final class DITPlanExportTests: XCTestCase {
             backupCopies: 2,
             safetyMargin: 0.1
         )
-        return DITProject(
+        return DMTProject(
             name: name,
             items: [item],
             transferProfile: TransferProfile(

@@ -1,28 +1,28 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct DITPlannerView: View {
-  @ObservedObject var projectStore: DITProjectStore
-  @ObservedObject var favoriteStore: DITFavoriteStore
+struct DMTPlannerView: View {
+  @ObservedObject var projectStore: DMTProjectStore
+  @ObservedObject var favoriteStore: DMTFavoriteStore
   let language: AppLanguage
 
   @State private var selectedProjectID: UUID?
   @State private var selectedItemID: UUID?
   @State private var comparisonItemIDs: Set<UUID> = []
-  @AppStorage("ditPlanner.nameColumnWidth") private var tableNameColumnWidth = 170.0
-  @AppStorage("ditPlanner.cameraColumnWidth") private var tableCameraColumnWidth = 220.0
-  @AppStorage("ditPlanner.countColumnWidth") private var tableCountColumnWidth = 52.0
-  @AppStorage("ditPlanner.storageColumnWidth") private var tableStorageColumnWidth = 112.0
-  @AppStorage("ditPlanner.comparisonColumnWidth") private var tableComparisonColumnWidth = 28.0
+  @AppStorage("dmtPlanner.nameColumnWidth") private var tableNameColumnWidth = 170.0
+  @AppStorage("dmtPlanner.cameraColumnWidth") private var tableCameraColumnWidth = 220.0
+  @AppStorage("dmtPlanner.countColumnWidth") private var tableCountColumnWidth = 52.0
+  @AppStorage("dmtPlanner.storageColumnWidth") private var tableStorageColumnWidth = 112.0
+  @AppStorage("dmtPlanner.comparisonColumnWidth") private var tableComparisonColumnWidth = 28.0
   @State private var showsAddItem = false
   @State private var editingItem: PlanItem?
   @State private var showsComparison = false
   @State private var exportErrorMessage = ""
   @State private var showsExportError = false
 
-  private var copy: DITPlannerCopy { language.copy.ditPlanner }
+  private var copy: DMTPlannerCopy { language.copy.dmtPlanner }
 
-  private var selectedProject: DITProject? {
+  private var selectedProject: DMTProject? {
     guard let selectedProjectID else { return nil }
     return projectStore.projects.first { $0.id == selectedProjectID }
   }
@@ -34,7 +34,7 @@ struct DITPlannerView: View {
 
   private var selectedItemSummary: PlanItemSummary? {
     guard let selectedItemID, let project = selectedProject else { return nil }
-    return DITProjectCalculator.summarize(project)
+    return DMTProjectCalculator.summarize(project)
       .itemSummaries.first { $0.itemID == selectedItemID }
   }
 
@@ -90,18 +90,18 @@ struct DITPlannerView: View {
       Text(exportErrorMessage)
     }
     .sheet(isPresented: $showsAddItem) {
-      DITAddPlanItemView(language: language) { item in
+      DMTAddPlanItemView(language: language) { item in
         addPlanItem(item)
       }
     }
     .sheet(item: $editingItem) { item in
-      DITAddPlanItemView(existingItem: item, language: language) { updatedItem in
+      DMTAddPlanItemView(existingItem: item, language: language) { updatedItem in
         updatePlanItem(updatedItem)
       }
     }
     .sheet(isPresented: $showsComparison) {
       if let project = selectedProject {
-        DITModeComparisonView(project: project, itemIDs: comparisonItemIDs, language: language)
+        DMTModeComparisonView(project: project, itemIDs: comparisonItemIDs, language: language)
       }
     }
   }
@@ -191,8 +191,8 @@ struct DITPlannerView: View {
     }
   }
 
-  private func projectWorkspace(_ project: DITProject) -> some View {
-    let summary = DITProjectCalculator.summarize(project)
+  private func projectWorkspace(_ project: DMTProject) -> some View {
+    let summary = DMTProjectCalculator.summarize(project)
 
     return VStack(alignment: .leading, spacing: 0) {
       HStack(spacing: 10) {
@@ -277,7 +277,7 @@ struct DITPlannerView: View {
     }
   }
 
-  private func cameraPlan(_ project: DITProject) -> some View {
+  private func cameraPlan(_ project: DMTProject) -> some View {
     GeometryReader { proxy in
       let availableWidth = max(0, proxy.size.width - 36)
       let resolvedColumnWidths = tableColumnWidths.resolved(for: availableWidth)
@@ -711,7 +711,7 @@ struct DITPlannerView: View {
   @MainActor
   private func exportJSON() {
     guard let project = selectedProject,
-      let url = DITPlanFilePanel.chooseSaveURL(
+      let url = DMTPlanFilePanel.chooseSaveURL(
         defaultName: "\(project.name).json",
         contentType: .json
       )
@@ -726,13 +726,13 @@ struct DITPlannerView: View {
   @MainActor
   private func exportCSV() {
     guard let project = selectedProject,
-      let url = DITPlanFilePanel.chooseSaveURL(
+      let url = DMTPlanFilePanel.chooseSaveURL(
         defaultName: "\(project.name).csv",
         contentType: .commaSeparatedText
       )
     else { return }
     do {
-      try DITPlanExport.csvData(for: project).write(to: url, options: .atomic)
+      try DMTPlanExport.csvData(for: project).write(to: url, options: .atomic)
     } catch {
       showExportError(error)
     }
@@ -741,13 +741,13 @@ struct DITPlannerView: View {
   @MainActor
   private func exportPDF() {
     guard let project = selectedProject,
-      let url = DITPlanFilePanel.chooseSaveURL(
+      let url = DMTPlanFilePanel.chooseSaveURL(
         defaultName: "\(project.name).pdf",
         contentType: .pdf
       )
     else { return }
     do {
-      try DITPlanExport.pdfData(for: project).write(to: url, options: .atomic)
+      try DMTPlanExport.pdfData(for: project).write(to: url, options: .atomic)
     } catch {
       showExportError(error)
     }
@@ -755,7 +755,7 @@ struct DITPlannerView: View {
 
   @MainActor
   private func importJSON() {
-    guard let url = DITPlanFilePanel.chooseOpenURL() else { return }
+    guard let url = DMTPlanFilePanel.chooseOpenURL() else { return }
     do {
       let project = try projectStore.importProject(from: url)
       selectedProjectID = project.id
@@ -774,16 +774,16 @@ struct DITPlannerView: View {
   }
 
   private func createProject() {
-    if let project = try? projectStore.add(DITProject()) {
+    if let project = try? projectStore.add(DMTProject()) {
       selectedProjectID = project.id
     }
   }
 
-  private func duplicate(_ project: DITProject) {
+  private func duplicate(_ project: DMTProject) {
     if let copy = try? projectStore.duplicate(project) { selectedProjectID = copy.id }
   }
 
-  private func delete(_ project: DITProject) {
+  private func delete(_ project: DMTProject) {
     try? projectStore.remove(id: project.id)
     if selectedProjectID == project.id { selectedProjectID = projectStore.projects.first?.id }
   }
@@ -827,7 +827,7 @@ struct DITPlannerView: View {
     return items.indices.contains(index + offset)
   }
 
-  private func projectNameBinding(_ project: DITProject) -> Binding<String> {
+  private func projectNameBinding(_ project: DMTProject) -> Binding<String> {
     Binding(
       get: {
         let name = projectStore.projects.first { $0.id == project.id }?.name ?? ""
@@ -842,7 +842,7 @@ struct DITPlannerView: View {
     )
   }
 
-  private func projectDisplayName(_ project: DITProject) -> String {
+  private func projectDisplayName(_ project: DMTProject) -> String {
     let name = project.name.trimmingCharacters(in: .whitespacesAndNewlines)
     return name.isEmpty || name == "未命名项目" ? copy.text("未命名项目") : name
   }
@@ -903,7 +903,7 @@ struct DITPlannerView: View {
   }
 
   private func transferBinding(
-    _ project: DITProject,
+    _ project: DMTProject,
     keyPath: WritableKeyPath<TransferProfile, Double>
   ) -> Binding<Double> {
     Binding(
@@ -923,7 +923,7 @@ struct DITPlannerView: View {
   private func itemReaderSpeedBinding(_ item: PlanItem) -> Binding<Double> {
     Binding(
       get: {
-        (selectedItem ?? item).readerSpeedMBps ?? DITPlanItemDefaults.readerSpeedMBps
+        (selectedItem ?? item).readerSpeedMBps ?? DMTPlanItemDefaults.readerSpeedMBps
       },
       set: { value in
         guard var project = selectedProject,
@@ -949,8 +949,8 @@ struct DITPlannerView: View {
     }
   }
 
-  private func itemStorage(project: DITProject, item: PlanItem) -> Double {
-    DITProjectCalculator.summarize(project).itemSummaries.first { $0.itemID == item.id }?
+  private func itemStorage(project: DMTProject, item: PlanItem) -> Double {
+    DMTProjectCalculator.summarize(project).itemSummaries.first { $0.itemID == item.id }?
       .storageBytes ?? 0
   }
 
@@ -1127,7 +1127,7 @@ enum PlannerTableColumnBoundary {
 private struct CameraPlanHeader: View {
   @Binding var widths: PlannerTableColumnWidths
   let availableWidth: CGFloat
-  let copy: DITPlannerCopy
+  let copy: DMTPlannerCopy
 
   private var resolvedWidths: PlannerTableColumnWidths {
     widths.resolved(for: availableWidth)
@@ -1182,7 +1182,7 @@ private struct PlannerColumnResizeGap: View {
   @Binding var widths: PlannerTableColumnWidths
   let resolvedWidths: PlannerTableColumnWidths
   let boundary: PlannerTableColumnBoundary
-  let copy: DITPlannerCopy
+  let copy: DMTPlannerCopy
 
   @State private var dragStartWidths: PlannerTableColumnWidths?
   @State private var isHovered = false
@@ -1227,7 +1227,7 @@ private struct CameraPlanRow: View {
   let storage: String
   let isCompared: Bool
   let comparisonDisabled: Bool
-  let copy: DITPlannerCopy
+  let copy: DMTPlannerCopy
   let toggleComparison: () -> Void
 
   var body: some View {

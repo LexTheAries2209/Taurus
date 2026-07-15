@@ -507,15 +507,15 @@ struct LocalizedCopy {
 
 extension LocalizedCopy {
     var plannerTitle: String {
-        language == .chinese ? "DIT 项目规划" : "DIT Project Planner"
+        language == .chinese ? "DMT 项目规划" : "DMT Project Planner"
     }
 
-    var ditPlanner: DITPlannerCopy {
-        DITPlannerCopy(language: language)
+    var dmtPlanner: DMTPlannerCopy {
+        DMTPlannerCopy(language: language)
     }
 }
 
-struct DITPlannerCopy {
+struct DMTPlannerCopy {
     let language: AppLanguage
 
     func text(_ chinese: String) -> String {

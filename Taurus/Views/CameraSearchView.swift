@@ -31,7 +31,7 @@ struct CameraSearchView: View {
     @Environment(\.presentationMode) private var presentationMode
     @State private var query = ""
 
-    private var copy: DITPlannerCopy { language.copy.ditPlanner }
+    private var copy: DMTPlannerCopy { language.copy.dmtPlanner }
 
     init(language: AppLanguage = .chinese, onSelect: @escaping (CameraSearchEntry) -> Void) {
         self.language = language

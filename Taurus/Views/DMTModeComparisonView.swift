@@ -1,17 +1,17 @@
 import SwiftUI
 
-struct DITModeComparisonView: View {
-  let project: DITProject
+struct DMTModeComparisonView: View {
+  let project: DMTProject
   let itemIDs: Set<UUID>
   let language: AppLanguage
 
   @Environment(\.presentationMode) private var presentationMode
 
-  private var copy: DITPlannerCopy { language.copy.ditPlanner }
+  private var copy: DMTPlannerCopy { language.copy.dmtPlanner }
 
   private var summaryByID: [UUID: PlanItemSummary] {
     Dictionary(
-      uniqueKeysWithValues: DITProjectCalculator.summarize(project)
+      uniqueKeysWithValues: DMTProjectCalculator.summarize(project)
         .itemSummaries.map { ($0.itemID, $0) }
     )
   }

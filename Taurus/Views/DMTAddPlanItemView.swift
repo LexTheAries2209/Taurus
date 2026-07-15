@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum DITPlanItemBuilder {
+enum DMTPlanItemBuilder {
   static func make(
     from selectionStore: CameraSelectionStore,
     name: String,
@@ -52,7 +52,7 @@ enum DITPlanItemBuilder {
   }
 }
 
-struct DITAddPlanItemView: View {
+struct DMTAddPlanItemView: View {
   let existingItem: PlanItem?
   let language: AppLanguage
   let onSave: (PlanItem) -> Void
@@ -63,7 +63,7 @@ struct DITAddPlanItemView: View {
   @State private var usesHDE: Bool
   @State private var showsCameraSearch = false
 
-  private var copy: DITPlannerCopy { language.copy.ditPlanner }
+  private var copy: DMTPlannerCopy { language.copy.dmtPlanner }
 
   init(
     existingItem: PlanItem? = nil,
@@ -94,7 +94,7 @@ struct DITAddPlanItemView: View {
 
   private var draftItem: PlanItem? {
     guard
-      let item = DITPlanItemBuilder.make(
+      let item = DMTPlanItemBuilder.make(
         from: draftSelection,
         name: itemName,
         usesHDE: usesHDE
@@ -102,7 +102,7 @@ struct DITAddPlanItemView: View {
     else { return nil }
 
     guard let existingItem else { return item }
-    return DITPlanItemBuilder.replacingRecordingMode(of: existingItem, with: item)
+    return DMTPlanItemBuilder.replacingRecordingMode(of: existingItem, with: item)
   }
 
   var body: some View {

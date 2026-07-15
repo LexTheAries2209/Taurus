@@ -2,7 +2,7 @@ import XCTest
 
 @testable import Taurus
 
-final class DITFavoriteTests: XCTestCase {
+final class DMTFavoriteTests: XCTestCase {
     func testCameraSearchIndexContainsKnownOfflineModels() {
         XCTAssertTrue(
             CameraSearchIndex.entries.contains {
@@ -24,7 +24,7 @@ final class DITFavoriteTests: XCTestCase {
         let url = directory.appendingPathComponent("favorites.json")
         defer { try? FileManager.default.removeItem(at: directory) }
         let item = sampleItem()
-        let store = DITFavoriteStore(fileURL: url)
+        let store = DMTFavoriteStore(fileURL: url)
 
         let first = try store.add(item)
         let duplicate = try store.add(item)
@@ -32,7 +32,7 @@ final class DITFavoriteTests: XCTestCase {
         XCTAssertEqual(first, duplicate)
         XCTAssertEqual(store.favorites.count, 1)
         XCTAssertTrue(store.contains(item))
-        XCTAssertEqual(DITFavoriteStore(fileURL: url).favorites, [first])
+        XCTAssertEqual(DMTFavoriteStore(fileURL: url).favorites, [first])
     }
 
     func testFavoriteCreatesFreshPlanItemAndCanBeToggled() throws {
@@ -41,7 +41,7 @@ final class DITFavoriteTests: XCTestCase {
         let url = directory.appendingPathComponent("favorites.json")
         defer { try? FileManager.default.removeItem(at: directory) }
         let source = sampleItem()
-        let store = DITFavoriteStore(fileURL: url)
+        let store = DMTFavoriteStore(fileURL: url)
 
         try store.toggle(source)
         let favorite = try XCTUnwrap(store.favorites.first)

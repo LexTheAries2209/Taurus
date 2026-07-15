@@ -22,8 +22,8 @@ enum WorkspaceWindowMetrics {
 struct ContentView: View {
   @ObservedObject var selectionStore: CameraSelectionStore
   @ObservedObject var windowReference: WindowReferenceStore
-  @ObservedObject var projectStore: DITProjectStore
-  @ObservedObject var favoriteStore: DITFavoriteStore
+  @ObservedObject var projectStore: DMTProjectStore
+  @ObservedObject var favoriteStore: DMTFavoriteStore
   @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @AppStorage("appLanguage") private var appLanguageRawValue = AppLanguage.chinese.rawValue
   @State private var selectedWorkspace = WorkspaceTab.calculator
@@ -90,7 +90,7 @@ struct ContentView: View {
         }
 
         if showsPlanner {
-          DITPlannerView(
+          DMTPlannerView(
             projectStore: projectStore,
             favoriteStore: favoriteStore,
             language: language
@@ -128,9 +128,9 @@ struct ContentView_Previews: PreviewProvider {
     ContentView(
       selectionStore: CameraSelectionStore(),
       windowReference: WindowReferenceStore(),
-      projectStore: DITProjectStore(
+      projectStore: DMTProjectStore(
         fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-projects.json")),
-      favoriteStore: DITFavoriteStore(
+      favoriteStore: DMTFavoriteStore(
         fileURL: URL(fileURLWithPath: "/tmp/taurus-preview-favorites.json"))
     )
   }
