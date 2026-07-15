@@ -2,6 +2,34 @@
 
 本文件用于承接 GitHub Release 的版本说明。更详细的应用内说明保留在 `Taurus/Taurus_Log.txt`。
 
+## V2.0.1
+
+### 中文
+
+- 新增 DMT 项目规划工作区，与数据计算器通过顶部标签并列切换。
+- 支持多机位项目、机位数量、每日开机时长、录制比例、拍摄天数、备份份数、安全余量和机位备注。
+- 汇总每日与全项目原始数据、备份后存储、介质周转卡次、单卡录制时长、卸载时间和每日双备份可行性。
+- 将读卡器速度设置为每个机位独立参数，并保留项目级目标磁盘速度与每日卸载窗口。
+- 支持 ARRI ARRIRAW HDE 无损压缩规划，包括 ALEXA 与 AMIRA 的可用模式。
+- 支持摄影机搜索、收藏模式、2 至 4 个模式比较、机位复制、重排、重置和删除。
+- 支持本地 JSON 自动保存、项目复制和 JSON 导入导出，以及 CSV、PDF 报告导出。
+- 完成 DMT 项目规划中英文界面，并改进窗口切换动画、居中缩放和桌面表格布局。
+- 数据计算器继续提供级联选择验证、无效输入拦截、ARRI 结构化录制模式和跨品牌计算测试。
+- 版本命名：Version 为 `2.0`，Build 为 `1`，应用显示为 `Taurus V2.0.1`。
+
+### English
+
+- Added the DMT Project Planner as a top-level workspace alongside Data Calculator.
+- Added multi-camera projects with camera count, daily power-on time, recording ratio, shoot days, retained copies, safety margin, and position notes.
+- Added daily and project raw-data totals, storage after backups, media turnover cycles, recording time per card, offload time, and daily double-backup feasibility.
+- Made reader speed a per-camera parameter while retaining project-level target-disk speed and daily offload-window settings.
+- Added ARRI ARRIRAW HDE planning for supported ALEXA and AMIRA modes.
+- Added camera search, favorites, comparison of 2 to 4 modes, camera duplication, reordering, reset, and deletion.
+- Added local JSON autosave, project duplication and JSON import/export, plus CSV and PDF reports.
+- Completed Chinese and English DMT Planner interfaces and refined workspace transitions, centered window resizing, and desktop table layouts.
+- Preserved cascading validation, invalid-input protection, structured ARRI recording modes, and cross-brand calculation tests in Data Calculator.
+- Version naming: Version is `2.0`, Build is `1`, and the app displays as `Taurus V2.0.1`.
+
 ## V1.3.7
 
 ### 中文

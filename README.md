@@ -2,21 +2,66 @@
 
 ## 中文
 
-Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 工具。当前主要功能是“数据计算器”：根据摄影机、编码、分辨率、帧率和记录介质，估算数据码率、每小时数据量和可录制时长。
+Taurus 是一款面向摄影、DIT 与 DMT 现场数据工作的原生 macOS 工具。应用提供“数据计算器”和“DMT 项目规划”两个并列工作区，用于查询摄影机录制参数、估算素材容量，并将多机位拍摄、备份和卸载流程整理为可保存、比较和导出的项目方案。
 
-计算结果用于现场规划和快速参考。不同厂商固件、机内设置、可变帧率、压缩策略、外录方案和介质实际可用容量都可能让实际数据量与估算值不同。
+核心数据与计算均可离线使用，不依赖账户、云服务或第三方框架。计算结果用于前期规划和现场快速参考；固件版本、机内设置、可变帧率、压缩策略、外录方案及介质实际可用容量都可能使实拍数据与估算值不同。
 
-### 当前状态
+### 下载与系统要求
 
-- 默认分支：`main`
-- 当前正式版本：`v1.3.7`（应用内显示：`Taurus V1.3.7`）
-- 最新正式发布：`v1.3.7` tag 和 GitHub Release
-- 历史版本：已整理为 `v1.x.x` tags
+- 当前版本：`Taurus V2.0.1`
+- 下载：[`Taurus-v2.0.1-macOS.zip`](https://github.com/LexTheAries2209/Taurus/releases/download/v2.0.1/Taurus-v2.0.1-macOS.zip)
+- 发布说明：[`docs/releases/v2.0.1.md`](docs/releases/v2.0.1.md)
+- 最低系统：macOS 12
+- 架构：Apple Silicon 与 Intel
 - 数据截止日期：2026-07-06
-- 平台：macOS
-- 技术栈：SwiftUI, Xcode project
-- 自动验证：GitHub Actions 运行 XCTest 和 Xcode Release build
 - 许可证：GNU General Public License v3.0 only (`GPL-3.0-only`)
+
+### 数据计算器
+
+数据计算器根据摄影机、编码、格式或分辨率、帧率及记录介质，估算以下结果：
+
+- 可录制时长（分钟）
+- 数据码率（Mbps）
+- 数据速率（MB/s）
+- 每小时数据占用量（GB）
+- 支持模式下的 ARRI HDE 每小时数据量
+
+选择状态采用级联验证。品牌、机型或编码发生变化时，下游无效值会立即清空；不完整和不支持的组合会显示原因，不会继续输出误导性的数字。
+
+`[General]` 通用模式支持手动输入码率与分辨率。手动数值必须为大于零的有限数字。ARRIRAW 模式会根据摄影机和录制格式显示可用的 HDE 数据结果。
+
+### DMT 项目规划
+
+DMT 项目规划用于把多个摄影机录制模式组合为完整拍摄方案。每个机位可设置：
+
+- 摄影机录制模式、介质和机位备注
+- 摄影机数量
+- 每日开机时长与实际录制比例
+- 拍摄天数
+- 保留副本数量与安全余量
+- 该机位介质对应的读卡器速度
+- ARRIRAW 支持模式下的 HDE 无损压缩
+
+项目级传输配置包括目标磁盘写入速度和每日可用卸载窗口。Taurus 会自动汇总：
+
+- 单机每日、全部机位每日及全项目原始数据量
+- 加入备份份数和安全余量后的存储需求
+- 介质周转卡次与单张介质可录制时长
+- 每个机位及全项目卸载时间
+- 每日收工前能否完成双备份
+
+桌面工作流还包括：
+
+- 搜索摄影机与录制模式
+- 收藏常用模式
+- 2 至 4 个模式并排比较
+- 复制、重排、重置和删除机位
+- 复制项目方案
+- JSON 项目导入与导出
+- CSV 和 PDF 项目报告导出
+- 中英文界面切换
+
+项目和收藏会以 Codable JSON 自动保存在用户的 Application Support 目录。旧版 `DITProjects.json` 与 `DITFavorites.json` 会自动迁移到新的 DMT 文件名。第一版不使用账户、网络同步或 iCloud。
 
 ### 已覆盖品牌
 
@@ -34,22 +79,23 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 - Apple
 - `[General]` 自定义模式
 
-### 代码结构
+### 项目结构
 
-- `Taurus/ContentView.swift`：计算器根视图和状态绑定
-- `Taurus/Views/CalculatorWorkspace.swift`：选择区、结果区和备注区布局
-- `Taurus/Views/RecordingMetricsView.swift`：统一结果展示
+- `Taurus/ContentView.swift`：顶部工作区切换和根窗口布局
+- `Taurus/Views/CalculatorWorkspace.swift`：数据计算器选择区、结果区和备注区
+- `Taurus/Views/RecordingMetricsView.swift`：统一计算结果展示
 - `Taurus/Stores/CameraSelectionStore.swift`：级联选择状态与有效性维护
-- `Taurus/Calculation/`：纯计算引擎、摄影机选择、录制模式和 ARRI 官方目录
-- `Taurus/Brand_Camera.swift`：品牌与机型入口数据
-- `Taurus/Codec.swift`：机型与编码选项
-- `Taurus/Media.swift` 与 `Taurus/Media/`：记录介质选项
-- `Taurus/Resolution/`：各品牌分辨率/格式选项
-- `Taurus/Rate/`：各品牌帧率选项
-- `Taurus/Count.swift` 与 `Taurus/Count/`：码率、容量和数据量计算逻辑
-- `Taurus/Taurus_Log.txt`：应用内版本说明
+- `Taurus/Calculation/`：纯计算引擎、摄影机选择、录制模式和 ARRI 目录
+- `Taurus/DMTProject.swift`：项目、机位、传输配置和汇总模型
+- `Taurus/DMTProjectStore.swift`：本地项目持久化与导入导出
+- `Taurus/DMTFavorites.swift`：收藏模式持久化
+- `Taurus/DMTPlanExport.swift`：CSV 和 PDF 报告导出
+- `Taurus/Views/DMTPlannerView.swift`：多机位规划桌面界面
+- `Taurus/Views/DMTAddPlanItemView.swift`：新增和修改录制模式
+- `Taurus/Views/DMTModeComparisonView.swift`：模式比较界面
+- `TaurusTests/`：计算、选择、项目、收藏和导出 XCTest
 
-### 本地构建
+### 本地构建与测试
 
 使用 Xcode 打开：
 
@@ -57,24 +103,26 @@ Taurus 是一个面向摄影、DIT 与现场数据管理工作的 macOS SwiftUI 
 open Taurus.xcodeproj
 ```
 
-或使用命令行构建：
+运行测试：
 
 ```sh
-xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
+xcodebuild test \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -destination 'platform=macOS' \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
-### 版本管理
+构建 Release：
 
-本仓库已恢复 `main` 作为稳定主线。后续建议：
-
-- `main`：稳定主线，始终指向当前可用版本
-- `feature/<name>`：新增机型、品牌、编码、介质或界面功能
-- `fix/<name>`：修复数据、计算或界面问题
-- `docs/<name>`：文档和仓库配置整理
-- `vX.Y.Z` tag：正式版本
-- GitHub Release：面向使用者的版本说明和下载入口
-
-历史中的 `V1.x.x` 分支已整理为 `v1.x.x` tags；`20230928` 日期分支已保留为 `archive/20230928` tag。远端仅保留 `main` 和必要的 `backup/*` 分支。后续如需补全旧版本说明，可以继续从 tags 创建对应的 GitHub Releases。
+```sh
+xcodebuild build \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -configuration Release \
+  -destination 'generic/platform=macOS' \
+  ONLY_ACTIVE_ARCH=NO
+```
 
 ### 许可证
 
@@ -89,21 +137,66 @@ Taurus 以 GNU General Public License v3.0 only 授权，SPDX 标识为 `GPL-3.0
 
 ## English
 
-Taurus is a macOS SwiftUI tool for cinematography, DIT, and on-set data management workflows. Its current primary feature is a data calculator that estimates bitrate, hourly storage usage, and recording time from camera, codec, resolution, frame rate, and recording media selections.
+Taurus is a native macOS tool for cinematography, DIT, and DMT data workflows. It provides two parallel workspaces, Data Calculator and DMT Project Planner, for looking up camera recording parameters, estimating media requirements, and turning multi-camera capture, backup, and offload assumptions into saved, comparable, exportable project plans.
 
-The calculated results are intended for planning and quick reference. Real-world usage can differ because of firmware versions, in-camera settings, variable frame rates, compression behavior, external recording workflows, and actual usable media capacity.
+Core data and calculations work offline without accounts, cloud services, or third-party frameworks. Results are intended for pre-production planning and quick on-set reference. Firmware versions, camera settings, variable frame rates, compression behavior, external recorders, and actual usable media capacity can all cause real-world results to differ.
 
-### Current Status
+### Download and Requirements
 
-- Default branch: `main`
-- Current formal version: `v1.3.7` (in-app display name: `Taurus V1.3.7`)
-- Latest formal release: `v1.3.7` tag and GitHub Release
-- Historical versions: converted to `v1.x.x` tags
+- Current version: `Taurus V2.0.1`
+- Download: [`Taurus-v2.0.1-macOS.zip`](https://github.com/LexTheAries2209/Taurus/releases/download/v2.0.1/Taurus-v2.0.1-macOS.zip)
+- Release notes: [`docs/releases/v2.0.1.md`](docs/releases/v2.0.1.md)
+- Minimum system: macOS 12
+- Architectures: Apple Silicon and Intel
 - Data cutoff date: 2026-07-06
-- Platform: macOS
-- Stack: SwiftUI, Xcode project
-- Automation: GitHub Actions runs XCTest and an Xcode Release build
 - License: GNU General Public License v3.0 only (`GPL-3.0-only`)
+
+### Data Calculator
+
+The calculator estimates the following values from the selected camera, codec, format or resolution, frame rate, and recording media:
+
+- Available recording time in minutes
+- Bitrate in Mbps
+- Data rate in MB/s
+- Hourly storage usage in GB
+- ARRI HDE hourly storage usage where supported
+
+Selections are validated as a cascade. Changing the brand, camera, or codec immediately clears invalid downstream values. Incomplete or unsupported combinations show a reason instead of producing misleading numbers.
+
+The `[General]` route supports manually entered bitrate and resolution values. Manual values must be finite numbers greater than zero. ARRIRAW modes expose HDE results when the selected camera and recording format provide a supported ratio.
+
+### DMT Project Planner
+
+The DMT Project Planner combines multiple camera recording modes into one production plan. Each camera position can define:
+
+- Camera recording mode, media, and position notes
+- Camera count
+- Daily power-on time and actual recording ratio
+- Shoot duration in days
+- Retained copy count and safety margin
+- Reader speed for that camera's media workflow
+- HDE lossless compression for supported ARRIRAW modes
+
+Project-level transfer settings include target-disk write speed and the daily offload window. Taurus automatically summarizes:
+
+- Raw data per camera per day, all cameras per day, and the complete project
+- Storage requirements after copy count and safety margin
+- Media turnover cycles and recording time per card
+- Per-camera and total offload time
+- Whether daily double backup can finish before wrap
+
+The desktop workflow also provides:
+
+- Camera and recording-mode search
+- Favorite recording modes
+- Side-by-side comparison of 2 to 4 modes
+- Camera duplication, reordering, reset, and deletion
+- Project-plan duplication
+- JSON project import and export
+- CSV and PDF project reports
+- Chinese and English interface switching
+
+Projects and favorites are autosaved as Codable JSON in the user's Application Support directory. Legacy `DITProjects.json` and `DITFavorites.json` files are migrated automatically to the DMT filenames. The first release does not use accounts, network sync, or iCloud.
 
 ### Covered Brands
 
@@ -123,47 +216,48 @@ The calculated results are intended for planning and quick reference. Real-world
 
 ### Project Structure
 
-- `Taurus/ContentView.swift`: calculator root view and state bindings
-- `Taurus/Views/CalculatorWorkspace.swift`: selection, result, and notes layout
-- `Taurus/Views/RecordingMetricsView.swift`: unified result presentation
-- `Taurus/Stores/CameraSelectionStore.swift`: cascading selection state and validity maintenance
-- `Taurus/Calculation/`: pure calculation engine, camera selection, recording modes, and the official ARRI catalog
-- `Taurus/PickerView.swift`: brand, camera, codec, resolution, frame rate, and media selectors
-- `Taurus/DataOutput.swift`: recording time, bitrate, and hourly storage output
-- `Taurus/Brand_Camera.swift`: brand and camera entry data
-- `Taurus/Codec.swift`: camera-to-codec options
-- `Taurus/Media.swift` and `Taurus/Media/`: recording media options
-- `Taurus/Resolution/`: brand-specific resolution and format options
-- `Taurus/Rate/`: brand-specific frame rate options
-- `Taurus/Count.swift` and `Taurus/Count/`: bitrate, capacity, and storage calculations
-- `Taurus/Taurus_Log.txt`: in-app version notes
+- `Taurus/ContentView.swift`: workspace switching and root-window layout
+- `Taurus/Views/CalculatorWorkspace.swift`: calculator selection, results, and notes layout
+- `Taurus/Views/RecordingMetricsView.swift`: unified calculation-result presentation
+- `Taurus/Stores/CameraSelectionStore.swift`: cascading selection state and validation
+- `Taurus/Calculation/`: pure calculation engine, camera selection, recording modes, and ARRI catalog
+- `Taurus/DMTProject.swift`: project, camera-position, transfer-profile, and summary models
+- `Taurus/DMTProjectStore.swift`: local project persistence and import/export
+- `Taurus/DMTFavorites.swift`: favorite-mode persistence
+- `Taurus/DMTPlanExport.swift`: CSV and PDF report generation
+- `Taurus/Views/DMTPlannerView.swift`: multi-camera desktop planning interface
+- `Taurus/Views/DMTAddPlanItemView.swift`: recording-mode creation and editing
+- `Taurus/Views/DMTModeComparisonView.swift`: mode comparison interface
+- `TaurusTests/`: calculation, selection, project, favorite, and export XCTest coverage
 
-### Local Build
+### Local Build and Tests
 
-Open with Xcode:
+Open the Xcode project:
 
 ```sh
 open Taurus.xcodeproj
 ```
 
-Or build from the command line:
+Run tests:
 
 ```sh
-xcodebuild -project Taurus.xcodeproj -target Taurus -configuration Release build
+xcodebuild test \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -destination 'platform=macOS' \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
-### Version Management
+Build a Release configuration:
 
-This repository now uses `main` as the stable development line. Recommended workflow:
-
-- `main`: stable line, always pointing to the current usable version
-- `feature/<name>`: new cameras, brands, codecs, media, or UI features
-- `fix/<name>`: data, calculation, or UI fixes
-- `docs/<name>`: documentation and repository maintenance
-- `vX.Y.Z` tag: formal version marker
-- GitHub Release: user-facing release notes and downloadable artifacts
-
-Historical `V1.x.x` branches have been converted into `v1.x.x` tags; the `20230928` date branch is preserved as the `archive/20230928` tag. The remote now keeps only `main` and the necessary `backup/*` branches. Older release notes can be gradually backfilled as GitHub Releases from the tags if needed.
+```sh
+xcodebuild build \
+  -project Taurus.xcodeproj \
+  -scheme Taurus \
+  -configuration Release \
+  -destination 'generic/platform=macOS' \
+  ONLY_ACTIVE_ARCH=NO
+```
 
 ### License
 
