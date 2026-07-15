@@ -49,6 +49,21 @@ final class ScreenshotExportTests: XCTestCase {
         )
     }
 
+    func testCalculatorWindowOpensAboveItsMinimumHeight() {
+        XCTAssertEqual(
+            WorkspaceWindowMetrics.calculatorMinimumSize,
+            CGSize(width: 930, height: 540)
+        )
+        XCTAssertEqual(
+            WorkspaceWindowMetrics.calculatorPreferredSize,
+            CGSize(width: 930, height: 620)
+        )
+        XCTAssertGreaterThan(
+            WorkspaceWindowMetrics.calculatorPreferredSize.height,
+            WorkspaceWindowMetrics.calculatorMinimumSize.height
+        )
+    }
+
     func testVersionCommentsAreUpdatedInChineseAndEnglish() {
         XCTAssertEqual(
             AppLanguage.chinese.copy.comments(for: "", cameraName: "").first,

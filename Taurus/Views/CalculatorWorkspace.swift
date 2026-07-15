@@ -14,9 +14,11 @@ struct CalculatorWorkspace: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            Spacer(minLength: 20)
+                .frame(maxHeight: 48)
+
             Button(copy.resetButton, action: selectionStore.reset)
                 .keyboardShortcut("r", modifiers: [.command])
-                .padding(.top, 20)
 
             HStack(alignment: .center) {
                 CameraSelectionPanel(cameradata: selectionStore, language: language)

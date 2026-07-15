@@ -12,6 +12,13 @@ enum WorkspaceTab: Hashable {
   case planner
 }
 
+enum WorkspaceWindowMetrics {
+  static let calculatorMinimumSize = CGSize(width: 930, height: 540)
+  static let calculatorPreferredSize = CGSize(width: 930, height: 620)
+  static let plannerMinimumSize = CGSize(width: 1_180, height: 680)
+  static let plannerPreferredSize = CGSize(width: 1_320, height: 780)
+}
+
 struct ContentView: View {
   @ObservedObject var selectionStore: CameraSelectionStore
   @ObservedObject var windowReference: WindowReferenceStore
@@ -27,14 +34,14 @@ struct ContentView: View {
 
   private var windowMinimumSize: CGSize {
     showsPlanner
-      ? CGSize(width: 1_180, height: 680)
-      : CGSize(width: 930, height: 540)
+      ? WorkspaceWindowMetrics.plannerMinimumSize
+      : WorkspaceWindowMetrics.calculatorMinimumSize
   }
 
   private var windowPreferredSize: CGSize {
     showsPlanner
-      ? CGSize(width: 1_320, height: 780)
-      : CGSize(width: 930, height: 540)
+      ? WorkspaceWindowMetrics.plannerPreferredSize
+      : WorkspaceWindowMetrics.calculatorPreferredSize
   }
 
   private var language: AppLanguage {
