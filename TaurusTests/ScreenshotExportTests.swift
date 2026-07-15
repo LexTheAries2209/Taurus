@@ -64,6 +64,27 @@ final class ScreenshotExportTests: XCTestCase {
         )
     }
 
+    func testWorkspaceWindowResizePreservesCenterAcrossRepeatedSwitches() {
+        let initialCenter = CGPoint(x: 860, y: 520)
+        let calculatorFrameSize = CGSize(width: 930, height: 648)
+        let plannerFrameSize = CGSize(width: 1_320, height: 808)
+        var frame = WindowFrameGeometry.centeredFrame(
+            size: calculatorFrameSize,
+            around: initialCenter
+        )
+
+        for targetSize in [plannerFrameSize, calculatorFrameSize, plannerFrameSize, calculatorFrameSize] {
+            let centerBeforeResize = CGPoint(x: frame.midX, y: frame.midY)
+            frame = WindowFrameGeometry.centeredFrame(
+                size: targetSize,
+                around: centerBeforeResize
+            )
+
+            XCTAssertEqual(frame.midX, initialCenter.x, accuracy: 0.001)
+            XCTAssertEqual(frame.midY, initialCenter.y, accuracy: 0.001)
+        }
+    }
+
     func testVersionCommentsAreUpdatedInChineseAndEnglish() {
         XCTAssertEqual(
             AppLanguage.chinese.copy.comments(for: "", cameraName: "").first,

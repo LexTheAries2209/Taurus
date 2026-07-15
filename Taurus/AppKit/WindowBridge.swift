@@ -1,6 +1,17 @@
 import AppKit
 import SwiftUI
 
+enum WindowFrameGeometry {
+  static func centeredFrame(size: CGSize, around center: CGPoint) -> CGRect {
+    CGRect(
+      x: center.x - size.width / 2,
+      y: center.y - size.height / 2,
+      width: size.width,
+      height: size.height
+    )
+  }
+}
+
 final class WindowReferenceStore: ObservableObject {
   private weak var window: NSWindow?
 
@@ -42,6 +53,11 @@ struct WindowSizingBridge: NSViewRepresentable {
   private func configureWindow(for view: NSView, coordinator: Coordinator) {
     guard let window = view.window else { return }
 
+    let centerBeforeConstraintUpdate = CGPoint(
+      x: window.frame.midX,
+      y: window.frame.midY
+    )
+
     windowReference.resolve(window)
     window.contentMinSize = minimumContentSize
     window.contentMaxSize = CGSize(
@@ -68,12 +84,9 @@ struct WindowSizingBridge: NSViewRepresentable {
         let targetFrameSize = window.frameRect(
           forContentRect: CGRect(origin: .zero, size: preferredContentSize)
         ).size
-        let currentFrame = window.frame
-        let targetFrame = CGRect(
-          x: currentFrame.midX - targetFrameSize.width / 2,
-          y: currentFrame.midY - targetFrameSize.height / 2,
-          width: targetFrameSize.width,
-          height: targetFrameSize.height
+        let targetFrame = WindowFrameGeometry.centeredFrame(
+          size: targetFrameSize,
+          around: centerBeforeConstraintUpdate
         )
 
         window.setFrame(
